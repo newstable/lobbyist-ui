@@ -1,0 +1,16 @@
+@use "../../styles/index.scss" as main;
+
+.input {
+  background-color: #121415;
+}
+
+.menu {
+  &Item {
+    background-color: rgb(84, 90, 95);
+    &:hover,
+    &:focus {
+      outline: 0;
+      background-color: rgb(66, 73, 79) !important;
+    }
+  }
+}

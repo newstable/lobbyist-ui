@@ -1,0 +1,11 @@
+%flexColAlignStart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+%flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

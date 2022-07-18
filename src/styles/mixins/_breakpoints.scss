@@ -1,0 +1,40 @@
+// Media of at most the maximum and minimum breakpoint widths. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint.
+@use "../settings/globals.scss";
+
+// Respond above.
+@mixin respond-above($brpVal, $breakpoints: globals.$grid-breakpoints) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $brpVal) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $brpVal);
+
+    // Write the media query.
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$brpVal}.';
+  }
+}
+
+@mixin respond-below($brpVal, $breakpoints: globals.$grid-breakpoints) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $brpVal) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $brpVal);
+
+    // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$brpVal}.';
+  }
+}

@@ -1,0 +1,25 @@
+@use "../../styles/index.scss" as main;
+
+.main {
+  padding: 25px 0;
+}
+
+.icon {
+  @extend %topIcon;
+  &Gauge {
+    color: main.$var-clr-white;
+  }
+
+  &Add {
+    fill: main.$var-clr-white !important;
+  }
+
+  &Symbol {
+    background: #c4c4c4;
+
+    svg {
+      background: transparent;
+      color: #111314;
+    }
+  }
+}

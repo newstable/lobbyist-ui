@@ -1,0 +1,34 @@
+@use "sass:math";
+
+// Base
+$rem-base: 16px;
+$base-line-height: 1;
+
+// Application Colors
+
+// variable
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  mlg: 911px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+) !default;
+// scss-docs-end grid-breakpoints
+
+// Application Colors
+$clr-black: #000;
+$clr-white: #fff;
+$clr-gray: #59585a;
+$clr-dark-gray: #393939;
+$clr-slate-gray: #2d3242;
+$clr-charcoal-gray: #1e212d;
+$clr-orange: #ff6847;
+$clr-purple: #9747ff;

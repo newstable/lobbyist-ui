@@ -1,0 +1,72 @@
+@use "../../styles/index.scss" as main;
+
+.main {
+  &Mobile {
+  }
+
+  &Inner {
+    background: main.$var-clr-black;
+    box-shadow: 10px 0px 50px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      .menu {
+        &Text {
+        }
+      }
+    }
+  }
+
+  body[class~="show-menu"] & {
+    &Mobile {
+    }
+  }
+}
+
+.menu {
+  &Mobile {
+    transition: all 0.3s ease-in;
+    position: fixed;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    background: #121415;
+    left: 0;
+    top: -720px;
+    z-index: 3;
+    margin-top: 60px;
+    height: 0;
+    flex-direction: column;
+  }
+
+  &Hamburger,
+  &Logo {
+    z-index: 5;
+  }
+
+  &Icon {
+    @extend %menuIcon;
+    border-radius: 3px;
+    color: #071018cf;
+
+    &--disabled {
+      color: #5a5d60;
+    }
+  }
+
+  &Text {
+    margin-left: 10px;
+  }
+
+  body[class~="show-menu"] & {
+    &Mobile {
+      display: flex;
+      height: calc(100vh - 60px);
+      top: 0px;
+    }
+
+    &Text {
+      font-size: 20px;
+    }
+  }
+}
