@@ -51,6 +51,9 @@ const Header: FC = () => {
   const anchorRef = useRef<HTMLButtonElement>(null);
   const [selectedCrypto, setselectedCrypto] = useState("Polygon");
 
+  var styledAddress = account
+    ? account.slice(0, 4) + "..." + account.slice(-4)
+    : "";
   const connectWallet = async () => {
     try {
       const provider = await web3Modal.connect();
@@ -246,7 +249,7 @@ const Header: FC = () => {
           </Button>
         ) : (
           <Button variant="contained" color="tealLight" onClick={disconnect}>
-            Disconnect
+            {styledAddress}
           </Button>
         )}
       </Box>
