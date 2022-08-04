@@ -27,7 +27,7 @@ const web3Modal = new Web3Modal({
 const Header: FC = () => {
   const [provider, setProvider] = useState();
   const [library, setLibrary]: any = useState();
-  const [account, setAccount] = useState();
+  const [account, setAccount]: any = useState();
   const [signature, setSignature] = useState("");
   const [error, setError] = useState("");
   const [chainId, setChainId] = useState();
