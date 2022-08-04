@@ -1,19 +1,16 @@
 import { FC, useState, useRef, useEffect } from "react";
-import {
-  Box,
-  Button,
-  Popper,
-  Grow,
-  Paper,
-  ClickAwayListener,
-  MenuList,
-  MenuItem,
-} from "@mui/material";
+import { Box, Button, Popper, Grow, Paper, ClickAwayListener, MenuList, MenuItem, } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import classNames from "classnames";
+import Web3Modal from 'web3modal'
+
 import { colors } from "../../common";
 import { HeaderLeft } from "./left";
 import styles from "./styles.module.scss";
+import { providerOptions } from "../../providerOptions";
+import { toHex, truncateAddress } from "../../utils";
+import { networkParams } from "../../networks";
+import { ethers } from "ethers";
 
 const itemsList = ["Polygon", "Ethereum", "Optimism"];
 
@@ -22,10 +19,108 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   color: colors.textGrayLight,
 }));
 
+const web3Modal = new Web3Modal({
+  cacheProvider: true, // optional
+  providerOptions // required
+});
+
 const Header: FC = () => {
+  const [provider, setProvider] = useState();
+  const [library, setLibrary]: any = useState();
+  const [account, setAccount] = useState();
+  const [signature, setSignature] = useState("");
+  const [error, setError] = useState("");
+  const [chainId, setChainId] = useState();
+  const [network, setNetwork] = useState();
+  const [message, setMessage] = useState("");
+  const [signedMessage, setSignedMessage] = useState("");
+  const [verified, setVerified] = useState();
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
   const [selectedCrypto, setselectedCrypto] = useState("Polygon");
+
+  const connectWallet = async () => {
+    try {
+      const provider = await web3Modal.connect();
+      const library: any = new ethers.providers.Web3Provider(provider);
+      const accounts = await library.listAccounts();
+      const network = await library.getNetwork();
+      setProvider(provider);
+      setLibrary(library);
+      if (accounts) setAccount(accounts[0]);
+      setChainId(network.chainId);
+    } catch (error: any) {
+      setError(error);
+    }
+  };
+
+  // const switchNetwork = async () => {
+  //   try {
+  //     await library.provider.request({
+  //       method: "wallet_switchEthereumChain",
+  //       params: [{ chainId: toHex(network) }]
+  //     });
+  //   } catch (switchError) {
+  //     if (switchError.code === 4902) {
+  //       try {
+  //         await library.provider.request({
+  //           method: "wallet_addEthereumChain",
+  //           params: [networkParams[toHex(network)]]
+  //         });
+  //       } catch (error: any) {
+  //         setError(error);
+  //       }
+  //     }
+  //   }
+  // };
+
+  useEffect(() => {
+    if (web3Modal.cachedProvider) {
+      connectWallet();
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   if (provider?.on) {
+  //     const handleAccountsChanged = (accounts:any) => {
+  //       console.log("accountsChanged", accounts);
+  //       if (accounts) setAccount(accounts[0]);
+  //     };
+
+  //     const handleChainChanged = (_hexChainId:any) => {
+  //       setChainId(_hexChainId);
+  //     };
+
+  //     const handleDisconnect = () => {
+  //       console.log("disconnect", error);
+  //       disconnect();
+  //     };
+
+  //     provider.on("accountsChanged", handleAccountsChanged);
+  //     provider.on("chainChanged", handleChainChanged);
+  //     provider.on("disconnect", handleDisconnect);
+
+  //     return () => {
+  //       if (provider.removeListener) {
+  //         provider.removeListener("accountsChanged", handleAccountsChanged);
+  //         provider.removeListener("chainChanged", handleChainChanged);
+  //         provider.removeListener("disconnect", handleDisconnect);
+  //       }
+  //     };
+  //   }
+  // }, [provider]);
+
+  const refreshState = () => {
+    setAccount();
+    setMessage("");
+    setSignature("");
+    setVerified(undefined);
+  };
+
+  const disconnect = async () => {
+    await web3Modal.clearCachedProvider();
+    refreshState();
+  };
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -125,9 +220,15 @@ const Header: FC = () => {
             </Grow>
           )}
         </Popper>
-        <Button variant="contained" color="tealLight">
-          Connect
-        </Button>
+        {!account ? (
+          <Button variant="contained" color="tealLight" onClick={connectWallet}>
+            Connect
+          </Button>
+        ) : (
+          <Button variant="contained" color="tealLight" onClick={disconnect}>
+            Disconnect
+          </Button>
+        )}
       </Box>
     </header>
   );

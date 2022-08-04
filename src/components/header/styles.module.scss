@@ -6,12 +6,13 @@
 
 .icon {
   @extend %topIcon;
+
   &Gauge {
     color: main.$var-clr-white;
   }
 
   &Add {
-    fill: main.$var-clr-white !important;
+    fill: main.$var-clr-white  !important;
   }
 
   &Symbol {

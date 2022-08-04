@@ -4,6 +4,7 @@
 
 // Respond above.
 @mixin respond-above($brpVal, $breakpoints: globals.$grid-breakpoints) {
+
   // If the breakpoint exists in the map.
   @if map-has-key($breakpoints, $brpVal) {
     // Get the breakpoint value.
@@ -15,13 +16,16 @@
     }
 
     // If the breakpoint doesn't exist in the map.
-  } @else {
+  }
+
+  @else {
     // Log a warning.
     @warn 'Invalid breakpoint: #{$brpVal}.';
   }
 }
 
 @mixin respond-below($brpVal, $breakpoints: globals.$grid-breakpoints) {
+
   // If the breakpoint exists in the map.
   @if map-has-key($breakpoints, $brpVal) {
     // Get the breakpoint value.
@@ -33,7 +37,9 @@
     }
 
     // If the breakpoint doesn't exist in the map.
-  } @else {
+  }
+
+  @else {
     // Log a warning.
     @warn 'Invalid breakpoint: #{$brpVal}.';
   }

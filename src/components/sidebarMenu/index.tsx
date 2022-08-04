@@ -122,7 +122,7 @@ const SidebarMenu = (props: Props) => {
             </Typography>
           </Link>
         </Box>
-     
+
         <button
           className={classNames(
             "hamburger mlg:hidden hamburger--squeeze",

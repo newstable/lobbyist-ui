@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ProposalState } from "../../@types/proposal";
 import { _proposalsActive, _proposalsHistory } from "../../_mock";
 //
-import { dispatch } from "../store";
+// import { dispatch } from "../store";
 
 // ----------------------------------------------------------------------
 

@@ -49,12 +49,12 @@ const HeaderLeft = (props: Props) => {
             ? "Proposal created successfully"
             : "Check your information is correct"
           : protocol && prsalType && kpi
-          ? "Add information about your proposal"
-          : protocol && prsalType
-          ? "Select the KPI option to use for payout"
-          : protocol
-          ? "Create a gauge vote or governance proposal"
-          : "Choose protocol to create proposal for";
+            ? "Add information about your proposal"
+            : protocol && prsalType
+              ? "Select the KPI option to use for payout"
+              : protocol
+                ? "Create a gauge vote or governance proposal"
+                : "Choose protocol to create proposal for";
     }
   }
   return (
