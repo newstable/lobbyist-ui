@@ -74,14 +74,21 @@ const Header: FC = () => {
       });
     } catch (switchError: any) {
       if (switchError.code === 4902) {
-        // try {
-        //   await library.provider.request({
-        //     method: "wallet_addEthereumChain",
-        //     params: [networkParams[selectedCrypto]]
-        //   });
-        // } catch (error: any) {
-        //   setError(error);
-        // }
+        try {
+          await library.provider.request({
+            method: "wallet_addEthereumChain",
+            params: [
+              {
+                chainId: toHex("137"),
+                chainName: "Polygon",
+                rpcUrls: ["https://polygon-rpc.com/"],
+                blockExplorerUrls: ["https://polygonscan.com/"],
+              },
+            ],
+          });
+        } catch (addError) {
+          throw addError;
+        }
       }
     }
   };
