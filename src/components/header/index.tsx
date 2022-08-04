@@ -3,6 +3,7 @@ import { Box, Button, Popper, Grow, Paper, ClickAwayListener, MenuList, MenuItem
 import { styled } from "@mui/material/styles";
 import classNames from "classnames";
 import Web3Modal from 'web3modal'
+import { ethers } from "ethers";
 
 import { colors } from "../../common";
 import { HeaderLeft } from "./left";
@@ -10,9 +11,21 @@ import styles from "./styles.module.scss";
 import { providerOptions } from "../../providerOptions";
 import { toHex, truncateAddress } from "../../utils";
 import { networkParams } from "../../networks";
-import { ethers } from "ethers";
 
-const itemsList = ["Polygon", "Ethereum", "Optimism"];
+const itemsList = [
+  {
+    "name": "Pologan",
+    "id": "0x89"
+  },
+  {
+    "name": "Ethereum",
+    "id": "0x1"
+  },
+  {
+    "name": "Binance",
+    "id": "56"
+  }
+];
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: "rgba(7, 16, 24, 0.81)",
@@ -30,8 +43,7 @@ const Header: FC = () => {
   const [account, setAccount]: any = useState();
   const [signature, setSignature] = useState("");
   const [error, setError] = useState("");
-  const [chainId, setChainId] = useState();
-  const [network, setNetwork] = useState();
+  const [chainId, setChainId]: any = useState();
   const [message, setMessage] = useState("");
   const [signedMessage, setSignedMessage] = useState("");
   const [verified, setVerified] = useState();
@@ -42,7 +54,7 @@ const Header: FC = () => {
   const connectWallet = async () => {
     try {
       const provider = await web3Modal.connect();
-      const library: any = new ethers.providers.Web3Provider(provider);
+      const library = new ethers.providers.Web3Provider(provider);
       const accounts = await library.listAccounts();
       const network = await library.getNetwork();
       setProvider(provider);
@@ -54,31 +66,31 @@ const Header: FC = () => {
     }
   };
 
-  // const switchNetwork = async () => {
-  //   try {
-  //     await library.provider.request({
-  //       method: "wallet_switchEthereumChain",
-  //       params: [{ chainId: toHex(network) }]
-  //     });
-  //   } catch (switchError) {
-  //     if (switchError.code === 4902) {
-  //       try {
-  //         await library.provider.request({
-  //           method: "wallet_addEthereumChain",
-  //           params: [networkParams[toHex(network)]]
-  //         });
-  //       } catch (error: any) {
-  //         setError(error);
-  //       }
-  //     }
-  //   }
-  // };
-
-  useEffect(() => {
-    if (web3Modal.cachedProvider) {
-      connectWallet();
+  const switchNetwork = async (network: string) => {
+    try {
+      await library.provider.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: toHex(network) }]
+      });
+    } catch (switchError: any) {
+      if (switchError.code === 4902) {
+        // try {
+        //   await library.provider.request({
+        //     method: "wallet_addEthereumChain",
+        //     params: [networkParams[selectedCrypto]]
+        //   });
+        // } catch (error: any) {
+        //   setError(error);
+        // }
+      }
     }
-  }, []);
+  };
+
+  // useEffect(() => {
+  //   if (web3Modal.cachedProvider) {
+  //     connectWallet();
+  //   }
+  // }, []);
 
   // useEffect(() => {
   //   if (provider?.on) {
@@ -137,9 +149,10 @@ const Header: FC = () => {
     setOpen(false);
   };
 
-  const selectMenuItem = (crypto: string) => {
+  const selectMenuItem = (crypto: string, id: string) => {
     setOpen(false);
     setselectedCrypto(crypto);
+    switchNetwork(id);
   };
 
   const handleListKeyDown = (event: React.KeyboardEvent) => {
@@ -208,10 +221,10 @@ const Header: FC = () => {
                     {itemsList.map((il, idx) => (
                       <MenuItem
                         className="!justify-center"
-                        onClick={() => selectMenuItem(il)}
+                        onClick={() => selectMenuItem(il.name, il.id)}
                         key={`mi_${idx}`}
                       >
-                        {il}
+                        {il.name}
                       </MenuItem>
                     ))}
                   </MenuList>
