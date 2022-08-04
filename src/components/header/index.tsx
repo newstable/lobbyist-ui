@@ -14,10 +14,6 @@ import classNames from "classnames";
 import { colors } from "../../common";
 import { HeaderLeft } from "./left";
 import styles from "./styles.module.scss";
-import Onboard from "@web3-onboard/core";
-import injectedModule from "@web3-onboard/injected-wallets";
-import walletConnectModule from "@web3-onboard/walletconnect";
-import coinbaseWalletModule from "@web3-onboard/coinbase";
 
 const itemsList = ["Polygon", "Ethereum", "Optimism"];
 
@@ -58,27 +54,6 @@ const Header: FC = () => {
     } else if (event.key === "Escape") {
       setOpen(false);
     }
-  };
-
-  const handleConnect = async () => {
-    const rpcUrl : string = process.env.REACT_APP_POLYGON_MAINNET_RPC_URL as string;
-    const injected = injectedModule();
-    const coinBase = coinbaseWalletModule();
-    const walletConnect = walletConnectModule();
-
-    const onboard = Onboard({
-      wallets: [injected, coinBase, walletConnect],
-      chains: [
-        {
-          id: "0x137",
-          token: "MATIC",
-          label: "Polygon Mainnet",
-          rpcUrl: rpcUrl,
-        },
-      ],
-    });
-
-    await onboard.connectWallet();
   };
 
   // return focus to the button when we transitioned from !open -> open
@@ -150,7 +125,7 @@ const Header: FC = () => {
             </Grow>
           )}
         </Popper>
-        <Button variant="contained" color="tealLight" onClick={handleConnect}>
+        <Button variant="contained" color="tealLight">
           Connect
         </Button>
       </Box>

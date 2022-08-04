@@ -13,13 +13,8 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
-    "@web3-onboard/coinbase": "^2.0.9",
-    "@web3-onboard/core": "^2.5.0",
-    "@web3-onboard/injected-wallets": "^2.0.14",
-    "@web3-onboard/walletconnect": "^2.0.7",
     "classnames": "^2.3.1",
     "dotenv": "^16.0.1",
-    "ethers": "^5.6.9",
     "hamburgers": "^1.2.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -31,7 +26,8 @@
     "redux": "^4.2.0",
     "sass": "^1.51.0",
     "typescript": "^4.4.2",
-    "web-vitals": "^2.1.0"
+    "web-vitals": "^2.1.0",
+    "web3modal": "^1.9.8"
   },
   "scripts": {
     "start": "react-scripts start",
