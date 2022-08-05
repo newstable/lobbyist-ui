@@ -33,6 +33,7 @@ const ProposalForm = (props: Props) => {
       proposalDescription: "",
       snapshotProposal: "",
       desiredVote: "",
+      endTime: "",
       gaugeFixed: "",
       rewardCurrency: "",
       minimumBribe: "0",
@@ -151,6 +152,14 @@ const ProposalForm = (props: Props) => {
                   { value: 2, display: "Outcome 2" },
                 ]}
                 name="desiredVote"
+                control={control}
+              />
+            )}
+            {isGovernance && (
+              <FormTextField
+                label="Proposal End Time"
+                placeholder="This will be 1 hour before voting ends"
+                name="endTime"
                 control={control}
               />
             )}
