@@ -6,6 +6,8 @@ import { ThemeCtxProvider } from "./common/themeContext";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import "./index.scss";
+import "./assets/css/nucleo-icons.css"
+import "./assets/css/app.css"
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

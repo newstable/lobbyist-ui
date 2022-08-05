@@ -103,7 +103,7 @@ const SidebarMenu = (props: Props) => {
     >
       <Box
         className={classNames(
-          "flex h-24 w-80 items-center justify-between mlgx:w-full mlg:h-full mlg mlg:flex-col mlg:justify-start mlg:items-start group px-9 ",
+          "flex h-24 w-80 items-center justify-between mlgx:w-full h-full mlg flex-col-header justify-start items-start group px-9 ",
           styles.mainInner
         )}
         component="section"
@@ -112,7 +112,7 @@ const SidebarMenu = (props: Props) => {
           <Link
             href={PUBLIC_URL}
             className={classNames(
-              "px-4 relative block mlg:px-0 mlg:pt-12",
+              "px-4 relative block mlg:px-0 mlg\pt-12",
               styles.menuLogo
             )}
             underline="none"
@@ -137,7 +137,7 @@ const SidebarMenu = (props: Props) => {
         </button>
         <Box
           className={classNames(
-            "flex mlg:flex-col pt-8",
+            "flex flex-col-header pt-8",
             styles.menu,
             isMobile && styles.menuMobile
           )}
