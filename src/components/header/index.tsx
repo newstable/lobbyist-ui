@@ -14,7 +14,7 @@ import { networkParams } from "../../networks";
 
 const itemsList = [
   {
-    "name": "Pologan",
+    "name": "Polygon",
     "id": "0x89"
   },
   {
