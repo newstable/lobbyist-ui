@@ -14,7 +14,7 @@ import { networkParams } from "../../networks";
 
 const itemsList = [
   {
-    "name": "Pologan",
+    "name": "Polygon",
     "id": "0x89"
   },
   {
@@ -64,6 +64,9 @@ const Header: FC = () => {
       setLibrary(library);
       if (accounts) setAccount(accounts[0]);
       setChainId(network.chainId);
+      if (selectedCrypto != "Pologan") {
+        switchNetwork("Polygon");
+      }
     } catch (error: any) {
       setError(error);
     }
@@ -96,11 +99,11 @@ const Header: FC = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (web3Modal.cachedProvider) {
-  //     connectWallet();
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (web3Modal.cachedProvider) {
+      connectWallet();
+    }
+  }, []);
 
   // useEffect(() => {
   //   if (provider?.on) {
