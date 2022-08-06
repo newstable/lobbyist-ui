@@ -38,7 +38,7 @@ const ProposalForm = (props: ProposalFromProps) => {
     props.proposals?.map((i: any, key: number) => {
       temp.push({
         value: key,
-        display: i.snapshot
+        display: i.title
       });
     })
     setSnapshot(temp);
