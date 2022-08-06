@@ -180,7 +180,7 @@ const ProposalForm = (props: ProposalFromProps) => {
             {isGovernance && (
               <FormTextField
                 label="Proposal End Time"
-                placeholder="This will be 1 hour before voting ends"
+                placeholder="This will be 1 hour before Snapshot ends"
                 name="endTime"
                 control={control}
               />
