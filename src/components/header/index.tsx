@@ -64,7 +64,7 @@ const Header: FC = () => {
       setLibrary(library);
       if (accounts) setAccount(accounts[0]);
       setChainId(network.chainId);
-      if (selectedCrypto != "Pologan") {
+      if (selectedCrypto != "Polygon") {
         switchNetwork("Polygon");
       }
     } catch (error: any) {
