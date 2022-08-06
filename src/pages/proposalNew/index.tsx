@@ -8,12 +8,27 @@ import {
   ProposalPreview,
   ProposalConfirm,
 } from "./partials";
+import { useQuery } from "@apollo/client";
 import { PageHeader } from "./partials/common";
+import { GET_PROPOSAL, GET_Follows, GET_SPACES, GET_VOTE } from "../../gql";
+import { useEffect } from "react";
 
 type Props = {};
 
 const ProposalNewPage = (props: Props) => {
   const { protocol, prsalType, kpi, status } = useParams();
+
+  const {
+    data: snapShotData,
+    loading: snapShotLoading,
+    error: snapShotError,
+  } = useQuery(GET_PROPOSAL, {
+    pollInterval: 500,
+  });
+
+  useEffect(() => {
+    console.log(snapShotData);
+  })
 
   return (
     <Box className="main-body flex flex-col grow">
@@ -27,7 +42,7 @@ const ProposalNewPage = (props: Props) => {
               <ProposalConfirm />
             )
           ) : prsalType && protocol && kpi ? (
-            <ProposalForm />
+            <ProposalForm {...snapShotData} />
           ) : prsalType && protocol ? (
             <ProposalKpi />
           ) : protocol ? (

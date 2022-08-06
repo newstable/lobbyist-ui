@@ -11,6 +11,7 @@ import {
 } from "../../../../components/form";
 import classNames from "classnames";
 import { colors } from "../../../../common";
+import { useEffect, useState } from "react";
 
 type Props = {};
 
@@ -18,7 +19,31 @@ const BoxForm = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
 }));
 
-const ProposalForm = (props: Props) => {
+interface ProposalFromProps {
+  proposals: any[]
+}
+
+interface SnapShotData {
+  value: number
+  display: string
+}
+
+// interface snapInterface extends 
+
+const ProposalForm = (props: ProposalFromProps) => {
+  const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
+
+  useEffect(() => {
+    const temp = [] as SnapShotData[];
+    props.proposals?.map((i: any, key: number) => {
+      temp.push({
+        value: key,
+        display: i.snapshot
+      });
+    })
+    setSnapshot(temp);
+  }, [])
+
   const navigate = useNavigate();
   const { prsalType, kpi } = useParams();
 
@@ -135,10 +160,7 @@ const ProposalForm = (props: Props) => {
             <FormSelect
               label="Snapshot Proposal"
               placeholder="Choose a snashot proposal"
-              items={[
-                { value: 1, display: "Snapshot 1" },
-                { value: 2, display: "Snapshot 2" },
-              ]}
+              items={snapshot}
               name="snapshotProposal"
               control={control}
             />

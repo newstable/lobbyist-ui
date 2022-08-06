@@ -4,6 +4,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./redux/store";
 import { ThemeCtxProvider } from "./common/themeContext";
 import reportWebVitals from "./reportWebVitals";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import App from "./App";
 import "./index.scss";
 import "./assets/css/nucleo-icons.css"
@@ -12,12 +13,20 @@ import "./assets/css/app.css"
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_GRAPQLENDPOINT,
+  cache: new InMemoryCache(),
+});
+
 root.render(
   <React.StrictMode>
     <ReduxProvider store={store}>
-      <ThemeCtxProvider>
-        <App />
-      </ThemeCtxProvider>
+      <ApolloProvider client={client}>
+        <ThemeCtxProvider>
+          <App />
+        </ThemeCtxProvider>
+      </ApolloProvider>
     </ReduxProvider>
   </React.StrictMode>
 );
