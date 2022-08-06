@@ -13,6 +13,11 @@ import classNames from "classnames";
 
 interface Props extends FormInputProps {
   items?: FormMenuItemType[];
+  setVote?: any
+}
+
+interface SnapShotData {
+  value: number
 }
 
 export type FormMenuItemType = {
@@ -29,7 +34,12 @@ const FormSelect = ({
   index,
   helpText,
   items,
+  setVote,
 }: Props) => {
+
+  const choose = (e: any) => {
+
+  }
   return (
     <StyledEngineProvider injectFirst>
       <FormControl className="flex flex-row items-center gap-4">
@@ -58,6 +68,7 @@ const FormSelect = ({
               >
                 {items?.map((item, idx) => (
                   <MenuItem
+                    onClick={() => setVote(item.value)}
                     key={`mi_${idx}`}
                     className={styles.menuItem}
                     value={item.value}
@@ -70,7 +81,7 @@ const FormSelect = ({
           }}
         />
       </FormControl>
-    </StyledEngineProvider>
+    </StyledEngineProvider >
   );
 };
 

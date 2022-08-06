@@ -32,6 +32,18 @@ interface SnapShotData {
 
 const ProposalForm = (props: ProposalFromProps) => {
   const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
+  const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
+
+  const ClickSnap = (e: any) => {
+    const temp = [] as SnapShotData[];
+    for (var i = 0; i < props.proposals[e].choices.length; i++) {
+      temp.push({
+        value: i,
+        display: props.proposals[e].choices[i]
+      })
+      setVoteOption(temp);
+    }
+  }
 
   useEffect(() => {
     const temp = [] as SnapShotData[];
@@ -163,16 +175,14 @@ const ProposalForm = (props: ProposalFromProps) => {
               placeholder="Choose a snashot proposal"
               items={snapshot}
               name="snapshotProposal"
+              setVote={ClickSnap}
               control={control}
             />
             {isGovernance && (
               <FormSelect
                 label="Desired Vote Outcome"
                 placeholder="Choose desired vote outcome"
-                items={[
-                  { value: 1, display: "Outcome 1" },
-                  { value: 2, display: "Outcome 2" },
-                ]}
+                items={voteOption}
                 name="desiredVote"
                 control={control}
               />

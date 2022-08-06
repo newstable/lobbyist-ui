@@ -27,7 +27,7 @@ const ProposalNewPage = (props: Props) => {
   });
 
   useEffect(() => {
-    console.log(snapShotData);
+    console.log(snapShotData, "adfadfs");
   })
 
   return (
