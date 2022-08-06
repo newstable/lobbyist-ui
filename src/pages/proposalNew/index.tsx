@@ -23,7 +23,7 @@ const ProposalNewPage = (props: Props) => {
     loading: snapShotLoading,
     error: snapShotError,
   } = useQuery(GET_PROPOSAL, {
-    pollInterval: 500,
+    pollInterval: 0,
   });
 
   useEffect(() => {
