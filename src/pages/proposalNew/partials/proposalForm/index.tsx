@@ -54,7 +54,7 @@ const ProposalForm = (props: ProposalFromProps) => {
       });
     })
     setSnapshot(temp);
-  }, [])
+  }, [props.proposals])
 
   const navigate = useNavigate();
   const { prsalType, kpi } = useParams();

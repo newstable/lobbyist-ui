@@ -25,11 +25,6 @@ const ProposalNewPage = (props: Props) => {
   } = useQuery(GET_PROPOSAL, {
     pollInterval: 0,
   });
-
-  useEffect(() => {
-    console.log(snapShotData, "adfadfs");
-  })
-
   return (
     <Box className="main-body flex flex-col grow">
       <Box className="flex flex-col min-h-full main-content gap-14">

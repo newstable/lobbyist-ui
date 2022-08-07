@@ -38,7 +38,9 @@ const FormSelect = ({
 }: Props) => {
 
   const choose = (e: any) => {
-
+    if (setVote) {
+      setVote(e);
+    }
   }
   return (
     <StyledEngineProvider injectFirst>
@@ -68,7 +70,7 @@ const FormSelect = ({
               >
                 {items?.map((item, idx) => (
                   <MenuItem
-                    onClick={() => setVote(item.value)}
+                    onClick={() => choose(item.value)}
                     key={`mi_${idx}`}
                     className={styles.menuItem}
                     value={item.value}
