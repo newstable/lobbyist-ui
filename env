@@ -1,1 +1,2 @@
-NA
+INFURA_KEY = "9f8f5ec266c54f85aa9e66fbe230b077"
+REACT_APP_GRAPQLENDPOINT = "https://hub.snapshot.org/graphql"
