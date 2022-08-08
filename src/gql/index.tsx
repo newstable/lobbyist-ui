@@ -1,12 +1,12 @@
 import { gql } from "@apollo/client";
 
 const GET_PROPOSAL = gql`
-query Proposals {
+query Proposals($name:String) {
   proposals(
     first: 20,
     skip: 0,
     where: {
-      space_in: ["balancer", "aave.eth"],
+      space_in: ["balancer", $name],
       state: "closed"
     },
     orderBy: "created",

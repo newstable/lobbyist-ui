@@ -10,17 +10,18 @@ import {
   FormRangeSliderInput,
 } from "../../../../components/form";
 import classNames from "classnames";
+import { useQuery } from "@apollo/client";
 import { colors } from "../../../../common";
 import { useEffect, useState } from "react";
-
-type Props = {};
+import { GET_PROPOSAL } from "../../../../gql";
+import { StringOptions } from "sass";
 
 const BoxForm = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
 }));
 
-interface ProposalFromProps {
-  proposals: any[]
+type Props = {
+  name: String
 }
 
 interface SnapShotData {
@@ -30,16 +31,28 @@ interface SnapShotData {
 
 // interface snapInterface extends 
 
-const ProposalForm = (props: ProposalFromProps) => {
+const ProposalForm = (props: Props) => {
+  const [name, setName] = useState("");
   const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
   const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
+  useEffect(() => {
+    if (props.name == "qidao") {
+      setName("qidao.eth");
+    } else if (props.name == "aave") {
+      setName("aave.eth");
+    }
+  }, [])
+  const { data, loading, error, } = useQuery(GET_PROPOSAL, {
+    variables: { name: name },
+    pollInterval: 0,
+  });
 
   const ClickSnap = (e: any) => {
     const temp = [] as SnapShotData[];
-    for (var i = 0; i < props.proposals[e].choices.length; i++) {
+    for (var i = 0; i < data?.proposals[e].choices.length; i++) {
       temp.push({
         value: i,
-        display: props.proposals[e].choices[i]
+        display: data?.proposals[e].choices[i]
       })
       setVoteOption(temp);
     }
@@ -47,14 +60,15 @@ const ProposalForm = (props: ProposalFromProps) => {
 
   useEffect(() => {
     const temp = [] as SnapShotData[];
-    props.proposals?.map((i: any, key: number) => {
+    data?.proposals?.map((i: any, key: number) => {
       temp.push({
         value: key,
         display: i.title
       });
     })
     setSnapshot(temp);
-  }, [props.proposals])
+  }, [data])
+
 
   const navigate = useNavigate();
   const { prsalType, kpi } = useParams();
