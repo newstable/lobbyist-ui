@@ -13,6 +13,8 @@ import { FormLabel } from "../formLabel";
 interface Props extends FormInputProps {
   inputProps?: InputProps;
   inputClass?: string;
+  time?: string;
+  readonly?: boolean;
 }
 
 const FormTextField = ({
@@ -24,7 +26,9 @@ const FormTextField = ({
   index,
   helpText,
   inputProps,
-  inputClass
+  inputClass,
+  time,
+  readonly
 }: Props) => {
   return (
     <StyledEngineProvider injectFirst>
@@ -45,17 +49,33 @@ const FormTextField = ({
               txtValue = value[index].value;
             }
             return (
-              <TextField
-                className={classNames(label && "basis-9/12", styles.input, inputClass)}
-                placeholder={placeholder}
-                ref={ref}
-                helperText={error ? error.message : null}
-                error={!!error}
-                onChange={onChange}
-                value={txtValue}
-                fullWidth
-                InputProps={inputProps}
-              />
+              <>
+                {readonly ? (
+                  <TextField
+                    disabled
+                    className={classNames(label && "basis-9/12", styles.input, inputClass)}
+                    placeholder={placeholder}
+                    ref={ref}
+                    helperText={error ? error.message : null}
+                    error={!!error}
+                    value={time}
+                    fullWidth
+                    InputProps={inputProps}
+                  />
+                ) : (
+                  <TextField
+                    className={classNames(label && "basis-9/12", styles.input, inputClass)}
+                    placeholder={placeholder}
+                    ref={ref}
+                    helperText={error ? error.message : null}
+                    error={!!error}
+                    onChange={onChange}
+                    value={txtValue}
+                    fullWidth
+                    InputProps={inputProps}
+                  />
+                )}
+              </>
             );
           }}
         />

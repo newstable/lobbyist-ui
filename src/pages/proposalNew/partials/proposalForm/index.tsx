@@ -33,6 +33,7 @@ interface SnapShotData {
 
 const ProposalForm = (props: Props) => {
   const [name, setName] = useState("");
+  const [time, setTime] = useState("");
   const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
   const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
   useEffect(() => {
@@ -56,6 +57,37 @@ const ProposalForm = (props: Props) => {
       })
       setVoteOption(temp);
     }
+    const date = new Date(data?.proposals[e].end * 1000);
+    timeStyle(date);
+  }
+
+  const timeStyle = (date: Date) => {
+    const month = myMonth(date);
+    const hour = myHour(date);
+    const day = date.getDay();
+    const year = date.getFullYear();
+    const endTime = month + " " + day + ", " + year + ", " + hour;
+    setTime(endTime);
+  }
+
+  const myMonth = (date: Date) => {
+    if (date.getMonth() == 0) { return "January" };
+    if (date.getMonth() == 1) { return "February" };
+    if (date.getMonth() == 2) { return "March" };
+    if (date.getMonth() == 3) { return "April" };
+    if (date.getMonth() == 4) { return "May" };
+    if (date.getMonth() == 5) { return "June" };
+    if (date.getMonth() == 6) { return "July" };
+    if (date.getMonth() == 7) { return "August" };
+    if (date.getMonth() == 8) { return "September" };
+    if (date.getMonth() == 9) { return "October" };
+    if (date.getMonth() == 10) { return "November" };
+    if (date.getMonth() == 11) { return "December" };
+  }
+
+  const myHour = (date: Date) => {
+    if (date.getHours() < 12) { return (date.getHours() + " AM") }
+    else { return (date.getHours() - 12 + " PM") };
   }
 
   useEffect(() => {
@@ -207,6 +239,8 @@ const ProposalForm = (props: Props) => {
                 placeholder="This will be 1 hour before Snapshot ends"
                 name="endTime"
                 control={control}
+                time={time}
+                readonly={true}
               />
             )}
             {!isGovernance && isFixed && (
