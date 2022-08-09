@@ -42,7 +42,7 @@ const BreadCrumb = (props: Props) => {
       });
     }
     items.push({
-      title: "Proposal Paramters",
+      title: "Proposal Parameters",
       href: "",
     });
   }
