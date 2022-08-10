@@ -9,13 +9,13 @@ export const providerOptions = {
         package: CoinbaseWalletSDK, // Required
         options: {
             appName: "Web 3 Modal Demo", // Required
-            infuraId: process.env.INFURA_KEY // Required unless you provide a JSON RPC url; see `rpc` below
+            infuraId: "9f8f5ec266c54f85aa9e66fbe230b077" // Required unless you provide a JSON RPC url; see `rpc` below
         }
     },
     walletconnect: {
         package: WalletConnect, // required
         options: {
-            infuraId: process.env.INFURA_KEY // required
+            infuraId: "9f8f5ec266c54f85aa9e66fbe230b077" // required
         }
     },
     portis: {
@@ -27,7 +27,7 @@ export const providerOptions = {
     fortmatic: {
         package: Fortmatic, // required
         options: {
-            key: "FORTMATIC_KEY" // required
+            key: "pk_live_0A4CED6B972BF120" // required
         }
     }
 };

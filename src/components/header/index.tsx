@@ -18,12 +18,8 @@ const itemsList = [
     "id": "0x89"
   },
   {
-    "name": "Ethereum",
-    "id": "0x1"
-  },
-  {
-    "name": "Binance",
-    "id": "56"
+    "name": "Polygon Mumbai",
+    "id": "0x13881"
   }
 ];
 
