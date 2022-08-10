@@ -5,7 +5,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useLocation } from "react-router-dom";
 import { MenuLink } from "../../@types";
 import { ReactComponent as GaugeIcon } from "../../assets/icons/gauge.svg";
-import { ReactComponent as LiquidityIcon } from "../../assets/icons/liquidity.svg";
 import { ReactComponent as ChartIcon } from "../../assets/icons/chart.svg";
 import { ReactComponent as ProAvaeIcon } from "../../assets/icons/pro-aave.svg";
 import { ReactComponent as ProQiIcon } from "../../assets/icons/pro-qidao.svg";
@@ -31,8 +30,6 @@ const SidebarMenu = (props: Props) => {
     switch (iconName) {
       case "gauge":
         return GaugeIcon;
-      case "liquidty":
-        return LiquidityIcon;
       case "chart":
         return ChartIcon;
       case "pro-aave":
@@ -65,13 +62,6 @@ const SidebarMenu = (props: Props) => {
       text: "Aave",
       href: "/proposal/aave",
       separator: true,
-    },
-    {
-      icon: "liquidty",
-      text: "Liquidity Mining",
-      href: "/liquidity-mining",
-      separator: true,
-      disabled: true,
     },
     {
       icon: "chart",
