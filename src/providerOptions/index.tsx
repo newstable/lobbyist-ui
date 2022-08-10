@@ -21,7 +21,7 @@ export const providerOptions = {
     portis: {
         package: Portis, // required
         options: {
-            id: "PORTIS_ID" // required
+            id: "1a686526-b1c5-4e2f-ba28-3cf324586987" // required
         }
     },
     fortmatic: {
