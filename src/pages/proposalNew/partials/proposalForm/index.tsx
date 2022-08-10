@@ -64,7 +64,7 @@ const ProposalForm = (props: Props) => {
   const timeStyle = (date: Date) => {
     const month = myMonth(date);
     const hour = myHour(date);
-    const day = date.getDay();
+    const day = date.getDate();
     const year = date.getFullYear();
     const endTime = month + " " + day + ", " + year + ", " + hour;
     setTime(endTime);
