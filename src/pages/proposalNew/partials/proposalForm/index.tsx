@@ -247,10 +247,7 @@ const ProposalForm = (props: Props) => {
               <FormSelect
                 label="Select Gauge"
                 placeholder="Choose gauge"
-                items={[
-                  { value: 1, display: "Currency 1" },
-                  { value: 2, display: "Currency 2" },
-                ]}
+                items={voteOption}
                 name="gaugeFixed"
                 control={control}
               />
