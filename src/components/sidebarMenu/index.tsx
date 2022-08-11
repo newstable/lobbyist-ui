@@ -65,7 +65,7 @@ const SidebarMenu = (props: Props) => {
     },
     {
       icon: "chart",
-      text: "Analytics",
+      text: "ROI Calculator",
       href: "/analytics",
     },
   ];
