@@ -13,7 +13,8 @@ import classNames from "classnames";
 
 interface Props extends FormInputProps {
   items?: FormMenuItemType[];
-  setVote?: any
+  setVote?: any;
+  setAddress?: any;
 }
 
 interface SnapShotData {
@@ -23,6 +24,7 @@ interface SnapShotData {
 export type FormMenuItemType = {
   value?: string | number | readonly string[] | undefined;
   display: ReactNode;
+  address?: String;
 };
 
 const FormSelect = ({
@@ -35,11 +37,15 @@ const FormSelect = ({
   helpText,
   items,
   setVote,
+  setAddress,
 }: Props) => {
 
-  const choose = (e: any) => {
+  const choose = (vote: any, address: any) => {
     if (setVote) {
-      setVote(e);
+      setVote(vote);
+    }
+    if (setAddress) {
+      setAddress(address);
     }
   }
   return (
@@ -70,7 +76,7 @@ const FormSelect = ({
               >
                 {items?.map((item, idx) => (
                   <MenuItem
-                    onClick={() => choose(item.value)}
+                    onClick={() => choose(item.value, item.address)}
                     key={`mi_${idx}`}
                     className={styles.menuItem}
                     value={item.value}
