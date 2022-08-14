@@ -25,6 +25,7 @@ export type FormMenuItemType = {
   value?: string | number | readonly string[] | undefined;
   display: ReactNode;
   address?: String;
+  token?: string;
 };
 
 const FormSelect = ({
@@ -81,6 +82,7 @@ const FormSelect = ({
                     className={styles.menuItem}
                     value={item.value}
                   >
+                    {item.token ? (<img src={item.token} ></img>) : ""}
                     {item.display}
                   </MenuItem>
                 ))}

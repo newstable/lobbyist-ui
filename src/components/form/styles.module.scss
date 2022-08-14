@@ -2,15 +2,31 @@
 
 .input {
   background-color: #121415;
+
+  img {
+    display: inline;
+    width: 18px;
+    height: 18px;
+    margin-right: 3px;
+  }
 }
 
 .menu {
   &Item {
     background-color: rgb(84, 90, 95);
+
+    img {
+      width: 18px;
+      height: 18px;
+      margin-right: 3px;
+    }
+
     &:hover,
     &:focus {
       outline: 0;
       background-color: rgb(66, 73, 79) !important;
     }
   }
+
+
 }
