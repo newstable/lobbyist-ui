@@ -7,7 +7,7 @@ query Proposals($name:String) {
     skip: 0,
     where: {
       space_in: ["balancer", $name],
-      state: "active"
+      state: "pending"
     },
     orderBy: "created",
     orderDirection: desc

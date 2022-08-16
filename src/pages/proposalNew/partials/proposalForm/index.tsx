@@ -93,6 +93,7 @@ const ProposalForm = (props: Props) => {
   }
 
   useEffect(() => {
+    console.log(data);
     const temp = [] as SnapShotData[];
     data?.proposals?.map((i: any, key: number) => {
       temp.push({
