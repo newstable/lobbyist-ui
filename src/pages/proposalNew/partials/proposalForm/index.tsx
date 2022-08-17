@@ -269,7 +269,7 @@ const ProposalForm = (props: Props) => {
                         )}
                         <FormTextField
                             label="Proposal End Time"
-                            placeholder="This will be 1 hour before Snapshot ends"
+                            placeholder="Snapshot proposal end time"
                             name="endTime"
                             control={control}
                             time={time}
@@ -359,21 +359,21 @@ const ProposalForm = (props: Props) => {
                                         />
                                     )}
                                     <FormTextField
-                                        label="Payout"
+                                        label="Max Reward"
                                         name="payout"
                                         control={control}
                                         index={idx}
                                         placeholder={
                                             isGovernance
                                                 ? "Amount that will be paid out if vote concludes with desired outcome"
-                                                : "Enter payout in reward currency per vote percent selected above"
+                                                : "Enter payout in reward currency per vote percent"
                                         }
                                     />
                                     {isGovernance ? (
                                         <Box className="flex gap-4">
                                             <FormSliderInput
                                                 label="Minimum Vote Weight"
-                                                helpText="mention the minimum vote weight that the user has to vote with in order to be eligible for the bribe"
+                                                helpText="The minimum vote weight that the user has to vote with in order to be eligible for the bribe"
                                                 name="minVoteWeightSlide"
                                                 inputName="minVoteWeightNum"
                                                 index={idx}
@@ -408,42 +408,22 @@ const ProposalForm = (props: Props) => {
                                 </Button>
                             </Box>
                         )}
-                        {!isGovernance && (
-                            <FormSelect
-                                label="Sticky Vote"
-                                name="loyaltyVote"
-                                helpText="Select the number of consecutive vote cycles that need to be be voted for to receive the reward"
-                                control={control}
-                                placeholder="Number of vote cylces to give payout. Max 4 cylces"
-                                items={[
-                                    { value: 1, display: "1" },
-                                    { value: 2, display: "2" },
-                                    { value: 3, display: "3" },
-                                    { value: 4, display: "4" },
-                                ]}
-                            />
-                        )}
+                        
                     </BoxForm>
                     <Box className="mb-10 md:mb-20 flex justify-end"></Box>
                 </Box>
                 <Box>
                     <BoxForm className="flex flex-col p-8 md:p-12 rounded-md gap-8 mb-12 md:mb-0">
-                        <Typography>Total proposal value</Typography>
+                        <strong>Total proposal value</strong>
                         <Box className="flex flex-col gap-8">
                             <Box className="grid grid-cols-3 gap-8">
                                 <Typography className="col-span-2">
-                                    $/vote
+                                    Total Bond
                                 </Typography>
                                 <Typography className="text-right">
-                                    $0.01
-                                </Typography>
-                                <Typography className="col-span-2">
-                                    Total Incentive
-                                </Typography>
-                                <Typography className="text-right">
-                                    $100k
+                                    $3,500
                                     <br />
-                                    100k Mai
+                                    3,500 USDC
                                 </Typography>
                                 <Typography className="col-span-2">
                                     Max Reward
