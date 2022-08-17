@@ -15,8 +15,8 @@ const root = ReactDOM.createRoot(
 );
 
 const client = new ApolloClient({
-  uri: process.env.REACT_APP_GRAPQLENDPOINT,
-  cache: new InMemoryCache(),
+    uri: process.env.REACT_APP_GRAPQLENDPOINT,
+    cache: new InMemoryCache(),
 });
 
 root.render(

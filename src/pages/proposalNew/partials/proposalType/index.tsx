@@ -8,7 +8,7 @@ type Props = {};
 const ProposalType = (props: Props) => {
   const { protocol } = useParams();
   return (
-    <Box className="grid grid-cols-2 gap-5">
+    <Box className="grid grid-cols-3 gap-20">
       {Object.keys(EnumProposalType)
         .filter(pt => {
           if (protocol === "aave" && pt === "gauge") {

@@ -7,287 +7,292 @@ $hamburger-layer-color: #fff;
 @import "hamburgers/_sass/hamburgers/hamburgers.scss";
 
 html {
-  position: relative;
-  min-height: 100vh;
+    position: relative;
+    min-height: 100vh;
+}
+
+iframe {
+    display: none !important;
+    z-index: -100000000000000000000 !important;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }
 
 #root {
-  height: 100%;
+    height: 100%;
 }
 
 .app {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
 .content {
-  max-width: 1100px;
+    max-width: 1100px;
 }
 
-body.show-menu .app>.main {
-  display: none;
+body.show-menu .app > .main {
+    display: none;
 }
 
 .px-9 {
-  padding-left: 2.25rem;
-  padding-right: 2.25rem;
+    padding-left: 2.25rem;
+    padding-right: 2.25rem;
 }
 
 .px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 .p-8 {
-  padding: 2rem;
+    padding: 2rem;
 }
 
 .pt-6 {
-  padding-top: 1.5rem;
+    padding-top: 1.5rem;
 }
 
 .pb-12 {
-  padding-bottom: 3rem;
+    padding-bottom: 3rem;
 }
 
 .px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 .px-12 {
-  padding-left: 3rem;
-  padding-right: 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 .mt-12 {
-  margin-top: 3rem;
+    margin-top: 3rem;
 }
 
 .mx-auto {
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .\!flex-col {
-  flex-direction: column !important;
+    flex-direction: column !important;
 }
 
 .w-80 {
-  width: 20rem;
+    width: 20rem;
 }
 
 .rounded-md {
-  border-radius: 0.375rem;
+    border-radius: 0.375rem;
 }
 
 .basis-3\/12 {
-  flex-basis: 25%;
+    flex-basis: 25%;
 }
 
 .basis-9\/12 {
-  flex-basis: 75%;
+    flex-basis: 75%;
 }
 
 .basis-1\/12 {
-  flex-basis: 8.333333%;
+    flex-basis: 8.333333%;
 }
 
 .basis-8\/12 {
-  flex-basis: 66.666667%;
+    flex-basis: 66.666667%;
 }
 
 .basis-2\/12 {
-  flex-basis: 16.666667%;
+    flex-basis: 16.666667%;
 }
 
 .\!font-bold {
-  font-weight: 700 !important;
+    font-weight: 700 !important;
 }
 
 .\!p-0 {
-  padding: 0px !important;
+    padding: 0px !important;
 }
 
 .\!py-4 {
-  padding-top: 1rem !important;
-  padding-bottom: 1rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
 }
 
 .mlg\:\!justify-start {
-  justify-content: flex-start !important;
+    justify-content: flex-start !important;
 }
 
 .w-full {
-  width: 100%;
+    width: 100%;
 }
 
 .flex {
-  display: flex;
+    display: flex;
 }
 
 .flex-col {
-  flex-direction: column;
+    flex-direction: column;
 }
 
 .\!my-4 {
-  margin-top: 1rem !important;
-  margin-bottom: 1rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
 }
 
 .\!px-0 {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 .gap-5 {
-  gap: 1.25rem;
+    gap: 1.25rem;
 }
 
 .gap-8 {
-  gap: 2rem;
+    gap: 2rem;
 }
 
 .gap-14 {
-  gap: 3.5rem;
+    gap: 3.5rem;
 }
 
 .gap-20 {
-  gap: 5rem;
+    gap: 5rem;
 }
 
 .grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-cols-5 {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .w-16 {
-  width: 4rem;
+    width: 4rem;
 }
 
 .h-16 {
-  height: 4rem;
+    height: 4rem;
 }
 
 .h-60 {
-  height: 15rem;
+    height: 15rem;
 }
 
 .mb-16 {
-  margin-bottom: 4rem;
+    margin-bottom: 4rem;
 }
 
 .css-2ob6df-MuiCardContent-root {
-  padding: 16px;
-  background-color: #000;
+    padding: 16px;
+    background-color: #000;
 }
 
 .text-right {
-  text-align: right;
+    text-align: right;
 }
 
 .bg-\[\#121415\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(18 20 21 / var(--tw-bg-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(18 20 21 / var(--tw-bg-opacity));
 }
 
-@media (min-width:911px) {
-  .justify-start {
-    justify-content: flex-start !important
-  }
+@media (min-width: 911px) {
+    .justify-start {
+        justify-content: flex-start !important;
+    }
 
-  .items-start {
-    align-items: flex-start !important;
-  }
+    .items-start {
+        align-items: flex-start !important;
+    }
 
-  .h-full {
-    height: 100% !important;
-  }
+    .h-full {
+        height: 100% !important;
+    }
 
-  .flex-col-header {
-    flex-direction: column !important;
-  }
+    .flex-col-header {
+        flex-direction: column !important;
+    }
 
-  .mlg\pt-12 {
-    padding-top: 3rem;
-  }
+    .mlg\pt-12 {
+        padding-top: 3rem;
+    }
 
-  .mlg\:px-0 {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-  }
+    .mlg\:px-0 {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
 
-  .mlg\:hidden {
-    display: none;
-  }
+    .mlg\:hidden {
+        display: none;
+    }
 
-  .mlg\:flex {
-    display: flex !important;
-  }
+    .mlg\:flex {
+        display: flex !important;
+    }
 }
 
-@media (max-width:910px) {
-  .mlgx\:w-full {
-    width: 100% !important;
-  }
+@media (max-width: 910px) {
+    .mlgx\:w-full {
+        width: 100% !important;
+    }
 }
 
-@media (min-width:768px) {
-  .md\:col-span-2 {
-    grid-column: span 2 / span 2;
-  }
+@media (min-width: 768px) {
+    .md\:col-span-2 {
+        grid-column: span 2 / span 2;
+    }
 
-  .md\:p-20 {
-    padding: 5rem;
-  }
+    .md\:p-20 {
+        padding: 5rem;
+    }
 
-  .md\:p-12 {
-    padding: 3rem;
-  }
+    .md\:p-12 {
+        padding: 3rem;
+    }
 
-  .md\:mb-20 {
-    margin-bottom: 5rem !important;
-  }
+    .md\:mb-20 {
+        margin-bottom: 5rem !important;
+    }
 
-  .md\:text-right {
-    text-align: right !important;
-  }
+    .md\:text-right {
+        text-align: right !important;
+    }
 
-  .md\:pt-0 {
-    padding-top: 0px;
-  }
+    .md\:pt-0 {
+        padding-top: 0px;
+    }
 
-  .md\:bottom-0 {
-    bottom: 0px;
-  }
+    .md\:bottom-0 {
+        bottom: 0px;
+    }
 
-  .md\:right-0 {
-    right: 0px;
-  }
+    .md\:right-0 {
+        right: 0px;
+    }
 
-  .md\:absolute {
-    position: absolute;
-  }
+    .md\:absolute {
+        position: absolute;
+    }
 }
