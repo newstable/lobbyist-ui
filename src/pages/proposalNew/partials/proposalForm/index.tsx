@@ -299,6 +299,7 @@ const ProposalForm = (props: Props) => {
                                 label="Minimum Bribe"
                                 name="minimumBribe"
                                 helpText="Enter minimum bribe value if applicable"
+                                textType="number"
                                 control={control}
                                 rules={{
                                     required: {
@@ -364,6 +365,7 @@ const ProposalForm = (props: Props) => {
                                     <FormTextField
                                         label="Max Reward"
                                         name="payout"
+                                        textType="number"
                                         control={control}
                                         index={idx}
                                         setrewardAmount={setMaxReward}

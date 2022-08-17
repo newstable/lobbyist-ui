@@ -9,6 +9,7 @@ import { Controller } from "react-hook-form";
 import { FormInputProps } from "../formInputProps";
 import styles from "../styles.module.scss";
 import { FormLabel } from "../formLabel";
+import { type } from "os";
 
 interface Props extends FormInputProps {
   inputProps?: InputProps;
@@ -16,6 +17,7 @@ interface Props extends FormInputProps {
   time?: string;
   readonly?: boolean;
   setrewardAmount?: any;
+  textType?: string
 }
 
 const FormTextField = ({
@@ -30,7 +32,8 @@ const FormTextField = ({
   inputClass,
   time,
   readonly,
-  setrewardAmount
+  setrewardAmount,
+  textType
 }: Props) => {
   return (
     <StyledEngineProvider injectFirst>
@@ -74,6 +77,7 @@ const FormTextField = ({
                     onChange={(e) => { onChange(e.target.value); setrewardAmount(e.target.value) }}
                     value={txtValue}
                     fullWidth
+                    inputProps={{ type: textType }}
                     InputProps={inputProps}
                   />
                 )}
