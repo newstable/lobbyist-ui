@@ -23,14 +23,17 @@ import { providerOptions } from "../../providerOptions";
 import { toHex, truncateAddress } from "../../utils";
 import { networkParams } from "../../networks";
 
+
 const itemsList = [
     {
         name: "Polygon",
         id: "0x89",
+        img: "../../../../assets/chains/matic.svg"
     },
     {
         name: "Polygon Mumbai",
         id: "0x13881",
+        img: "../../../../assets/chains/matic.svg"
     },
 ];
 
@@ -57,6 +60,7 @@ const Header: FC = () => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef<HTMLButtonElement>(null);
     const [selectedCrypto, setselectedCrypto] = useState("Polygon");
+    const [selectedImg, setselectedImg] = useState("../../../../assets/chains/matic.svg");
 
     var styledAddress = account
         ? account.slice(0, 4) + "..." + account.slice(-4)
@@ -174,9 +178,10 @@ const Header: FC = () => {
         setOpen(false);
     };
 
-    const selectMenuItem = (crypto: string, id: string) => {
+    const selectMenuItem = (crypto: string, id: string, img: string) => {
         setOpen(false);
         setselectedCrypto(crypto);
+        setselectedImg(img);
         switchNetwork(id);
     };
 
@@ -217,6 +222,7 @@ const Header: FC = () => {
                     ref={anchorRef}
                     onClick={handleToggle}
                 >
+                    <img style={{ marginRight: "5px" }} width="20px" src={selectedImg}></img>
                     {selectedCrypto}
                 </Button>
                 <Popper
@@ -251,11 +257,13 @@ const Header: FC = () => {
                                                 onClick={() =>
                                                     selectMenuItem(
                                                         il.name,
-                                                        il.id
+                                                        il.id,
+                                                        il.img
                                                     )
                                                 }
                                                 key={`mi_${idx}`}
                                             >
+                                                <img width="20px" style={{ marginRight: "5px" }} src={il.img}></img>
                                                 {il.name}
                                             </MenuItem>
                                         ))}
@@ -279,6 +287,7 @@ const Header: FC = () => {
                         color="tealLight"
                         onClick={disconnect}
                     >
+                        <img width="20px" style={{ marginRight: "5px" }} src="../../../../assets/chains/account.svg"></img>
                         {styledAddress}
                     </Button>
                 )}
