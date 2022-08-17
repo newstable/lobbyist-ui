@@ -41,9 +41,12 @@ const FormSelect = ({
     setVote,
     setReward,
 }: Props) => {
-    const choose = (vote: any) => {
+    const choose = (vote: any, display: any) => {
         if (setVote) {
             setVote(vote);
+        }
+        if (setReward) {
+            setReward(display);
         }
     };
     return (
@@ -75,7 +78,7 @@ const FormSelect = ({
                             >
                                 {items?.map((item, idx) => (
                                     <MenuItem
-                                        onClick={() => { choose(item.value); setReward(item.display) }}
+                                        onClick={() => { choose(item.value, item.display) }}
                                         key={`mi_${idx}`}
                                         className={styles.menuItem}
                                         value={
@@ -97,7 +100,7 @@ const FormSelect = ({
                     }}
                 />
             </FormControl>
-        </StyledEngineProvider >
+        </StyledEngineProvider>
     );
 };
 

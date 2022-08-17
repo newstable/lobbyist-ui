@@ -9,7 +9,6 @@ import { Controller } from "react-hook-form";
 import { FormInputProps } from "../formInputProps";
 import styles from "../styles.module.scss";
 import { FormLabel } from "../formLabel";
-import { type } from "os";
 
 interface Props extends FormInputProps {
   inputProps?: InputProps;
@@ -35,6 +34,11 @@ const FormTextField = ({
   setrewardAmount,
   textType
 }: Props) => {
+  const onChangerewardValue = (e: any) => {
+    if (setrewardAmount) {
+      setrewardAmount(e);
+    }
+  }
   return (
     <StyledEngineProvider injectFirst>
       <FormControl className="flex flex-row items-center gap-4">
@@ -74,7 +78,7 @@ const FormTextField = ({
                     ref={ref}
                     helperText={error ? error.message : null}
                     error={!!error}
-                    onChange={(e) => { onChange(e.target.value); setrewardAmount(e.target.value) }}
+                    onChange={(e) => { onChange(e.target.value); onChangerewardValue(e.target.value) }}
                     value={txtValue}
                     fullWidth
                     inputProps={{ type: textType }}

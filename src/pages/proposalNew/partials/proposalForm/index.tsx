@@ -16,6 +16,8 @@ import { useEffect, useState } from "react";
 import { GET_PROPOSAL } from "../../../../gql";
 import tokens from "./token.json";
 import Action from "../../../../services";
+import { useSelector } from "../../../../redux/store";
+import { RootState } from "../../../../redux/store";
 
 const BoxForm = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -40,6 +42,10 @@ const ProposalForm = (props: Props) => {
     const [endTime, setEndTime] = useState(0);
     const [rewardType, setRewardType] = useState("WMATIC");
     const [maxReward, setMaxReward] = useState(0);
+    const walletAddress: any = useSelector(
+        (state: RootState) => state.wallet.address
+    );
+
     useEffect(() => {
         if (props.name == "qidao") {
             setName("qidao.eth");
@@ -47,6 +53,13 @@ const ProposalForm = (props: Props) => {
             setName("aave.eth");
         }
     }, []);
+
+    useEffect(() => {
+        if (walletAddress !== "") {
+            setValue("userAddress", walletAddress);
+        }
+    }, [walletAddress]);
+
     const { data, loading, error } = useQuery(GET_PROPOSAL, {
         variables: { name: name },
         pollInterval: 0,
@@ -159,6 +172,7 @@ const ProposalForm = (props: Props) => {
             range: [{ value: [0, 10] }],
             rangeNum: [{ value: [0, 10] }],
             payout: "0",
+            userAddress: "",
         },
     });
 
@@ -185,17 +199,21 @@ const ProposalForm = (props: Props) => {
     //     control,
     //     name: "payout",
     // });
-
-    const onFormSubmit = async (value: any) => {
+    const OnFormSubmit = async (value: any) => {
         // navigate("confirm", {
         //     state: {
         //         myProp: "Hey there",
         //     },
         // });
-        const result = await Action.proposal_registry(value, props.name);
-        console.log(value);
-        if (result) alert("ok");
-        else alert("error");
+
+        if (walletAddress !== "") {
+            const result = await Action.proposal_registry(value, props.name);
+            console.log(value);
+            if (result) alert("ok");
+            else alert("error");
+        } else {
+            alert("please connect wallet...");
+        }
     };
 
     const isGovernance = prsalType === "governance";
@@ -223,7 +241,7 @@ const ProposalForm = (props: Props) => {
             className="flex flex-col gap-8 "
             component="form"
             autoComplete="off"
-            onSubmit={handleSubmit(onFormSubmit)}
+            onSubmit={handleSubmit(OnFormSubmit)}
         >
             <Box className="grid md:grid-cols-3 gap-8">
                 <Box className="flex flex-col md:col-span-2 gap-12">
@@ -298,8 +316,8 @@ const ProposalForm = (props: Props) => {
                             <FormTextField
                                 label="Minimum Bribe"
                                 name="minimumBribe"
-                                helpText="Enter minimum bribe value if applicable"
                                 textType="number"
+                                helpText="Enter minimum bribe value if applicable"
                                 control={control}
                                 rules={{
                                     required: {
@@ -365,10 +383,10 @@ const ProposalForm = (props: Props) => {
                                     <FormTextField
                                         label="Max Reward"
                                         name="payout"
-                                        textType="number"
                                         control={control}
-                                        index={idx}
+                                        textType="number"
                                         setrewardAmount={setMaxReward}
+                                        index={idx}
                                         placeholder={
                                             isGovernance
                                                 ? "Amount that will be paid out if vote concludes with desired outcome"
@@ -414,7 +432,6 @@ const ProposalForm = (props: Props) => {
                                 </Button>
                             </Box>
                         )}
-
                     </BoxForm>
                     <Box className="mb-10 md:mb-20 flex justify-end"></Box>
                 </Box>
