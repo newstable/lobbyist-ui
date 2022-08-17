@@ -58,7 +58,7 @@ const ProposalCardActiveSymbol = ({
     return (
         <Card className="">
             <ProposalCardHeader
-                title={`${isHistory ? "History" : "Active"} Proposals for ${
+                title={`${isHistory ? "Historical" : "Active"} Proposals for ${
                     EnumProtocolName[protocol.symbol]
                 }`}
             ></ProposalCardHeader>
