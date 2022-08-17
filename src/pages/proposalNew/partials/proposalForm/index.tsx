@@ -38,6 +38,8 @@ const ProposalForm = (props: Props) => {
     const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
     const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
     const [endTime, setEndTime] = useState(0);
+    const [rewardType, setRewardType] = useState("WMATIC");
+    const [maxReward, setMaxReward] = useState(0);
     useEffect(() => {
         if (props.name == "qidao") {
             setName("qidao.eth");
@@ -288,6 +290,7 @@ const ProposalForm = (props: Props) => {
                             label="Reward Currency"
                             placeholder="Choose your reward currency"
                             items={tokens}
+                            setReward={setRewardType}
                             name="rewardCurrency"
                             control={control}
                         />
@@ -363,6 +366,7 @@ const ProposalForm = (props: Props) => {
                                         name="payout"
                                         control={control}
                                         index={idx}
+                                        setrewardAmount={setMaxReward}
                                         placeholder={
                                             isGovernance
                                                 ? "Amount that will be paid out if vote concludes with desired outcome"
@@ -408,7 +412,7 @@ const ProposalForm = (props: Props) => {
                                 </Button>
                             </Box>
                         )}
-                        
+
                     </BoxForm>
                     <Box className="mb-10 md:mb-20 flex justify-end"></Box>
                 </Box>
@@ -429,7 +433,7 @@ const ProposalForm = (props: Props) => {
                                     Max Reward
                                 </Typography>
                                 <Typography className="text-right">
-                                    100k Mai
+                                    {maxReward + " " + rewardType}
                                 </Typography>
                             </Box>
                         </Box>

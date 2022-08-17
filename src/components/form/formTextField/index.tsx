@@ -15,6 +15,7 @@ interface Props extends FormInputProps {
   inputClass?: string;
   time?: string;
   readonly?: boolean;
+  setrewardAmount?: any;
 }
 
 const FormTextField = ({
@@ -28,7 +29,8 @@ const FormTextField = ({
   inputProps,
   inputClass,
   time,
-  readonly
+  readonly,
+  setrewardAmount
 }: Props) => {
   return (
     <StyledEngineProvider injectFirst>
@@ -69,7 +71,7 @@ const FormTextField = ({
                     ref={ref}
                     helperText={error ? error.message : null}
                     error={!!error}
-                    onChange={onChange}
+                    onChange={(e) => { onChange(e.target.value); setrewardAmount(e.target.value) }}
                     value={txtValue}
                     fullWidth
                     InputProps={inputProps}

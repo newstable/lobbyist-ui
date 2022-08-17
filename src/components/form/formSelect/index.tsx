@@ -15,6 +15,7 @@ interface Props extends FormInputProps {
     items?: FormMenuItemType[];
     setVote?: any;
     setAddress?: any;
+    setReward?: any;
 }
 
 interface SnapShotData {
@@ -38,6 +39,7 @@ const FormSelect = ({
     helpText,
     items,
     setVote,
+    setReward,
 }: Props) => {
     const choose = (vote: any) => {
         if (setVote) {
@@ -73,7 +75,7 @@ const FormSelect = ({
                             >
                                 {items?.map((item, idx) => (
                                     <MenuItem
-                                        onClick={() => choose(item.value)}
+                                        onClick={() => { choose(item.value); setReward(item.display) }}
                                         key={`mi_${idx}`}
                                         className={styles.menuItem}
                                         value={
@@ -95,7 +97,7 @@ const FormSelect = ({
                     }}
                 />
             </FormControl>
-        </StyledEngineProvider>
+        </StyledEngineProvider >
     );
 };
 
