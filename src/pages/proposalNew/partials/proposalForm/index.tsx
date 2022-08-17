@@ -267,16 +267,14 @@ const ProposalForm = (props: Props) => {
                                 control={control}
                             />
                         )}
-                        {isGovernance && (
-                            <FormTextField
-                                label="Proposal End Time"
-                                placeholder="This will be 1 hour before Snapshot ends"
-                                name="endTime"
-                                control={control}
-                                time={time}
-                                readonly={true}
-                            />
-                        )}
+                        <FormTextField
+                            label="Proposal End Time"
+                            placeholder="This will be 1 hour before Snapshot ends"
+                            name="endTime"
+                            control={control}
+                            time={time}
+                            readonly={true}
+                        />
                         {!isGovernance && isFixed && (
                             <FormSelect
                                 label="Select Gauge"
@@ -317,7 +315,7 @@ const ProposalForm = (props: Props) => {
                                 className={classNames(
                                     "flex flex-col gap-8",
                                     isVariable &&
-                                        "bg-[#121415] rounded pt-6 pb-12"
+                                    "bg-[#121415] rounded pt-6 pb-12"
                                 )}
                             >
                                 {isVariable && (
