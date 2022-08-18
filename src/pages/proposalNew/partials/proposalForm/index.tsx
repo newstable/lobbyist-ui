@@ -211,10 +211,10 @@ const ProposalForm = (props: Props) => {
         if (walletAddress !== "") {
             const result = await Action.proposal_registry(value, props.name);
             console.log(value);
-            if (result) NotificationManager.success("Success", "Successfully created!");
-            else NotificationManager.error("Error", "Can't create proposal!");
+            if (result) NotificationManager.success("Successfully created!", "Success");
+            else NotificationManager.error("Can't create proposal!", "Error");
         } else {
-            NotificationManager.warning("Warning", "Please connect wallet...!");
+            NotificationManager.warning("Please connect wallet...!", "Warning");
         }
     };
 
