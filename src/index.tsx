@@ -9,14 +9,16 @@ import App from "./App";
 import "./index.scss";
 import "./assets/css/nucleo-icons.css"
 import "./assets/css/app.css"
+import 'react-notifications/lib/notifications.css';
+import { NotificationContainer } from 'react-notifications';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
 const client = new ApolloClient({
-    uri: process.env.REACT_APP_GRAPQLENDPOINT,
-    cache: new InMemoryCache(),
+  uri: process.env.REACT_APP_GRAPQLENDPOINT,
+  cache: new InMemoryCache(),
 });
 
 root.render(
@@ -25,6 +27,7 @@ root.render(
       <ApolloProvider client={client}>
         <ThemeCtxProvider>
           <App />
+          <NotificationContainer />
         </ThemeCtxProvider>
       </ApolloProvider>
     </ReduxProvider>

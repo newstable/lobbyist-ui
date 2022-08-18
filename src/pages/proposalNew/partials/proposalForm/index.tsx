@@ -5,6 +5,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import classNames from "classnames";
 import { useQuery } from "@apollo/client";
+import { NotificationManager } from 'react-notifications';
 import {
     FormTextField,
     FormSelect,
@@ -137,6 +138,7 @@ const ProposalForm = (props: Props) => {
 
     useEffect(() => {
         const temp = [] as SnapShotData[];
+        console.log(data?.proposals);
         data?.proposals?.map((i: any, key: number) => {
             temp.push({
                 value: key,
@@ -209,8 +211,8 @@ const ProposalForm = (props: Props) => {
         if (walletAddress !== "") {
             const result = await Action.proposal_registry(value, props.name);
             console.log(value);
-            if (result) alert("ok");
-            else alert("error");
+            if (result) NotificationManager.success("Successfully created!");
+            else NotificationManager.error("Can't create proposal!");
         } else {
             alert("please connect wallet...");
         }

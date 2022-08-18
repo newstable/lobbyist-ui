@@ -27,5 +27,8 @@
   "include": [
     "src",
     "types"
-  ]
+  ],
+  "files": [
+    "src/declaration.d.ts"
+  ],
 }

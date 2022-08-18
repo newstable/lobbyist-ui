@@ -19,7 +19,7 @@ const ActiveProposals = ({ symbol }: Props) => {
             const result = await Action.proposal_load(symbol);
             setData(result[symbol.toUpperCase()]);
         })();
-        console.log(filteredProposals);
+        console.log(proposalState.activeProposals);
     }, []);
 
     const filteredProposals = proposalState.activeProposals.filter(
