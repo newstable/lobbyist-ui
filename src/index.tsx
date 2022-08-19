@@ -10,6 +10,7 @@ import "./index.scss";
 import "./assets/css/nucleo-icons.css"
 import "./assets/css/app.css"
 import 'react-notifications/lib/notifications.css';
+import LoadingScreen from 'react-loading-screen';
 import { NotificationContainer } from 'react-notifications';
 
 const root = ReactDOM.createRoot(

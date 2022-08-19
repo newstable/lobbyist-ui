@@ -62,3 +62,5 @@ declare module 'react-notifications' {
         static remove(notification: Notification): void
     }
 }
+
+declare module 'react-loading-screen';

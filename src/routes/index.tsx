@@ -5,6 +5,7 @@ import ProposalNewPage from "../pages/proposalNew";
 import ProposalSymbolPage from "../pages/proposalSymbol";
 import ProposalSymbolVotePage from "../pages/proposalSymbolVote";
 import { ReactApp } from "../components";
+import LoadingScreen from 'react-loading-screen';
 
 const { PUBLIC_URL } = process.env;
 
