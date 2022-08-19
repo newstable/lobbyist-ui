@@ -20,7 +20,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <LoadingScreen loading={loading} bgColor="#000" spinnerColor="white">
+      <LoadingScreen loading={loading} bgColor="#000" spinnerColor="#35B0AB">
         <CssBaseline />
         <AppRoutes />
       </LoadingScreen>
