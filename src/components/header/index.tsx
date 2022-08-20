@@ -222,7 +222,7 @@ const Header: FC = () => {
                     ref={anchorRef}
                     onClick={handleToggle}
                 >
-                    <img style={{ marginRight: "5px" }} width="20px" src={selectedImg}></img>
+                    <img style={{ marginRight: "7px" }} width="17px" src={selectedImg}></img>
                     {selectedCrypto}
                 </Button>
                 <Popper
@@ -263,7 +263,7 @@ const Header: FC = () => {
                                                 }
                                                 key={`mi_${idx}`}
                                             >
-                                                <img width="20px" style={{ marginRight: "5px" }} src={il.img}></img>
+                                                <img width="17px" style={{ marginRight: "7px" }} src={il.img}></img>
                                                 {il.name}
                                             </MenuItem>
                                         ))}
@@ -287,7 +287,7 @@ const Header: FC = () => {
                         color="tealLight"
                         onClick={disconnect}
                     >
-                        <img width="20px" style={{ marginRight: "5px" }} src="../../../../assets/chains/account.svg"></img>
+                        <img width="17px" style={{ marginRight: "7px" }} src="../../../../assets/chains/account.svg"></img>
                         {styledAddress}
                     </Button>
                 )}
