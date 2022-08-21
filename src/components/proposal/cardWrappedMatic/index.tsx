@@ -25,9 +25,12 @@ const ProposalCardWrappedMatic = ({ proposal }: Props) => {
           ))}
         </Box>
         <Box className="grid grid-cols-4 gap-8">
-          <Typography variant="subtitle2">${proposal.matic.total}</Typography>
+          {/* <Typography variant="subtitle2">${proposal.matic.total}</Typography>
           <Typography variant="subtitle2">{`${proposal.matic.votes}`}</Typography>
-          <Typography variant="subtitle2">{`${proposal.matic.amount}`}</Typography>
+          <Typography variant="subtitle2">{`${proposal.matic.amount}`}</Typography> */}
+          <Typography variant="subtitle2">${""}</Typography>
+          <Typography variant="subtitle2">{`${""}`}</Typography>
+          <Typography variant="subtitle2">{`${""}`}</Typography>
           <Box>
             <Button variant="contained" color="pink" fullWidth={false}>
               Add Vote

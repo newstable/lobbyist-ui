@@ -26,7 +26,7 @@ const ProposalCardVaultEmission = ({ proposal }: Props) => {
         </Box>
         <Box className="grid grid-cols-2 gap-8">
           <TextContent>${proposal.totalValue}</TextContent>
-          <TextContent>{`${proposal.userVote}`}</TextContent>
+          <TextContent>{`${0}`}</TextContent>
         </Box>
       </Content>
     </Card>

@@ -9,9 +9,9 @@ type Props = {
 const HistoryProposals = ({ symbol }: Props) => {
   const proposalState = useSelector(state => state.proposal);
 
-  const filteredProposals = proposalState.historyProposals.filter(
-    ap => ap.protocol.symbol === symbol
-  );
+  // const filteredProposals = proposalState.historyProposals.filter(
+  //   ap => ap.protocol.symbol === symbol
+  // );
 
   const filteredProtocol = ProtocolsList.filter(p => p.symbol === symbol);
 
@@ -21,8 +21,8 @@ const HistoryProposals = ({ symbol }: Props) => {
 
   return (
     <ProposalCardActiveSymbol
-      protocol={filteredProtocol[0]}
-      proposals={filteredProposals}
+      protocol={symbol}
+      proposals={[]}
       isHistory
     />
   );

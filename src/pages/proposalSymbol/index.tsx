@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button } from "@mui/material";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import { useParams } from "react-router-dom";
@@ -16,6 +16,7 @@ const ProposalSymbol = (props: Props) => {
   let { symbol } = useParams();
   const proposalState = useSelector(state => state.proposal);
   const [tabIndex, setTabIndex] = useState(0);
+
 
   const paramSymbol = symbol ?? "";
 

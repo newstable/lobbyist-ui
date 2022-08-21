@@ -23,7 +23,7 @@ import { TextContent, TextHead } from "../../text";
 import { ProposalCardHeader } from "../cardHeader";
 
 type Props = {
-    protocol: Protocol;
+    protocol: string;
     proposals: Proposal[];
     isHistory?: boolean;
 };
@@ -58,9 +58,7 @@ const ProposalCardActiveSymbol = ({
     return (
         <Card className="">
             <ProposalCardHeader
-                title={`${isHistory ? "Historical" : "Active"} Proposals for ${
-                    EnumProtocolName[protocol.symbol]
-                }`}
+                title={`${isHistory ? "Historical" : "Active"} Proposals for ${protocol}`}
             ></ProposalCardHeader>
             <Content className="!p-0">
                 <Box className="mb-16">
@@ -91,7 +89,7 @@ const ProposalCardActiveSymbol = ({
                     ))}
                 </Box>
                 <Box className="flex flex-col gap-4">
-                    {proposals.map((p, idx) => (
+                    {proposals?.map((p, idx) => (
                         <Box
                             key={`prop_${idx}`}
                             className="p-6 bg-black rounded-md"
@@ -117,7 +115,7 @@ const ProposalCardActiveSymbol = ({
                                     >
                                         {colHeads[0]}
                                     </TextHead>
-                                    <TextContent>{p.protocol.name}</TextContent>
+                                    <TextContent>{p.name}</TextContent>
                                 </Box>
                                 <Box
                                     className={classNames(
@@ -132,11 +130,7 @@ const ProposalCardActiveSymbol = ({
                                     >
                                         {colHeads[1]}
                                     </TextHead>
-                                    <TextContent>{`${p.reward} ${
-                                        EnumProtocolSymbolName[
-                                            p.protocol.symbol
-                                        ]
-                                    }`}</TextContent>
+                                    <TextContent>{`${p.reward} ${""}`}</TextContent>
                                 </Box>
                                 <Box
                                     className={classNames(

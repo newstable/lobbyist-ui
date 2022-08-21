@@ -1,30 +1,22 @@
-import { useEffect, useState } from "react";
 import { useSelector } from "../../redux/store";
 import { ProposalCardActiveSymbol } from "../../components";
 import { ProtocolsList } from "../../@types/protocol";
-import Action from "../../services";
+import { useEffect } from "react";
 
 type Props = {
     symbol: string;
 };
 
 const ActiveProposals = ({ symbol }: Props) => {
-    const [data, setData] = useState([]);
     const proposalState = useSelector((state) => state.proposal);
 
     const filteredProtocol = ProtocolsList.filter((p) => p.symbol === symbol);
 
-    useEffect(() => {
-        (async () => {
-            const result = await Action.proposal_load(symbol);
-            setData(result[symbol.toUpperCase()]);
-        })();
-        console.log(proposalState.activeProposals);
-    }, []);
-
-    const filteredProposals = proposalState.activeProposals.filter(
-        (ap) => ap.protocol.symbol === symbol
-    );
+    // const filteredProposals = proposalState.currentProposal.filter(
+    //     (ap) => console.log(ap)
+    // );
+    // @ts-ignore
+    const filteredProposals = proposalState.currentProposal[symbol];
 
     if (filteredProtocol.length === 0) {
         // TODO: return as we did not find correct protocol
@@ -32,7 +24,7 @@ const ActiveProposals = ({ symbol }: Props) => {
 
     return (
         <ProposalCardActiveSymbol
-            protocol={filteredProtocol[0]}
+            protocol={symbol}
             proposals={filteredProposals}
         />
     );

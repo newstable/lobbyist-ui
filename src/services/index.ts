@@ -15,13 +15,11 @@ const proposal_registry = async (param: any, name: String) => {
     }
 };
 
-const proposal_load = async (name: String) => {
+const proposal_load = async () => {
     try {
-        var res = await axios.post("/api/load-proposal", {
-            name: name,
-        });
+        var res = await axios.post("/api/load-proposal");
 
-        return res.data.data;
+        return res.data;
     } catch (err: any) {
         return false;
     }

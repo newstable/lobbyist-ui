@@ -66,11 +66,10 @@ const GET_Follows = gql`
 `;
 
 const GET_VOTE = gql`
-    query Votes {
+    query Votes($proposal:String) {
         votes(
-            first: 1000
             where: {
-                proposal: "QmPvbwguLfcVryzBRrbY4Pb9bCtxURagdv1XjhtFLf3wHj"
+                proposal: $proposal
             }
         ) {
             id

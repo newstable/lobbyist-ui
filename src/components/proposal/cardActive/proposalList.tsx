@@ -52,7 +52,7 @@ const ProposalListCard: React.FC<Props> = ({ proposals, heads }) => {
                 <TextHead className={classNames(isAboveMd && "hidden")}>
                   {heads[0]}
                 </TextHead>
-                <TextContent>{p.protocol.name}</TextContent>
+                <TextContent>{""}</TextContent>
               </Box>
               <Box
                 className={classNames("flex flex-col", !isAboveMd && "gap-1")}

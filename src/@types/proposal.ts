@@ -8,16 +8,11 @@ export type Matic = {
 
 export type Proposal = {
   name: string;
-  protocol: Protocol;
+  protocol: string;
   isActive: boolean;
   reward: number;
-  type: EnumProposalType;
-  kpi: EnumProposalKpi;
   voteIncentive?: boolean;
   totalValue: number;
-  userVote: number;
-  userShare: number;
-  matic: Matic;
 };
 
 export enum EnumProposalType {
@@ -33,5 +28,5 @@ export enum EnumProposalKpi {
 export type ProposalState = {
   activeProposals: Proposal[];
   historyProposals: Proposal[];
-  currentProposal: Proposal | null;
+  currentProposal: Proposal[];
 };

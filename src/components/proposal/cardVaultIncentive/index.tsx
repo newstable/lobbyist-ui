@@ -30,7 +30,8 @@ const ProposalCardVaultIncentive = ({ proposal, isProposer }: Props) => {
         </Box>
         <Box className="grid grid-cols-2 gap-8">
           <TextContent>${proposal.totalValue}</TextContent>
-          {!isProposer && <TextContent>{`${proposal.userVote}`}</TextContent>}
+          {!isProposer && <TextContent>{`${""}`}</TextContent>}
+          {/* {!isProposer && <TextContent>{`${proposal.userVote}`}</TextContent>} */}
         </Box>
       </Content>
     </Card>
