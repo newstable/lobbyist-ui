@@ -38,7 +38,7 @@ const ProposalListCard: React.FC<Props> = ({ proposals, heads }) => {
         ))}
       </Box>
       <Box className="flex flex-col gap-4">
-        {proposals.map((p, idx) => (
+        {proposals?.map((p, idx) => (
           <Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
             <Box
               className={classNames(
