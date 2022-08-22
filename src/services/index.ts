@@ -2,11 +2,10 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVERENDPOINT;
 
-const proposal_registry = async (param: any, name: String) => {
+const proposal_registry = async (param: any) => {
     try {
         var res = await axios.post("/api/proposal-registry", {
             param: param,
-            name: name,
         });
 
         return res.data.success;

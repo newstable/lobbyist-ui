@@ -50,8 +50,10 @@ const ProposalForm = (props: Props) => {
     useEffect(() => {
         if (props.name == "qidao") {
             setName("qidao.eth");
+            setValue("type", "qidao");
         } else if (props.name == "aave") {
             setName("aave.eth");
+            setValue("type", "aave");
         }
     }, []);
 
@@ -158,6 +160,7 @@ const ProposalForm = (props: Props) => {
         formState: { errors },
     } = useForm({
         defaultValues: {
+            type: "",
             proposalName: "",
             proposalDescription: "",
             snapshotProposal: "",
@@ -209,7 +212,7 @@ const ProposalForm = (props: Props) => {
         // });
 
         if (walletAddress !== "") {
-            const result = await Action.proposal_registry(value, props.name);
+            const result = await Action.proposal_registry(value);
             console.log(value);
             if (result) NotificationManager.success("Successfully created!", "Success");
             else NotificationManager.error("Can't create proposal!", "Error");

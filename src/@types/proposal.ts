@@ -7,12 +7,14 @@ export type Matic = {
 };
 
 export type Proposal = {
+  type: string;
   name: string;
   protocol: string;
   isActive: boolean;
   reward: number;
   voteIncentive?: boolean;
   totalValue: number;
+  address: string;
 };
 
 export enum EnumProposalType {
