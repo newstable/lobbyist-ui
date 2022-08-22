@@ -24,7 +24,9 @@ const App = () => {
 
   const AllInfo = async () => {
     const result = await Action.proposal_load();
-    dispatch(setCurrentProposal(result));
+    if (result) {
+      dispatch(setCurrentProposal(result));
+    }
   }
 
   return (
