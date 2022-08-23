@@ -1,5 +1,4 @@
 const NumberType = (data: String) => {
-    console.log("number", data);
     var str = "";
     var count = Math.floor(data.length / 3);
     if (data.length / 3 - count == 0) {
