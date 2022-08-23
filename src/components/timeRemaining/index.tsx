@@ -47,7 +47,6 @@ const TimeRemaining = (props: Props) => {
     var hour = date.getHours().toString();
     var minute = date.getMinutes().toString();
     var second = date.getSeconds().toString();
-    console.log(date.getMinutes(), date.getSeconds());
     if (date.getDate() < 10)
       day = "0" + date.getDate().toString();
     if (date.getHours() < 10)
