@@ -12,6 +12,7 @@ import { EnumProtocolSymbolName } from "../../../@types/protocol";
 import { Proposal } from "../../../@types/proposal";
 import { TextContent, TextHead } from "../../text";
 import { useSelector, RootState } from "../../../redux/store";
+import NumberType from "../../../common/number";
 
 interface Props {
   proposals: Proposal[];
@@ -65,7 +66,7 @@ const ProposalListCard: React.FC<Props> = ({ proposals, heads }) => {
                   <TextHead className={classNames(isAboveMd && "hidden")}>
                     {heads[1]}
                   </TextHead>
-                  <TextContent>${p.reward}</TextContent>
+                  <TextContent>${NumberType(p.reward.toString())}</TextContent>
                 </Box>
                 <Box
                   className={classNames(

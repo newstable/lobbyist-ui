@@ -12,7 +12,7 @@ const NumberType = (data: String) => {
             str = "," + data.slice(-(i + 1) * 3, -i * 3) + str;
         }
     }
-    str = data.slice(-(Math.floor(data.length / 3) + 1) * 3, -Math.floor(data.length / 3) * 3) + str;
+    str = data.slice(-(count + 1) * 3, -count * 3) + str;
     return str;
 }
 
