@@ -212,16 +212,12 @@ const ProposalForm = (props: Props) => {
     //     name: "payout",
     // });
     const OnFormSubmit = async (value: any) => {
-        // navigate("confirm", {
-        //     state: {
-        //         myProp: "Hey there",
-        //     },
-        // });
 
         if (walletAddress !== "") {
             const result = await Action.proposal_registry(value);
             if (result) NotificationManager.success("Successfully created!", "Success");
             else NotificationManager.error("Can't create proposal!", "Error");
+            navigate(`/proposal/${props.name}`);
         } else {
             NotificationManager.warning("Please connect wallet...!", "Warning");
         }
