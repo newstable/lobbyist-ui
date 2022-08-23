@@ -14,7 +14,6 @@ const ProposalCardActive = (props: Props) => {
   const proposalState = useSelector(state => state.proposal);
   // @ts-ignore
   const activeProposals = proposalState.currentProposal.data;
-  console.log(activeProposals);
   return (
     <Card className="">
       <ProposalCardHeader title="My active proposals"></ProposalCardHeader>
