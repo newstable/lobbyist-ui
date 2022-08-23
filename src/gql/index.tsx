@@ -51,9 +51,10 @@ const GET_SPACES = gql`
 `;
 
 const GET_Follows = gql`
-    query Follows {
+    query Follows($address:String) {
         follows(
-            where: { follower: "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7" }
+            first: 10000,
+            where: { follower: $address }
         ) {
             id
             follower

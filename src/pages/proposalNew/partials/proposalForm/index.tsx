@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useFieldArray, useForm } from "react-hook-form";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import classNames from "classnames";
-import { useQuery } from "@apollo/client";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import { NotificationManager } from 'react-notifications';
 import {
     FormTextField,
@@ -19,6 +19,7 @@ import tokens from "./token.json";
 import Action from "../../../../services";
 import { useSelector } from "../../../../redux/store";
 import { RootState } from "../../../../redux/store";
+import { GET_Follows } from "../../../../gql";
 
 const BoxForm = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -36,6 +37,7 @@ interface SnapShotData {
 // interface snapInterface extends
 
 const ProposalForm = (props: Props) => {
+    const [getFollow] = useLazyQuery(GET_Follows);
     const [name, setName] = useState("");
     const [time, setTime] = useState("");
     const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
@@ -141,6 +143,7 @@ const ProposalForm = (props: Props) => {
     useEffect(() => {
         const temp = [] as SnapShotData[];
         console.log(data?.proposals);
+        getFollows();
         data?.proposals?.map((i: any, key: number) => {
             temp.push({
                 value: key,
@@ -149,6 +152,12 @@ const ProposalForm = (props: Props) => {
         });
         setSnapshot(temp);
     }, [data]);
+    const getFollows = async () => {
+        const follows = await getFollow({
+            variables: data?.proposals[1].author
+        })
+        console.log(follows);
+    }
 
     const navigate = useNavigate();
     const { prsalType, kpi } = useParams();
