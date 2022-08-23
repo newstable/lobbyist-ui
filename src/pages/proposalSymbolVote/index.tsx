@@ -26,8 +26,6 @@ const ProposalSymbolVote = (props: Props) => {
 
   const navState = location.state as any;
 
-  console.log(navState);
-
   let { proposal: currentProposal } = navState;
 
   if (!currentProposal) {
