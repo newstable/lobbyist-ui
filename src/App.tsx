@@ -16,7 +16,6 @@ const App = () => {
     return getTheme(darkMode);
   }, [darkMode]);
   useEffect(() => {
-    console.log(process.env.REACT_APP_SERVERENDPOINT);
     setTimeout(() => {
       setLoading(false);
     }, 1000);
@@ -25,7 +24,6 @@ const App = () => {
 
   const AllInfo = async () => {
     const result = await Action.proposal_load();
-    console.log("result=>", result);
     if (result) {
       dispatch(setCurrentProposal(result));
     }
