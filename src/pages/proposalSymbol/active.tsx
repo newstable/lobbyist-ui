@@ -17,7 +17,6 @@ const ActiveProposals = ({ symbol }: Props) => {
     // );
     // @ts-ignore
     const filteredProposals = proposalState.currentProposal.data;
-    console.log(filteredProposals);
 
     // if (filteredProtocol.length === 0) {
     //     // TODO: return as we did not find correct protocol

@@ -142,7 +142,6 @@ const ProposalForm = (props: Props) => {
 
     useEffect(() => {
         const temp = [] as SnapShotData[];
-        console.log(data?.proposals);
         getFollows();
         data?.proposals?.map((i: any, key: number) => {
             temp.push({
@@ -156,7 +155,6 @@ const ProposalForm = (props: Props) => {
         const follows = await getFollow({
             variables: data?.proposals[1].author
         })
-        console.log(follows);
     }
 
     const navigate = useNavigate();
@@ -222,7 +220,6 @@ const ProposalForm = (props: Props) => {
 
         if (walletAddress !== "") {
             const result = await Action.proposal_registry(value);
-            console.log(value);
             if (result) NotificationManager.success("Successfully created!", "Success");
             else NotificationManager.error("Can't create proposal!", "Error");
         } else {
