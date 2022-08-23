@@ -147,7 +147,7 @@ const ProposalCardActiveSymbol = ({
                                         >
                                             {colHeads[2]}
                                         </TextHead>
-                                        <TextContent>12, 500</TextContent>
+                                        <TextContent>{NumberType(p.votes.toString())}</TextContent>
                                     </Box>
                                     <Box
                                         className={classNames(
@@ -162,7 +162,7 @@ const ProposalCardActiveSymbol = ({
                                         >
                                             {colHeads[3]}
                                         </TextHead>
-                                        <TextContent>$0.07</TextContent>
+                                        <TextContent>${(p.reward / p.votes).toFixed(2)}</TextContent>
                                     </Box>
                                     {isHistory ? (
                                         <Box

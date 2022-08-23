@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useFieldArray, useForm } from "react-hook-form";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import classNames from "classnames";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { NotificationManager } from 'react-notifications';
 import {
     FormTextField,
@@ -14,12 +14,11 @@ import {
 } from "../../../../components/form";
 import { colors } from "../../../../common";
 import { useEffect, useState } from "react";
-import { GET_PROPOSAL } from "../../../../gql";
+import { GET_PROPOSALS } from "../../../../gql";
 import tokens from "./token.json";
 import Action from "../../../../services";
 import { useSelector } from "../../../../redux/store";
 import { RootState } from "../../../../redux/store";
-import { GET_Follows } from "../../../../gql";
 import { dispatch } from "../../../../redux/store";
 import { setCurrentProposal } from "../../../../redux/slices/proposal";
 
@@ -39,7 +38,6 @@ interface SnapShotData {
 // interface snapInterface extends
 
 const ProposalForm = (props: Props) => {
-    const [getFollow] = useLazyQuery(GET_Follows);
     const [name, setName] = useState("");
     const [time, setTime] = useState("");
     const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
@@ -67,7 +65,7 @@ const ProposalForm = (props: Props) => {
         }
     }, [walletAddress]);
 
-    const { data, loading, error } = useQuery(GET_PROPOSAL, {
+    const { data, loading, error } = useQuery(GET_PROPOSALS, {
         variables: { name: name },
         pollInterval: 0,
     });
@@ -83,6 +81,7 @@ const ProposalForm = (props: Props) => {
         }
         const date = new Date(data?.proposals[e].end * 1000);
         setValue("endTime", (data?.proposals[e].end * 1000).toString());
+        setValue("proposalAddress", (data?.proposals[e].id));
         timeStyle(date);
     };
 
@@ -144,7 +143,7 @@ const ProposalForm = (props: Props) => {
 
     useEffect(() => {
         const temp = [] as SnapShotData[];
-        getFollows();
+        console.log(data);
         data?.proposals?.map((i: any, key: number) => {
             temp.push({
                 value: key,
@@ -153,11 +152,6 @@ const ProposalForm = (props: Props) => {
         });
         setSnapshot(temp);
     }, [data]);
-    const getFollows = async () => {
-        const follows = await getFollow({
-            variables: data?.proposals[1].author
-        })
-    }
 
     const navigate = useNavigate();
     const { prsalType, kpi } = useParams();
@@ -176,7 +170,7 @@ const ProposalForm = (props: Props) => {
             desiredVote: "",
             endTime: "",
             gaugeFixed: "",
-            rewardCurrency: "",
+            rewardCurrency: "WMATIC",
             minimumBribe: "0",
             loyaltyVote: "",
             minVoteWeightNum: 0,
@@ -187,6 +181,7 @@ const ProposalForm = (props: Props) => {
             rangeNum: [{ value: [0, 10] }],
             payout: "0",
             userAddress: "",
+            proposalAddress: "",
         },
     });
 
@@ -219,7 +214,7 @@ const ProposalForm = (props: Props) => {
             const result = await Action.proposal_registry(value);
             if (result) NotificationManager.success("Successfully created!", "Success");
             else NotificationManager.error("Can't create proposal!", "Error");
-            const proposals = await Action.proposal_load();
+            const proposals = await Action.Proposal_load();
             if (proposals) {
                 dispatch(setCurrentProposal(proposals));
             }

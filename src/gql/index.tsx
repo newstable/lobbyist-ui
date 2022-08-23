@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-const GET_PROPOSAL = gql`
+const GET_PROPOSALS = gql`
     query Proposals($name: String) {
         proposals(
             first: 20
@@ -53,25 +53,24 @@ const GET_SPACES = gql`
 const GET_Follows = gql`
     query Follows($address:String) {
         follows(
-            first: 10000,
+            first:10000
+            skip:0
             where: { follower: $address }
         ) {
             id
-            follower
-            space {
-                id
-            }
-            created
         }
     }
 `;
 
 const GET_VOTE = gql`
-    query Votes($proposal:String) {
+    query Votes($id:String!,$first:Int,$skip:Int,$orderBy:String) {
         votes(
+            first: 30000
+            skip: 0
             where: {
-                proposal: $proposal
+                proposal: $id,vp_gt:0,voter:""
             }
+            orderBy:$orderBy
         ) {
             id
             voter
@@ -83,5 +82,42 @@ const GET_VOTE = gql`
         }
     }
 `;
+const GET_PROPOSAL = gql`
+    query GetProposal($id:String){
+        proposal(id:$id){
+            id
+            ipfs
+            title
+            body
+            discussion
+            choices
+            start
+            end
+            snapshot
+            state
+            author
+            created
+            plugins
+            network
+            type
+            quorum
+            symbol
+            strategies{
+                name
+                network
+                params
+            }
+            space{
+                id
+                name
+            }
+            scores_state
+            scores
+            scores_by_strategy
+            scores_total
+            votes
+        }
+    }
+`
 
-export { GET_PROPOSAL, GET_Follows, GET_SPACES, GET_VOTE };
+export { GET_PROPOSALS, GET_Follows, GET_SPACES, GET_VOTE, GET_PROPOSAL };

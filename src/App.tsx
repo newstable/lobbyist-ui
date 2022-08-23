@@ -8,8 +8,15 @@ import { AppRoutes } from "./routes";
 import Action from "./services";
 import { setCurrentProposal } from "./redux/slices/proposal";
 import { dispatch } from "./redux/store";
+import { useLazyQuery } from "@apollo/client";
+import { GET_PROPOSAL } from "./gql";
+
+interface init {
+  votes: number;
+}
 
 const App = () => {
+  const [getProposal] = useLazyQuery(GET_PROPOSAL);
   const [loading, setLoading] = useState(true);
   const { darkMode } = useThemeMode();
   let theme = React.useMemo(() => {
@@ -23,7 +30,15 @@ const App = () => {
   }, []);
 
   const AllInfo = async () => {
-    const result = await Action.proposal_load();
+    var result = await Action.Proposal_load();
+    for (var i = 0; i < result.data.length; i++) {
+      const proposal = await getProposal({
+        variables: { id: result.data[i].proposalId }
+      });
+      result.data[i].votes = proposal.data.proposal.votes;
+    }
+    // result?.data.map(async (i: any) => {
+    // })
     if (result) {
       dispatch(setCurrentProposal(result));
     }

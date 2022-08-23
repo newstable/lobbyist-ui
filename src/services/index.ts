@@ -14,10 +14,9 @@ const proposal_registry = async (param: any) => {
     }
 };
 
-const proposal_load = async () => {
+const Proposal_load = async () => {
     try {
         var res = await axios.post("/api/load-proposal");
-
         return res.data;
     } catch (err: any) {
         return false;
@@ -27,7 +26,7 @@ const proposal_load = async () => {
 // Export Functions
 const Action = {
     proposal_registry,
-    proposal_load,
+    Proposal_load,
 };
 
 export default Action;

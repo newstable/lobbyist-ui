@@ -4,6 +4,11 @@ const NumberType = (data: String) => {
     if (data.length / 3 - count == 0) {
         count--;
     }
+    if (count == 0) {
+        str = data.slice(-3);
+        return str;
+    }
+    // if(count ==0)
     for (var i = 0; i < count; i++) {
         if (i == 0) {
             str = "," + data.slice(-3);

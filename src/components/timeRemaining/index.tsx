@@ -3,7 +3,8 @@ import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { colors } from "../../common";
 
-type Props = {};
+type Props = {
+};
 
 const CircleMain = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,

@@ -9,12 +9,16 @@ export type Matic = {
 export type Proposal = {
   type: string;
   name: string;
+  description: string;
   protocol: string;
   isActive: boolean;
   reward: number;
   voteIncentive?: boolean;
   totalValue: number;
   address: string;
+  endTime: string;
+  proposalId: string;
+  votes: number;
 };
 
 export enum EnumProposalType {
