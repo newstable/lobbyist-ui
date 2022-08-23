@@ -85,52 +85,16 @@ const ProposalForm = (props: Props) => {
         timeStyle(date);
     };
 
+    var monthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
     const timeStyle = (date: Date) => {
-        const month = myMonth(date);
+        const month = date.getMonth();
         const hour = myHour(date);
         const day = date.getDate();
         const year = date.getFullYear();
-        const result = month + " " + day + ", " + year + ", " + hour;
+        const result = monthName[month] + " " + day + ", " + year + ", " + hour;
         setTime(result);
-    };
-
-    const myMonth = (date: Date) => {
-        if (date.getMonth() == 0) {
-            return "January";
-        }
-        if (date.getMonth() == 1) {
-            return "February";
-        }
-        if (date.getMonth() == 2) {
-            return "March";
-        }
-        if (date.getMonth() == 3) {
-            return "April";
-        }
-        if (date.getMonth() == 4) {
-            return "May";
-        }
-        if (date.getMonth() == 5) {
-            return "June";
-        }
-        if (date.getMonth() == 6) {
-            return "July";
-        }
-        if (date.getMonth() == 7) {
-            return "August";
-        }
-        if (date.getMonth() == 8) {
-            return "September";
-        }
-        if (date.getMonth() == 9) {
-            return "October";
-        }
-        if (date.getMonth() == 10) {
-            return "November";
-        }
-        if (date.getMonth() == 11) {
-            return "December";
-        }
     };
 
     const myHour = (date: Date) => {

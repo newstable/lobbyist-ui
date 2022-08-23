@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { colors } from "../../common";
 
 type Props = {
+  time: string;
 };
 
 const CircleMain = styled(Box)(({ theme }) => ({
@@ -30,21 +31,50 @@ const CircleCounter = styled(Box)(({ theme }) => ({
   height: "85%",
 }));
 
-const TimeRemaining: React.FC<Props> = props => (
-  <Box>
-    <Box className="items-center">
-      <CircleMain className="mx-auto rounded-full grid items-center">
-        <CircleGradient className="mx-auto rounded-full grid items-center">
-          <CircleCounter className="mx-auto rounded-full flex flex-col justify-center items-center">
-            <Typography variant="h6" className="!font-bold">
-              24:13:02:30
-            </Typography>
-            <Typography>Time Remaining</Typography>
-          </CircleCounter>
-        </CircleGradient>
-      </CircleMain>
+const TimeRemaining = (props: Props) => {
+  const [endTime, setEndTime] = useState("00:00:00:00");
+  const { time } = props;
+
+  setTimeout(() => {
+    Time();
+  }, 1000);
+
+  const Time = () => {
+    var currentTime = new Date().valueOf();
+    var realTime = Number(time) - currentTime;
+    var date = new Date(realTime);
+    var day = date.getDate().toString();
+    var hour = date.getHours().toString();
+    var minute = date.getMinutes().toString();
+    var second = date.getSeconds().toString();
+    console.log(date.getMinutes(), date.getSeconds());
+    if (date.getDate() < 10)
+      day = "0" + date.getDate().toString();
+    if (date.getHours() < 10)
+      hour = "0" + date.getHours().toString();
+    if (date.getMinutes() < 10)
+      minute = "0" + date.getMinutes().toString();
+    if (date.getSeconds() < 10)
+      second = "0" + date.getSeconds().toString();
+    var totalTime = day + ":" + hour + ":" + minute + ":" + second;
+    setEndTime(totalTime);
+  }
+  return (
+    <Box>
+      <Box className="items-center">
+        <CircleMain className="mx-auto rounded-full grid items-center">
+          <CircleGradient className="mx-auto rounded-full grid items-center">
+            <CircleCounter className="mx-auto rounded-full flex flex-col justify-center items-center">
+              <Typography variant="h6" className="!font-bold">
+                {endTime}
+              </Typography>
+              <Typography>Time Remaining</Typography>
+            </CircleCounter>
+          </CircleGradient>
+        </CircleMain>
+      </Box>
     </Box>
-  </Box>
-);
+  )
+};
 
 export { TimeRemaining };

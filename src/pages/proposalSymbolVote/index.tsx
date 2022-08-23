@@ -14,7 +14,6 @@ import {
 type Props = {};
 
 const ProposalSymbolVote = (props: Props) => {
-  const [time, setTime] = useState("");
   const location = useLocation();
   const { symbol } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -85,7 +84,7 @@ const ProposalSymbolVote = (props: Props) => {
           </Box>
         </Grid>
         <Grid item xs={12} md={6} className="flex !flex-col">
-          <TimeRemaining></TimeRemaining>
+          <TimeRemaining time={navState.proposal.endTime}></TimeRemaining>
           <Box className="relative flex flex-auto">
             <Box className="flex flex-col flex-auto gap-2 text-center pt-6 md:text-right md:pt-0 md:absolute md:right-0 md:bottom-0">
               <Link href="#">Go to Snapshot</Link>
