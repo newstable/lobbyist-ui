@@ -20,6 +20,8 @@ import Action from "../../../../services";
 import { useSelector } from "../../../../redux/store";
 import { RootState } from "../../../../redux/store";
 import { GET_Follows } from "../../../../gql";
+import { dispatch } from "../../../../redux/store";
+import { setCurrentProposal } from "../../../../redux/slices/proposal";
 
 const BoxForm = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -217,6 +219,10 @@ const ProposalForm = (props: Props) => {
             const result = await Action.proposal_registry(value);
             if (result) NotificationManager.success("Successfully created!", "Success");
             else NotificationManager.error("Can't create proposal!", "Error");
+            const proposals = await Action.proposal_load();
+            if (proposals) {
+                dispatch(setCurrentProposal(proposals));
+            }
             navigate(`/proposal/${props.name}`);
         } else {
             NotificationManager.warning("Please connect wallet...!", "Warning");
