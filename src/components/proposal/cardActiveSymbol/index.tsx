@@ -131,7 +131,7 @@ const ProposalCardActiveSymbol = ({
                                         >
                                             {colHeads[1]}
                                         </TextHead>
-                                        <TextContent>{`${p.reward} ${""}`}</TextContent>
+                                        <TextContent>{`$${p.reward}`}</TextContent>
                                     </Box>
                                     <Box
                                         className={classNames(

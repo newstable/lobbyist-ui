@@ -65,7 +65,7 @@ const ProposalListCard: React.FC<Props> = ({ proposals, heads }) => {
                   <TextHead className={classNames(isAboveMd && "hidden")}>
                     {heads[1]}
                   </TextHead>
-                  <TextContent>$56,000</TextContent>
+                  <TextContent>${p.reward}</TextContent>
                 </Box>
                 <Box
                   className={classNames(
