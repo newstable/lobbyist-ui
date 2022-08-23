@@ -21,6 +21,7 @@ import {
 import { FormTextField } from "../../form";
 import { TextContent, TextHead } from "../../text";
 import { ProposalCardHeader } from "../cardHeader";
+import NumberType from "../../../common/number";
 
 type Props = {
     protocol: string;
@@ -131,7 +132,7 @@ const ProposalCardActiveSymbol = ({
                                         >
                                             {colHeads[1]}
                                         </TextHead>
-                                        <TextContent>{`$${p.reward}`}</TextContent>
+                                        <TextContent>{`$${NumberType(p.reward.toString())}`}</TextContent>
                                     </Box>
                                     <Box
                                         className={classNames(
