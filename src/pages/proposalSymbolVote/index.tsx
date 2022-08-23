@@ -87,7 +87,7 @@ const ProposalSymbolVote = (props: Props) => {
           <TimeRemaining time={navState.proposal.endTime}></TimeRemaining>
           <Box className="relative flex flex-auto">
             <Box className="flex flex-col flex-auto gap-2 text-center pt-6 md:text-right md:pt-0 md:absolute md:right-0 md:bottom-0">
-              <Link href="#">Go to Snapshot</Link>
+              <Link href={"https://snapshot.org/#/" + symbol + ".eth"}>Go to Snapshot</Link>
               <Link href={"/proposal/" + symbol}>
                 Go to{" "}
                 {`${EnumProtocolName[symbol as keyof typeof EnumProtocolName]}`}
