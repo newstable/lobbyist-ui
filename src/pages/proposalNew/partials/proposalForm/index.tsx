@@ -14,13 +14,14 @@ import {
 } from "../../../../components/form";
 import { colors } from "../../../../common";
 import { useEffect, useState } from "react";
-import { GET_PROPOSALS } from "../../../../gql";
+import { GET_PROPOSALS, GET_PROPOSAL } from "../../../../gql";
 import tokens from "./token.json";
 import Action from "../../../../services";
 import { useSelector } from "../../../../redux/store";
 import { RootState } from "../../../../redux/store";
 import { dispatch } from "../../../../redux/store";
-import { setCurrentProposal } from "../../../../redux/slices/proposal";
+import proposal, { setCurrentProposal } from "../../../../redux/slices/proposal";
+import { useLazyQuery } from "@apollo/client";
 
 const BoxForm = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -38,6 +39,7 @@ interface SnapShotData {
 // interface snapInterface extends
 
 const ProposalForm = (props: Props) => {
+    const [getProposal] = useLazyQuery(GET_PROPOSAL);
     const [name, setName] = useState("");
     const [time, setTime] = useState("");
     const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
@@ -172,16 +174,21 @@ const ProposalForm = (props: Props) => {
     //     name: "payout",
     // });
     const OnFormSubmit = async (value: any) => {
-
         if (walletAddress !== "") {
             const result = await Action.proposal_registry(value);
             if (result) NotificationManager.success("Successfully created!", "Success");
             else NotificationManager.error("Can't create proposal!", "Error");
             const proposals = await Action.Proposal_load();
             if (proposals) {
+                for (var i = 0; i < proposals.data.length; i++) {
+                    const proposal = await getProposal({
+                        variables: { id: proposals.data[i].proposalId }
+                    });
+                    proposals.data[i].votes = proposal.data.proposal.votes;
+                }
                 dispatch(setCurrentProposal(proposals));
+                navigate(`/proposal/${props.name}`);
             }
-            navigate(`/proposal/${props.name}`);
         } else {
             NotificationManager.warning("Please connect wallet...!", "Warning");
         }
