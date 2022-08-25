@@ -43,10 +43,10 @@ const ProposalSymbolVote = (props: Props) => {
                 Copy Link
               </Button>
               <Button variant="contained" color="tealLight">
-                IPFS
+                Add Rewards
               </Button>
               <Button variant="contained" color="tealLight">
-                Clawback
+                Release Rewards
               </Button>
             </Box>
           ) : (

@@ -37,11 +37,6 @@ const ProposalCardActiveSymbol = ({
     proposals,
     isHistory,
 }: Props) => {
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        setLoading(!loading);
-        console.log("<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>");
-    }, [proposals])
     const colHeads = ["Name", "Vote Incentive", "Total Votes", "$/Vote", ""];
     const navigate = useNavigate();
     const theme = useTheme();
