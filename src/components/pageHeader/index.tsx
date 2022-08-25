@@ -33,7 +33,7 @@ const PageHeader = ({ heading, headingSub, subHeading, value }: Props) => {
 };
 
 PageHeader.defaultProps = {
-  heading: "Covenant",
+  heading: "Lobbyist",
 };
 
 export { PageHeader };

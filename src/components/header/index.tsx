@@ -31,9 +31,9 @@ const itemsList = [
         img: "../../../../assets/chains/matic.svg"
     },
     {
-        name: "Polygon Mumbai",
-        id: "0x13881",
-        img: "../../../../assets/chains/matic.svg"
+        name: "Ethereum",
+        id: "0x1",
+        img: "../../../../assets/chains/eth.svg"
     },
 ];
 

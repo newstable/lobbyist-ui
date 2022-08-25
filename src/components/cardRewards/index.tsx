@@ -10,7 +10,7 @@ type Props = {};
 
 const Content = styled(CardContent)(({ theme }) => ({
   backgroundColor: theme.palette.tealLight.main,
-  borderRadius: "4px",
+  borderRadius: "1rem",
 }));
 
 const CardRewards = (props: Props) => {
@@ -38,13 +38,13 @@ const CardRewards = (props: Props) => {
               isAboveMd ? "gap-5" : "gap-1"
             )}
           >
-            <TextHead color={colors.black}>{c.title}</TextHead>
+            <TextHead color={colors.white}>{c.title}</TextHead>
             {c.isText ? (
-              <Typography variant="subtitle2" color="secondary">
+              <Typography variant="subtitle2" color="white">
                 {c.value}
               </Typography>
             ) : (
-              <Typography variant="h5" color="secondary" className="!font-bold">
+              <Typography variant="h5" color="white" className="!font-bold">
                 {c.value}
               </Typography>
             )}

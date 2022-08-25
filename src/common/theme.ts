@@ -171,8 +171,9 @@ const commonOptions: ThemeOptions = {
       fontWeight: 400,
     },
     subtitle1: {
-      fontSize: "2rem",
+      fontSize: "1.7rem",
       fontWeight: 400,
+      lineHeight: "4rem",
     },
     subtitle2: {
       fontSize: "1.6rem",
@@ -222,6 +223,7 @@ const commonOptions: ThemeOptions = {
           padding: "0.8rem 1.4rem",
           minWidth: "15rem",
           boxShadow: "none",
+          borderRadius: "1rem",
           "&:hover": {
             boxShadow: "none",
           },
