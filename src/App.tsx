@@ -23,9 +23,6 @@ const App = () => {
     return getTheme(darkMode);
   }, [darkMode]);
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
     AllInfo();
   }, []);
 
@@ -37,6 +34,7 @@ const App = () => {
       });
       result.data[i].votes = proposal.data.proposal.votes;
     }
+    setLoading(false);
     // result?.data.map(async (i: any) => {
     // })
     if (result) {
