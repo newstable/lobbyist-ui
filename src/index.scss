@@ -43,7 +43,7 @@ code {
     max-width: 1100px;
 }
 
-body.show-menu .app > .main {
+body.show-menu .app>.main {
     display: none;
 }
 
@@ -257,9 +257,20 @@ body.show-menu .app > .main {
     .mlgx\:w-full {
         width: 100% !important;
     }
+
+    .proposer-button {
+        min-width: 0 !important;
+    }
+
+    .proposer-flex {
+        display: block !important;
+    }
 }
 
+
+
 @media (min-width: 768px) {
+
     .md\:col-span-2 {
         grid-column: span 2 / span 2;
     }

@@ -35,17 +35,17 @@ const ProposalSymbolVote = (props: Props) => {
   return (
     <Box className="main-body flex flex-col grow">
       <Box className="flex flex-col main-content gap-14">
-        <Box className="flex justify-between">
+        <Box className="flex justify-between proposer-flex">
           <NavBack />
           {isProposer ? (
             <Box className="flex gap-8">
-              <Button variant="contained" color="tealLight">
+              <Button className="proposer-button" variant="contained" color="tealLight">
                 Copy Link
               </Button>
-              <Button variant="contained" color="tealLight">
+              <Button className="proposer-button" variant="contained" color="tealLight">
                 Add Rewards
               </Button>
-              <Button variant="contained" color="tealLight">
+              <Button className="top-button" variant="contained" color="tealLight">
                 Release Rewards
               </Button>
             </Box>
