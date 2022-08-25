@@ -17,9 +17,9 @@ const CardRewards = (props: Props) => {
   const theme = useTheme();
   const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
   const cols = [
-    { title: "Pending Rewards", isText: false, value: "$28,912" },
+    { title: "Estimated Rewards", isText: false, value: "$28,912" },
     { title: "Active Proposals", isText: false, value: "3" },
-    { title: "Total Votes Given", isText: false, value: "16" },
+    { title: "Total Earned", isText: false, value: "16" },
   ];
   return (
     <Card className="">
