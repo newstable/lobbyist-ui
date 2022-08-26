@@ -247,7 +247,7 @@ video {
 [type=week],
 select,
 textarea {
-    --tw-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #2829310;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -339,7 +339,7 @@ select {
 [type=checkbox],
 [type=radio] {
     -webkit-print-color-adjust: exact;
-    --tw-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #2829310;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -589,10 +589,10 @@ input:checked+.toggle-bg {
     --tw-ring-offset-width: 0px;
     --tw-ring-offset-color: #fff;
     --tw-ring-color: rgba(33, 82, 255, .5);
-    --tw-ring-offset-shadow: 0 0 #0000;
-    --tw-ring-shadow: 0 0 #0000;
-    --tw-shadow: 0 0 #0000;
-    --tw-shadow-colored: 0 0 #0000;
+    --tw-ring-offset-shadow: 0 0 #2829310;
+    --tw-ring-shadow: 0 0 #2829310;
+    --tw-shadow: 0 0 #2829310;
+    --tw-shadow-colored: 0 0 #2829310;
     --tw-blur: ;
     --tw-brightness: ;
     --tw-contrast: ;
@@ -1610,7 +1610,7 @@ input:checked+.toggle-bg {
 }
 
 .rounded-md {
-    border-radius: .375rem
+    border-radius: 1rem
 }
 
 .rounded-sm {
@@ -2377,7 +2377,7 @@ input:checked+.toggle-bg {
 
 .shadow-lg,
 .shadow-md {
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #2829310), var(--tw-ring-shadow, 0 0 #2829310), var(--tw-shadow)
 }
 
 .shadow-md {
@@ -2392,7 +2392,7 @@ input:checked+.toggle-bg {
 
 .shadow-sm,
 .shadow-xl {
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #2829310), var(--tw-ring-shadow, 0 0 #2829310), var(--tw-shadow)
 }
 
 .shadow-sm {
@@ -2407,11 +2407,11 @@ input:checked+.toggle-bg {
 
 .shadow,
 .shadow-none {
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #2829310), var(--tw-ring-shadow, 0 0 #2829310), var(--tw-shadow)
 }
 
 .shadow-none {
-    --tw-shadow: 0 0 #000;
+    --tw-shadow: 0 0 #282931;
     --tw-shadow-colored: 0 0 var(--tw-shadow-color)
 }
 
@@ -2508,7 +2508,7 @@ input:checked+.toggle-bg {
     border-color: rgb(222 226 230/var(--tw-border-opacity));
     border-radius: 9999px;
     border-width: 1px;
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #2829310);
     content: "";
     height: 1.25rem;
     left: .125rem;
@@ -2549,7 +2549,7 @@ input:checked+.toggle-bg {
     background-color: rgb(255 255 255/var(--tw-bg-opacity)) !important;
     border-radius: .5rem !important;
     border-width: 0 !important;
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #2829310), var(--tw-ring-shadow, 0 0 #2829310), var(--tw-shadow) !important;
     color: rgb(73 80 87/var(--tw-text-opacity)) !important
 }
 
@@ -2572,7 +2572,7 @@ input:checked+.toggle-bg {
     background-color: rgb(255 255 255/var(--tw-bg-opacity)) !important;
     border-radius: .5rem !important;
     border-width: 0 !important;
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #2829310), var(--tw-ring-shadow, 0 0 #2829310), var(--tw-shadow) !important;
     color: rgb(73 80 87/var(--tw-text-opacity)) !important
 }
 
@@ -2593,10 +2593,10 @@ input:checked+.toggle-bg {
 }
 
 .svgMap-map-controls-wrapper {
-    --tw-shadow: 0 0 #000 !important;
+    --tw-shadow: 0 0 #282931 !important;
     --tw-shadow-colored: 0 0 var(--tw-shadow-color) !important;
     bottom: 0 !important;
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #2829310), var(--tw-ring-shadow, 0 0 #2829310), var(--tw-shadow) !important;
     left: 0 !important
 }
 
@@ -2624,7 +2624,7 @@ input:checked+.toggle-bg {
     background-color: rgb(255 255 255/var(--tw-bg-opacity)) !important;
     border-radius: .5rem !important;
     border-width: 0 !important;
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #2829310), var(--tw-ring-shadow, 0 0 #2829310), var(--tw-shadow) !important;
     text-align: left !important
 }
 
@@ -2747,7 +2747,7 @@ input:checked+.toggle-bg {
     --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color) !important;
     --tw-ring-opacity: 1 !important;
     --tw-ring-color: rgb(246 101 212/var(--tw-ring-opacity)) !important;
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000) !important;
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #2829310) !important;
     z-index: 10 !important
 }
 
@@ -2786,7 +2786,7 @@ input:checked+.toggle-bg {
     --tw-ring-opacity: 1 !important;
     --tw-ring-color: rgb(248 249 250/var(--tw-ring-opacity)) !important;
     background-color: rgb(248 249 250/var(--tw-bg-opacity)) !important;
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000) !important
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #2829310) !important
 }
 
 .fc .fc-scrollgrid {
@@ -2982,7 +2982,7 @@ input:checked+.toggle-bg {
 
 .focus\:ring-2:focus,
 .focus\:ring-4:focus {
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #2829310)
 }
 
 .focus\:ring-4:focus {
@@ -2993,7 +2993,7 @@ input:checked+.toggle-bg {
 .focus\:ring-0:focus {
     --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
     --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(var(--tw-ring-offset-width)) var(--tw-ring-color);
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #2829310)
 }
 
 .focus\:ring-gray-100:focus {
@@ -3970,7 +3970,7 @@ input:checked+.toggle-bg {
 
 .svgMap-tooltip {
     background: #fff;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #282931;
     border-radius: 2px;
     box-shadow: 0 0 3px rgba(0, 0, 0, .2);
     display: none;
@@ -3983,7 +3983,7 @@ input:checked+.toggle-bg {
 
 .svgMap-tooltip.svgMap-tooltip-flipped {
     border-bottom: 0;
-    border-top: 1px solid #000;
+    border-top: 1px solid #282931;
     transform: translate(-50%)
 }
 
@@ -4077,7 +4077,7 @@ input:checked+.toggle-bg {
 
 .svgMap-tooltip .svgMap-tooltip-pointer:after {
     background: #fff;
-    border: 1px solid #000;
+    border: 1px solid #282931;
     bottom: 6px;
     content: "";
     height: 20px;

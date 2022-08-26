@@ -315,7 +315,7 @@ const ProposalForm = (props: Props) => {
                                 className={classNames(
                                     "flex flex-col gap-8",
                                     isVariable &&
-                                    "bg-[#121415] rounded pt-6 pb-12"
+                                    "bg-[#1f2028] rounded pt-6 pb-12"
                                 )}
                             >
                                 {isVariable && (

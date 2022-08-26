@@ -28,7 +28,7 @@ const SectionHeader = ({ heading, onSearchChange }: Props) => {
 };
 
 SectionHeader.defaultProps = {
-  heading: "Covenant",
+  heading: "Lobbyist",
 };
 
 export { SectionHeader };

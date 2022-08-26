@@ -121,7 +121,7 @@ body.show-menu .app>.main {
 }
 
 .\!font-bold {
-    font-weight: 700 !important;
+    font-weight: 700;
 }
 
 .\!p-0 {
@@ -185,7 +185,7 @@ body.show-menu .app>.main {
 
 .bg-black {
     --tw-bg-opacity: 1;
-    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+    background-color: #282931;
 }
 
 .w-16 {
@@ -206,14 +206,15 @@ body.show-menu .app>.main {
 
 .css-2ob6df-MuiCardContent-root {
     padding: 16px;
-    background-color: #000;
+    background-color: #282931;
+    border-redius: 1rem;
 }
 
 .text-right {
     text-align: right;
 }
 
-.bg-\[\#121415\] {
+.bg-\[\#1f2028\] {
     --tw-bg-opacity: 1;
     background-color: rgb(18 20 21 / var(--tw-bg-opacity));
 }

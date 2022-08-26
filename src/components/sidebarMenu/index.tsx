@@ -7,8 +7,15 @@ import { MenuLink } from "../../@types";
 import { ReactComponent as GaugeIcon } from "../../assets/icons/gauge.svg";
 import { ReactComponent as ChartIcon } from "../../assets/icons/chart.svg";
 import { ReactComponent as ProAvaeIcon } from "../../assets/icons/pro-aave.svg";
+import { ReactComponent as CurveIcon } from "../../assets/icons/crv.svg";
+import { ReactComponent as ConvexIcon } from "../../assets/icons/convex.svg";
+import { ReactComponent as BalancerIcon } from "../../assets/icons/bal.svg";
 import { ReactComponent as ProQiIcon } from "../../assets/icons/pro-qidao.svg";
 import { ReactComponent as ProFraxIcon } from "../../assets/icons/pro-frax.svg";
+import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
+import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
+import { ReactComponent as MirrorIcon } from "../../assets/icons/mirror.svg";
+import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
 import styles from "./styles.module.scss";
 import { colors } from "../../common";
 
@@ -36,8 +43,22 @@ const SidebarMenu = (props: Props) => {
         return ProAvaeIcon;
       case "pro-frax":
         return ProFraxIcon;
+      case "curve":
+        return CurveIcon;
+      case "convex":
+        return ConvexIcon;
+      case "balancer":
+        return BalancerIcon;
       case "pro-qidao":
         return ProQiIcon;
+      case "twitter":
+        return TwitterIcon;
+      case "discord":
+        return DiscordIcon;
+      case "mirror":
+        return MirrorIcon;
+      case "docs":
+        return DocsIcon;
 
       default:
         break;
@@ -53,6 +74,12 @@ const SidebarMenu = (props: Props) => {
       separator: true,
     },
     {
+      icon: "convex",
+      text: "Convex",
+      href: "/proposal/convex",
+      separator: true,
+    },
+    {
       icon: "pro-qidao",
       text: "QiDAO",
       href: "/proposal/qidao",
@@ -64,9 +91,24 @@ const SidebarMenu = (props: Props) => {
       separator: true,
     },
     {
-      icon: "chart",
-      text: "ROI Calculator",
-      href: "/analytics",
+      icon: "twitter",
+      text: "Twitter",
+      href: ("https://twitter.com"),
+    },
+    {
+      icon: "discord",
+      text: "Discord",
+      href: ("https://discord.com"),
+    },
+    {
+      icon: "mirror",
+      text: "Mirror",
+      href: ("https://mirror.xyz"),
+    },
+    {
+      icon: "docs",
+      text: "Docs",
+      href: "/docs",
     },
   ];
 
@@ -108,7 +150,7 @@ const SidebarMenu = (props: Props) => {
             underline="none"
           >
             <Typography variant="h6" className="!font-bold">
-              Covenant
+              Lobbyist
             </Typography>
           </Link>
         </Box>
