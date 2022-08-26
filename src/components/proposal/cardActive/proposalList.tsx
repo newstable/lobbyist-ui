@@ -13,6 +13,7 @@ import { Proposal } from "../../../@types/proposal";
 import { TextContent, TextHead } from "../../text";
 import { useSelector, RootState } from "../../../redux/store";
 import NumberType from "../../../common/number";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   proposals: Proposal[];
@@ -22,6 +23,15 @@ interface Props {
 const Content = styled(CardContent)(({ theme }) => ({}));
 
 const ProposalListCard: React.FC<Props> = ({ proposals, heads }) => {
+  const navigate = useNavigate();
+  const onJoinClick = (proposal: Proposal, idx: number) => {
+    const path = idx % 2 === 0 ? "vote" : "vote?proposer=1";
+    navigate(path, {
+      state: {
+        proposal,
+      },
+    });
+  };
   const walletAddress: any = useSelector(
     (state: RootState) => state.wallet.address
   );
@@ -90,7 +100,7 @@ const ProposalListCard: React.FC<Props> = ({ proposals, heads }) => {
                 <Box
                   className={classNames("flex", isAboveMd && "justify-center")}
                 >
-                  <Button variant="contained" color="tealLight">
+                  <Button variant="contained" color="tealLight" onClick={() => onJoinClick(p, idx)}>
                     View
                   </Button>
                 </Box>
