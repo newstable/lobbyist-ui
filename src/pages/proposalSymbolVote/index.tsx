@@ -1,4 +1,5 @@
 import { Box, Button, Grid, Link, Typography } from "@mui/material";
+import { useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import { EnumProtocolName } from "../../@types/protocol";
 import { colors } from "../../common";
@@ -34,18 +35,18 @@ const ProposalSymbolVote = (props: Props) => {
   return (
     <Box className="main-body flex flex-col grow">
       <Box className="flex flex-col main-content gap-14">
-        <Box className="flex justify-between">
+        <Box className="flex justify-between proposer-flex">
           <NavBack />
           {isProposer ? (
             <Box className="flex gap-8">
-              <Button variant="contained" color="tealLight">
+              <Button className="proposer-button" variant="contained" color="tealLight">
                 Copy Link
               </Button>
-              <Button variant="contained" color="tealLight">
-                IPFS
+              <Button className="proposer-button" variant="contained" color="tealLight">
+                Add Rewards
               </Button>
-              <Button variant="contained" color="tealLight">
-                Clawback
+              <Button className="top-button" variant="contained" color="tealLight">
+                Release Rewards
               </Button>
             </Box>
           ) : (
@@ -59,9 +60,9 @@ const ProposalSymbolVote = (props: Props) => {
         <Grid item xs={12} md={6}>
           <Box className="flex flex-col gap-12 mt-12">
             <Box className="flex flex-col">
-              <Typography variant="h6">Wrapped Matic (Polygon)</Typography>
+              <Typography variant="h6">{navState.proposal.name}</Typography>
               <Typography color={colors.textGray}>
-                Description about the proposal
+                {navState.proposal.description}
               </Typography>
             </Box>
             <Box className="flex flex-col gap-8">
@@ -81,11 +82,11 @@ const ProposalSymbolVote = (props: Props) => {
           </Box>
         </Grid>
         <Grid item xs={12} md={6} className="flex !flex-col">
-          <TimeRemaining></TimeRemaining>
+          <TimeRemaining time={navState.proposal.endTime}></TimeRemaining>
           <Box className="relative flex flex-auto">
             <Box className="flex flex-col flex-auto gap-2 text-center pt-6 md:text-right md:pt-0 md:absolute md:right-0 md:bottom-0">
-              <Link href="#">Go to Snapshot</Link>
-              <Link href="#">
+              <Link href={"https://snapshot.org/#/" + symbol + ".eth"}>Go to Snapshot</Link>
+              <Link href={"/proposal/" + symbol}>
                 Go to{" "}
                 {`${EnumProtocolName[symbol as keyof typeof EnumProtocolName]}`}
               </Link>
@@ -94,7 +95,7 @@ const ProposalSymbolVote = (props: Props) => {
         </Grid>
       </Grid>
       <Box className="mt-16 mb-32"></Box>
-    </Box>
+    </Box >
   );
 };
 

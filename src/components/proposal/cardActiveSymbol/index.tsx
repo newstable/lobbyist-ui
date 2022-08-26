@@ -21,9 +21,11 @@ import {
 import { FormTextField } from "../../form";
 import { TextContent, TextHead } from "../../text";
 import { ProposalCardHeader } from "../cardHeader";
+import NumberType from "../../../common/number";
+import { useEffect, useState } from "react";
 
 type Props = {
-    protocol: Protocol;
+    protocol: string;
     proposals: Proposal[];
     isHistory?: boolean;
 };
@@ -58,9 +60,7 @@ const ProposalCardActiveSymbol = ({
     return (
         <Card className="">
             <ProposalCardHeader
-                title={`${isHistory ? "Historical" : "Active"} Proposals for ${
-                    EnumProtocolName[protocol.symbol]
-                }`}
+                title={`${isHistory ? "Historical" : "Active"} Proposals for ${protocol}`}
             ></ProposalCardHeader>
             <Content className="!p-0">
                 <Box className="mb-16">
@@ -91,113 +91,110 @@ const ProposalCardActiveSymbol = ({
                     ))}
                 </Box>
                 <Box className="flex flex-col gap-4">
-                    {proposals.map((p, idx) => (
-                        <Box
-                            key={`prop_${idx}`}
-                            className="p-6 bg-black rounded-md"
-                        >
+                    {proposals?.map((p, idx) => (
+                        p.type === protocol ?
                             <Box
-                                className={classNames(
-                                    "grid gap-8",
-                                    isAboveMd
-                                        ? "grid-cols-5 items-center"
-                                        : "grid-cols-2"
-                                )}
+                                key={`prop_${idx}`}
+                                className="p-6 bg-black rounded-md"
                             >
                                 <Box
                                     className={classNames(
-                                        "flex flex-col",
-                                        !isAboveMd && "gap-1"
+                                        "grid gap-8",
+                                        isAboveMd
+                                            ? "grid-cols-5 items-center"
+                                            : "grid-cols-2"
                                     )}
                                 >
-                                    <TextHead
-                                        className={classNames(
-                                            isAboveMd && "hidden"
-                                        )}
-                                    >
-                                        {colHeads[0]}
-                                    </TextHead>
-                                    <TextContent>{p.protocol.name}</TextContent>
-                                </Box>
-                                <Box
-                                    className={classNames(
-                                        "flex flex-col",
-                                        !isAboveMd && "gap-1"
-                                    )}
-                                >
-                                    <TextHead
-                                        className={classNames(
-                                            isAboveMd && "hidden"
-                                        )}
-                                    >
-                                        {colHeads[1]}
-                                    </TextHead>
-                                    <TextContent>{`${p.reward} ${
-                                        EnumProtocolSymbolName[
-                                            p.protocol.symbol
-                                        ]
-                                    }`}</TextContent>
-                                </Box>
-                                <Box
-                                    className={classNames(
-                                        "flex flex-col",
-                                        !isAboveMd && "gap-1"
-                                    )}
-                                >
-                                    <TextHead
-                                        className={classNames(
-                                            isAboveMd && "hidden"
-                                        )}
-                                    >
-                                        {colHeads[2]}
-                                    </TextHead>
-                                    <TextContent>12, 500</TextContent>
-                                </Box>
-                                <Box
-                                    className={classNames(
-                                        "flex flex-col",
-                                        !isAboveMd && "gap-1"
-                                    )}
-                                >
-                                    <TextHead
-                                        className={classNames(
-                                            isAboveMd && "hidden"
-                                        )}
-                                    >
-                                        {colHeads[3]}
-                                    </TextHead>
-                                    <TextContent>$0.07</TextContent>
-                                </Box>
-                                {isHistory ? (
                                     <Box
                                         className={classNames(
-                                            isAboveMd && "text-center"
+                                            "flex flex-col",
+                                            !isAboveMd && "gap-1"
                                         )}
                                     >
-                                        <Button
-                                            variant="contained"
-                                            color="tealLight"
+                                        <TextHead
+                                            className={classNames(
+                                                isAboveMd && "hidden"
+                                            )}
                                         >
-                                            View
-                                        </Button>
+                                            {colHeads[0]}
+                                        </TextHead>
+                                        <TextContent>{p.name}</TextContent>
                                     </Box>
-                                ) : (
                                     <Box
                                         className={classNames(
-                                            isAboveMd && "text-center"
+                                            "flex flex-col",
+                                            !isAboveMd && "gap-1"
                                         )}
                                     >
-                                        <Button
-                                            variant="contained"
-                                            color="tealLight"
-                                            onClick={() => onJoinClick(p, idx)}
+                                        <TextHead
+                                            className={classNames(
+                                                isAboveMd && "hidden"
+                                            )}
                                         >
-                                            View
-                                        </Button>
+                                            {colHeads[1]}
+                                        </TextHead>
+                                        <TextContent>{`$${NumberType(p.reward.toString())}`}</TextContent>
                                     </Box>
-                                )}
-                            </Box>
-                        </Box>
+                                    <Box
+                                        className={classNames(
+                                            "flex flex-col",
+                                            !isAboveMd && "gap-1"
+                                        )}
+                                    >
+                                        <TextHead
+                                            className={classNames(
+                                                isAboveMd && "hidden"
+                                            )}
+                                        >
+                                            {colHeads[2]}
+                                        </TextHead>
+                                        <TextContent>{NumberType(p.votes.toString())}</TextContent>
+                                    </Box>
+                                    <Box
+                                        className={classNames(
+                                            "flex flex-col",
+                                            !isAboveMd && "gap-1"
+                                        )}
+                                    >
+                                        <TextHead
+                                            className={classNames(
+                                                isAboveMd && "hidden"
+                                            )}
+                                        >
+                                            {colHeads[3]}
+                                        </TextHead>
+                                        <TextContent>${(p.reward / p.votes).toFixed(2)}</TextContent>
+                                    </Box>
+                                    {isHistory ? (
+                                        <Box
+                                            className={classNames(
+                                                isAboveMd && "text-center"
+                                            )}
+                                        >
+                                            <Button
+                                                variant="contained"
+                                                color="tealLight"
+                                            >
+                                                View
+                                            </Button>
+                                        </Box>
+                                    ) : (
+                                        <Box
+                                            className={classNames(
+                                                isAboveMd && "text-center"
+                                            )}
+                                        >
+                                            <Button
+                                                variant="contained"
+                                                color="tealLight"
+                                                onClick={() => onJoinClick(p, idx)}
+                                            >
+                                                View
+                                            </Button>
+                                        </Box>
+                                    )}
+                                </Box>
+                            </Box> : <></>
                     ))}
                 </Box>
             </Content>

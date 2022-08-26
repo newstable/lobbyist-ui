@@ -22,7 +22,7 @@
         "buffer": "^6.0.3",
         "classnames": "^2.3.1",
         "dotenv": "^16.0.1",
-        "ethers": "^5.5.1",
+        "ethers": "^5.7.0",
         "fortmatic": "^2.4.0",
         "graphql": "16.3.0",
         "hamburgers": "^1.2.1",
@@ -50,7 +50,7 @@
     },
     "scripts": {
         "start": "set PORT=3001 && react-scripts start",
-        "build": "react-scripts build",
+        "build": "react-scripts  --openssl-legacy-provider  build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },

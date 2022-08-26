@@ -17,10 +17,15 @@ const CardRewards = (props: Props) => {
   const theme = useTheme();
   const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
   const cols = [
-    { title: "Pending Rewards", isText: false, value: "$28,912" },
-    { title: "Active Proposals", isText: false, value: "3" },
-    { title: "Total Votes Given", isText: false, value: "16" },
+    { title: "Estimated Rewards" },
+    { title: "Active Proposals" },
+    { title: "Total Earned" },
   ];
+  const data = [
+    { value: "$28,912", },
+    { value: "3" },
+    { value: "16" }
+  ]
   return (
     <Card className="">
       <ProposalCardHeader title="My total rewards"></ProposalCardHeader>
@@ -48,6 +53,11 @@ const CardRewards = (props: Props) => {
                 {c.value}
               </Typography>
             )}
+            <TextHead color={colors.black}>{c.title}</TextHead>
+            {/* {c.isText ? ( */}
+            <Typography variant="h5" color="secondary" className="!font-bold">
+              {data[idx].value}
+            </Typography>
           </Box>
         ))}
       </Content>
