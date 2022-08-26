@@ -44,18 +44,7 @@ const CardRewards = (props: Props) => {
             )}
           >
             <TextHead color={colors.white}>{c.title}</TextHead>
-            {c.isText ? (
-              <Typography variant="subtitle2" color="white">
-                {c.value}
-              </Typography>
-            ) : (
-              <Typography variant="h5" color="white" className="!font-bold">
-                {c.value}
-              </Typography>
-            )}
-            <TextHead color={colors.black}>{c.title}</TextHead>
-            {/* {c.isText ? ( */}
-            <Typography variant="h5" color="secondary" className="!font-bold">
+            <Typography variant="h5" color="white" className="!font-bold">
               {data[idx].value}
             </Typography>
           </Box>

@@ -13,7 +13,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 }));
 
 const ProposalCardVaultEmission = ({ proposal }: Props) => {
-  const colHeads = ["Total Incentive", "Emission Per Vote"];
+  const colHeads = ["Total Reward", "$/Vote"];
   return (
     <Card className="">
       <Content>
