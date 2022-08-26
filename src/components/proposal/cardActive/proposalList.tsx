@@ -95,7 +95,7 @@ const ProposalListCard: React.FC<Props> = ({ proposals, heads }) => {
                   <TextHead className={classNames(isAboveMd && "hidden")}>
                     {heads[3]}
                   </TextHead>
-                  <TextContent>${p.reward / p.votes}</TextContent>
+                  <TextContent>${(p.reward / p.votes).toFixed(2)}</TextContent>
                 </Box>
                 <Box
                   className={classNames("flex", isAboveMd && "justify-center")}
