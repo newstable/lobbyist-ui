@@ -13,6 +13,7 @@ interface Props extends FormInputProps {
   valueLabelFormat?: (value: number, index: number) => string;
   inputName: string;
   isArray?: boolean;
+  isFixed?: boolean;
 }
 
 const FormSliderInput = ({
@@ -26,6 +27,7 @@ const FormSliderInput = ({
   valueLabelFormat,
   setValue,
   isArray,
+  isFixed,
 }: Props) => {
   return (
     <StyledEngineProvider injectFirst>
@@ -45,16 +47,20 @@ const FormSliderInput = ({
                   <Slider
                     getAriaLabel={() => "Default"}
                     ref={ref}
-                    value={slideVal}
+                    value={isFixed ? 100 : slideVal}
                     onChange={(e, changeVal) => {
-                      let finalVal = 0;
-                      if (Array.isArray(changeVal)) {
-                        finalVal = changeVal[0];
-                      } else {
-                        finalVal = changeVal;
+                      let finalVal = 100;
+                      if (isFixed)
+                        finalVal = 100;
+                      else {
+                        if (Array.isArray(changeVal)) {
+                          finalVal = changeVal[0];
+                        } else {
+                          finalVal = changeVal;
+                        }
                       }
                       setValue(inputName, finalVal);
-                      onChange(changeVal);
+                      onChange(finalVal);
                     }}
                     valueLabelDisplay="auto"
                     valueLabelFormat={valueLabelFormat}
@@ -84,10 +90,16 @@ const FormSliderInput = ({
                       inputProps: { min: 0, max: 100, maxLength: 3 },
                     }}
                     onChange={e => {
-                      setValue(name, Number(e.target.value));
-                      onChange(e.target.value);
+                      let number = 0;
+                      if (isFixed) {
+                        number = 100;
+                      } else {
+                        number = Number(e.target.value);
+                      }
+                      setValue(name, number);
+                      onChange(number);
                     }}
-                    value={txtValue}
+                    value={isFixed ? 100 : txtValue}
                     fullWidth
                   />
                 );

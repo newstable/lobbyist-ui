@@ -382,6 +382,7 @@ const ProposalForm = (props: Props) => {
                                                 control={control}
                                                 setValue={setValue}
                                                 isArray
+                                                isFixed={true}
                                             />
                                         </Box>
                                     ) : (
