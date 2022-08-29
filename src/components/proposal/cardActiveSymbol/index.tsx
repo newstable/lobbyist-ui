@@ -48,7 +48,7 @@ const ProposalCardActiveSymbol = ({
     const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
 
     const onJoinClick = (proposal: Proposal, idx: number) => {
-        const path = walletAddress === proposal.address ? "vote" : "vote?proposer=1";
+        const path = walletAddress === proposal.address ? "vote?proposer=1" : "vote";
         navigate(path, {
             state: {
                 proposal,
