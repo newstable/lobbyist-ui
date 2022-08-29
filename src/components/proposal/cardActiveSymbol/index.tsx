@@ -23,6 +23,8 @@ import { TextContent, TextHead } from "../../text";
 import { ProposalCardHeader } from "../cardHeader";
 import NumberType from "../../../common/number";
 import { useEffect, useState } from "react";
+import { useSelector } from "../../../redux/store";
+import { RootState } from "../../../redux/store";
 
 type Props = {
     protocol: string;
@@ -37,13 +39,16 @@ const ProposalCardActiveSymbol = ({
     proposals,
     isHistory,
 }: Props) => {
+    const walletAddress: any = useSelector(
+        (state: RootState) => state.wallet.address
+    );
     const colHeads = ["Name", "Vote Incentive", "Total Votes", "$/Vote", ""];
     const navigate = useNavigate();
     const theme = useTheme();
     const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
 
     const onJoinClick = (proposal: Proposal, idx: number) => {
-        const path = idx % 2 === 0 ? "vote" : "vote?proposer=1";
+        const path = walletAddress === proposal.address ? "vote" : "vote?proposer=1";
         navigate(path, {
             state: {
                 proposal,
