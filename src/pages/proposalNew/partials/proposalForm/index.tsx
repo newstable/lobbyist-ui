@@ -174,7 +174,14 @@ const ProposalForm = (props: Props) => {
     //     name: "payout",
     // });
     const OnFormSubmit = async (value: any) => {
-        if (walletAddress !== "") {
+
+        if (walletAddress === "") {
+            NotificationManager.warning("Please connect wallet...!", "Warning");
+        } else if (value.snapshotProposal == "") {
+            NotificationManager.warning("Please select proposal on snapshot!", "Warning");
+        } else if (value.loyaltyVote == "") {
+            NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
+        } else {
             const result = await Action.proposal_registry(value);
             if (result) NotificationManager.success("Successfully created!", "Success");
             else NotificationManager.error("Can't create proposal!", "Error");
@@ -189,8 +196,6 @@ const ProposalForm = (props: Props) => {
                 dispatch(setCurrentProposal(proposals));
                 navigate(`/proposal/${props.name}`);
             }
-        } else {
-            NotificationManager.warning("Please connect wallet...!", "Warning");
         }
     };
 
