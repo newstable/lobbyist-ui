@@ -10,10 +10,15 @@ import {
   ProposalCardVaultReward,
   TimeRemaining,
 } from "../../components";
+import { useSelector } from "../../redux/store";
+import { RootState } from "../../redux/store";
 
 type Props = {};
 
 const ProposalSymbolVote = (props: Props) => {
+  const walletAddress: any = useSelector(
+    (state: RootState) => state.wallet.address
+  );
   const location = useLocation();
   const { symbol } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,6 +35,14 @@ const ProposalSymbolVote = (props: Props) => {
 
   if (!currentProposal) {
     // TODO: return to homepage
+  }
+
+  const voteProposal = () => {
+    const vote = {
+      proposalId: navState.proposal.proposalId,
+      address: walletAddress,
+
+    }
   }
 
   return (
@@ -50,7 +63,7 @@ const ProposalSymbolVote = (props: Props) => {
               </Button>
             </Box>
           ) : (
-            <Button variant="contained" color="tealLight">
+            <Button onClick={voteProposal} variant="contained" color="tealLight">
               Vote
             </Button>
           )}
