@@ -54,10 +54,10 @@ const ProposalForm = (props: Props) => {
     useEffect(() => {
         if (props.name == "qidao") {
             setName("qidao.eth");
-            setValue("type", "qidao");
+            setValue("platformType", "qidao");
         } else if (props.name == "aave") {
             setName("aave.eth");
-            setValue("type", "aave");
+            setValue("platformType", "aave");
         }
     }, []);
 
@@ -83,7 +83,7 @@ const ProposalForm = (props: Props) => {
         }
         const date = new Date(data?.proposals[e].end * 1000);
         setValue("endTime", (data?.proposals[e].end * 1000).toString());
-        setValue("proposalAddress", (data?.proposals[e].id));
+        setValue("proposalId", (data?.proposals[e].id));
         timeStyle(date);
     };
 
@@ -128,7 +128,7 @@ const ProposalForm = (props: Props) => {
         formState: { errors },
     } = useForm({
         defaultValues: {
-            type: "",
+            platformType: "",
             proposalName: "",
             proposalDescription: "",
             snapshotProposal: "",
@@ -138,15 +138,13 @@ const ProposalForm = (props: Props) => {
             rewardCurrency: "WMATIC",
             minimumBribe: "0",
             loyaltyVote: "",
-            minVoteWeightNum: 0,
-            minVoteWeightSlide: 0,
             votePercent: [{ value: 10 }],
             votePercentNum: [{ value: 10 }],
             range: [{ value: [0, 10] }],
             rangeNum: [{ value: [0, 10] }],
             payout: "0",
             userAddress: "",
-            proposalAddress: "",
+            proposalId: "",
         },
     });
 
@@ -174,7 +172,18 @@ const ProposalForm = (props: Props) => {
     //     name: "payout",
     // });
     const OnFormSubmit = async (value: any) => {
-
+        const newProposal = {
+            proposalId: value.proposalId,
+            name: value.proposalName,
+            description: value.proposalDescription,
+            platformType: value.platformType,
+            outcome: value.desiredVote,
+            rewardCurrency: value.rewardCurrency,
+            rewardAmount: value.payout,
+            creator: value.userAddress,
+            isClosed: false,
+            paybackAmount: 0
+        }
         if (walletAddress === "") {
             NotificationManager.warning("Please connect wallet...!", "Warning");
         } else if (value.snapshotProposal == "") {
