@@ -371,7 +371,7 @@ const ProposalForm = (props: Props) => {
                                                 : "Enter payout in reward currency per vote percent"
                                         }
                                     />
-                                    {isGovernance ? (
+                                    {/* {isGovernance ? (
                                         <Box className="flex gap-4">
                                             <FormSliderInput
                                                 label="Minimum Vote Weight"
@@ -395,7 +395,7 @@ const ProposalForm = (props: Props) => {
                                             control={control}
                                             helpText="Select the range that you want to incentivise. The upper range would be considered the target vote. Open ended bribes require an upper range of 100%"
                                         />
-                                    )}
+                                    )} */}
                                 </Box>
                             </Box>
                         ))}
