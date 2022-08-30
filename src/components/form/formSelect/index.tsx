@@ -16,6 +16,7 @@ interface Props extends FormInputProps {
     setVote?: any;
     setAddress?: any;
     setReward?: any;
+    setClickToken?: any;
 }
 
 interface SnapShotData {
@@ -40,13 +41,17 @@ const FormSelect = ({
     items,
     setVote,
     setReward,
+    setClickToken
 }: Props) => {
-    const choose = (vote: any, display: any) => {
+    const choose = (item: any) => {
         if (setVote) {
-            setVote(vote);
+            setVote(item.value);
         }
         if (setReward) {
-            setReward(display);
+            setReward(item.display);
+        }
+        if (setClickToken) {
+            setClickToken(item.address);
         }
     };
     return (
@@ -78,7 +83,7 @@ const FormSelect = ({
                             >
                                 {items?.map((item, idx) => (
                                     <MenuItem
-                                        onClick={() => { choose(item.value, item.display) }}
+                                        onClick={() => { choose(item) }}
                                         key={`mi_${idx}`}
                                         className={styles.menuItem}
                                         value={

@@ -6,6 +6,8 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import classNames from "classnames";
 import { useQuery } from "@apollo/client";
 import { NotificationManager } from 'react-notifications';
+import { ethers } from "ethers";
+
 import {
     FormTextField,
     FormSelect,
@@ -22,6 +24,9 @@ import { RootState } from "../../../../redux/store";
 import { dispatch } from "../../../../redux/store";
 import proposal, { setCurrentProposal } from "../../../../redux/slices/proposal";
 import { useLazyQuery } from "@apollo/client";
+import { ERCContract, poolContract } from "../../../../contracts";
+import { setClickAddress } from "../../../../redux/slices/clickToken";
+import { ConnectingAirportsOutlined } from "@mui/icons-material";
 
 const BoxForm = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -42,6 +47,7 @@ const ProposalForm = (props: Props) => {
     const [getProposal] = useLazyQuery(GET_PROPOSAL);
     const [name, setName] = useState("");
     const [time, setTime] = useState("");
+    const [address, setAddress] = useState("");
     const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
     const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
     const [endTime, setEndTime] = useState(0);
@@ -121,6 +127,11 @@ const ProposalForm = (props: Props) => {
     const navigate = useNavigate();
     const { prsalType, kpi } = useParams();
 
+    const clickToken = (e: any) => {
+        setAddress(e);
+        dispatch(setClickAddress(e));
+    }
+
     const {
         handleSubmit,
         control,
@@ -179,32 +190,46 @@ const ProposalForm = (props: Props) => {
             platformType: value.platformType,
             outcome: value.desiredVote,
             rewardCurrency: value.rewardCurrency,
-            rewardAmount: value.payout,
+            rewardAmount: ethers.utils.parseUnits(value.payout),
             creator: value.userAddress,
             isClosed: false,
-            paybackAmount: 0
+            paybackAmount: ethers.utils.parseUnits("0")
         }
         if (walletAddress === "") {
             NotificationManager.warning("Please connect wallet...!", "Warning");
         } else if (value.snapshotProposal == "") {
             NotificationManager.warning("Please select proposal on snapshot!", "Warning");
-        } else if (value.loyaltyVote == "") {
+        } else if (value.desiredVote == "") {
             NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
         } else {
-            const result = await Action.proposal_registry(value);
-            if (result) NotificationManager.success("Successfully created!", "Success");
-            else NotificationManager.error("Can't create proposal!", "Error");
-            const proposals = await Action.Proposal_load();
-            if (proposals) {
-                for (var i = 0; i < proposals.data.length; i++) {
-                    const proposal = await getProposal({
-                        variables: { id: proposals.data[i].proposalId }
-                    });
-                    proposals.data[i].votes = proposal.data.proposal.votes;
-                }
-                dispatch(setCurrentProposal(proposals));
-                navigate(`/proposal/${props.name}`);
+            const Reward = ERCContract(address);
+            const result = await Reward.balanceOf(walletAddress);
+            const tokenAmount = ethers.utils.formatUnits(result);
+            if (Number(tokenAmount) < Number(value.payout)) {
+                NotificationManager.warning("Your reward balance is not enough!", "Warning");
+            } else {
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = provider.getSigner();
+                const Pool = await poolContract.connect(signer);
+                console.log(Pool);
             }
+            // const result1 = await MyContract.getBalance('0xbC7a300977383B531383e50c76A2bD6dB3Aa9051');
+            // console.log(result1);
+            // console.log(result);
+            // const result = await Action.proposal_registry(value);
+            // if (result) NotificationManager.success("Successfully created!", "Success");
+            // else NotificationManager.error("Can't create proposal!", "Error");
+            // const proposals = await Action.Proposal_load();
+            // if (proposals) {
+            //     for (var i = 0; i < proposals.data.length; i++) {
+            //         const proposal = await getProposal({
+            //             variables: { id: proposals.data[i].proposalId }
+            //         });
+            //         proposals.data[i].votes = proposal.data.proposal.votes;
+            //     }
+            //     dispatch(setCurrentProposal(proposals));
+            //     navigate(`/proposal/${props.name}`);
+            // }
         }
     };
 
@@ -301,6 +326,7 @@ const ProposalForm = (props: Props) => {
                             placeholder="Choose your reward currency"
                             items={tokens}
                             setReward={setRewardType}
+                            setClickToken={clickToken}
                             name="rewardCurrency"
                             control={control}
                         />
