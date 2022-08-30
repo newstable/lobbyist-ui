@@ -326,7 +326,7 @@ const ProposalForm = (props: Props) => {
                             name="rewardCurrency"
                             control={control}
                         />
-                        {!isGovernance && (
+                        {/* {!isGovernance && (
                             <FormTextField
                                 label="Minimum Bribe"
                                 name="minimumBribe"
@@ -342,7 +342,7 @@ const ProposalForm = (props: Props) => {
                                 }}
                                 placeholder="Enter minimum bribe amount if applicable"
                             />
-                        )}
+                        )} */}
                     </BoxForm>
                     <BoxForm className="flex flex-col p-8 md:p-20 rounded-md gap-8">
                         {votePercentFields.map((vp, idx) => (
