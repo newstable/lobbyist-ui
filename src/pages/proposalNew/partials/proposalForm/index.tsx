@@ -23,8 +23,10 @@ import { dispatch } from "../../../../redux/store";
 import { useLazyQuery } from "@apollo/client";
 import { ERCContract, poolContract } from "../../../../contracts";
 import { setClickAddress } from "../../../../redux/slices/clickToken";
+import { setCurrentProposal } from "../../../../redux/slices/proposal";
 import Addresses from "../../../../contracts/contracts/addresses.json";
 import loader from "../../../../assets/loader.gif";
+import Action from "../../../../services";
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
@@ -191,6 +193,7 @@ const ProposalForm = (props: Props) => {
             description: value.proposalDescription,
             platformType: value.platformType,
             outcome: value.desiredVote,
+            endTime: value.endTime,
             rewardCurrency: value.rewardCurrency,
             rewardAmount: ethers.utils.parseUnits(value.payout),
             creator: value.userAddress,
@@ -201,7 +204,9 @@ const ProposalForm = (props: Props) => {
             NotificationManager.warning("Please connect wallet...!", "Warning");
         } else if (value.snapshotProposal == "") {
             NotificationManager.warning("Please select proposal on snapshot!", "Warning");
-        } else if (value.desiredVote != "" || value.gaugeFixed != "") {
+        } else if (value.desiredVote == "") {
+            NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
+        } else {
             const Reward = ERCContract(address);
             const result = await Reward.balanceOf(walletAddress);
             const tokenAmount = ethers.utils.formatUnits(result);
@@ -218,15 +223,15 @@ const ProposalForm = (props: Props) => {
                     await connectContract.wait();
                     setMyLoading(false);
                     NotificationManager.success("Successfully created!", "Success");
+                    var getProposals = await Action.Proposal_load();
+                    dispatch(setCurrentProposal(getProposals));
+                    navigate(`/proposal/${props.name}`);
                 } catch (error) {
                     setMyLoading(false);
                     console.log(error);
                 }
             }
-        } else if (value.desiredVote == "") {
-            NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
-        } else if (value.gaugeFixed == "")
-            NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
+        }
     };
 
     const isGovernance = prsalType === "governance";
@@ -313,7 +318,7 @@ const ProposalForm = (props: Props) => {
                                 label="Select Gauge"
                                 placeholder="Choose gauge"
                                 items={voteOption}
-                                name="gaugeFixed"
+                                name="desiredVote"
                                 control={control}
                             />
                         )}

@@ -85,6 +85,11 @@
                             "type": "string"
                         },
                         {
+                            "internalType": "string",
+                            "name": "endTime",
+                            "type": "string"
+                        },
+                        {
                             "internalType": "address",
                             "name": "rewardCurrency",
                             "type": "address"
@@ -229,6 +234,11 @@
                             "type": "string"
                         },
                         {
+                            "internalType": "string",
+                            "name": "endTime",
+                            "type": "string"
+                        },
+                        {
                             "internalType": "address",
                             "name": "rewardCurrency",
                             "type": "address"
@@ -355,6 +365,11 @@
                 {
                     "internalType": "string",
                     "name": "outcome",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "endTime",
                     "type": "string"
                 },
                 {

@@ -11,7 +11,7 @@ export type Proposal = {
   name: string;
   description: string;
   protocol: string;
-  isActive: boolean;
+  isClosed: boolean;
   reward: number;
   voteIncentive?: boolean;
   totalValue: number;

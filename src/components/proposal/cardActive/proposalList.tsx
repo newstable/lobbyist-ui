@@ -76,7 +76,7 @@ const ProposalListCard: React.FC<Props> = ({ proposals, heads }) => {
                   <TextHead className={classNames(isAboveMd && "hidden")}>
                     {heads[1]}
                   </TextHead>
-                  <TextContent>${NumberType(p.reward.toString())}</TextContent>
+                  <TextContent>${NumberType(p.reward)}</TextContent>
                 </Box>
                 <Box
                   className={classNames(
@@ -87,7 +87,7 @@ const ProposalListCard: React.FC<Props> = ({ proposals, heads }) => {
                   <TextHead className={classNames(isAboveMd && "hidden")}>
                     {heads[2]}
                   </TextHead>
-                  <TextContent>{NumberType(p.votes.toString())}</TextContent>
+                  <TextContent>{NumberType(p.votes)}</TextContent>
                 </Box>
                 <Box
                   className={classNames("flex flex-col", !isAboveMd && "gap-1")}

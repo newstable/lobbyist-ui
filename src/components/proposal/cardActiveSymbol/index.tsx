@@ -138,7 +138,7 @@ const ProposalCardActiveSymbol = ({
                                         >
                                             {colHeads[1]}
                                         </TextHead>
-                                        <TextContent>{`$${NumberType(p.reward.toString())}`}</TextContent>
+                                        <TextContent>{`$${NumberType(p.reward)}`}</TextContent>
                                     </Box>
                                     <Box
                                         className={classNames(
@@ -153,7 +153,7 @@ const ProposalCardActiveSymbol = ({
                                         >
                                             {colHeads[2]}
                                         </TextHead>
-                                        <TextContent>{NumberType(p.votes.toString())}</TextContent>
+                                        <TextContent>{NumberType(p.votes)}</TextContent>
                                     </Box>
                                     <Box
                                         className={classNames(
@@ -168,7 +168,7 @@ const ProposalCardActiveSymbol = ({
                                         >
                                             {colHeads[3]}
                                         </TextHead>
-                                        <TextContent>${(p.reward / p.votes).toFixed(2)}</TextContent>
+                                        <TextContent>{p.votes == 0 ? 0 : "$" + (p.reward / p.votes).toFixed(2)}</TextContent>
                                     </Box>
                                     {isHistory ? (
                                         <Box
