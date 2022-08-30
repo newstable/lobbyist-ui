@@ -202,7 +202,6 @@ const ProposalForm = (props: Props) => {
         } else if (value.snapshotProposal == "") {
             NotificationManager.warning("Please select proposal on snapshot!", "Warning");
         } else if (value.desiredVote != "" || value.gaugeFixed != "") {
-            setMyLoading(true);
             const Reward = ERCContract(address);
             const result = await Reward.balanceOf(walletAddress);
             const tokenAmount = ethers.utils.formatUnits(result);
@@ -210,6 +209,7 @@ const ProposalForm = (props: Props) => {
                 NotificationManager.error("Your reward balance is not enough!", "Error");
             } else {
                 try {
+                    setMyLoading(true);
                     const Pool = poolContract.connect(signer);
                     const ERCContract = Reward.connect(signer);
                     var tx = await ERCContract.approve(Addresses.Pool, ethers.utils.parseUnits(value.payout));
