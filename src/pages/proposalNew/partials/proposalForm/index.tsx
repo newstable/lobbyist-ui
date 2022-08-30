@@ -379,7 +379,7 @@ const ProposalForm = (props: Props) => {
                                         isVariable && "px-12"
                                     )}
                                 >
-                                    {!isGovernance && (
+                                    {/* {!isGovernance && (
                                         <FormSliderInput
                                             label="Vote %"
                                             helpText="Select the vote% per which payment would be made, eg: 1%"
@@ -393,7 +393,7 @@ const ProposalForm = (props: Props) => {
                                             }
                                             isArray
                                         />
-                                    )}
+                                    )} */}
                                     <FormTextField
                                         label="Max Reward"
                                         name="payout"
