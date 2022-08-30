@@ -14,7 +14,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 
 const ProposalCardVaultReward = ({ proposal, isProposer }: Props) => {
   const colHeads = isProposer
-    ? ["Total rewards to distribute"]
+    ? ["Total rewards to distribute", "Voting For"]
     : ["My Reward Amount", "Voting For"];
   return (
     <Card className="">
@@ -27,7 +27,8 @@ const ProposalCardVaultReward = ({ proposal, isProposer }: Props) => {
           ))}
         </Box>
         <Box className="grid grid-cols-2 gap-8">
-          <TextContent>${proposal.totalValue}</TextContent>
+          <TextContent>${proposal.reward}</TextContent>
+          <TextContent>${proposal.protocol}</TextContent>
         </Box>
       </Content>
     </Card>
