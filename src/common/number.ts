@@ -1,6 +1,6 @@
 const NumberType = (num: number) => {
     var decimal = num - Math.floor(num);
-    var decimalstr = decimal.toString().slice(1, decimal.toString().length);
+    var decimalstr = decimal.toFixed(2).slice(1, decimal.toString().length);
     const data = (num - decimal).toString();
     var str = "";
     var count = Math.floor(data.length / 3);
