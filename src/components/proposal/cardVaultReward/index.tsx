@@ -28,7 +28,7 @@ const ProposalCardVaultReward = ({ proposal, isProposer }: Props) => {
         </Box>
         <Box className="grid grid-cols-2 gap-8">
           <TextContent>${proposal.reward}</TextContent>
-          <TextContent>${proposal.protocol}</TextContent>
+          <TextContent>{proposal.protocol}</TextContent>
         </Box>
       </Content>
     </Card>
