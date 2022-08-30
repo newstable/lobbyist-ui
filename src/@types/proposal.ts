@@ -21,6 +21,19 @@ export type Proposal = {
   votes: number;
 };
 
+export type NewProposal = {
+  proposalId: string,
+  name: string,
+  description: string,
+  platformType: string,
+  outcome: string,
+  rewardCurrency: string,
+  rewardAmount: number,
+  creator: string,
+  isClosed: boolean,
+  paybackAmount: number
+}
+
 export enum EnumProposalType {
   gauge = "Gauge",
   governance = "Governance",

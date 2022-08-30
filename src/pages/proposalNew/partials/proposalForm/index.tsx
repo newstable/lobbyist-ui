@@ -7,7 +7,6 @@ import classNames from "classnames";
 import { useQuery } from "@apollo/client";
 import { NotificationManager } from 'react-notifications';
 import { ethers } from "ethers";
-
 import {
     FormTextField,
     FormSelect,
@@ -18,15 +17,17 @@ import { colors } from "../../../../common";
 import { useEffect, useState } from "react";
 import { GET_PROPOSALS, GET_PROPOSAL } from "../../../../gql";
 import tokens from "./token.json";
-import Action from "../../../../services";
 import { useSelector } from "../../../../redux/store";
 import { RootState } from "../../../../redux/store";
 import { dispatch } from "../../../../redux/store";
-import proposal, { setCurrentProposal } from "../../../../redux/slices/proposal";
 import { useLazyQuery } from "@apollo/client";
 import { ERCContract, poolContract } from "../../../../contracts";
 import { setClickAddress } from "../../../../redux/slices/clickToken";
-import { ConnectingAirportsOutlined } from "@mui/icons-material";
+import Addresses from "../../../../contracts/contracts/addresses.json";
+import loader from "../../../../assets/loader.gif";
+
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+const signer = provider.getSigner();
 
 const BoxForm = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -44,6 +45,7 @@ interface SnapShotData {
 // interface snapInterface extends
 
 const ProposalForm = (props: Props) => {
+    const [myloading, setMyLoading] = useState(false);
     const [getProposal] = useLazyQuery(GET_PROPOSAL);
     const [name, setName] = useState("");
     const [time, setTime] = useState("");
@@ -183,6 +185,7 @@ const ProposalForm = (props: Props) => {
     //     name: "payout",
     // });
     const OnFormSubmit = async (value: any) => {
+        setMyLoading(true);
         const newProposal = {
             proposalId: value.proposalId,
             name: value.proposalName,
@@ -206,30 +209,22 @@ const ProposalForm = (props: Props) => {
             const result = await Reward.balanceOf(walletAddress);
             const tokenAmount = ethers.utils.formatUnits(result);
             if (Number(tokenAmount) < Number(value.payout)) {
-                NotificationManager.warning("Your reward balance is not enough!", "Warning");
+                NotificationManager.error("Your reward balance is not enough!", "Error");
             } else {
-                const provider = new ethers.providers.Web3Provider(window.ethereum);
-                const signer = provider.getSigner();
-                const Pool = await poolContract.connect(signer);
-                console.log(Pool);
+                try {
+                    const Pool = poolContract.connect(signer);
+                    const ERCContract = Reward.connect(signer);
+                    var tx = await ERCContract.approve(Addresses.Pool, ethers.utils.parseUnits(value.payout));
+                    await tx.wait();
+                    const connectContract = await Pool.createPool(newProposal);
+                    await connectContract.wait();
+                    setMyLoading(false);
+                    NotificationManager.success("Successfully created!", "Success");
+                } catch (error) {
+                    setMyLoading(false);
+                    console.log(error);
+                }
             }
-            // const result1 = await MyContract.getBalance('0xbC7a300977383B531383e50c76A2bD6dB3Aa9051');
-            // console.log(result1);
-            // console.log(result);
-            // const result = await Action.proposal_registry(value);
-            // if (result) NotificationManager.success("Successfully created!", "Success");
-            // else NotificationManager.error("Can't create proposal!", "Error");
-            // const proposals = await Action.Proposal_load();
-            // if (proposals) {
-            //     for (var i = 0; i < proposals.data.length; i++) {
-            //         const proposal = await getProposal({
-            //             variables: { id: proposals.data[i].proposalId }
-            //         });
-            //         proposals.data[i].votes = proposal.data.proposal.votes;
-            //     }
-            //     dispatch(setCurrentProposal(proposals));
-            //     navigate(`/proposal/${props.name}`);
-            // }
         }
     };
 
@@ -475,13 +470,23 @@ const ProposalForm = (props: Props) => {
                                 </Typography>
                             </Box>
                         </Box>
-                        <Button
-                            variant="contained"
-                            color="tealLight"
-                            type="submit"
-                        >
-                            Continue
-                        </Button>
+                        {myloading ? (
+                            <Button
+                                variant="contained"
+                                color="tealLight"
+                                type="submit"
+                            >
+                                <img style={{ width: "25px" }} src={loader}></img>
+                            </Button>
+                        ) : (
+                            <Button
+                                variant="contained"
+                                color="tealLight"
+                                type="submit"
+                            >
+                                Continue
+                            </Button>
+                        )}
                     </BoxForm>
                 </Box>
             </Box>

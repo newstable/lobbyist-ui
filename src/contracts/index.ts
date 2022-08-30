@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 const Abis = require("./contracts/abis.json");
 const Addresses = require("./contracts/addresses.json");
 
-const supportChainId = 0x89;
+const supportChainId = 0x13881;
 
 const RPCS = {
     4002: "https://ftm-test.babylonswap.finance",
@@ -22,12 +22,13 @@ const provider = providers[supportChainId];
 const poolContract = new ethers.Contract(
     Addresses.Pool,
     Abis.Pool,
+    provider
 )
 
 
 const ERCContract = (e: any) => {
     const result = new ethers.Contract(
-        e, Abis.ERC20, provider
+        e, Abis.ERC20, providers[0x13881]
     )
     return result;
 }
