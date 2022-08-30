@@ -201,9 +201,7 @@ const ProposalForm = (props: Props) => {
             NotificationManager.warning("Please connect wallet...!", "Warning");
         } else if (value.snapshotProposal == "") {
             NotificationManager.warning("Please select proposal on snapshot!", "Warning");
-        } else if (value.desiredVote == "") {
-            NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
-        } else {
+        } else if (value.desiredVote != "" || value.gaugeFixed != "") {
             setMyLoading(true);
             const Reward = ERCContract(address);
             const result = await Reward.balanceOf(walletAddress);
@@ -225,7 +223,10 @@ const ProposalForm = (props: Props) => {
                     console.log(error);
                 }
             }
-        }
+        } else if (value.desiredVote == "") {
+            NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
+        } else if (value.gaugeFixed == "")
+            NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
     };
 
     const isGovernance = prsalType === "governance";
