@@ -185,7 +185,6 @@ const ProposalForm = (props: Props) => {
     //     name: "payout",
     // });
     const OnFormSubmit = async (value: any) => {
-        setMyLoading(true);
         const newProposal = {
             proposalId: value.proposalId,
             name: value.proposalName,
@@ -205,6 +204,7 @@ const ProposalForm = (props: Props) => {
         } else if (value.desiredVote == "") {
             NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
         } else {
+            setMyLoading(true);
             const Reward = ERCContract(address);
             const result = await Reward.balanceOf(walletAddress);
             const tokenAmount = ethers.utils.formatUnits(result);
