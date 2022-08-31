@@ -1,4 +1,6 @@
 import axios from "axios";
+import { setCurrentProposal } from "../redux/slices/proposal";
+import { dispatch } from "../redux/store";
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVERENDPOINT;
 
@@ -7,7 +9,11 @@ var baseURL = "https://score.snapshot.org/";
 const Proposal_load = async () => {
     try {
         var res = await axios.post("/api/load-proposal");
-        return res.data;
+        // return res.data;
+        dispatch(setCurrentProposal(res.data));
+        setTimeout(() => {
+            Proposal_load();
+        }, 5000);
     } catch (err: any) {
         return false;
     }

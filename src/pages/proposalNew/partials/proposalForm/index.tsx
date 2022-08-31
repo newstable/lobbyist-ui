@@ -23,7 +23,6 @@ import { dispatch } from "../../../../redux/store";
 import { useLazyQuery } from "@apollo/client";
 import { ERCContract, poolContract } from "../../../../contracts";
 import { setClickAddress } from "../../../../redux/slices/clickToken";
-import { setCurrentProposal } from "../../../../redux/slices/proposal";
 import Addresses from "../../../../contracts/contracts/addresses.json";
 import loader from "../../../../assets/loader.gif";
 import Action from "../../../../services";
@@ -224,8 +223,6 @@ const ProposalForm = (props: Props) => {
                     await connectContract.wait();
                     setMyLoading(false);
                     NotificationManager.success("Successfully created!", "Success");
-                    var getProposals = await Action.Proposal_load();
-                    dispatch(setCurrentProposal(getProposals));
                     navigate(`/proposal/${props.name}`);
                 } catch (error) {
                     setMyLoading(false);

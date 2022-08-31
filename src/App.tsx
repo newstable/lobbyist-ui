@@ -28,11 +28,8 @@ const App = () => {
   }, []);
 
   const AllInfo = async () => {
-    var result = await Action.Proposal_load();
+    await Action.Proposal_load();
     setLoading(false);
-    if (result) {
-      dispatch(setCurrentProposal(result));
-    }
   }
 
   return (
