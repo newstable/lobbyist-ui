@@ -93,6 +93,7 @@ const ProposalForm = (props: Props) => {
         }
         const date = new Date(data?.proposals[e].end * 1000);
         setValue("endTime", (data?.proposals[e].end * 1000).toString());
+        console.log(data?.proposals[e]);
         setValue("proposalId", (data?.proposals[e].id));
         timeStyle(date);
     };

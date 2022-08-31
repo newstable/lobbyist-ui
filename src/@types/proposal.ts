@@ -14,10 +14,10 @@ export type Proposal = {
   isClosed: boolean;
   reward: number;
   voteIncentive?: boolean;
-  totalValue: number;
   address: string;
   endTime: string;
   proposalId: string;
+  totalVoteWeight: number;
   votes: number;
 };
 

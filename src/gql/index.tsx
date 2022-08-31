@@ -63,21 +63,22 @@ const GET_Follows = gql`
 `;
 
 const GET_VOTE = gql`
-    query Votes($id:String!,$first:Int,$skip:Int,$orderBy:String) {
+    query Votes($id:String) {
         votes(
-            first: 30000
-            skip: 0
-            where: {
-                proposal: $id,vp_gt:0,voter:""
-            }
-            orderBy:$orderBy
+            id:$id,
         ) {
             id
             voter
+            vp
+            vp_by_strategy
+            vp_state
             created
+            proposal {
+            id
+            }
             choice
             space {
-                id
+            id
             }
         }
     }
