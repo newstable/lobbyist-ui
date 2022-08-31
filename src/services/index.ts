@@ -18,6 +18,15 @@ const Proposal_load = async () => {
         return false;
     }
 };
+const Vote = async (req: any) => {
+    try {
+        var res = await axios.post("/api/vote", req);
+        console.log(res);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 const GetVoteWeight = async (req: any) => {
     try {
@@ -40,10 +49,12 @@ const GetVoteWeight = async (req: any) => {
     }
 }
 
+
 // Export Functions
 const Action = {
     Proposal_load,
-    GetVoteWeight
+    GetVoteWeight,
+    Vote
 };
 
 export default Action;

@@ -15,10 +15,16 @@ import { RootState } from "../../redux/store";
 import { GET_PROPOSAL } from "../../gql";
 import { useLazyQuery } from "@apollo/client";
 import proposal from "../../redux/slices/proposal";
+import { Web3Provider } from '@ethersproject/providers';
+import snapshot from '@snapshot-labs/snapshot.js';
 import Action from "../../services";
 import { ethers } from "ethers";
+import { NotificationManager } from 'react-notifications';
 
 type Props = {};
+
+const hub = 'https://hub.snapshot.org';
+const client = new snapshot.Client712(hub);
 
 const ProposalSymbolVote = (props: Props) => {
 	const walletAddress: any = useSelector(
@@ -26,10 +32,10 @@ const ProposalSymbolVote = (props: Props) => {
 	);
 	const [getProposal] = useLazyQuery(GET_PROPOSAL);
 	const [voteWeight, setVoteWeight] = useState(0);
+	const [proposalInfo, setProposalInfo]: any = useState([]);
 	const location = useLocation();
 	const { symbol } = useParams();
 	const [searchParams, setSearchParams] = useSearchParams();
-	const [proposalInfo, setProposalInfo] = useState();
 
 	const isProposer = searchParams.get("proposer") && true;
 	const navState = location.state as any;
@@ -55,13 +61,28 @@ const ProposalSymbolVote = (props: Props) => {
 	}
 
 	const voteProposal = async () => {
-		const provider = new ethers.providers.Web3Provider(window.ethereum);
-		// const flag = await
-		const signer = provider.getSigner();
-		const msg: any = {
-			address: walletAddress,
+		try {
+			var data = {
+				voter: walletAddress,
+				proposalId: proposalInfo.id,
+				voteAmount: voteWeight
+			}
+			const web3 = new Web3Provider(window.ethereum);
+			const [account] = await web3.listAccounts();
+			const receipt = await client.vote(web3, account, {
+				space: proposalInfo.space.id,
+				proposal: proposalInfo.id,
+				type: proposalInfo.type,
+				choice: proposalInfo.choices.indexOf(currentProposal.protocol) + 1,
+				reason: 'Choice 1 make lot of sense',
+				app: 'Covenant'
+			});
+			console.log(receipt);
+			const result: any = await Action.Vote(data);
+		} catch (error: any) {
+			NotificationManager.error(`Oops,${error.error_description}`, "Error");
+			console.log(error.error_description);
 		}
-		// const signMsg = await signer.signMessage(msg);
 	}
 
 	return (
@@ -81,10 +102,10 @@ const ProposalSymbolVote = (props: Props) => {
 								Release Rewards
 							</Button>
 						</Box>
-					) : voteWeight == 0 ? (
-						<Button disabled variant="contained" color="secondary">
-							Vote
-						</Button>
+						// ) : voteWeight == 0 ? (
+						// 	<Button disabled variant="contained" color="secondary">
+						// 		Vote
+						// 	</Button>
 					) : (
 						<Button onClick={voteProposal} variant="contained" color="tealLight">
 							Vote
