@@ -129,10 +129,10 @@ const ProposalSymbolVote = (props: Props) => {
 									Release Rewards
 								</Button>
 							</Box>
-							// ) : voteWeight == 0 ? (
-							// 	<Button disabled variant="contained" color="secondary">
-							// 		Vote
-							// 	</Button>
+						) : voteWeight == 0 ? (
+							<Button disabled variant="contained" color="secondary">
+								Vote
+							</Button>
 						) : (
 							<Button onClick={voteProposal} variant="contained" color="tealLight">
 								Vote
