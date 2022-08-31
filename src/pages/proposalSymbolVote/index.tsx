@@ -1,4 +1,9 @@
 import { Box, Button, Grid, Link, Typography } from "@mui/material";
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import TextField from '@mui/material/TextField';
 import { useEffect, useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import { EnumProtocolName } from "../../@types/protocol";
@@ -20,6 +25,7 @@ import snapshot from '@snapshot-labs/snapshot.js';
 import Action from "../../services";
 import { ethers } from "ethers";
 import { NotificationManager } from 'react-notifications';
+import { addRewards } from "../../blockchain";
 
 type Props = {};
 
@@ -33,6 +39,8 @@ const ProposalSymbolVote = (props: Props) => {
 	const [getProposal] = useLazyQuery(GET_PROPOSAL);
 	const [voteWeight, setVoteWeight] = useState(0);
 	const [proposalInfo, setProposalInfo]: any = useState([]);
+	const [modal, setModal] = useState(false);
+	const [addRewardAmount, setAddRewardAmount] = useState(0);
 	const location = useLocation();
 	const { symbol } = useParams();
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -85,76 +93,116 @@ const ProposalSymbolVote = (props: Props) => {
 		}
 	}
 
+	const AddReward = async () => {
+		const result = await addRewards({
+			id: currentProposal.poolId,
+			amount: addRewardAmount,
+			rewardtype: currentProposal.rewardCurrency,
+			walletAddress: walletAddress
+		});
+		if (!result.status) {
+			NotificationManager.error(result.message, "Error");
+		} else {
+			NotificationManager.success(result.message, "Success");
+		}
+	}
+
+	const handleClose = () => {
+		setModal(false);
+	};
+
 	return (
-		<Box className="main-body flex flex-col grow">
-			<Box className="flex flex-col main-content gap-14">
-				<Box className="flex justify-between proposer-flex">
-					<NavBack />
-					{isProposer ? (
-						<Box className="flex gap-8">
-							<Button className="proposer-button" variant="contained" color="tealLight">
-								Copy Link
+		<>
+			<Box className="main-body flex flex-col grow">
+				<Box className="flex flex-col main-content gap-14">
+					<Box className="flex justify-between proposer-flex">
+						<NavBack />
+						{isProposer ? (
+							<Box className="flex gap-8">
+								<Button className="proposer-button" variant="contained" color="tealLight">
+									Copy Link
+								</Button>
+								<Button onClick={() => setModal(true)} className="proposer-button" variant="contained" color="tealLight">
+									Add Rewards
+								</Button>
+								<Button className="top-button" variant="contained" color="tealLight">
+									Release Rewards
+								</Button>
+							</Box>
+							// ) : voteWeight == 0 ? (
+							// 	<Button disabled variant="contained" color="secondary">
+							// 		Vote
+							// 	</Button>
+						) : (
+							<Button onClick={voteProposal} variant="contained" color="tealLight">
+								Vote
 							</Button>
-							<Button className="proposer-button" variant="contained" color="tealLight">
-								Add Rewards
-							</Button>
-							<Button className="top-button" variant="contained" color="tealLight">
-								Release Rewards
-							</Button>
-						</Box>
-						// ) : voteWeight == 0 ? (
-						// 	<Button disabled variant="contained" color="secondary">
-						// 		Vote
-						// 	</Button>
-					) : (
-						<Button onClick={voteProposal} variant="contained" color="tealLight">
-							Vote
-						</Button>
-					)
-					}
+						)
+						}
+					</Box>
 				</Box>
-			</Box>
-			<Grid container spacing={2}>
-				<Grid item xs={12} md={6}>
-					<Box className="flex flex-col gap-12 mt-12">
-						<Box className="flex flex-col">
-							<Typography variant="h6">{navState.proposal.name}</Typography>
-							<Typography color={colors.textGray}>
-								{navState.proposal.description}
-							</Typography>
+				<Grid container spacing={2}>
+					<Grid item xs={12} md={6}>
+						<Box className="flex flex-col gap-12 mt-12">
+							<Box className="flex flex-col">
+								<Typography variant="h6">{navState.proposal.name}</Typography>
+								<Typography color={colors.textGray}>
+									{navState.proposal.description}
+								</Typography>
+							</Box>
+							<Box className="flex flex-col gap-8">
+								<ProposalCardVaultIncentive
+									proposal={currentProposal}
+									isProposer={isProposer}
+									voteWeight={voteWeight}
+								/>
+								<ProposalCardVaultEmission
+									proposal={currentProposal}
+									isProposer={isProposer}
+								/>
+								<ProposalCardVaultReward
+									proposal={currentProposal}
+									isProposer={isProposer}
+								/>
+							</Box>
 						</Box>
-						<Box className="flex flex-col gap-8">
-							<ProposalCardVaultIncentive
-								proposal={currentProposal}
-								isProposer={isProposer}
-								voteWeight={voteWeight}
-							/>
-							<ProposalCardVaultEmission
-								proposal={currentProposal}
-								isProposer={isProposer}
-							/>
-							<ProposalCardVaultReward
-								proposal={currentProposal}
-								isProposer={isProposer}
-							/>
+					</Grid>
+					<Grid item xs={12} md={6} className="flex !flex-col">
+						<TimeRemaining time={navState.proposal.endTime}></TimeRemaining>
+						<Box className="relative flex flex-auto">
+							<Box className="flex flex-col flex-auto gap-2 text-center pt-6 md:text-right md:pt-0 md:absolute md:right-0 md:bottom-0">
+								<Link href={"https://snapshot.org/#/" + symbol + ".eth"}>Go to Snapshot</Link>
+								<Link href={"/proposal/" + symbol}>
+									Go to{" "}
+									{`${EnumProtocolName[symbol as keyof typeof EnumProtocolName]}`}
+								</Link>
+							</Box>
 						</Box>
-					</Box>
+					</Grid>
 				</Grid>
-				<Grid item xs={12} md={6} className="flex !flex-col">
-					<TimeRemaining time={navState.proposal.endTime}></TimeRemaining>
-					<Box className="relative flex flex-auto">
-						<Box className="flex flex-col flex-auto gap-2 text-center pt-6 md:text-right md:pt-0 md:absolute md:right-0 md:bottom-0">
-							<Link href={"https://snapshot.org/#/" + symbol + ".eth"}>Go to Snapshot</Link>
-							<Link href={"/proposal/" + symbol}>
-								Go to{" "}
-								{`${EnumProtocolName[symbol as keyof typeof EnumProtocolName]}`}
-							</Link>
-						</Box>
-					</Box>
-				</Grid>
-			</Grid>
-			<Box className="mt-16 mb-32"></Box>
-		</Box >
+				<Box className="mt-16 mb-32"></Box>
+			</Box >
+			<Dialog open={modal} onClose={handleClose}>
+				<DialogTitle>Input your reward Amount</DialogTitle>
+				<DialogContent>
+					<TextField
+						autoFocus
+						margin="dense"
+						id="reward"
+						label="Reward Amount"
+						type="number"
+						fullWidth
+						variant="standard"
+						onChange={(e) => setAddRewardAmount(Number(e.target.value))}
+					>
+					</TextField>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleClose}>Cancel</Button>
+					<Button onClick={() => { handleClose(); AddReward(); }}>Ok</Button>
+				</DialogActions>
+			</Dialog>
+		</>
 	);
 };
 

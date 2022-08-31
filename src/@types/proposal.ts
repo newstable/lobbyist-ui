@@ -13,11 +13,13 @@ export type Proposal = {
   protocol: string;
   isClosed: boolean;
   reward: number;
+  rewardCurrency: string;
   voteIncentive?: boolean;
   address: string;
   endTime: string;
   proposalId: string;
   totalVoteWeight: number;
+  poolId: number;
   votes: number;
 };
 

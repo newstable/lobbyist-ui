@@ -21,14 +21,10 @@ import { useSelector } from "../../../../redux/store";
 import { RootState } from "../../../../redux/store";
 import { dispatch } from "../../../../redux/store";
 import { useLazyQuery } from "@apollo/client";
-import { ERCContract, poolContract } from "../../../../contracts";
 import { setClickAddress } from "../../../../redux/slices/clickToken";
 import Addresses from "../../../../contracts/contracts/addresses.json";
 import loader from "../../../../assets/loader.gif";
-import Action from "../../../../services";
-
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
+import { createProposal } from "../../../../blockchain";
 
 const BoxForm = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -186,19 +182,6 @@ const ProposalForm = (props: Props) => {
     //     name: "payout",
     // });
     const OnFormSubmit = async (value: any) => {
-        const newProposal = {
-            proposalId: value.proposalId,
-            name: value.proposalName,
-            description: value.proposalDescription,
-            platformType: value.platformType,
-            outcome: value.desiredVote,
-            endTime: value.endTime,
-            rewardCurrency: value.rewardCurrency,
-            rewardAmount: ethers.utils.parseUnits(value.payout),
-            creator: value.userAddress,
-            isClosed: false,
-            paybackAmount: ethers.utils.parseUnits("0")
-        }
         if (walletAddress === "") {
             NotificationManager.warning("Please connect wallet...!", "Warning");
         } else if (value.snapshotProposal == "") {
@@ -206,28 +189,15 @@ const ProposalForm = (props: Props) => {
         } else if (value.desiredVote == "") {
             NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
         } else {
-            const Reward = ERCContract(address);
-            const result = await Reward.balanceOf(walletAddress);
-            const tokenAmount = ethers.utils.formatUnits(result);
-            if (Number(tokenAmount) < Number(value.payout)) {
-                NotificationManager.error("Your reward balance is not enough!", "Error");
+            setMyLoading(true);
+            const result = await createProposal({ address: address, walletAddress: walletAddress, value: value });
+            if (!result.status) {
+                NotificationManager.warning(result.message, "Warning");
             } else {
-                try {
-                    setMyLoading(true);
-                    const Pool = poolContract.connect(signer);
-                    const ERCContract = Reward.connect(signer);
-                    var tx = await ERCContract.approve(Addresses.Pool, ethers.utils.parseUnits(value.payout));
-                    await tx.wait();
-                    const connectContract = await Pool.createPool(newProposal);
-                    await connectContract.wait();
-                    setMyLoading(false);
-                    NotificationManager.success("Successfully created!", "Success");
-                    navigate(`/proposal/${props.name}`);
-                } catch (error) {
-                    setMyLoading(false);
-                    console.log(error);
-                }
+                NotificationManager.success(result.message, "Success");
+                navigate(`/proposal/${props.name}`);
             }
+            setMyLoading(false);
         }
     };
 
