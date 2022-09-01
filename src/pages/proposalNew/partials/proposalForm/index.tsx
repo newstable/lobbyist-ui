@@ -457,7 +457,7 @@ const ProposalForm = (props: Props) => {
                                 color="tealLight"
                                 type="submit"
                             >
-                                Continue
+                                Submit
                             </Button>
                         )}
                     </BoxForm>
