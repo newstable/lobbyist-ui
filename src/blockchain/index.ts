@@ -18,10 +18,10 @@ const createProposal = async (props: any) => {
             rewardCurrency: value.rewardCurrency,
             rewardAmount: ethers.utils.parseUnits(value.payout),
             creator: value.userAddress,
-            isClosed: false,
-            paybackAmount: ethers.utils.parseUnits("0")
+            isClosed: false
         }
         const Reward = ERCContract(address);
+        console.log(Reward);
         const result = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(result);
         if (Number(tokenAmount) < Number(value.payout)) {
@@ -32,7 +32,8 @@ const createProposal = async (props: any) => {
             var tx = await ERCContract.approve(Addresses.Pool, ethers.utils.parseUnits(value.payout));
             await tx.wait();
             const connectContract = await Pool.createPool(newProposal);
-            await connectContract.wait();
+            const myresult = await connectContract.wait();
+            console.log(myresult);
             return ({ status: true, message: "Successfully created!" });
         }
     } catch {

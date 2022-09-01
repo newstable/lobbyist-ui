@@ -25,10 +25,9 @@ const poolContract = new ethers.Contract(
     provider
 )
 
-
 const ERCContract = (e: any) => {
     const result = new ethers.Contract(
-        e, Abis.ERC20, providers[0x13881]
+        e, Abis.ERC20, provider
     )
     return result;
 }

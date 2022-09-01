@@ -11,5 +11,15 @@
       <path id="Path_16" data-name="Path 16" d="M22.5,18.417v8.216" transform="translate(-6.724 -5.38)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
       <path id="Path_17" data-name="Path 17" d="M28.024,33.539a13.694,13.694,0,0,1-21.706,0A21.936,21.936,0,0,1,28.024,33.539Z" transform="translate(-1.395 -9.414)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
     </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="44.833" height="44.833" viewBox="0 0 44.833 44.833">
+  <g id="gauge" transform="translate(-0.083 -0.083)">
+    <path id="Path_10" data-name="Path 10" d="M22.5,42.917A20.417,20.417,0,1,0,2.083,22.5,20.417,20.417,0,0,0,22.5,42.917Z" fill="none" stroke="#e8e8e8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    <path id="Path_11" data-name="Path 11" d="M2.083,22.5H6.167" fill="none" stroke="#e8e8e8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    <path id="Path_12" data-name="Path 12" d="M8.05,8.076l3.195,3.195" fill="none" stroke="#e8e8e8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    <path id="Path_13" data-name="Path 13" d="M22.5,2.083V6.167" fill="none" stroke="#e8e8e8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    <path id="Path_14" data-name="Path 14" d="M42.917,22.5H38.833" fill="none" stroke="#e8e8e8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    <path id="Path_15" data-name="Path 15" d="M36.95,8.076l-3.195,3.195" fill="none" stroke="#e8e8e8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    <path id="Path_16" data-name="Path 16" d="M22.5,18.417v12.25" fill="none" stroke="#e8e8e8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    <path id="Path_17" data-name="Path 17" d="M38.683,34.95a20.419,20.419,0,0,1-32.365,0,32.709,32.709,0,0,1,32.365,0Z" fill="none" stroke="#e8e8e8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
   </g>
 </svg>
