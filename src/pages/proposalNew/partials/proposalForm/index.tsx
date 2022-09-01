@@ -63,6 +63,9 @@ const ProposalForm = (props: Props) => {
         } else if (props.name == "aave") {
             setName("aave.eth");
             setValue("platformType", "aave");
+        } else if (props.name == "vesq") {
+            setName("vesqdao.eth");
+            setValue("platformType", "vesq");
         }
     }, []);
 
