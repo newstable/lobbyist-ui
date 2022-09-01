@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 const Abis = require("./contracts/abis.json");
 const Addresses = require("./contracts/addresses.json");
 
-const supportChainId = 4002;
+const supportChainId = 0x89;
 
 const RPCS = {
     4002: "https://ftm-test.babylonswap.finance",
