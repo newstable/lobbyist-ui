@@ -70,12 +70,15 @@ const ProposalSymbolVote = (props: Props) => {
 
 	const voteProposal = async () => {
 		try {
+			if (!walletAddress) {
+				NotificationManager.error("Oops, Please connect wallet and try again!");
+				return;
+			}
 			var data = {
 				voter: walletAddress,
 				poolId: currentProposal.poolId,
 				voteAmount: voteWeight
 			}
-			console.log(data);
 			const web3 = new Web3Provider(window.ethereum);
 			const [account] = await web3.listAccounts();
 			const receipt = await client.vote(web3, account, {
@@ -86,8 +89,13 @@ const ProposalSymbolVote = (props: Props) => {
 				reason: 'Choice 1 make lot of sense',
 				app: 'Lobbyist'
 			});
-			console.log(receipt);
-			const result: any = await Action.Vote(data);
+			console.log(receipt, "sdfsdf");
+			if (receipt) {
+				const result: any = await Action.Vote(data);
+				if (result.data.status) {
+					NotificationManager.error("Voted Successfully", "Success");
+				}
+			}
 		} catch (error: any) {
 			NotificationManager.error(`Oops,${error.error_description}`, "Error");
 			console.log(error.error_description);
