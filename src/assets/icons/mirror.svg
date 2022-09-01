@@ -1,3 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="28" height="31" viewBox="0 0 28 31">
-  <path id="Rectangle_2" data-name="Rectangle 2" d="M14,0h0A14,14,0,0,1,28,14V31a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V14A14,14,0,0,1,14,0Z" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31">
+  <g id="mirror" transform="translate(-1945 -575)">
+    <path id="Path_2" data-name="Path 2" d="M15.5,0A15.5,15.5,0,1,1,0,15.5,15.5,15.5,0,0,1,15.5,0Z" transform="translate(1945 575)" fill="#282931"/>
+    <path id="Rectangle_2" data-name="Rectangle 2" d="M7.164,0h0a7.164,7.164,0,0,1,7.164,7.164v8.7H0v-8.7A7.164,7.164,0,0,1,7.164,0Z" transform="translate(1953.335 582.568)" fill="#fff"/>
+  </g>
 </svg>
