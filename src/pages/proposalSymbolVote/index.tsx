@@ -72,9 +72,10 @@ const ProposalSymbolVote = (props: Props) => {
 		try {
 			var data = {
 				voter: walletAddress,
-				proposalId: proposalInfo.id,
+				poolId: currentProposal.poolId,
 				voteAmount: voteWeight
 			}
+			console.log(data);
 			const web3 = new Web3Provider(window.ethereum);
 			const [account] = await web3.listAccounts();
 			const receipt = await client.vote(web3, account, {

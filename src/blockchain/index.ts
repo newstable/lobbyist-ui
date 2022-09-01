@@ -32,7 +32,8 @@ const createProposal = async (props: any) => {
             var tx = await ERCContract.approve(Addresses.Pool, ethers.utils.parseUnits(value.payout));
             await tx.wait();
             const connectContract = await Pool.createPool(newProposal);
-            await connectContract.wait();
+            const myresult = await connectContract.wait();
+            console.log(myresult);
             return ({ status: true, message: "Successfully created!" });
         }
     } catch {
