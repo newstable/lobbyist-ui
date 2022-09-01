@@ -22,6 +22,7 @@ const createProposal = async (props: any) => {
             paybackAmount: ethers.utils.parseUnits("0")
         }
         const Reward = ERCContract(address);
+        console.log(Reward);
         const result = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(result);
         if (Number(tokenAmount) < Number(value.payout)) {
