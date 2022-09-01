@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
   <g id="gauge" transform="translate(-2079 -580)">
     <circle id="Ellipse_2" data-name="Ellipse 2" cx="22.5" cy="22.5" r="22.5" transform="translate(2079 580)" fill="#fff"/>
-    <g id="gauge-2" data-name="gauge" transform="translate(2082.258 583.258)">
-      <path id="Path_10" data-name="Path 10" d="M19.242,36.4A17.159,17.159,0,1,0,2.083,19.242,17.159,17.159,0,0,0,19.242,36.4Z" transform="translate(0 0)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-      <path id="Path_11" data-name="Path 11" d="M2.083,22.5H5.515" transform="translate(0 -3.258)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-      <path id="Path_12" data-name="Path 12" d="M8.05,8.076l2.685,2.685" transform="translate(-0.952 -0.956)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-      <path id="Path_13" data-name="Path 13" d="M22.5,2.083V5.515" transform="translate(-3.258)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-      <path id="Path_14" data-name="Path 14" d="M42.265,22.5H38.833" transform="translate(-5.864 -3.258)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-      <path id="Path_15" data-name="Path 15" d="M36.44,8.076l-2.685,2.685" transform="translate(-5.053 -0.956)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-      <path id="Path_16" data-name="Path 16" d="M22.5,18.417v10.3" transform="translate(-3.258 -2.606)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
-      <path id="Path_17" data-name="Path 17" d="M33.519,34.267a17.161,17.161,0,0,1-27.2,0A27.49,27.49,0,0,1,33.519,34.267Z" transform="translate(-0.676 -4.561)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    <g id="gauge-2" data-name="gauge" transform="translate(2085.724 586.724)">
+      <path id="Path_10" data-name="Path 10" d="M15.776,29.469A13.693,13.693,0,1,0,2.083,15.776,13.693,13.693,0,0,0,15.776,29.469Z" transform="translate(0 0)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_11" data-name="Path 11" d="M2.083,22.5H4.822" transform="translate(0 -6.724)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_12" data-name="Path 12" d="M8.05,8.076l2.143,2.143" transform="translate(-1.965 -1.974)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_13" data-name="Path 13" d="M22.5,2.083V4.822" transform="translate(-6.724)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_14" data-name="Path 14" d="M41.572,22.5H38.833" transform="translate(-12.103 -6.724)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_15" data-name="Path 15" d="M35.9,8.076l-2.143,2.143" transform="translate(-10.431 -1.974)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_16" data-name="Path 16" d="M22.5,18.417v8.216" transform="translate(-6.724 -5.38)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_17" data-name="Path 17" d="M28.024,33.539a13.694,13.694,0,0,1-21.706,0A21.936,21.936,0,0,1,28.024,33.539Z" transform="translate(-1.395 -9.414)" fill="none" stroke="#3a78ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
     </g>
   </g>
 </svg>
