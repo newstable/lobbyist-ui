@@ -447,7 +447,6 @@ const ProposalForm = (props: Props) => {
                             <Button
                                 variant="contained"
                                 color="tealLight"
-                                type="submit"
                             >
                                 <img style={{ width: "25px" }} src={loader}></img>
                             </Button>
