@@ -108,11 +108,6 @@
                             "internalType": "bool",
                             "name": "isClosed",
                             "type": "bool"
-                        },
-                        {
-                            "internalType": "uint256",
-                            "name": "paybackAmount",
-                            "type": "uint256"
                         }
                     ],
                     "indexed": false,
@@ -164,19 +159,6 @@
                 }
             ],
             "name": "claim",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "id",
-                    "type": "uint256"
-                }
-            ],
-            "name": "claimPayBack",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
@@ -257,11 +239,6 @@
                             "internalType": "bool",
                             "name": "isClosed",
                             "type": "bool"
-                        },
-                        {
-                            "internalType": "uint256",
-                            "name": "paybackAmount",
-                            "type": "uint256"
                         }
                     ],
                     "internalType": "struct Pool.PoolData",
@@ -391,11 +368,6 @@
                     "internalType": "bool",
                     "name": "isClosed",
                     "type": "bool"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "paybackAmount",
-                    "type": "uint256"
                 }
             ],
             "stateMutability": "view",

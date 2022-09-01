@@ -18,8 +18,7 @@ const createProposal = async (props: any) => {
             rewardCurrency: value.rewardCurrency,
             rewardAmount: ethers.utils.parseUnits(value.payout),
             creator: value.userAddress,
-            isClosed: false,
-            paybackAmount: ethers.utils.parseUnits("0")
+            isClosed: false
         }
         const Reward = ERCContract(address);
         console.log(Reward);
