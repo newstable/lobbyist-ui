@@ -18,13 +18,13 @@ const CardRewards = (props: Props) => {
   const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
   const cols = [
     { title: "Estimated Rewards" },
-    { title: "Active Proposals" },
     { title: "Total Earned" },
+    { title: "Active Proposals" },
   ];
   const data = [
-    { value: "$28,912", },
-    { value: "3" },
-    { value: "16" }
+    { value: "$0", },
+    { value: "$0" },
+    { value: "0" }
   ]
   return (
     <Card className="">
