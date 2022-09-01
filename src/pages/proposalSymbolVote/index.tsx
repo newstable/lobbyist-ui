@@ -83,7 +83,7 @@ const ProposalSymbolVote = (props: Props) => {
 				type: proposalInfo.type,
 				choice: proposalInfo.choices.indexOf(currentProposal.protocol) + 1,
 				reason: 'Choice 1 make lot of sense',
-				app: 'Covenant'
+				app: 'Lobbyist'
 			});
 			console.log(receipt);
 			const result: any = await Action.Vote(data);
