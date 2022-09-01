@@ -17,18 +17,18 @@ const CardRewards = (props: Props) => {
   const theme = useTheme();
   const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
   const cols = [
-    { title: "Pending Rewards" },
-    { title: "Total Earned" },
+    { title: "Estimated Rewards" },
     { title: "Active Proposals" },
+    { title: "Total Earned" },
   ];
   const data = [
-    { value: "$0", },
-    { value: "$0" },
-    { value: "0" }
+    { value: "$28,912", },
+    { value: "3" },
+    { value: "16" }
   ]
   return (
     <Card className="">
-      <ProposalCardHeader title="My stats"></ProposalCardHeader>
+      <ProposalCardHeader title="My total rewards"></ProposalCardHeader>
       <Content
         className={classNames(
           "grid gap-8",
