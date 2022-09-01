@@ -289,7 +289,15 @@ const ProposalForm = (props: Props) => {
                                 control={control}
                             />
                         )}
-                        
+                        <FormSelect
+                            label="Reward Currency"
+                            placeholder="Choose your reward currency"
+                            items={tokens}
+                            setReward={setRewardType}
+                            setClickToken={clickToken}
+                            name="rewardCurrency"
+                            control={control}
+                        />
                         {/* {!isGovernance && (
                             <FormTextField
                                 label="Minimum Bribe"
@@ -371,15 +379,6 @@ const ProposalForm = (props: Props) => {
                                                 : "Enter payout in reward currency per vote percent"
                                         }
                                     />
-                                    <FormSelect
-                            label="Reward Currency"
-                            placeholder="Choose your reward currency"
-                            items={tokens}
-                            setReward={setRewardType}
-                            setClickToken={clickToken}
-                            name="rewardCurrency"
-                            control={control}
-                        />
                                     {/* {isGovernance ? (
                                         <Box className="flex gap-4">
                                             <FormSliderInput
@@ -429,22 +428,18 @@ const ProposalForm = (props: Props) => {
                         <Box className="flex flex-col gap-8">
                             <Box className="grid grid-cols-3 gap-8">
                                 <Typography className="col-span-2">
+                                    Total Bond
+                                </Typography>
+                                <Typography className="text-right">
+                                    $3,500
+                                    <br />
+                                    3,500 USDC
+                                </Typography>
+                                <Typography className="col-span-2">
                                     Max Reward
                                 </Typography>
                                 <Typography className="text-right">
                                     {maxReward + " " + rewardType}
-                                </Typography>
-                                <Typography className="col-span-2">
-                                    Lobbyist Fee
-                                </Typography>
-                                <Typography className="text-right">
-                                    0.5%
-                                </Typography>
-                                <Typography className="col-span-2">
-                                    Gas Fee
-                                </Typography>
-                                <Typography className="text-right">
-                                    ≤$0.01
                                 </Typography>
                             </Box>
                         </Box>
@@ -462,7 +457,7 @@ const ProposalForm = (props: Props) => {
                                 color="tealLight"
                                 type="submit"
                             >
-                                Submit
+                                Continue
                             </Button>
                         )}
                     </BoxForm>

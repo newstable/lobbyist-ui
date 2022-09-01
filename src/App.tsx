@@ -34,7 +34,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <LoadingScreen loading={loading} bgColor="#282931" spinnerColor="#3a78ff">
+      <LoadingScreen loading={loading} bgColor="#282931" logoSrc={loadingImg} spinnerColor="#3a78ff">
         <CssBaseline />
         <AppRoutes />
       </LoadingScreen>
