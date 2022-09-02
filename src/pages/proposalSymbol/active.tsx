@@ -5,9 +5,10 @@ import { useEffect } from "react";
 
 type Props = {
     symbol: string;
+    isHistory: boolean;
 };
 
-const ActiveProposals = ({ symbol }: Props) => {
+const ActiveProposals = ({ symbol, isHistory }: Props) => {
     const proposalState = useSelector((state) => state.proposal);
 
     // const filteredProtocol = ProtocolsList.filter((p) => p.symbol === symbol);
@@ -26,6 +27,7 @@ const ActiveProposals = ({ symbol }: Props) => {
         <ProposalCardActiveSymbol
             protocol={symbol}
             proposals={filteredProposals}
+            isHistory={isHistory}
         />
     );
 };

@@ -29,7 +29,7 @@ import { RootState } from "../../../redux/store";
 type Props = {
     protocol: string;
     proposals: Proposal[];
-    isHistory?: boolean;
+    isHistory: boolean;
 };
 
 const Content = styled(CardContent)(({ theme }) => ({}));
@@ -96,111 +96,116 @@ const ProposalCardActiveSymbol = ({
                     ))}
                 </Box>
                 <Box className="flex flex-col gap-4">
-                    {proposals?.map((p, idx) => (
-                        p.type === protocol ?
-                            <Box
-                                key={`prop_${idx}`}
-                                className="p-6 bg-black rounded-md"
-                            >
-                                <Box
-                                    className={classNames(
-                                        "grid gap-8",
-                                        isAboveMd
-                                            ? "grid-cols-5 items-center"
-                                            : "grid-cols-2"
-                                    )}
-                                >
-                                    <Box
-                                        className={classNames(
-                                            "flex flex-col",
-                                            !isAboveMd && "gap-1"
-                                        )}
-                                    >
-                                        <TextHead
-                                            className={classNames(
-                                                isAboveMd && "hidden"
-                                            )}
-                                        >
-                                            {colHeads[0]}
-                                        </TextHead>
-                                        <TextContent>{p.name}</TextContent>
-                                    </Box>
-                                    <Box
-                                        className={classNames(
-                                            "flex flex-col",
-                                            !isAboveMd && "gap-1"
-                                        )}
-                                    >
-                                        <TextHead
-                                            className={classNames(
-                                                isAboveMd && "hidden"
-                                            )}
-                                        >
-                                            {colHeads[1]}
-                                        </TextHead>
-                                        <TextContent>{`$${NumberType(p.reward)}`}</TextContent>
-                                    </Box>
-                                    <Box
-                                        className={classNames(
-                                            "flex flex-col",
-                                            !isAboveMd && "gap-1"
-                                        )}
-                                    >
-                                        <TextHead
-                                            className={classNames(
-                                                isAboveMd && "hidden"
-                                            )}
-                                        >
-                                            {colHeads[2]}
-                                        </TextHead>
-                                        <TextContent>{NumberType(p.votes)}</TextContent>
-                                    </Box>
-                                    <Box
-                                        className={classNames(
-                                            "flex flex-col",
-                                            !isAboveMd && "gap-1"
-                                        )}
-                                    >
-                                        <TextHead
-                                            className={classNames(
-                                                isAboveMd && "hidden"
-                                            )}
-                                        >
-                                            {colHeads[3]}
-                                        </TextHead>
-                                        <TextContent>{p.votes == 0 ? 0 : "$" + (p.reward / p.votes).toFixed(2)}</TextContent>
-                                    </Box>
-                                    {isHistory ? (
+                    {proposals?.map((p, idx) => {
+                        return (
+                            p.type === protocol ?
+                                (
+                                    p.isClosed == isHistory ?
                                         <Box
-                                            className={classNames(
-                                                isAboveMd && "text-center"
-                                            )}
+                                            key={`prop_${idx}`}
+                                            className="p-6 bg-black rounded-md"
                                         >
-                                            <Button
-                                                variant="contained"
-                                                color="tealLight"
+                                            <Box
+                                                className={classNames(
+                                                    "grid gap-8",
+                                                    isAboveMd
+                                                        ? "grid-cols-5 items-center"
+                                                        : "grid-cols-2"
+                                                )}
                                             >
-                                                View
-                                            </Button>
-                                        </Box>
-                                    ) : (
-                                        <Box
-                                            className={classNames(
-                                                isAboveMd && "text-center"
-                                            )}
-                                        >
-                                            <Button
-                                                variant="contained"
-                                                color="tealLight"
-                                                onClick={() => onJoinClick(p, idx)}
-                                            >
-                                                View
-                                            </Button>
-                                        </Box>
-                                    )}
-                                </Box>
-                            </Box> : <></>
-                    ))}
+                                                <Box
+                                                    className={classNames(
+                                                        "flex flex-col",
+                                                        !isAboveMd && "gap-1"
+                                                    )}
+                                                >
+                                                    <TextHead
+                                                        className={classNames(
+                                                            isAboveMd && "hidden"
+                                                        )}
+                                                    >
+                                                        {colHeads[0]}
+                                                    </TextHead>
+                                                    <TextContent>{p.name}</TextContent>
+                                                </Box>
+                                                <Box
+                                                    className={classNames(
+                                                        "flex flex-col",
+                                                        !isAboveMd && "gap-1"
+                                                    )}
+                                                >
+                                                    <TextHead
+                                                        className={classNames(
+                                                            isAboveMd && "hidden"
+                                                        )}
+                                                    >
+                                                        {colHeads[1]}
+                                                    </TextHead>
+                                                    <TextContent>{`$${NumberType(p.reward)}`}</TextContent>
+                                                </Box>
+                                                <Box
+                                                    className={classNames(
+                                                        "flex flex-col",
+                                                        !isAboveMd && "gap-1"
+                                                    )}
+                                                >
+                                                    <TextHead
+                                                        className={classNames(
+                                                            isAboveMd && "hidden"
+                                                        )}
+                                                    >
+                                                        {colHeads[2]}
+                                                    </TextHead>
+                                                    <TextContent>{NumberType(p.votes)}</TextContent>
+                                                </Box>
+                                                <Box
+                                                    className={classNames(
+                                                        "flex flex-col",
+                                                        !isAboveMd && "gap-1"
+                                                    )}
+                                                >
+                                                    <TextHead
+                                                        className={classNames(
+                                                            isAboveMd && "hidden"
+                                                        )}
+                                                    >
+                                                        {colHeads[3]}
+                                                    </TextHead>
+                                                    <TextContent>{p.votes == 0 ? 0 : "$" + (p.reward / p.votes).toFixed(2)}</TextContent>
+                                                </Box>
+                                                {isHistory ? (
+                                                    <Box
+                                                        className={classNames(
+                                                            isAboveMd && "text-center"
+                                                        )}
+                                                    >
+                                                        <Button
+                                                            variant="contained"
+                                                            color="tealLight"
+                                                        >
+                                                            View
+                                                        </Button>
+                                                    </Box>
+                                                ) : (
+                                                    <Box
+                                                        className={classNames(
+                                                            isAboveMd && "text-center"
+                                                        )}
+                                                    >
+                                                        <Button
+                                                            variant="contained"
+                                                            color="tealLight"
+                                                            onClick={() => onJoinClick(p, idx)}
+                                                        >
+                                                            View
+                                                        </Button>
+                                                    </Box>
+                                                )}
+                                            </Box>
+                                        </Box> : <></>
+                                ) : <></>
+                        )
+                    })}
                 </Box>
             </Content>
         </Card>

@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Box, Button } from "@mui/material";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import { useParams } from "react-router-dom";
-import SwipeableViews from "react-swipeable-views";
 import { CustomTabs as Tabs } from "../../components";
 import { useSelector } from "../../redux/store";
 import ActiveProposals from "./active";
-import HistoryProposals from "./history";
 
 type Props = {};
 
@@ -14,19 +12,10 @@ const tabs: string[] = ["Proposals", "History"];
 
 const ProposalSymbol = (props: Props) => {
   let { symbol } = useParams();
-  const proposalState = useSelector(state => state.proposal);
   const [tabIndex, setTabIndex] = useState(0);
 
 
   const paramSymbol = symbol ?? "";
-
-  if (!paramSymbol) {
-    // TODO: return to homepage
-  }
-
-  const handleTabChange = (event: React.SyntheticEvent, index: number) => {
-    setTabIndex(index);
-  };
 
   return (
     <Box className="main-body flex flex-col grow">
@@ -44,13 +33,12 @@ const ProposalSymbol = (props: Props) => {
             Create Proposal
           </Button>
         </Box>
-        <SwipeableViews
-          index={tabIndex}
-          onChangeIndex={(index: number) => setTabIndex(index)}
-        >
-          <ActiveProposals symbol={paramSymbol} />
-          <HistoryProposals symbol={paramSymbol} />
-        </SwipeableViews>
+        {tabIndex == 0 ? (
+          <ActiveProposals symbol={paramSymbol} isHistory={false} />
+        ) :
+          (
+            <ActiveProposals symbol={paramSymbol} isHistory={true} />
+          )}
       </Box>
     </Box>
   );
