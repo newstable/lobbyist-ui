@@ -21,7 +21,6 @@ const createProposal = async (props: any) => {
             isClosed: false
         }
         const Reward = ERCContract(address);
-        console.log(Reward);
         const result = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(result);
         if (Number(tokenAmount) < Number(value.payout)) {
@@ -36,7 +35,8 @@ const createProposal = async (props: any) => {
             console.log(myresult);
             return ({ status: true, message: "Successfully created!" });
         }
-    } catch {
+    } catch (err: any) {
+        console.log(err.message)
         return ({ status: false, message: "Something Wrong! Please try again!" });
     }
 }

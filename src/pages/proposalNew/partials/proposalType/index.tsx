@@ -11,7 +11,9 @@ const ProposalType = (props: Props) => {
     <Box className="grid grid-cols-2 gap-5">
       {Object.keys(EnumProposalType)
         .filter(pt => {
-          if (protocol === "aave" || protocol === "vesq" && pt === "gauge") {
+          if (protocol === "aave" && pt === "gauge") {
+            return false;
+          } if (protocol === "vesq" && pt === "gauge") {
             return false;
           }
           return true;
