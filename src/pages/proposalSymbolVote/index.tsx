@@ -51,7 +51,6 @@ const ProposalSymbolVote = (props: Props) => {
 	let { proposal: currentProposal } = navState;
 
 	useEffect(() => {
-		console.log(symbol, "symbol");
 		GetInfo();
 	}, [])
 
