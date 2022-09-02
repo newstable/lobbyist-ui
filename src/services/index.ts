@@ -21,7 +21,6 @@ const Proposal_load = async () => {
 const Vote = async (req: any) => {
     try {
         var res = await axios.post("/api/vote", req);
-        console.log(res);
         return res.data;
     } catch (error) {
         console.log(error);

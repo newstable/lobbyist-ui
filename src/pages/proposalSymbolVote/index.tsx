@@ -77,7 +77,8 @@ const ProposalSymbolVote = (props: Props) => {
 			var data = {
 				voter: walletAddress,
 				poolId: currentProposal.poolId,
-				voteAmount: voteWeight
+				voteAmount: voteWeight,
+				proposalId: currentProposal.proposalId
 			}
 			const web3 = new Web3Provider(window.ethereum);
 			const [account] = await web3.listAccounts();
@@ -89,11 +90,12 @@ const ProposalSymbolVote = (props: Props) => {
 				reason: 'Choice 1 make lot of sense',
 				app: 'Lobbyist'
 			});
-			console.log(receipt, "sdfsdf");
 			if (receipt) {
 				const result: any = await Action.Vote(data);
-				if (result.data.status) {
-					NotificationManager.error("Voted Successfully", "Success");
+				if (result.status) {
+					NotificationManager.success("Voted Successfully", "Success");
+				} else {
+					NotificationManager.error("You already voted", "Error");
 				}
 			}
 		} catch (error: any) {
