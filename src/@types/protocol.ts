@@ -8,6 +8,7 @@ export type ProtocolSymbol = "qidao" | "aave";
 export enum EnumProtocolName {
   qidao = "QiDAO",
   aave = "Aave",
+  vesq = "Vesq",
 }
 
 export enum EnumProtocolSymbolName {
