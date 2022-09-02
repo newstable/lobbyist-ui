@@ -5,7 +5,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import { useEffect, useState } from "react";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useLocation, useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { EnumProtocolName } from "../../@types/protocol";
 import { colors } from "../../common";
 import {
@@ -36,6 +36,7 @@ const ProposalSymbolVote = (props: Props) => {
 	const walletAddress: any = useSelector(
 		(state: RootState) => state.wallet.address
 	);
+	const navigate = useNavigate();
 	const [getProposal] = useLazyQuery(GET_PROPOSAL);
 	const [voteWeight, setVoteWeight] = useState(0);
 	const [proposalInfo, setProposalInfo]: any = useState([]);
@@ -50,6 +51,7 @@ const ProposalSymbolVote = (props: Props) => {
 	let { proposal: currentProposal } = navState;
 
 	useEffect(() => {
+		console.log(symbol, "symbol");
 		GetInfo();
 	}, [])
 
@@ -94,6 +96,7 @@ const ProposalSymbolVote = (props: Props) => {
 				const result: any = await Action.Vote(data);
 				if (result.status) {
 					NotificationManager.success("Voted Successfully", "Success");
+					navigate(`/proposal/${symbol}`);
 				} else {
 					NotificationManager.error("You already voted", "Error");
 				}
