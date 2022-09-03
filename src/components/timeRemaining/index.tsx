@@ -34,9 +34,6 @@ const CircleCounter = styled(Box)(({ theme }) => ({
 const TimeRemaining = (props: Props) => {
   const [endTime, setEndTime] = useState("00:00:00:00");
   const { time } = props;
-  useEffect(() => {
-    console.log(time);
-  }, [time])
   setTimeout(() => {
     Time();
   }, 1000);
