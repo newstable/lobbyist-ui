@@ -15,14 +15,12 @@ import {
 } from "../../../../components/form";
 import { colors } from "../../../../common";
 import { useEffect, useState } from "react";
-import { GET_PROPOSALS, GET_PROPOSAL } from "../../../../gql";
+import { GET_PROPOSALS } from "../../../../gql";
 import tokens from "./token.json";
 import { useSelector } from "../../../../redux/store";
 import { RootState } from "../../../../redux/store";
 import { dispatch } from "../../../../redux/store";
-import { useLazyQuery } from "@apollo/client";
 import { setClickAddress } from "../../../../redux/slices/clickToken";
-import Addresses from "../../../../contracts/contracts/addresses.json";
 import loader from "../../../../assets/loader.gif";
 import { createProposal } from "../../../../blockchain";
 
@@ -43,13 +41,12 @@ interface SnapShotData {
 
 const ProposalForm = (props: Props) => {
     const [myloading, setMyLoading] = useState(false);
-    const [getProposal] = useLazyQuery(GET_PROPOSAL);
     const [name, setName] = useState("");
     const [time, setTime] = useState("");
     const [address, setAddress] = useState("");
     const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
     const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
-    const [endTime, setEndTime] = useState(0);
+    const [proposalName, setProposalName] = useState("");
     const [rewardType, setRewardType] = useState("WMATIC");
     const [maxReward, setMaxReward] = useState(0);
     const walletAddress: any = useSelector(
@@ -92,6 +89,8 @@ const ProposalForm = (props: Props) => {
         const date = new Date(data?.proposals[e].end * 1000);
         setValue("endTime", (data?.proposals[e].end * 1000).toString());
         setValue("proposalId", (data?.proposals[e].id));
+        setValue("proposalName", (data?.proposals[e].name));
+        setProposalName(data?.proposals[e].title);
         timeStyle(date);
     };
 
@@ -244,6 +243,8 @@ const ProposalForm = (props: Props) => {
                                     message: "You must enter proposal name.",
                                 },
                             }}
+                            readonly={true}
+                            time={proposalName}
                             placeholder="Enter  proposal name here"
                         />
                         <FormTextField

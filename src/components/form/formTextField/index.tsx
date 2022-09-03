@@ -9,6 +9,7 @@ import { Controller } from "react-hook-form";
 import { FormInputProps } from "../formInputProps";
 import styles from "../styles.module.scss";
 import { FormLabel } from "../formLabel";
+import { useEffect } from "react";
 
 interface Props extends FormInputProps {
   inputProps?: InputProps;
@@ -39,6 +40,9 @@ const FormTextField = ({
       setrewardAmount(e);
     }
   }
+  useEffect(() => {
+    console.log(time);
+  }, [time])
   return (
     <StyledEngineProvider injectFirst>
       <FormControl className="flex flex-row items-center gap-4">
