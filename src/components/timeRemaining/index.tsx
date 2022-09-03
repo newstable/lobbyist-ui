@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { colors } from "../../common";
 
 type Props = {
-  time: string;
+  time: number;
 };
 
 const CircleMain = styled(Box)(({ theme }) => ({
@@ -34,22 +34,24 @@ const CircleCounter = styled(Box)(({ theme }) => ({
 const TimeRemaining = (props: Props) => {
   const [endTime, setEndTime] = useState("00:00:00:00");
   const { time } = props;
-
+  useEffect(() => {
+    console.log(time);
+  }, [time])
   setTimeout(() => {
     Time();
   }, 1000);
 
   const Time = () => {
     var currentTime = new Date().valueOf();
-    if (Number(time) > currentTime) {
-      var realTime = Number(time) - currentTime;
+    if (time > currentTime) {
+      var realTime = time - currentTime;
       var date = new Date(realTime);
-      var day = date.getDate().toString();
+      var day = Math.floor(realTime / 86400000).toString();
       var hour = date.getHours().toString();
       var minute = date.getMinutes().toString();
       var second = date.getSeconds().toString();
       if (date.getDate() < 10)
-        day = "0" + date.getDate().toString();
+        day = "0" + day;
       if (date.getHours() < 10)
         hour = "0" + date.getHours().toString();
       if (date.getMinutes() < 10)

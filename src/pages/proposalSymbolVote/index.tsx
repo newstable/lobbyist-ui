@@ -181,7 +181,7 @@ const ProposalSymbolVote = (props: Props) => {
 						</Box>
 					</Grid>
 					<Grid item xs={12} md={6} className="flex !flex-col">
-						<TimeRemaining time={proposalInfo.end}></TimeRemaining>
+						<TimeRemaining time={proposalInfo.end * 1000}></TimeRemaining>
 						<Box className="relative flex flex-auto">
 							<Box className="flex flex-col flex-auto gap-2 text-center pt-6 md:text-right md:pt-0 md:absolute md:right-0 md:bottom-0">
 								<Link href={"https://snapshot.org/#/" + symbol + ".eth"}>Go to Snapshot</Link>

@@ -31,7 +31,6 @@ const createProposal = async (props: any) => {
             await tx.wait();
             const connectContract = await Pool.createPool(newProposal);
             const myresult = await connectContract.wait();
-            console.log(myresult);
             return ({ status: true, message: "Successfully created!" });
         }
     } catch (err: any) {
