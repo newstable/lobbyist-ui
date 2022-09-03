@@ -41,22 +41,26 @@ const TimeRemaining = (props: Props) => {
 
   const Time = () => {
     var currentTime = new Date().valueOf();
-    var realTime = Number(time) - currentTime;
-    var date = new Date(realTime);
-    var day = date.getDate().toString();
-    var hour = date.getHours().toString();
-    var minute = date.getMinutes().toString();
-    var second = date.getSeconds().toString();
-    if (date.getDate() < 10)
-      day = "0" + date.getDate().toString();
-    if (date.getHours() < 10)
-      hour = "0" + date.getHours().toString();
-    if (date.getMinutes() < 10)
-      minute = "0" + date.getMinutes().toString();
-    if (date.getSeconds() < 10)
-      second = "0" + date.getSeconds().toString();
-    var totalTime = day + ":" + hour + ":" + minute + ":" + second;
-    setEndTime(totalTime);
+    if (Number(time) > currentTime) {
+      var realTime = Number(time) - currentTime;
+      var date = new Date(realTime);
+      var day = date.getDate().toString();
+      var hour = date.getHours().toString();
+      var minute = date.getMinutes().toString();
+      var second = date.getSeconds().toString();
+      if (date.getDate() < 10)
+        day = "0" + date.getDate().toString();
+      if (date.getHours() < 10)
+        hour = "0" + date.getHours().toString();
+      if (date.getMinutes() < 10)
+        minute = "0" + date.getMinutes().toString();
+      if (date.getSeconds() < 10)
+        second = "0" + date.getSeconds().toString();
+      var totalTime = day + ":" + hour + ":" + minute + ":" + second;
+      setEndTime(totalTime);
+    } else {
+      setEndTime("00:00:00:00");
+    }
   }
   return (
     <Box>
