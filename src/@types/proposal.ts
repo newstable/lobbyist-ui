@@ -16,7 +16,6 @@ export type Proposal = {
   rewardCurrency: string;
   voteIncentive?: boolean;
   address: string;
-  endTime: string;
   proposalId: string;
   totalVoteWeight: number;
   poolId: number;

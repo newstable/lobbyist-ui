@@ -14,7 +14,6 @@ const createProposal = async (props: any) => {
             description: value.proposalDescription,
             platformType: value.platformType,
             outcome: value.desiredVote,
-            endTime: value.endTime,
             rewardCurrency: value.rewardCurrency,
             rewardAmount: ethers.utils.parseUnits(value.payout),
             creator: value.userAddress,
