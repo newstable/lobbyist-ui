@@ -6,6 +6,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { ReactComponent as GaugeIcon } from "../../assets/icons/gauge.svg";
 import { ReactComponent as ProQidaoIcon } from "../../assets/icons/pro-qidao.svg";
 import { ReactComponent as ProAaveIcon } from "../../assets/icons/pro-aave.svg";
+import { ReactComponent as ProVesqIcon } from "../../assets/icons/vesq.svg";
 import { EnumProtocolName } from "../../@types/protocol";
 import styles from "./styles.module.scss";
 
@@ -31,6 +32,9 @@ const HeaderLeft = (props: Props) => {
         break;
       case EnumProtocolName.aave:
         TitleIcon = ProAaveIcon;
+        break;
+      case EnumProtocolName.vesq:
+        TitleIcon = ProVesqIcon;
         break;
       default:
         break;

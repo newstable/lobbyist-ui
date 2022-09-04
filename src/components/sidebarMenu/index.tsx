@@ -11,7 +11,7 @@ import { ReactComponent as CurveIcon } from "../../assets/icons/crv.svg";
 import { ReactComponent as ConvexIcon } from "../../assets/icons/convex.svg";
 import { ReactComponent as BalancerIcon } from "../../assets/icons/bal.svg";
 import { ReactComponent as ProQiIcon } from "../../assets/icons/pro-qidao.svg";
-import { ReactComponent as ProVesqIcon } from "../../assets/icons/pro-frax.svg";
+import { ReactComponent as ProVesqIcon } from "../../assets/icons/vesq.svg";
 import { ReactComponent as ProFraxIcon } from "../../assets/icons/pro-frax.svg";
 import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
