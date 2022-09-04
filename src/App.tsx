@@ -10,7 +10,6 @@ import { setCurrentProposal } from "./redux/slices/proposal";
 import { dispatch } from "./redux/store";
 import { useLazyQuery } from "@apollo/client";
 import { GET_PROPOSAL } from "./gql";
-import loadingImg from "./assets/dao.jpg";
 
 interface init {
   votes: number;
@@ -34,7 +33,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <LoadingScreen loading={loading} bgColor="#282931" logoSrc={loadingImg} spinnerColor="#3a78ff">
+      <LoadingScreen loading={loading} bgColor="#282931" spinnerColor="#3a78ff">
         <CssBaseline />
         <AppRoutes />
       </LoadingScreen>
