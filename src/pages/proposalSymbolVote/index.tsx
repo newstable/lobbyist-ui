@@ -161,7 +161,7 @@ const ProposalSymbolVote = (props: Props) => {
 							<Box className="flex flex-col">
 								<Typography variant="h6">{navState.proposal.name}</Typography>
 								<Typography color={colors.textGray}>
-									{navState.proposal.description}
+									{navState.proposal.description.length > 80 ? (navState.proposal.description.slice(0, 80) + "...") : navState.proposal.description}
 								</Typography>
 							</Box>
 							<Box className="flex flex-col gap-8">
