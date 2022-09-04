@@ -58,6 +58,7 @@ const ProposalSymbolVote = (props: Props) => {
 		const proposalinfo = await getProposal({
 			variables: { id: currentProposal.proposalId }
 		})
+		console.log(proposalinfo.data.proposal);
 		setProposalInfo(proposalinfo.data.proposal);
 		const req = {
 			strategies: proposalinfo.data.proposal.strategies,
@@ -184,7 +185,7 @@ const ProposalSymbolVote = (props: Props) => {
 						<TimeRemaining time={proposalInfo.end * 1000}></TimeRemaining>
 						<Box className="relative flex flex-auto">
 							<Box className="flex flex-col flex-auto gap-2 text-center pt-6 md:text-right md:pt-0 md:absolute md:right-0 md:bottom-0">
-								<Link href={"https://snapshot.org/#/" + symbol + ".eth"}>Go to Snapshot</Link>
+								<Link href={"https://snapshot.org/#/" + symbol + ".eth" + "/proposal/" + proposalInfo.id}>Go to Snapshot</Link>
 								<Link href={"/proposal/" + symbol}>
 									Go to{" "}
 									{`${EnumProtocolName[symbol as keyof typeof EnumProtocolName]}`}
