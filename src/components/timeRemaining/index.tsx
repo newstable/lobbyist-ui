@@ -40,22 +40,29 @@ const TimeRemaining = (props: Props) => {
 
   const Time = () => {
     var currentTime = new Date().valueOf();
+    var myday, myhour, myminute, mysecond = "";
     if (time > currentTime) {
       var realTime = time - currentTime;
-      var date = new Date(realTime);
-      var day = Math.floor(realTime / 86400000).toString();
-      var hour = date.getHours().toString();
-      var minute = date.getMinutes().toString();
-      var second = date.getSeconds().toString();
-      if (date.getDate() < 10)
-        day = "0" + day;
-      if (date.getHours() < 10)
-        hour = "0" + date.getHours().toString();
-      if (date.getMinutes() < 10)
-        minute = "0" + date.getMinutes().toString();
-      if (date.getSeconds() < 10)
-        second = "0" + date.getSeconds().toString();
-      var totalTime = day + ":" + hour + ":" + minute + ":" + second;
+      var day = Math.floor(realTime / 86400000);
+      myday = day.toString();
+      realTime -= 86400000 * day;
+      var hour = Math.floor(realTime / 3600000);
+      myhour = hour.toString();
+      realTime -= 3600000 * hour;
+      var minute = Math.floor(realTime / 60000);
+      myminute = minute.toString();
+      realTime -= 60000 * minute;
+      var second = Math.floor(realTime / 1000);
+      mysecond = second.toString();
+      if (day < 10)
+        myday = "0" + day;
+      if (hour < 10)
+        myhour = "0" + hour;
+      if (minute < 10)
+        myminute = "0" + minute;
+      if (second < 10)
+        mysecond = "0" + second;
+      var totalTime = myday + ":" + myhour + ":" + myminute + ":" + mysecond;
       setEndTime(totalTime);
     } else {
       setEndTime("00:00:00:00");

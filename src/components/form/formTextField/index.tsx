@@ -40,9 +40,6 @@ const FormTextField = ({
       setrewardAmount(e);
     }
   }
-  useEffect(() => {
-    console.log(time);
-  }, [time])
   return (
     <StyledEngineProvider injectFirst>
       <FormControl className="flex flex-row items-center gap-4">

@@ -89,7 +89,7 @@ const ProposalForm = (props: Props) => {
         const date = new Date(data?.proposals[e].end * 1000);
         setValue("endTime", (data?.proposals[e].end * 1000).toString());
         setValue("proposalId", (data?.proposals[e].id));
-        setValue("proposalName", (data?.proposals[e].name));
+        setValue("proposalName", (data?.proposals[e].title));
         setProposalName(data?.proposals[e].title);
         timeStyle(date);
     };
@@ -237,12 +237,12 @@ const ProposalForm = (props: Props) => {
                             label="Proposal Name"
                             name="proposalName"
                             control={control}
-                            rules={{
-                                required: {
-                                    value: true,
-                                    message: "You must enter proposal name.",
-                                },
-                            }}
+                            // rules={{
+                            //     required: {
+                            //         value: true,
+                            //         message: "You must enter proposal name.",
+                            //     },
+                            // }}
                             readonly={true}
                             time={proposalName}
                             placeholder="Enter  proposal name here"

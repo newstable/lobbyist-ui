@@ -124,7 +124,7 @@ const ProposalCardActiveSymbol = ({
                                             >
                                                 {colHeads[0]}
                                             </TextHead>
-                                            <TextContent>{p.name}</TextContent>
+                                            <TextContent>{p.name.length > 20 ? (p.name.slice(0, 20) + "...") : p.name}</TextContent>
                                         </Box>
                                         <Box
                                             className={classNames(
@@ -177,12 +177,6 @@ const ProposalCardActiveSymbol = ({
                                                     isAboveMd && "text-center"
                                                 )}
                                             >
-                                                <Button
-                                                    variant="contained"
-                                                    color="tealLight"
-                                                >
-                                                    View
-                                                </Button>
                                             </Box>
                                         ) : (
                                             <Box

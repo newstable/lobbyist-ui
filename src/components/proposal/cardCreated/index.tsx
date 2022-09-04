@@ -1,22 +1,117 @@
-import { Card } from "@mui/material";
-import { useSelector } from "../../../redux/store";
-import ProposalListCard from "../cardActive/proposalList";
+import {
+  Card,
+  CardContent,
+  Box,
+  Divider,
+  Button,
+  useMediaQuery,
+} from "@mui/material";
+import classNames from "classnames";
 import { ProposalCardHeader } from "../cardHeader";
+import { styled, useTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+import { Proposal } from "../../../@types/proposal";
+import { TextContent, TextHead } from "../../text";
 import { useParams } from "react-router-dom";
+import NumberType from "../../../common/number";
 
-type Props = {};
+type Props = {
+  proposals: Proposal[],
+  address: string
+};
+
+const Content = styled(CardContent)(({ theme }) => ({}));
 
 const ProposalCardCreated = (props: Props) => {
+  const { proposals, address } = props
   let { symbol } = useParams();
   const colHeads = ["Title", "Vote Incentives", "Total Votes", "$/Vote", ""];
-
-  const proposalState = useSelector(state => state.proposal);
-  // @ts-ignore
-  const activeProposals = proposalState.currentProposal.data;
+  const navigate = useNavigate();
+  const onJoinClick = (proposal: Proposal, idx: number) => {
+    const path = idx % 2 === 0 ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
+    navigate(path, {
+      state: {
+        proposal,
+      },
+    });
+  };
+  const theme = useTheme();
+  const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
   return (
     <Card className="">
       <ProposalCardHeader title="My created proposals"></ProposalCardHeader>
-      <ProposalListCard proposals={activeProposals} heads={colHeads} />
+      <Content className="!p-0">
+        <Box
+          className={classNames(
+            "grid grid-cols-5 gap-8 px-6 mb-8",
+            !isAboveMd && "hidden"
+          )}
+        >
+          {colHeads.map((c, idx) => (
+            <Box key={`colHead_${idx}`}>
+              <TextHead>{c}</TextHead>
+            </Box>
+          ))}
+        </Box>
+        <Box className="flex flex-col gap-4">
+          {proposals?.map((p, idx) => (
+            p.address === address ?
+              <Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
+                <Box
+                  className={classNames(
+                    "grid gap-8",
+                    isAboveMd ? "grid-cols-5" : "grid-cols-2"
+                  )}
+                >
+                  <Box
+                    className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                  >
+                    <TextHead className={classNames(isAboveMd && "hidden")}>
+                      {colHeads[0]}
+                    </TextHead>
+                    <TextContent>{p.name}</TextContent>
+                  </Box>
+                  <Box
+                    className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                  >
+                    <TextHead className={classNames(isAboveMd && "hidden")}>
+                      {colHeads[1]}
+                    </TextHead>
+                    <TextContent>${NumberType(p.reward)}</TextContent>
+                  </Box>
+                  <Box
+                    className={classNames(
+                      "flex flex-col",
+                      !isAboveMd && "gap-1 col-span-3"
+                    )}
+                  >
+                    <TextHead className={classNames(isAboveMd && "hidden")}>
+                      {colHeads[2]}
+                    </TextHead>
+                    <TextContent>{NumberType(p.votes)}</TextContent>
+                  </Box>
+                  <Box
+                    className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                  >
+                    <TextHead className={classNames(isAboveMd && "hidden")}>
+                      {colHeads[3]}
+                    </TextHead>
+                    <TextContent>${p.votes == 0 ? ("0") : (
+                      (p.reward / p.votes).toFixed(2)
+                    )}</TextContent>
+                  </Box>
+                  <Box
+                    className={classNames("flex", isAboveMd && "justify-center")}
+                  >
+                    <Button variant="contained" color="tealLight" onClick={() => onJoinClick(p, idx)}>
+                      View
+                    </Button>
+                  </Box>
+                </Box>
+              </Box> : <></>
+          ))}
+        </Box>
+      </Content>
     </Card>
   );
 };

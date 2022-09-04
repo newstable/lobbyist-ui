@@ -1,3 +1,4 @@
+import axios from "axios";
 import { ethers } from "ethers";
 import { ERCContract, poolContract } from "../contracts";
 import Addresses from "../contracts/contracts/addresses.json";
@@ -62,4 +63,22 @@ const addRewards = async (props: any) => {
     }
 }
 
-export { createProposal, addRewards };
+const Claim = async (props: any) => {
+    try {
+        const { id, address } = props;
+        const Pool = poolContract.connect(signer);
+        const connectContract = await Pool.claim(id);
+        await connectContract.wait();
+        var result = await axios.post("/api/claim", { id: id, address: address });
+        if (result.data.status)
+            return ({ status: true, message: "Successfully Claimed!" });
+        else {
+            return ({ status: false, message: result.data.message });
+        }
+    } catch (error: any) {
+        console.log(error.message);
+        return ({ status: false, message: "Something went wrong! Please check again!" });
+    }
+}
+
+export { createProposal, addRewards, Claim };
