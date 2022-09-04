@@ -47,6 +47,7 @@ const ProposalForm = (props: Props) => {
     const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
     const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
     const [proposalName, setProposalName] = useState("");
+    const [proposalDescription, setProposalDescription] = useState("");
     const [rewardType, setRewardType] = useState("WMATIC");
     const [maxReward, setMaxReward] = useState(0);
     const walletAddress: any = useSelector(
@@ -78,6 +79,7 @@ const ProposalForm = (props: Props) => {
     });
 
     const ClickSnap = (e: any) => {
+        console.log(data?.proposals[e]);
         const temp = [] as SnapShotData[];
         for (var i = 0; i < data?.proposals[e].choices.length; i++) {
             temp.push({
@@ -90,7 +92,9 @@ const ProposalForm = (props: Props) => {
         setValue("endTime", (data?.proposals[e].end * 1000).toString());
         setValue("proposalId", (data?.proposals[e].id));
         setValue("proposalName", (data?.proposals[e].title));
+        setValue("proposalDescription", (data?.proposals[e].body));
         setProposalName(data?.proposals[e].title);
+        setProposalDescription(data?.proposals[e].body);
         timeStyle(date);
     };
 
@@ -237,14 +241,12 @@ const ProposalForm = (props: Props) => {
                             label="Proposal Name"
                             name="proposalName"
                             control={control}
-                            // rules={{
-                            //     required: {
-                            //         value: true,
-                            //         message: "You must enter proposal name.",
-                            //     },
-                            // }}
-                            readonly={true}
-                            time={proposalName}
+                            rules={{
+                                required: {
+                                    value: true,
+                                    message: "You must enter proposal name.",
+                                },
+                            }}
                             placeholder="Enter  proposal name here"
                         />
                         <FormTextField
