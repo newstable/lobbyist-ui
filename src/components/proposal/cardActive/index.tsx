@@ -16,16 +16,27 @@ import NumberType from "../../../common/number";
 import { useNavigate } from "react-router-dom";
 import { Claim } from "../../../blockchain";
 import { NotificationManager } from 'react-notifications';
+import { useEffect, useState } from "react";
+import Action from "../../../services";
 
 type Props = {
-	proposals: ActiveProposal[];
 	address: string;
 };
 
 const Content = styled(CardContent)(({ theme }) => ({}));
 
 const ProposalCardActive = (props: Props) => {
-	const { proposals, address } = props;
+	const [proposals, setActiveProposal] = useState<ActiveProposal[]>([]);
+	const { address } = props;
+	useEffect(() => {
+		getMyProposals();
+	}, [address]);
+	const getMyProposals = async () => {
+		var result = await Action.GetMyProposals({
+			address: address,
+		});
+		setActiveProposal(result.data);
+	}
 	let { symbol } = useParams();
 	const navigate = useNavigate();
 	const onJoinClick = (proposal: ActiveProposal, idx: number) => {
@@ -40,8 +51,9 @@ const ProposalCardActive = (props: Props) => {
 		var result = await Claim({ id: e, address: address });
 		if (result.status) {
 			NotificationManager.success(result.message, "Success");
+			getMyProposals();
 		} else {
-			NotificationManager.error(result.message, "Success");
+			NotificationManager.error(result.message, "Error");
 		}
 	}
 	const theme = useTheme();

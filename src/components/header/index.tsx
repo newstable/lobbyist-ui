@@ -21,7 +21,6 @@ import { HeaderLeft } from "./left";
 import styles from "./styles.module.scss";
 import { providerOptions } from "../../providerOptions";
 import { toHex, truncateAddress } from "../../utils";
-import { networkParams } from "../../networks";
 
 
 const itemsList = [
