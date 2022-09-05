@@ -108,7 +108,7 @@ const ProposalSymbolVote = (props: Props) => {
 	}
 
 	const AddReward = async () => {
-		const result = await addRewards({
+		const result: any = await addRewards({
 			id: currentProposal.poolId,
 			amount: addRewardAmount,
 			rewardtype: currentProposal.rewardCurrency,

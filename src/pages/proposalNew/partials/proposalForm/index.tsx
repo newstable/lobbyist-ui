@@ -41,6 +41,7 @@ interface SnapShotData {
 
 const ProposalForm = (props: Props) => {
     const [myloading, setMyLoading] = useState(false);
+    const [submitType, setSubmitType] = useState(false);
     const [name, setName] = useState("");
     const [time, setTime] = useState("");
     const [address, setAddress] = useState("");
@@ -196,12 +197,14 @@ const ProposalForm = (props: Props) => {
             NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
         } else {
             setMyLoading(true);
-            const result = await createProposal({ address: address, walletAddress: walletAddress, value: value });
+            const result: any = await createProposal({ address: address, walletAddress: walletAddress, value: value, submitType: submitType });
             if (!result.status) {
                 NotificationManager.warning(result.message, "Warning");
             } else {
                 NotificationManager.success(result.message, "Success");
-                navigate(`/proposal/${props.name}`);
+                if (submitType)
+                    navigate(`/proposal/${props.name}`);
+                setSubmitType(!submitType);
             }
             setMyLoading(false);
         }
@@ -456,15 +459,23 @@ const ProposalForm = (props: Props) => {
                             >
                                 <img style={{ width: "25px" }} src={loader}></img>
                             </Button>
-                        ) : (
-                            <Button
-                                variant="contained"
-                                color="tealLight"
-                                type="submit"
-                            >
-                                Submit
-                            </Button>
-                        )}
+                        ) :
+                            submitType ?
+                                <Button
+                                    variant="contained"
+                                    color="tealLight"
+                                    type="submit"
+                                >
+                                    Submit
+                                </Button> :
+                                <Button
+                                    variant="contained"
+                                    color="tealLight"
+                                    type="submit"
+                                >
+                                    Approve
+                                </Button>
+                        }
                     </BoxForm>
                 </Box>
             </Box>

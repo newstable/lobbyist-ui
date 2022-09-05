@@ -8,7 +8,7 @@ const signer = provider.getSigner();
 
 const createProposal = async (props: any) => {
     try {
-        const { address, walletAddress, value } = props;
+        const { address, walletAddress, value, submitType } = props;
         const newProposal = {
             proposalId: value.proposalId,
             name: value.proposalName,
@@ -25,13 +25,15 @@ const createProposal = async (props: any) => {
         const tokenAmount = ethers.utils.formatUnits(result);
         if (Number(tokenAmount) < Number(value.payout)) {
             return ({ status: false, message: "Your reward balance is not enough!" });
-        } else {
-            const Pool = poolContract.connect(signer);
+        } else if (!submitType) {
             const ERCContract = Reward.connect(signer);
             var tx = await ERCContract.approve(Addresses.Pool, ethers.utils.parseUnits(value.payout));
             await tx.wait();
+            return ({ status: true, message: "Successfully approved!" });
+        } else if (submitType) {
+            const Pool = poolContract.connect(signer);
             const connectContract = await Pool.createPool(newProposal);
-            const myresult = await connectContract.wait();
+            await connectContract.wait();
             return ({ status: true, message: "Successfully created!" });
         }
     } catch (err: any) {
@@ -56,7 +58,9 @@ const addRewards = async (props: any) => {
             await tx.wait();
             const connectContract = await Pool.addReward(id, ethers.utils.parseUnits(amount.toString()));
             await connectContract.wait();
-            return ({ status: true, message: "Successfully created!" });
+            var result = await axios.post("/api/addreward", { poolId: id, rewardAmount: amount });
+            if (result.data.status)
+                return ({ status: true, message: "Successfully Added!" });
         }
     } catch {
         return ({ status: false, message: "Something went wrong! Please check again!" });
