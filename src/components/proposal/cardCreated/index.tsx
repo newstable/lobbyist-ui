@@ -56,7 +56,7 @@ const ProposalCardCreated = (props: Props) => {
         <Box className="flex flex-col gap-4">
           {proposals?.map((p, idx) => (
             p.address === address ?
-              p.isClosed ?
+              !p.isClosed ?
                 <Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
                   <Box
                     className={classNames(
