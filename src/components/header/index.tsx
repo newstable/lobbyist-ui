@@ -22,7 +22,6 @@ import styles from "./styles.module.scss";
 import { providerOptions } from "../../providerOptions";
 import { toHex, truncateAddress } from "../../utils";
 
-
 const itemsList = [
     {
         name: "Polygon",
