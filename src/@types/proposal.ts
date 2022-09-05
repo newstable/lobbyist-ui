@@ -48,6 +48,7 @@ export type ActiveProposal = {
   totalVoteWeight: number;
   poolId: number;
   votes: number;
+  claim: boolean;
 }
 
 export enum EnumProposalType {
