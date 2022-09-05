@@ -56,59 +56,60 @@ const ProposalCardCreated = (props: Props) => {
         <Box className="flex flex-col gap-4">
           {proposals?.map((p, idx) => (
             p.address === address ?
-              <Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
-                <Box
-                  className={classNames(
-                    "grid gap-8",
-                    isAboveMd ? "grid-cols-5" : "grid-cols-2"
-                  )}
-                >
-                  <Box
-                    className={classNames("flex flex-col", !isAboveMd && "gap-1")}
-                  >
-                    <TextHead className={classNames(isAboveMd && "hidden")}>
-                      {colHeads[0]}
-                    </TextHead>
-                    <TextContent>{p.name.length > 20 ? (p.name.slice(0, 20) + "...") : p.name}</TextContent>
-                  </Box>
-                  <Box
-                    className={classNames("flex flex-col", !isAboveMd && "gap-1")}
-                  >
-                    <TextHead className={classNames(isAboveMd && "hidden")}>
-                      {colHeads[1]}
-                    </TextHead>
-                    <TextContent>${NumberType(p.reward)}</TextContent>
-                  </Box>
+              !p.isClosed ?
+                <Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
                   <Box
                     className={classNames(
-                      "flex flex-col",
-                      !isAboveMd && "gap-1 col-span-3"
+                      "grid gap-8",
+                      isAboveMd ? "grid-cols-5" : "grid-cols-2"
                     )}
                   >
-                    <TextHead className={classNames(isAboveMd && "hidden")}>
-                      {colHeads[2]}
-                    </TextHead>
-                    <TextContent>{NumberType(p.votes)}</TextContent>
+                    <Box
+                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                    >
+                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                        {colHeads[0]}
+                      </TextHead>
+                      <TextContent>{p.name.length > 20 ? (p.name.slice(0, 20) + "...") : p.name}</TextContent>
+                    </Box>
+                    <Box
+                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                    >
+                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                        {colHeads[1]}
+                      </TextHead>
+                      <TextContent>${NumberType(p.reward)}</TextContent>
+                    </Box>
+                    <Box
+                      className={classNames(
+                        "flex flex-col",
+                        !isAboveMd && "gap-1 col-span-3"
+                      )}
+                    >
+                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                        {colHeads[2]}
+                      </TextHead>
+                      <TextContent>{NumberType(p.votes)}</TextContent>
+                    </Box>
+                    <Box
+                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                    >
+                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                        {colHeads[3]}
+                      </TextHead>
+                      <TextContent>${p.votes == 0 ? ("0") : (
+                        (p.reward / p.votes).toFixed(2)
+                      )}</TextContent>
+                    </Box>
+                    <Box
+                      className={classNames("flex", isAboveMd && "justify-center")}
+                    >
+                      <Button variant="contained" color="tealLight" onClick={() => onJoinClick(p, idx)}>
+                        View
+                      </Button>
+                    </Box>
                   </Box>
-                  <Box
-                    className={classNames("flex flex-col", !isAboveMd && "gap-1")}
-                  >
-                    <TextHead className={classNames(isAboveMd && "hidden")}>
-                      {colHeads[3]}
-                    </TextHead>
-                    <TextContent>${p.votes == 0 ? ("0") : (
-                      (p.reward / p.votes).toFixed(2)
-                    )}</TextContent>
-                  </Box>
-                  <Box
-                    className={classNames("flex", isAboveMd && "justify-center")}
-                  >
-                    <Button variant="contained" color="tealLight" onClick={() => onJoinClick(p, idx)}>
-                      View
-                    </Button>
-                  </Box>
-                </Box>
-              </Box> : <></>
+                </Box> : <></> : <></>
           ))}
         </Box>
       </Content>
