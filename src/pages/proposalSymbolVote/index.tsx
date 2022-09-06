@@ -144,7 +144,7 @@ const ProposalSymbolVote = (props: Props) => {
 								</Button>
 							</Box>
 						) : (
-							<>
+							<Box className="flex gap-8">
 								<Button onClick={() => setModal(true)} className="proposer-button" variant="contained" color="tealLight">
 									Add Rewards
 								</Button>
@@ -161,7 +161,7 @@ const ProposalSymbolVote = (props: Props) => {
 										Vote
 									</Button>
 								)}
-							</>
+							</Box>
 						)
 						}
 					</Box>
