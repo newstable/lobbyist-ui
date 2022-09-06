@@ -45,6 +45,7 @@ const ProposalSymbolVote = (props: Props) => {
 	const location = useLocation();
 	const { symbol } = useParams();
 	const [searchParams, setSearchParams] = useSearchParams();
+	const [addrewardButton, setButton] = useState(true);
 
 	const isProposer = searchParams.get("proposer") && true;
 	const navState = location.state as any;
@@ -112,11 +113,13 @@ const ProposalSymbolVote = (props: Props) => {
 			id: currentProposal.poolId,
 			amount: addRewardAmount,
 			rewardtype: currentProposal.rewardCurrency,
-			walletAddress: walletAddress
+			walletAddress: walletAddress,
+			buttonType: addrewardButton
 		});
 		if (!result.status) {
 			NotificationManager.error(result.message, "Error");
 		} else {
+			setButton(false);
 			NotificationManager.success(result.message, "Success");
 		}
 	}
@@ -209,8 +212,11 @@ const ProposalSymbolVote = (props: Props) => {
 					</TextField>
 				</DialogContent>
 				<DialogActions className="modaladdpaper">
-					<Button onClick={() => { handleClose(); AddReward(); }}>Step 1. Approve</Button>
-					<Button onClick={() => { handleClose(); AddReward(); }}>Step 2. Add Rewards</Button>
+					{addrewardButton ?
+						<Button onClick={() => { AddReward(); }}>Approve</Button>
+						:
+						<Button onClick={() => { handleClose(); AddReward(); }}>Add Rewards</Button>
+					}
 				</DialogActions>
 			</Dialog>
 		</>

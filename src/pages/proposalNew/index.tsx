@@ -28,9 +28,9 @@ const ProposalNewPage = (props: Props) => {
             ) : (
               <ProposalConfirm />
             )
-          ) : prsalType && protocol && kpi ? (
-            <ProposalForm name={protocol} />
           ) : prsalType && protocol ? (
+            <ProposalForm name={protocol} />
+          ) : protocol ? (
             <ProposalKpi />
           ) : protocol ? (
             <ProposalType />

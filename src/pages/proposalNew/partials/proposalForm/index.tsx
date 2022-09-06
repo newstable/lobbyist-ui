@@ -210,7 +210,7 @@ const ProposalForm = (props: Props) => {
     };
 
     const isGovernance = prsalType === "governance";
-    const isFixed = kpi === "fixed";
+    const isFixed = prsalType === "fixed";
     const isVariable = !isGovernance && !isFixed;
 
     const onAddGaugeVariable = () => {
@@ -375,31 +375,6 @@ const ProposalForm = (props: Props) => {
                                                 : "Enter payout in reward currency per vote percent"
                                         }
                                     />
-                                    {/* {isGovernance ? (
-                                        <Box className="flex gap-4">
-                                            <FormSliderInput
-                                                label="Minimum Vote Weight"
-                                                helpText="The minimum vote weight that the user has to vote with in order to be eligible for the bribe"
-                                                name="minVoteWeightSlide"
-                                                inputName="minVoteWeightNum"
-                                                index={idx}
-                                                control={control}
-                                                setValue={setValue}
-                                                isArray
-                                                isFixed={true}
-                                            />
-                                        </Box>
-                                    ) : (
-                                        <FormRangeSliderInput
-                                            label="Range"
-                                            name={`range[${idx}].value`}
-                                            inputName={`rangeNum[${idx}].value`}
-                                            index={idx}
-                                            setValue={setValue}
-                                            control={control}
-                                            helpText="Select the range that you want to incentivise. The upper range would be considered the target vote. Open ended bribes require an upper range of 100%"
-                                        />
-                                    )} */}
                                 </Box>
                             </Box>
                         ))}

@@ -44,18 +44,20 @@ const createProposal = async (props: any) => {
 
 const addRewards = async (props: any) => {
     try {
-        const { id, amount, rewardtype, walletAddress } = props;
+        const { id, amount, rewardtype, walletAddress, buttonType } = props;
         const Reward = ERCContract(rewardtype);
         const myBalance = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(myBalance);
         if (Number(tokenAmount) < amount) {
             return ({ status: false, message: "Your reward balance is not enough!" });
         }
-        else {
-            const Pool = poolContract.connect(signer);
+        else if (buttonType) {
             const erc = Reward.connect(signer);
             var tx = await erc.approve(Addresses.Pool, ethers.utils.parseUnits(amount.toString()));
             await tx.wait();
+            return ({ status: true, message: "Successfully Approved!" });
+        } else {
+            const Pool = poolContract.connect(signer);
             const connectContract = await Pool.addReward(id, ethers.utils.parseUnits(amount.toString()));
             await connectContract.wait();
             var result = await axios.post("/api/addreward", { poolId: id, rewardAmount: amount });
