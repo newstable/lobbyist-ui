@@ -9,6 +9,7 @@ export enum EnumProtocolName {
   qidao = "QiDAO",
   aave = "Aave",
   vesq = "Vesq",
+  convex = "Convex",
 }
 
 export enum EnumProtocolSymbolName {

@@ -192,9 +192,9 @@ const ProposalForm = (props: Props) => {
         if (walletAddress === "") {
             NotificationManager.warning("Please connect wallet...!", "Warning");
         } else if (value.snapshotProposal == "") {
-            NotificationManager.warning("Please select proposal on snapshot!", "Warning");
+            NotificationManager.warning("Please select a proposal on snapshot!", "Warning");
         } else if (value.desiredVote == "") {
-            NotificationManager.warning("Please select proposal Option on snapshot!", "Warning");
+            NotificationManager.warning("Please select a choice!", "Warning");
         } else {
             setMyLoading(true);
             const result: any = await createProposal({ address: address, walletAddress: walletAddress, value: value, submitType: submitType });
@@ -240,30 +240,6 @@ const ProposalForm = (props: Props) => {
             <Box className="grid md:grid-cols-3 gap-8">
                 <Box className="flex flex-col md:col-span-2 gap-12">
                     <BoxForm className="flex flex-col p-8 md:p-20 rounded-md  gap-8">
-                        <FormTextField
-                            label="Proposal Name"
-                            name="proposalName"
-                            control={control}
-                            rules={{
-                                required: {
-                                    value: true,
-                                    message: "You must enter proposal name.",
-                                },
-                            }}
-                            placeholder="Enter  proposal name here"
-                        />
-                        <FormTextField
-                            label="Proposal Description"
-                            name="proposalDescription"
-                            rules={{
-                                required: {
-                                    value: true,
-                                    message:
-                                        "You must enter proposal description.",
-                                },
-                            }}
-                            control={control}
-                        />
                         <FormSelect
                             label="Snapshot Proposal"
                             placeholder="Choose a snashot proposal"
@@ -282,6 +258,17 @@ const ProposalForm = (props: Props) => {
                             />
                         )}
                         <FormTextField
+                            label="Proposal Name"
+                            name="proposalName"
+                            control={control}
+                            placeholder=""
+                        />
+                        <FormTextField
+                            label="Proposal Description"
+                            name="proposalDescription"
+                            control={control}
+                        />
+                        <FormTextField
                             label="Proposal End Time"
                             placeholder="Snapshot proposal end time"
                             name="endTime"
@@ -291,22 +278,14 @@ const ProposalForm = (props: Props) => {
                         />
                         {!isGovernance && isFixed && (
                             <FormSelect
-                                label="Select Gauge"
-                                placeholder="Choose gauge"
+                                label="Outcome Choice"
+                                placeholder="Choose a Choice"
                                 items={voteOption}
                                 name="desiredVote"
                                 control={control}
                             />
                         )}
-                        <FormSelect
-                            label="Reward Currency"
-                            placeholder="Choose your reward currency"
-                            items={tokens}
-                            setReward={setRewardType}
-                            setClickToken={clickToken}
-                            name="rewardCurrency"
-                            control={control}
-                        />
+                        
                         {/* {!isGovernance && (
                             <FormTextField
                                 label="Minimum Bribe"
@@ -375,6 +354,15 @@ const ProposalForm = (props: Props) => {
                                             isArray
                                         />
                                     )} */}
+                                    <FormSelect
+                            label="Reward Currency"
+                            placeholder="Choose your reward currency"
+                            items={tokens}
+                            setReward={setRewardType}
+                            setClickToken={clickToken}
+                            name="rewardCurrency"
+                            control={control}
+                        />
                                     <FormTextField
                                         label="Max Reward"
                                         name="payout"
@@ -384,7 +372,7 @@ const ProposalForm = (props: Props) => {
                                         index={idx}
                                         placeholder={
                                             isGovernance
-                                                ? "Amount that will be paid out if vote concludes with desired outcome"
+                                                ? "The maximum amount that will be paid out when the vote concludes"
                                                 : "Enter payout in reward currency per vote percent"
                                         }
                                     />
@@ -437,18 +425,28 @@ const ProposalForm = (props: Props) => {
                         <Box className="flex flex-col gap-8">
                             <Box className="grid grid-cols-3 gap-8">
                                 <Typography className="col-span-2">
-                                    Total Bond
-                                </Typography>
-                                <Typography className="text-right">
-                                    $3,500
-                                    <br />
-                                    3,500 USDC
-                                </Typography>
-                                <Typography className="col-span-2">
                                     Max Reward
                                 </Typography>
                                 <Typography className="text-right">
                                     {maxReward + " " + rewardType}
+                                     <br />
+                                    $0
+                                </Typography>
+                                <Typography className="col-span-2">
+                                    Lobbyist Fee
+                                </Typography>
+                                <Typography className="text-right">
+                                    2.5%
+                                    <br />
+                                    $0
+                                </Typography>
+                                <Typography className="col-span-2">
+                                    Total Reward
+                                </Typography>
+                                <Typography className="text-right">
+                                    {maxReward + " " + rewardType}
+                                    <br />
+                                    $0
                                 </Typography>
                             </Box>
                         </Box>

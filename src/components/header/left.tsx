@@ -3,10 +3,11 @@ import { useParams, useLocation } from "react-router-dom";
 import classNames from "classnames";
 import { Box, SvgIcon, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { ReactComponent as GaugeIcon } from "../../assets/icons/gauge.svg";
+import { ReactComponent as DashboardIcon } from "../../assets/icons/dash.svg";
 import { ReactComponent as ProQidaoIcon } from "../../assets/icons/pro-qidao.svg";
 import { ReactComponent as ProAaveIcon } from "../../assets/icons/pro-aave.svg";
 import { ReactComponent as ProVesqIcon } from "../../assets/icons/vesq.svg";
+import { ReactComponent as ConvexIcon } from "../../assets/icons/convex.svg";
 import { EnumProtocolName } from "../../@types/protocol";
 import styles from "./styles.module.scss";
 
@@ -22,11 +23,14 @@ const HeaderLeft = (props: Props) => {
   let subtitle = "";
   let TitleIcon: FunctionComponent<
     SVGProps<SVGSVGElement> & { title?: string | undefined }
-  > = () => <GaugeIcon viewBox="0 0 45 45" className={styles.iconGauge} />;
+  > = () => <DashboardIcon viewBox="0 0 45 45" className={styles.iconGauge} />;
 
   if (symbol) {
     title = EnumProtocolName[symbol as keyof typeof EnumProtocolName];
     switch (title) {
+      case EnumProtocolName.convex:
+        TitleIcon = ConvexIcon;
+        break;
       case EnumProtocolName.qidao:
         TitleIcon = ProQidaoIcon;
         break;
