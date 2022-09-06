@@ -296,7 +296,7 @@ const Header: FC = () => {
                 <div className="wallet-modal-container">
                     <div className="wallet-modal-header">
                         <div>Account</div>
-                        <div className="close">&times;</div>
+                        <div className="close" onClick={onHandleModalClose}>&times;</div>
                     </div>
                     <div className="wallet-modal-body">
                         <div className="justify-s w10">
@@ -304,12 +304,12 @@ const Header: FC = () => {
                             <div className="cursorpoint">Change</div>
                         </div>
                         <div className="flex justify-start w10 font-1">
-                            <div className="">0xbC7a...9051</div>
+                            <div className="address">{styledAddress}</div>
                             <div className=""></div>
                         </div>
-                        <div className="justify-s w10">
+                        <div className="justify-s w10 dialog-footer" >
                             <div className="cursorpoint"><ContentCopyIcon /> Copy Address</div>
-                            <div className="view"><OpenInNewIcon />View on Block Explorer</div>
+                            <a href={"https://polygonscan.com/address/" + account} className="view"><OpenInNewIcon />View on Block Explorer</a>
                         </div>
                     </div>
                     <div className="wallet-modal-footer">

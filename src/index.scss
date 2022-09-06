@@ -73,20 +73,32 @@ code {
         padding: 15px;
         gap: 15px;
         border-radius: 20px;
+        color: #7f8083;
 
         .font-1 {
             font-size: 20px;
             font-weight: bold;
         }
 
+        .address {
+            color: white;
+        }
+
         .cursorpoint {
+            color: #606677;
             cursor: pointer;
+
+            &:hover {
+                color: white;
+            }
         }
 
         .view {
             cursor: pointer;
+            color: #606677;
 
             &:hover {
+                color: white;
                 text-decoration: underline;
             }
         }
@@ -94,6 +106,7 @@ code {
 
     .wallet-modal-footer {
         display: flex;
+        font-size: 15px;
         justify-content: space-between;
         align-items: center;
     }
