@@ -89,7 +89,7 @@ const ProposalSymbolVote = (props: Props) => {
 				proposal: proposalInfo.id,
 				type: proposalInfo.type,
 				choice: proposalInfo.choices.indexOf(currentProposal.protocol) + 1,
-				reason: 'Choice 1 make lot of sense',
+				reason: 'This choice makes a lot of sense',
 				app: 'Lobbyist'
 			});
 			if (receipt) {
@@ -128,19 +128,16 @@ const ProposalSymbolVote = (props: Props) => {
 	return (
 		<>
 			<Box className="main-body flex flex-col grow">
-				<Box className="flex flex-col main-content gap-14">
+				<Box className="flex flex-col main-content gap-14 margindw">
 					<Box className="flex justify-between proposer-flex">
 						<NavBack />
 						{isProposer ? (
 							<Box className="flex gap-8">
-								<Button className="proposer-button" variant="contained" color="tealLight">
-									Copy Link
-								</Button>
 								<Button onClick={() => setModal(true)} className="proposer-button" variant="contained" color="tealLight">
 									Add Rewards
 								</Button>
-								<Button className="top-button" variant="contained" color="tealLight">
-									Release Rewards
+								<Button onClick={() => setModal(true)} className="proposer-button" variant="contained" color="tealLight">
+									Clawback
 								</Button>
 							</Box>
 						) : voteWeight == 0 ? (
@@ -196,9 +193,9 @@ const ProposalSymbolVote = (props: Props) => {
 				</Grid>
 				<Box className="mt-16 mb-32"></Box>
 			</Box >
-			<Dialog open={modal} onClose={handleClose}>
-				<DialogTitle>Input your reward Amount</DialogTitle>
-				<DialogContent>
+			<Dialog className="modaladd" open={modal} onClose={handleClose}>
+				<DialogTitle className="modaladdpaper">Add more rewards to the proposal</DialogTitle>
+				<DialogContent className="modaladdpaper">
 					<TextField
 						autoFocus
 						margin="dense"
@@ -211,9 +208,9 @@ const ProposalSymbolVote = (props: Props) => {
 					>
 					</TextField>
 				</DialogContent>
-				<DialogActions>
-					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={() => { handleClose(); AddReward(); }}>Ok</Button>
+				<DialogActions className="modaladdpaper">
+					<Button onClick={() => { handleClose(); AddReward(); }}>Step 1. Approve</Button>
+					<Button onClick={() => { handleClose(); AddReward(); }}>Step 2. Add Rewards</Button>
 				</DialogActions>
 			</Dialog>
 		</>
