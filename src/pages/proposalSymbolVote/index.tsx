@@ -148,9 +148,6 @@ const ProposalSymbolVote = (props: Props) => {
 								<Button onClick={() => setModal(true)} className="proposer-button" variant="contained" color="tealLight">
 									Add Rewards
 								</Button>
-								<Button onClick={() => setModal(true)} className="proposer-button" variant="contained" color="tealLight">
-									Claim
-								</Button>
 								{voteWeight == 0 ? (
 									<Button disabled variant="contained" color="secondary">
 										Vote
