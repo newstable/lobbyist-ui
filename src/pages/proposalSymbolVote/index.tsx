@@ -185,6 +185,7 @@ const ProposalSymbolVote = (props: Props) => {
 								<ProposalCardVaultReward
 									proposal={currentProposal}
 									isProposer={isProposer}
+									voteWeight={voteWeight}
 								/>
 							</Box>
 						</Box>

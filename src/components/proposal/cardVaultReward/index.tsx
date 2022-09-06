@@ -6,13 +6,14 @@ import { TextContent, TextHead } from "../../text";
 type Props = {
   proposal: Proposal;
   isProposer?: boolean | string | null;
+  voteWeight: number;
 };
 
 const Content = styled(CardContent)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
 }));
 
-const ProposalCardVaultReward = ({ proposal, isProposer }: Props) => {
+const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight }: Props) => {
   const colHeads = isProposer
     ? ["Total rewards to distribute", "Voting For"]
     : ["My Reward Amount", "Voting For"];
@@ -27,7 +28,7 @@ const ProposalCardVaultReward = ({ proposal, isProposer }: Props) => {
           ))}
         </Box>
         <Box className="grid grid-cols-2 gap-8">
-          <TextContent>${proposal.reward}</TextContent>
+          <TextContent>${proposal.reward / proposal.votes * voteWeight}</TextContent>
           <TextContent>{proposal.protocol}</TextContent>
         </Box>
       </Content>

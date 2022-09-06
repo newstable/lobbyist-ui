@@ -26,10 +26,8 @@ type Props = {
 const Content = styled(CardContent)(({ theme }) => ({}));
 
 const ProposalCardActive = (props: Props) => {
-	const [loading, setLoading] = useState(true);
 	const { address, proposals } = props;
 
-	let { symbol } = useParams();
 	const navigate = useNavigate();
 	const onJoinClick = (proposal: ActiveProposal, idx: number) => {
 		const path = idx % 2 === 0 ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
