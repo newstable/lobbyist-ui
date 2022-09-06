@@ -17,6 +17,7 @@ import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
 import { ReactComponent as MirrorIcon } from "../../assets/icons/mirror.svg";
 import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
+import Logo from "../../assets/icons/logo.svg";
 import styles from "./styles.module.scss";
 import { colors } from "../../common";
 
@@ -158,9 +159,7 @@ const SidebarMenu = (props: Props) => {
             )}
             underline="none"
           >
-            <Typography variant="h6" className="!font-bold">
-              Lobbyist
-            </Typography>
+          <img src={Logo} alt="" />
           </Link>
         </Box>
 
@@ -235,9 +234,7 @@ const SidebarMenu = (props: Props) => {
                       >
                         <SvgIcon
                           component={getIcon(link.icon)}
-                          viewBox={
-                            link.icon === "gauge" ? "0 0 45 45" : "0 0 31 31"
-                          }
+                          viewBox="0 0 31 31"
                         />
                       </Box>
                       <Typography

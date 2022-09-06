@@ -614,7 +614,8 @@ input:checked+.toggle-bg {
 }
 
 .container {
-    width: 100%
+    width: 100%;
+    margin-bottom: 5rem;
 }
 
 /* 
@@ -4091,4 +4092,11 @@ input:checked+.toggle-bg {
     bottom: auto;
     top: -10px;
     transform: translateX(-50%) scaleY(-1)
+}
+.modaladd {
+    background-color: 31, 32, 40, 0.96;
+}
+
+.modaladdpaper {
+    background-color: #282931;
 }
