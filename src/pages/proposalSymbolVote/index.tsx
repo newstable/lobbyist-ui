@@ -143,14 +143,25 @@ const ProposalSymbolVote = (props: Props) => {
 									Clawback
 								</Button>
 							</Box>
-						) : voteWeight == 0 ? (
-							<Button disabled variant="contained" color="secondary">
-								Vote
-							</Button>
 						) : (
-							<Button onClick={voteProposal} variant="contained" color="tealLight">
-								Vote
-							</Button>
+							<>
+								<Button onClick={() => setModal(true)} className="proposer-button" variant="contained" color="tealLight">
+									Add Rewards
+								</Button>
+								<Button onClick={() => setModal(true)} className="proposer-button" variant="contained" color="tealLight">
+									Claim
+								</Button>
+								{voteWeight == 0 ? (
+									<Button disabled variant="contained" color="secondary">
+										Vote
+									</Button>
+
+								) : (
+									<Button onClick={voteProposal} variant="contained" color="tealLight">
+										Vote
+									</Button>
+								)}
+							</>
 						)
 						}
 					</Box>
