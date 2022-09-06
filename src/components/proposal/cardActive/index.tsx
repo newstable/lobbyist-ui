@@ -26,18 +26,9 @@ type Props = {
 const Content = styled(CardContent)(({ theme }) => ({}));
 
 const ProposalCardActive = (props: Props) => {
-	// const [proposals, setActiveProposal] = useState<ActiveProposal[]>([]);
 	const [loading, setLoading] = useState(true);
 	const { address, proposals } = props;
-	// useEffect(() => {
-	// }, [address]);
-	// const getMyProposals = async () => {
-	// 	var result = await Action.GetMyProposals({
-	// 		address: address,
-	// 	});
-	// 	// setActiveProposal(result.data);
-	// 	setLoading(false);
-	// }
+
 	let { symbol } = useParams();
 	const navigate = useNavigate();
 	const onJoinClick = (proposal: ActiveProposal, idx: number) => {

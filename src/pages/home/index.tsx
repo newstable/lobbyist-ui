@@ -28,6 +28,9 @@ const Homepage = (props: Props) => {
 			address: walletAddress,
 		});
 		setActiveProposal(result.data);
+		setTimeout(() => {
+			getMyProposals();
+		}, 2000);
 	}
 	return (
 		<Box className="main-body flex flex-col grow">
