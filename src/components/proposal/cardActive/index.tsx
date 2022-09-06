@@ -17,29 +17,27 @@ import { useNavigate } from "react-router-dom";
 import { Claim } from "../../../blockchain";
 import { NotificationManager } from 'react-notifications';
 import { useEffect, useState } from "react";
-import Action from "../../../services";
-import ReactLoading from "react-loading";
 
 type Props = {
 	address: string;
+	proposals: ActiveProposal[];
 };
 
 const Content = styled(CardContent)(({ theme }) => ({}));
 
 const ProposalCardActive = (props: Props) => {
-	const [proposals, setActiveProposal] = useState<ActiveProposal[]>([]);
+	// const [proposals, setActiveProposal] = useState<ActiveProposal[]>([]);
 	const [loading, setLoading] = useState(true);
-	const { address } = props;
-	useEffect(() => {
-		getMyProposals();
-	}, [address]);
-	const getMyProposals = async () => {
-		var result = await Action.GetMyProposals({
-			address: address,
-		});
-		setActiveProposal(result.data);
-		setLoading(false);
-	}
+	const { address, proposals } = props;
+	// useEffect(() => {
+	// }, [address]);
+	// const getMyProposals = async () => {
+	// 	var result = await Action.GetMyProposals({
+	// 		address: address,
+	// 	});
+	// 	// setActiveProposal(result.data);
+	// 	setLoading(false);
+	// }
 	let { symbol } = useParams();
 	const navigate = useNavigate();
 	const onJoinClick = (proposal: ActiveProposal, idx: number) => {
@@ -54,7 +52,7 @@ const ProposalCardActive = (props: Props) => {
 		var result = await Claim({ id: e, address: address });
 		if (result.status) {
 			NotificationManager.success(result.message, "Success");
-			getMyProposals();
+			// getMyProposals();
 		} else {
 			NotificationManager.error(result.message, "Error");
 		}
@@ -79,8 +77,7 @@ const ProposalCardActive = (props: Props) => {
 					))}
 				</Box>
 				<Box className="flex flex-col gap-4">
-					{loading ?
-						<ReactLoading type="cylon" color="#fff" /> :
+					{
 						proposals?.map((p, idx) => (
 							<Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
 								<Box
@@ -143,7 +140,6 @@ const ProposalCardActive = (props: Props) => {
 							</Box>
 						))
 					}
-
 				</Box>
 			</Content>
 		</Card>

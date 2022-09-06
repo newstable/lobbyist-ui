@@ -5,8 +5,12 @@ import classNames from "classnames";
 import { colors } from "../../common";
 import { ProposalCardHeader } from "../proposal";
 import { TextHead } from "../text";
+import { useEffect, useState } from "react";
+import { Proposal, ActiveProposal } from "../../@types/proposal";
 
-type Props = {};
+type Props = {
+  proposals: ActiveProposal[];
+};
 
 const Content = styled(CardContent)(({ theme }) => ({
   backgroundColor: theme.palette.tealLight.main,
@@ -14,6 +18,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 }));
 
 const CardRewards = (props: Props) => {
+  const { proposals } = props;
   const theme = useTheme();
   const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
   const cols = [
@@ -23,9 +28,13 @@ const CardRewards = (props: Props) => {
   ];
   const data = [
     { value: "$28,912", },
-    { value: "3" },
+    { value: 3 },
     { value: "16" }
   ]
+  useEffect(() => {
+    data[1].value = proposals.length;
+    console.log(data);
+  }, [proposals])
   return (
     <Card className="">
       <ProposalCardHeader title="My total rewards"></ProposalCardHeader>
