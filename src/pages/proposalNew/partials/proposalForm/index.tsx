@@ -80,7 +80,6 @@ const ProposalForm = (props: Props) => {
     });
 
     const ClickSnap = (e: any) => {
-        console.log(data?.proposals[e]);
         const temp = [] as SnapShotData[];
         for (var i = 0; i < data?.proposals[e].choices.length; i++) {
             temp.push({
@@ -285,7 +284,7 @@ const ProposalForm = (props: Props) => {
                                 control={control}
                             />
                         )}
-                        
+
                         {/* {!isGovernance && (
                             <FormTextField
                                 label="Minimum Bribe"
@@ -355,14 +354,14 @@ const ProposalForm = (props: Props) => {
                                         />
                                     )} */}
                                     <FormSelect
-                            label="Reward Currency"
-                            placeholder="Choose your reward currency"
-                            items={tokens}
-                            setReward={setRewardType}
-                            setClickToken={clickToken}
-                            name="rewardCurrency"
-                            control={control}
-                        />
+                                        label="Reward Currency"
+                                        placeholder="Choose your reward currency"
+                                        items={tokens}
+                                        setReward={setRewardType}
+                                        setClickToken={clickToken}
+                                        name="rewardCurrency"
+                                        control={control}
+                                    />
                                     <FormTextField
                                         label="Max Reward"
                                         name="payout"
@@ -429,7 +428,7 @@ const ProposalForm = (props: Props) => {
                                 </Typography>
                                 <Typography className="text-right">
                                     {maxReward + " " + rewardType}
-                                     <br />
+                                    <br />
                                     $0
                                 </Typography>
                                 <Typography className="col-span-2">
@@ -438,7 +437,7 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     2.5%
                                     <br />
-                                    $0
+                                    ${maxReward * 0.25}
                                 </Typography>
                                 <Typography className="col-span-2">
                                     Total Reward
@@ -446,7 +445,7 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     {maxReward + " " + rewardType}
                                     <br />
-                                    $0
+                                    ${maxReward * 0.75}
                                 </Typography>
                             </Box>
                         </Box>

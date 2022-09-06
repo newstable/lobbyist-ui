@@ -33,7 +33,6 @@ const CardRewards = (props: Props) => {
   ]
   useEffect(() => {
     data[1].value = "$" + proposals.length;
-    console.log(data);
   }, [proposals])
   return (
     <Card className="">

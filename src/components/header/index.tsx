@@ -30,6 +30,7 @@ import { HeaderLeft } from "./left";
 import styles from "./styles.module.scss";
 import { providerOptions } from "../../providerOptions";
 import { toHex, truncateAddress } from "../../utils";
+import useClipboard from "react-use-clipboard";
 
 const itemsList = [
     {
@@ -78,6 +79,7 @@ const Header: FC = () => {
     const anchorRef = useRef<HTMLButtonElement>(null);
     const [selectedCrypto, setselectedCrypto] = useState("Polygon");
     const [selectedImg, setselectedImg] = useState("../../../../assets/chains/matic.svg");
+    const [isCopied, setCopied] = useClipboard(account);
 
     var styledAddress = account
         ? account.slice(0, 4) + "..." + account.slice(-4)
@@ -103,6 +105,10 @@ const Header: FC = () => {
             setError(error);
         }
     };
+
+    useEffect(() => {
+        switchNetwork("0x89");
+    }, [])
 
     const switchNetwork = async (network: string) => {
         try {
@@ -198,6 +204,12 @@ const Header: FC = () => {
         setWalletInfo(false);
     };
 
+    const changeAddress = async () => {
+        await web3Modal.clearCachedProvider();
+        onHandleModalClose();
+        connectWallet();
+    }
+
     return (
         <>
             <header
@@ -210,7 +222,7 @@ const Header: FC = () => {
                 <Box className="hidden mlg:flex gap-6">
                     <Button
                         variant="contained"
-                        color="third"
+                        color={selectedCrypto == "Polygon" ? "third" : "tealLight"}
                         disableRipple
                         className="!cursor-default"
                         component="button"
@@ -301,14 +313,14 @@ const Header: FC = () => {
                     <div className="wallet-modal-body">
                         <div className="justify-s w10">
                             <div className="">Connected with Metamask</div>
-                            <div className="cursorpoint">Change</div>
+                            <div className="cursorpoint" onClick={() => { changeAddress(); }}>Change</div>
                         </div>
                         <div className="flex justify-start w10 font-1">
                             <div className="address">{styledAddress}</div>
                             <div className=""></div>
                         </div>
                         <div className="justify-s w10 dialog-footer" >
-                            <div className="cursorpoint"><ContentCopyIcon /> Copy Address</div>
+                            <div className="cursorpoint" onClick={setCopied}><ContentCopyIcon />{isCopied ? "Copied" : "Copy address"}</div>
                             <a href={"https://polygonscan.com/address/" + account} className="view"><OpenInNewIcon />View on Block Explorer</a>
                         </div>
                     </div>

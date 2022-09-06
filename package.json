@@ -41,6 +41,7 @@
         "react-router-dom": "^6.3.0",
         "react-scripts": "^4.0.3",
         "react-swipeable-views": "^0.14.0",
+        "react-use-clipboard": "^1.0.8",
         "redux": "^4.2.0",
         "sass": "^1.54.2",
         "squarelink": "^1.1.4",
