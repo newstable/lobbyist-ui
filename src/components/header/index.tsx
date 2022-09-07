@@ -87,7 +87,8 @@ const Header: FC = () => {
 
     const connectWallet = async () => {
         try {
-            const library = new ethers.providers.Web3Provider(Provider);
+            const provider = await web3Modal.connect();
+            const library = new ethers.providers.Web3Provider(provider);
             const accounts = await library.listAccounts();
             const network = await library.getNetwork();
             setLibrary(library);

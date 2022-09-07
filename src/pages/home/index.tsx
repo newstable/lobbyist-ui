@@ -17,7 +17,6 @@ const Homepage = (props: Props) => {
 	const walletAddress: any = useSelector(
 		(state: RootState) => state.wallet.address
 	);
-	// const [proposals, setActiveProposal] = useState<ActiveProposal[]>([]);
 	const proposalState = useSelector((state) => state.proposal);
 	// @ts-ignore
 	const filteredProposals: any = proposalState.currentProposal.data;
