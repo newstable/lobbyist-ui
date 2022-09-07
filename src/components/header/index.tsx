@@ -36,7 +36,7 @@ import Provider from "./provider";
 const itemsList = [
     {
         name: "Polygon",
-        id: "0x89",
+        id: "0x13881",
         img: "../../../../assets/chains/matic.svg"
     },
     {
@@ -123,9 +123,9 @@ const Header: FC = () => {
     };
 
     useEffect(() => {
-        if (chainId != "0x89" || chainId != "0x1") {
+        if (chainId != "0x13881" || chainId != "0x1") {
             if (selectedCrypto == "Polygon") {
-                switchNetwork("0x89");
+                switchNetwork("0x13881");
             } else {
                 switchNetwork("0x1");
             }

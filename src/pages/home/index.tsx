@@ -7,7 +7,6 @@ import {
 import { useEffect, useState } from "react";
 import { useSelector, RootState } from "../../redux/store";
 import Action from "../../services";
-import { Proposal, ActiveProposal } from "../../@types/proposal";
 
 type Props = {};
 
@@ -15,9 +14,9 @@ const Homepage = (props: Props) => {
 	const walletAddress: any = useSelector(
 		(state: RootState) => state.wallet.address
 	);
-	const proposalState = useSelector((state) => state.proposal);
+	const proposalState = useSelector((state) => state.activeProposal);
 	// @ts-ignore
-	const filteredProposals: any = proposalState.currentProposal.data;
+	const filteredProposals: any = proposalState.currentProposal;
 
 	useEffect(() => {
 		getMyProposals();

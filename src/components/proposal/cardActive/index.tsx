@@ -29,9 +29,9 @@ const Content = styled(CardContent)(({ theme }) => ({}));
 const ProposalCardActive = (props: Props) => {
 	const { address } = props;
 
-	const proposalState = useSelector((state) => state.activeProposal);
-	// @ts-ignore
-	const proposals: ActiveProposal[] = proposalState.activeProposal.data;
+	const proposals: ActiveProposal[] = useSelector(
+		(state: RootState) => state.activeProposal.activeProposal
+	);
 
 	const navigate = useNavigate();
 	const onJoinClick = (proposal: ActiveProposal, idx: number) => {
