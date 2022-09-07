@@ -59,7 +59,6 @@ const ProposalSymbolVote = (props: Props) => {
 		const proposalinfo = await getProposal({
 			variables: { id: currentProposal.proposalId }
 		})
-		console.log(proposalinfo.data.proposal);
 		setProposalInfo(proposalinfo.data.proposal);
 		const req = {
 			strategies: proposalinfo.data.proposal.strategies,

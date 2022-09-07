@@ -17,16 +17,21 @@ import { useNavigate } from "react-router-dom";
 import { Claim } from "../../../blockchain";
 import { NotificationManager } from 'react-notifications';
 import { useEffect, useState } from "react";
+import { useSelector, RootState } from "../../../redux/store";
 
 type Props = {
 	address: string;
-	proposals: ActiveProposal[];
+	// proposals: ActiveProposal[];
 };
 
 const Content = styled(CardContent)(({ theme }) => ({}));
 
 const ProposalCardActive = (props: Props) => {
-	const { address, proposals } = props;
+	const { address } = props;
+
+	const proposals: ActiveProposal[] = useSelector(
+		(state: RootState) => state.activeProposal.activeProposal
+	);
 
 	const navigate = useNavigate();
 	const onJoinClick = (proposal: ActiveProposal, idx: number) => {

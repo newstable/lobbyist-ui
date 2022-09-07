@@ -31,6 +31,7 @@ import styles from "./styles.module.scss";
 import { providerOptions } from "../../providerOptions";
 import { toHex, truncateAddress } from "../../utils";
 import useClipboard from "react-use-clipboard";
+import Provider from "./provider";
 
 const itemsList = [
     {
@@ -65,7 +66,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const Header: FC = () => {
-    const [provider, setProvider] = useState();
     const [library, setLibrary]: any = useState();
     const [account, setAccount] = useState("");
     const [signature, setSignature] = useState("");
@@ -87,11 +87,9 @@ const Header: FC = () => {
 
     const connectWallet = async () => {
         try {
-            const provider = await web3Modal.connect();
-            const library = new ethers.providers.Web3Provider(provider);
+            const library = new ethers.providers.Web3Provider(Provider);
             const accounts = await library.listAccounts();
             const network = await library.getNetwork();
-            setProvider(provider);
             setLibrary(library);
             if (accounts) {
                 setAccount(accounts[0]);
@@ -109,6 +107,19 @@ const Header: FC = () => {
     useEffect(() => {
         switchNetwork("0x89");
     }, [])
+
+    // Provider.on("accountsChanged", (account: string[]) => {
+    //     console.log(account);
+    // })
+
+    useEffect(() => {
+        let etherscanProvider = new ethers.providers.EtherscanProvider();
+        etherscanProvider.getHistory(account).then((history) => {
+            history.forEach((tx) => {
+                console.log("Hello", tx);
+            })
+        })
+    }, [account])
 
     const switchNetwork = async (network: string) => {
         try {
@@ -239,6 +250,7 @@ const Header: FC = () => {
                         placement="bottom-start"
                         transition
                         disablePortal
+                        style={{ zIndex: "100000" }}
                     >
                         {({ TransitionProps, placement }) => (
                             <Grow

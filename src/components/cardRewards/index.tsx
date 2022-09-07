@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { Proposal, ActiveProposal } from "../../@types/proposal";
 
 type Props = {
-  proposals: ActiveProposal[];
 };
 
 const Content = styled(CardContent)(({ theme }) => ({
@@ -18,7 +17,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 }));
 
 const CardRewards = (props: Props) => {
-  const { proposals } = props;
+  // const { proposals } = props;
   const theme = useTheme();
   const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
   const cols = [
@@ -31,9 +30,9 @@ const CardRewards = (props: Props) => {
     { value: "$0" },
     { value: "0" }
   ]
-  useEffect(() => {
-    data[1].value = "$" + proposals.length;
-  }, [proposals])
+  // useEffect(() => {
+  //   data[1].value = "$" + proposals.length;
+  // }, [proposals])
   return (
     <Card className="">
       <ProposalCardHeader title="My Stats"></ProposalCardHeader>
