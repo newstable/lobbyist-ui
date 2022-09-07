@@ -53,7 +53,7 @@ const GetVoteWeight = async (req: any) => {
 const GetMyProposals = async (req: any) => {
     try {
         var res = await axios.post("/api/getmyproposals", req);
-        dispatch(setActiveProposal(res.data));
+        dispatch(setActiveProposal(res.data.data));
         setTimeout(() => {
             GetMyProposals(req);
         }, 5000);
