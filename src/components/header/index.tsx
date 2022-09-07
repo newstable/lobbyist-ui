@@ -80,6 +80,19 @@ const Header: FC = () => {
     const [selectedCrypto, setselectedCrypto] = useState("Polygon");
     const [selectedImg, setselectedImg] = useState("../../../../assets/chains/matic.svg");
     const [isCopied, setCopied] = useClipboard(account);
+    const [copyClipboard, setCopyClipboard] = useState(false);
+
+    const addressCopy = () => {
+        setCopyClipboard(true);
+    }
+
+    useEffect(() => {
+        if (copyClipboard) {
+            setTimeout(() => {
+                setCopyClipboard(false);
+            }, 2000);
+        }
+    }, [copyClipboard])
 
     var styledAddress = account
         ? account.slice(0, 4) + "..." + account.slice(-4)
@@ -88,6 +101,13 @@ const Header: FC = () => {
     const connectWallet = async () => {
         try {
             const provider = await web3Modal.connect();
+            provider.on("accountsChanged", async (accounts: string[]) => {
+                if (accounts.length == 0) {
+                    await web3Modal.clearCachedProvider();
+                    dispatch(setWalletAddress(""));
+                    refreshState();
+                }
+            })
             const library = new ethers.providers.Web3Provider(provider);
             const accounts = await library.listAccounts();
             const network = await library.getNetwork();
@@ -97,21 +117,20 @@ const Header: FC = () => {
                 dispatch(setWalletAddress(accounts[0]));
             }
             setChainId(network.chainId);
-            if (selectedCrypto != "Polygon") {
-                switchNetwork("Polygon");
-            }
         } catch (error: any) {
             setError(error);
         }
     };
 
     useEffect(() => {
-        switchNetwork("0x89");
-    }, [])
-
-    // Provider.on("accountsChanged", (account: string[]) => {
-    //     console.log(account);
-    // })
+        if (chainId != "0x89" || chainId != "0x1") {
+            if (selectedCrypto == "Polygon") {
+                switchNetwork("0x89");
+            } else {
+                switchNetwork("0x1");
+            }
+        }
+    }, [account])
 
     useEffect(() => {
         let etherscanProvider = new ethers.providers.EtherscanProvider();
@@ -333,7 +352,7 @@ const Header: FC = () => {
                             <div className=""></div>
                         </div>
                         <div className="justify-s w10 dialog-footer" >
-                            <div className="cursorpoint" onClick={setCopied}><ContentCopyIcon />{isCopied ? "Copied" : "Copy address"}</div>
+                            <div className="cursorpoint" onClick={() => { setCopied(); addressCopy(); }}><ContentCopyIcon />{copyClipboard ? "Copied" : "Copy address"}</div>
                             <a href={"https://polygonscan.com/address/" + account} className="view"><OpenInNewIcon />View on Block Explorer</a>
                         </div>
                     </div>

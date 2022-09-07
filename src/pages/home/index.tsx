@@ -6,8 +6,6 @@ import {
 } from "../../components";
 import { useEffect, useState } from "react";
 import { useSelector, RootState } from "../../redux/store";
-import { dispatch } from "../../redux/store";
-import { setActiveProposal } from "../../redux/slices/activeProposal";
 import Action from "../../services";
 import { Proposal, ActiveProposal } from "../../@types/proposal";
 
@@ -25,13 +23,9 @@ const Homepage = (props: Props) => {
 		getMyProposals();
 	}, [walletAddress]);
 	const getMyProposals = async () => {
-		var result = await Action.GetMyProposals({
+		await Action.GetMyProposals({
 			address: walletAddress,
 		});
-		dispatch(setActiveProposal(result.data));
-		setTimeout(() => {
-			getMyProposals();
-		}, 2000);
 	}
 	return (
 		<Box className="main-body flex flex-col grow">

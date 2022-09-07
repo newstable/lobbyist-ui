@@ -1,5 +1,7 @@
 import axios from "axios";
 import { setCurrentProposal } from "../redux/slices/proposal";
+import { setActiveProposal } from "../redux/slices/activeProposal";
+
 import { dispatch } from "../redux/store";
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVERENDPOINT;
@@ -51,7 +53,10 @@ const GetVoteWeight = async (req: any) => {
 const GetMyProposals = async (req: any) => {
     try {
         var res = await axios.post("/api/getmyproposals", req);
-        return res.data;
+        dispatch(setActiveProposal(res.data));
+        setTimeout(() => {
+            GetMyProposals(req);
+        }, 5000);
     } catch (err) {
         console.log(err);
     }
