@@ -28,7 +28,7 @@ const Homepage = (props: Props) => {
 		var result = await Action.GetMyProposals({
 			address: walletAddress,
 		});
-		setActiveProposal(result.data);
+		dispatch(setActiveProposal(result.data));
 		setTimeout(() => {
 			getMyProposals();
 		}, 2000);
