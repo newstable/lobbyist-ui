@@ -132,15 +132,6 @@ const Header: FC = () => {
         }
     }, [account])
 
-    useEffect(() => {
-        let etherscanProvider = new ethers.providers.EtherscanProvider();
-        etherscanProvider.getHistory(account).then((history) => {
-            history.forEach((tx) => {
-                console.log("Hello", tx);
-            })
-        })
-    }, [account])
-
     const switchNetwork = async (network: string) => {
         try {
             await library.provider.request({

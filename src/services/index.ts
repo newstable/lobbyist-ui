@@ -54,9 +54,6 @@ const GetMyProposals = async (req: any) => {
     try {
         var res = await axios.post("/api/getmyproposals", req);
         dispatch(setActiveProposal(res.data.data));
-        setTimeout(() => {
-            GetMyProposals(req);
-        }, 5000);
     } catch (err) {
         console.log(err);
     }
