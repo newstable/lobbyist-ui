@@ -81,6 +81,7 @@ const Header: FC = () => {
     const [selectedImg, setselectedImg] = useState("../../../../assets/chains/matic.svg");
     const [isCopied, setCopied] = useClipboard(account);
     const [copyClipboard, setCopyClipboard] = useState(false);
+    const [walletType, setWalletType] = useState("");
 
     const addressCopy = () => {
         setCopyClipboard(true);
@@ -109,6 +110,10 @@ const Header: FC = () => {
                 }
             })
             const library = new ethers.providers.Web3Provider(provider);
+            if (library.connection.url == "metamask")
+                setWalletType("Metamask")
+            else
+                setWalletType(library.connection.url);
             const accounts = await library.listAccounts();
             const network = await library.getNetwork();
             setLibrary(library);
@@ -329,7 +334,7 @@ const Header: FC = () => {
                     </div>
                     <div className="wallet-modal-body">
                         <div className="justify-s w10">
-                            <div className="">Connected with Metamask</div>
+                            <div className="">Connected with {walletType}</div>
                             <div className="cursorpoint" onClick={() => { changeAddress(); }}>Change</div>
                         </div>
                         <div className="flex justify-start w10 font-1">

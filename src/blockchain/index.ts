@@ -31,8 +31,8 @@ const createProposal = async (props: any) => {
         } else if (!submitType) {
             const ERCContract = Reward.connect(signer);
             var tx = await ERCContract.approve(Addresses.Pool, ethers.utils.parseUnits(value.payout));
-            await tx.wait();
             console.log(tx);
+            await tx.wait();
             return ({ status: true, message: "Successfully approved!" });
         } else if (submitType) {
             const Pool = poolContract.connect(signer);
