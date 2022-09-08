@@ -23,6 +23,7 @@ import { dispatch } from "../../../../redux/store";
 import { setClickAddress } from "../../../../redux/slices/clickToken";
 import loader from "../../../../assets/loader.gif";
 import { createProposal } from "../../../../blockchain";
+import { Coins } from "../../../../blockchain";
 
 const BoxForm = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -51,6 +52,7 @@ const ProposalForm = (props: Props) => {
     const [proposalDescription, setProposalDescription] = useState("");
     const [rewardType, setRewardType] = useState("WMATIC");
     const [maxReward, setMaxReward] = useState(0);
+    const [usd, setUsd] = useState(0);
     const walletAddress: any = useSelector(
         (state: RootState) => state.wallet.address
     );
@@ -67,6 +69,15 @@ const ProposalForm = (props: Props) => {
             setValue("platformType", "vesq");
         }
     }, []);
+
+    useEffect(() => {
+        const tokenPrice = async () => {
+            var currencyType = tokens.filter(token => token.display == rewardType)
+            var price = await Coins(currencyType[0].api);
+            setUsd(price);
+        }
+        tokenPrice();
+    }, [maxReward])
 
     useEffect(() => {
         if (walletAddress !== "") {
@@ -409,7 +420,7 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     {maxReward + " " + rewardType}
                                     <br />
-                                    $0
+                                    ${maxReward * usd}
                                 </Typography>
                                 <Typography className="col-span-2">
                                     Lobbyist Fee
@@ -417,7 +428,7 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     2.5%
                                     <br />
-                                    ${maxReward * 0.025}
+                                    ${maxReward * 0.025 * usd}
                                 </Typography>
                                 <Typography className="col-span-2">
                                     Total Reward
@@ -425,7 +436,7 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     {maxReward + " " + rewardType}
                                     <br />
-                                    ${maxReward * 0.975}
+                                    ${maxReward * 0.975 * usd}
                                 </Typography>
                             </Box>
                         </Box>

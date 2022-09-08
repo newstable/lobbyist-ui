@@ -24,19 +24,25 @@ const App = () => {
     return getTheme(darkMode);
   }, [darkMode]);
 
-  var timeset: any = null;
   useEffect(() => {
     setAddress(walletAddress);
   }, [walletAddress]);
 
   const AllInfo = async () => {
-    await Action.Proposal_load({ address: address });
-    setLoading(false);
+    try {
+      await Action.Proposal_load({ address: address });
+      setLoading(false);
+      setTimeout(() => {
+        AllInfo();
+      }, 5000);
+    } catch {
+      setTimeout(() => {
+        AllInfo();
+      }, 5000);
+    }
   }
 
-  setTimeout(async () => {
-    AllInfo();
-  }, 5000);
+  AllInfo();
 
   return (
     <ThemeProvider theme={theme}>
