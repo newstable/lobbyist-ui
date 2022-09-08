@@ -29,7 +29,7 @@ const ProposalCardActive = (props: Props) => {
 
 	const navigate = useNavigate();
 	const onJoinClick = (proposal: Proposal, idx: number) => {
-		const path = idx % 2 === 0 ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
+		const path = proposal.address !== address ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
 		navigate(path, {
 			state: {
 				proposal,
