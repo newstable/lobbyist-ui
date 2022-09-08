@@ -130,6 +130,9 @@ const ProposalSymbolVote = (props: Props) => {
 			walletAddress: walletAddress,
 			buttonType: addrewardButton
 		});
+		if (addrewardButton) {
+			handleClose();
+		}
 		if (!result.status) {
 			NotificationManager.error(result.message, "Error");
 		} else {
@@ -252,7 +255,7 @@ const ProposalSymbolVote = (props: Props) => {
 					{addrewardButton ?
 						<Button onClick={() => { AddReward(); }}>Approve</Button>
 						:
-						<Button onClick={() => { handleClose(); AddReward(); }}>Add Rewards</Button>
+						<Button onClick={() => { AddReward(); }}>Add Rewards</Button>
 					}
 				</DialogActions>
 			</Dialog>

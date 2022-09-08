@@ -12,8 +12,16 @@ const signer = provider.getSigner();
 const CoinGeckoClient = new CoinGecko();
 var history: History[] = [];
 
-if (localStorage.getItem('history'))
-    history.push(JSON.parse(`${localStorage.getItem('history')}`));
+if (localStorage.getItem('history')) {
+    var data = JSON.parse(`${localStorage.getItem('history')}`);
+    data.forEach((element: any) => {
+        history.push({
+            type: element.type,
+            rewardCurrency: element.rewardCurrency,
+            address: element.address
+        });
+    });
+}
 
 const createProposal = async (props: any) => {
     try {
@@ -43,7 +51,7 @@ const createProposal = async (props: any) => {
                 type: "Approve",
                 rewardCurrency: rewardCurrency[0].display,
                 address: walletAddress
-            })
+            });
             localStorage.setItem("history", JSON.stringify(history));
             return ({ status: true, message: "Successfully approved!" });
         } else if (submitType) {
