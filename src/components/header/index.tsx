@@ -18,6 +18,9 @@ import { setWalletAddress } from "../../redux/slices/wallet";
 import { dispatch } from "../../redux/store";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import CallMadeSharpIcon from '@mui/icons-material/CallMadeSharp';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import { History } from "../../@types/proposal";
 
 import { colors } from "../../common";
 import { HeaderLeft } from "./left";
@@ -61,12 +64,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 const Header: FC = () => {
     const [library, setLibrary]: any = useState();
     const [account, setAccount] = useState("");
-    const [signature, setSignature] = useState("");
     const [error, setError] = useState("");
     const [chainId, setChainId]: any = useState();
-    const [message, setMessage] = useState("");
-    const [signedMessage, setSignedMessage] = useState("");
-    const [verified, setVerified] = useState();
     const [open, setOpen] = useState(false);
     const [walletInfo, setWalletInfo] = useState(false);
     const anchorRef = useRef<HTMLButtonElement>(null);
@@ -75,10 +74,19 @@ const Header: FC = () => {
     const [isCopied, setCopied] = useClipboard(account);
     const [copyClipboard, setCopyClipboard] = useState(false);
     const [walletType, setWalletType] = useState("");
+    const [history, setHistory] = useState<History[]>([]);
 
     const addressCopy = () => {
         setCopyClipboard(true);
     }
+
+    useEffect(() => {
+        if (localStorage.getItem("history")?.length)
+            setHistory(JSON.parse(`${localStorage.getItem("history")}`));
+        else {
+            setHistory([]);
+        }
+    }, [walletInfo])
 
     useEffect(() => {
         if (copyClipboard) {
@@ -165,9 +173,6 @@ const Header: FC = () => {
 
     const refreshState = () => {
         setAccount("");
-        setMessage("");
-        setSignature("");
-        setVerified(undefined);
     };
 
     const handleToggle = () => {
@@ -222,6 +227,11 @@ const Header: FC = () => {
         await web3Modal.clearCachedProvider();
         onHandleModalClose();
         connectWallet();
+    }
+
+    const clearHistory = () => {
+        localStorage.setItem("history", "");
+        setHistory([]);
     }
 
     return (
@@ -339,9 +349,27 @@ const Header: FC = () => {
                             <a href={"https://polygonscan.com/address/" + account} className="view"><OpenInNewIcon />View on Block Explorer</a>
                         </div>
                     </div>
-                    <div className="wallet-modal-footer">
-                        Your transactions will appear here...
-                    </div>
+                    {history.length > 0 ? (
+                        <>
+                            <div className="wallet-history">
+                                <div>Recent Transactions</div>
+                                <div className="clear" onClick={clearHistory}>Clear All</div>
+                            </div>
+                            {history.map((i, key) => {
+                                return (
+                                    < div className="wallet-history blue" key={`history_${key}`}>
+                                        <a href={"https://polygonscan.com/address/" + i.address} target="_blank">{i.type + " " + i.rewardCurrency}<CallMadeSharpIcon /></a>
+                                        <TaskAltIcon />
+                                    </div>
+                                )
+                            })}
+                        </>
+                    ) : (
+                        <div className="wallet-modal-footer">
+                            Your transactions will appear here...
+                        </div>
+                    )
+                    }
                 </div>
             </BootstrapDialog>
         </>

@@ -196,7 +196,12 @@ const ProposalForm = (props: Props) => {
             NotificationManager.warning("Please select a choice!", "Warning");
         } else {
             setMyLoading(true);
-            const result: any = await createProposal({ address: address, walletAddress: walletAddress, value: value, submitType: submitType });
+            const result: any = await createProposal({
+                address: address,
+                walletAddress: walletAddress,
+                value: value,
+                submitType: submitType,
+            });
             if (!result.status) {
                 NotificationManager.warning(result.message, "Warning");
             } else {

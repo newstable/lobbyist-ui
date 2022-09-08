@@ -3,15 +3,22 @@ import { ethers } from "ethers";
 import { ERCContract, poolContract } from "../contracts";
 import Addresses from "../contracts/contracts/addresses.json";
 import CoinGecko from "coingecko-api";
+import tokens from "../token.json";
+import { History } from "../@types/proposal";
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 
 const CoinGeckoClient = new CoinGecko();
+var history: History[] = [];
+
+if (localStorage.getItem('history'))
+    history.push(JSON.parse(`${localStorage.getItem('history')}`));
 
 const createProposal = async (props: any) => {
     try {
         const { address, walletAddress, value, submitType } = props;
+        var rewardCurrency = tokens.filter(token => token.address == address);
         const newProposal = {
             proposalId: value.proposalId,
             name: value.proposalName,
@@ -31,13 +38,24 @@ const createProposal = async (props: any) => {
         } else if (!submitType) {
             const ERCContract = Reward.connect(signer);
             var tx = await ERCContract.approve(Addresses.Pool, ethers.utils.parseUnits(value.payout));
-            console.log(tx);
             await tx.wait();
+            history.push({
+                type: "Approve",
+                rewardCurrency: rewardCurrency[0].display,
+                address: walletAddress
+            })
+            localStorage.setItem("history", JSON.stringify(history));
             return ({ status: true, message: "Successfully approved!" });
         } else if (submitType) {
             const Pool = poolContract.connect(signer);
             const connectContract = await Pool.createPool(newProposal);
             await connectContract.wait();
+            history.push({
+                type: "createPool",
+                rewardCurrency: rewardCurrency[0].display,
+                address: Addresses.Pool
+            });
+            localStorage.setItem("history", JSON.stringify(history));
             return ({ status: true, message: "Successfully created!" });
         }
     } catch (err: any) {
@@ -49,6 +67,7 @@ const createProposal = async (props: any) => {
 const addRewards = async (props: any) => {
     try {
         const { id, amount, rewardtype, walletAddress, buttonType } = props;
+        var rewardCurrency = tokens.filter(token => token.address == rewardtype);
         const Reward = ERCContract(rewardtype);
         const myBalance = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(myBalance);
@@ -59,11 +78,23 @@ const addRewards = async (props: any) => {
             const erc = Reward.connect(signer);
             var tx = await erc.approve(Addresses.Pool, ethers.utils.parseUnits(amount.toString()));
             await tx.wait();
+            history.push({
+                type: "Approve",
+                rewardCurrency: rewardCurrency[0].display,
+                address: walletAddress
+            });
+            localStorage.setItem("history", JSON.stringify(history));
             return ({ status: true, message: "Successfully Approved!" });
         } else {
             const Pool = poolContract.connect(signer);
             const connectContract = await Pool.addReward(id, ethers.utils.parseUnits(amount.toString()));
             await connectContract.wait();
+            history.push({
+                type: "Add Reward",
+                rewardCurrency: rewardCurrency[0].display,
+                address: Addresses.Pool
+            });
+            localStorage.setItem("history", JSON.stringify(history));
             var result = await axios.post("/api/addreward", { poolId: id, rewardAmount: amount });
             if (result.data.status)
                 return ({ status: true, message: "Successfully Added!" });
@@ -76,9 +107,16 @@ const addRewards = async (props: any) => {
 const Claim = async (props: any) => {
     try {
         const { id, address } = props;
+        var rewardCurrency = tokens.filter(token => token.address == address);
         const Pool = poolContract.connect(signer);
         const connectContract = await Pool.claim(id);
         await connectContract.wait();
+        history.push({
+            type: "Claim",
+            rewardCurrency: rewardCurrency[0].display,
+            address: Addresses.Pool
+        });
+        localStorage.setItem("history", JSON.stringify(history));
         var result = await axios.post("/api/claim", { id: id, address: address });
         if (result.data.status)
             return ({ status: true, message: "Successfully Claimed!" });

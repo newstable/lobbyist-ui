@@ -37,6 +37,12 @@ export type NewProposal = {
   paybackAmount: number
 }
 
+export type History = {
+  type: string;
+  rewardCurrency: string;
+  address: string;
+}
+
 export enum EnumProposalType {
   gauge = "Gauge",
   governance = "Governance",
