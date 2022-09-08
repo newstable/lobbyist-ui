@@ -25,7 +25,6 @@ const App = () => {
   }, [darkMode]);
 
   const AllInfo = async () => {
-    console.log(1);
     await Action.Proposal_load({ address: address });
     setLoading(false);
   }
