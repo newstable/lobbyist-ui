@@ -1,7 +1,5 @@
 import { useSelector } from "../../redux/store";
 import { ProposalCardActiveSymbol } from "../../components";
-import { ProtocolsList } from "../../@types/protocol";
-import { useEffect } from "react";
 
 type Props = {
     symbol: string;

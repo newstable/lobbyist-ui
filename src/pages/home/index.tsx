@@ -4,15 +4,14 @@ import {
 	ProposalCardActive,
 	ProposalCardCreated,
 } from "../../components";
-import { useEffect, useState } from "react";
 import { useSelector, RootState } from "../../redux/store";
-import Action from "../../services";
 import { Proposal } from "../../@types/proposal";
 
 
 type Props = {};
 
 const Homepage = (props: Props) => {
+
 	const walletAddress: any = useSelector(
 		(state: RootState) => state.wallet.address
 	);

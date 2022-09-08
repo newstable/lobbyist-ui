@@ -24,26 +24,20 @@ const App = () => {
     return getTheme(darkMode);
   }, [darkMode]);
 
+  const AllInfo = async () => {
+    console.log(1);
+    await Action.Proposal_load({ address: address });
+    setLoading(false);
+  }
   useEffect(() => {
     setAddress(walletAddress);
+
   }, [walletAddress]);
-
-  const AllInfo = async () => {
-    try {
-      await Action.Proposal_load({ address: address });
-      setLoading(false);
-      setTimeout(() => {
-        AllInfo();
-      }, 5000);
-    } catch {
-      setTimeout(() => {
-        AllInfo();
-      }, 5000);
-    }
-  }
-
-  AllInfo();
-
+  const [time, setTime] = useState<number>();
+  useEffect(() => {
+    const timer = setTimeout(() => { setTime(+new Date()); AllInfo() }, 5000)
+    return () => clearTimeout(timer)
+  }, [time])
   return (
     <ThemeProvider theme={theme}>
       <LoadingScreen loading={loading} bgColor="#282931" spinnerColor="#3a78ff">
