@@ -28,7 +28,7 @@ const ProposalCardCreated = (props: Props) => {
   const colHeads = ["Title", "Vote Incentives", "Total Votes", "$/Vote", ""];
   const navigate = useNavigate();
   const onJoinClick = (proposal: Proposal) => {
-    const path = proposal.address === address ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
+    const path = proposal.address !== address ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
     navigate(path, {
       state: {
         proposal,
