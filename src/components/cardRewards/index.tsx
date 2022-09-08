@@ -32,8 +32,8 @@ const CardRewards = (props: Props) => {
     { title: "Active Proposals" },
   ];
   const data = [
-    { value: `$${price}` },
-    { value: `$${earn}` },
+    { value: `$${price.toFixed(2)}` },
+    { value: `$${earn.toFixed(2)}` },
     { value: proposalCount }
   ]
   useEffect(() => {
