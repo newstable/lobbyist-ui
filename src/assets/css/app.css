@@ -4093,10 +4093,16 @@ input:checked+.toggle-bg {
     top: -10px;
     transform: translateX(-50%) scaleY(-1)
 }
+
 .modaladd {
     background-color: 31, 32, 40, 0.96;
 }
 
 .modaladdpaper {
     background-color: #282931;
+    display: flex;
+}
+
+.title {
+    padding: 0 24px;
 }

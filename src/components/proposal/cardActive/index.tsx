@@ -40,7 +40,6 @@ const ProposalCardActive = (props: Props) => {
 		var result = await Claim({ id: e, address: address });
 		if (result.status) {
 			NotificationManager.success(result.message, "Success");
-			// getMyProposals();
 		} else {
 			NotificationManager.error(result.message, "Error");
 		}
