@@ -16,7 +16,7 @@ import {
 import { colors } from "../../../../common";
 import { useEffect, useState } from "react";
 import { GET_PROPOSALS } from "../../../../gql";
-import tokens from "./token.json";
+import tokens from "../../../../token.json";
 import { useSelector } from "../../../../redux/store";
 import { RootState } from "../../../../redux/store";
 import { dispatch } from "../../../../redux/store";

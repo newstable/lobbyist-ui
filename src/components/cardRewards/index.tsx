@@ -7,6 +7,8 @@ import { ProposalCardHeader } from "../proposal";
 import { TextHead } from "../text";
 import { useEffect, useState } from "react";
 import { Proposal } from "../../@types/proposal";
+import { Coins } from "../../blockchain";
+import tokens from "../../token.json";
 
 type Props = {
   activeProposals: Proposal[];
@@ -39,15 +41,17 @@ const CardRewards = (props: Props) => {
     var pendingreward = 0;
     var totalEarned = 0;
     setCount(getActiveArray?.length);
-    getActiveArray?.forEach(item => {
+    getActiveArray?.forEach(async (item) => {
+      var rewardCurrency = tokens.filter(token => token.address == item.rewardCurrency);
+      var amount = await Coins(rewardCurrency[0]?.api);
       if (!item.myclaim) {
-        pendingreward += item.reward / item.totalVoteWeight * item.myvoteAmount;
+        pendingreward += item.reward / item.totalVoteWeight * item.myvoteAmount * amount;
       } else {
-        totalEarned += item.reward / item.totalVoteWeight * item.myvoteAmount;
+        totalEarned += item.reward / item.totalVoteWeight * item.myvoteAmount * amount;
       }
+      setPrice(pendingreward);
+      setEarn(totalEarned);
     })
-    setPrice(pendingreward);
-    setEarn(totalEarned);
   }, [activeProposals])
   return (
     <Card className="">

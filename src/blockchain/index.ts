@@ -91,12 +91,16 @@ const Claim = async (props: any) => {
     }
 }
 
-const Coins = async () => {
-    let data = await CoinGeckoClient.simple.price({
-        ids: ["aave"],
-        vs_currencies: ['usd']
-    });
-    console.log(data.data.aave.usd);
+const Coins = async (ids: string) => {
+    try {
+        let data = await CoinGeckoClient.simple.price({
+            ids: [ids],
+            vs_currencies: ['usd']
+        });
+        return data.data[ids].usd;
+    } catch (error: any) {
+        return 0;
+    }
 }
 
 export { createProposal, addRewards, Claim, Coins };
