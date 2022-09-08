@@ -10,7 +10,6 @@ import {
     MenuItem,
     Dialog,
 } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
 import { styled } from "@mui/material/styles";
 import classNames from "classnames";
 import Web3Modal from "web3modal";
@@ -26,7 +25,6 @@ import styles from "./styles.module.scss";
 import { providerOptions } from "../../providerOptions";
 import { toHex, truncateAddress } from "../../utils";
 import useClipboard from "react-use-clipboard";
-import Provider from "./provider";
 
 const itemsList = [
     {
