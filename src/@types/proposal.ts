@@ -37,22 +37,6 @@ export type NewProposal = {
   paybackAmount: number
 }
 
-export type ActiveProposal = {
-  type: string;
-  name: string;
-  description: string;
-  protocol: string;
-  isClosed: boolean;
-  reward: number;
-  rewardCurrency: string;
-  address: string;
-  proposalId: string;
-  totalVoteWeight: number;
-  poolId: number;
-  votes: number;
-  claim: boolean;
-}
-
 export enum EnumProposalType {
   gauge = "Gauge",
   governance = "Governance",
