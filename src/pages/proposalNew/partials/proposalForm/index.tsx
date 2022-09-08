@@ -412,7 +412,7 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     2.5%
                                     <br />
-                                    ${maxReward * 0.25}
+                                    ${maxReward * 0.025}
                                 </Typography>
                                 <Typography className="col-span-2">
                                     Total Reward
@@ -420,7 +420,7 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     {maxReward + " " + rewardType}
                                     <br />
-                                    ${maxReward * 0.75}
+                                    ${maxReward * 0.975}
                                 </Typography>
                             </Box>
                         </Box>
