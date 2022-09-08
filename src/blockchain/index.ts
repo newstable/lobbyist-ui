@@ -116,9 +116,11 @@ const Claim = async (props: any) => {
     try {
         const { id, address } = props;
         var rewardCurrency = tokens.filter(token => token.address == address);
+        console.log(address, rewardCurrency);
         const Pool = poolContract.connect(signer);
         const connectContract = await Pool.claim(id);
         await connectContract.wait();
+        console.log("success");
         history.push({
             type: "Claim",
             rewardCurrency: rewardCurrency[0].display,
