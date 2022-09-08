@@ -172,12 +172,6 @@ const Header: FC = () => {
         setVerified(undefined);
     };
 
-    // const disconnect = async () => {
-    //     await web3Modal.clearCachedProvider();
-    //     dispatch(setWalletAddress(""));
-    //     refreshState();
-    // };
-
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };

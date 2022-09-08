@@ -6,9 +6,10 @@ import { colors } from "../../common";
 import { ProposalCardHeader } from "../proposal";
 import { TextHead } from "../text";
 import { useEffect, useState } from "react";
-import { Proposal, ActiveProposal } from "../../@types/proposal";
+import { Proposal } from "../../@types/proposal";
 
 type Props = {
+  activeProposals: Proposal[];
 };
 
 const Content = styled(CardContent)(({ theme }) => ({
@@ -17,7 +18,10 @@ const Content = styled(CardContent)(({ theme }) => ({
 }));
 
 const CardRewards = (props: Props) => {
-  // const { proposals } = props;
+  const { activeProposals } = props;
+  const [proposalCount, setCount] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [earn, setEarn] = useState(0);
   const theme = useTheme();
   const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
   const cols = [
@@ -26,13 +30,25 @@ const CardRewards = (props: Props) => {
     { title: "Active Proposals" },
   ];
   const data = [
-    { value: "$0", },
-    { value: "$0" },
-    { value: "0" }
+    { value: `$${price}` },
+    { value: `$${earn}` },
+    { value: proposalCount }
   ]
-  // useEffect(() => {
-  //   data[1].value = "$" + proposals.length;
-  // }, [proposals])
+  useEffect(() => {
+    const getActiveArray = activeProposals?.filter(element => element.myvoteAmount);
+    var pendingreward = 0;
+    var totalEarned = 0;
+    setCount(getActiveArray?.length);
+    getActiveArray?.forEach(item => {
+      if (!item.myclaim) {
+        pendingreward += item.reward / item.totalVoteWeight * item.myvoteAmount;
+      } else {
+        totalEarned += item.reward / item.totalVoteWeight * item.myvoteAmount;
+      }
+    })
+    setPrice(pendingreward);
+    setEarn(totalEarned);
+  }, [activeProposals])
   return (
     <Card className="">
       <ProposalCardHeader title="My Stats"></ProposalCardHeader>

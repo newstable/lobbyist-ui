@@ -20,6 +20,8 @@ export type Proposal = {
   totalVoteWeight: number;
   poolId: number;
   votes: number;
+  myvoteAmount: number;
+  myclaim: boolean;
 };
 
 export type NewProposal = {

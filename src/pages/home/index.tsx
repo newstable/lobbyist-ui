@@ -16,12 +16,8 @@ const Homepage = (props: Props) => {
 	const walletAddress: any = useSelector(
 		(state: RootState) => state.wallet.address
 	);
-	const proposals: ActiveProposal[] = useSelector(
-		(state: RootState) => state.activeProposal.activeProposal
-	);
-	const proposalState = useSelector((state) => state.activeProposal);
 	// @ts-ignore
-	const filteredProposals: any = proposalState.currentProposal;
+	const filteredProposals: Proposal[] = useSelector((state: RootState) => state.proposal.currentProposal.data);
 
 	useEffect(() => {
 		getMyProposals();
@@ -34,8 +30,8 @@ const Homepage = (props: Props) => {
 	return (
 		<Box className="main-body flex flex-col grow">
 			<Box className="flex flex-col min-h-full main-content gap-14 mb-16">
-				<CardRewards />
-				<ProposalCardActive address={walletAddress} proposals={proposals} />
+				<CardRewards activeProposals={filteredProposals} />
+				<ProposalCardActive address={walletAddress} proposals={filteredProposals} />
 				<ProposalCardCreated proposals={filteredProposals} address={walletAddress} />
 			</Box>
 		</Box>

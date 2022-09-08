@@ -64,3 +64,4 @@ declare module 'react-notifications' {
 }
 
 declare module 'react-loading-screen';
+declare module 'coingecko-api';

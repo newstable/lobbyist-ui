@@ -2,9 +2,12 @@ import axios from "axios";
 import { ethers } from "ethers";
 import { ERCContract, poolContract } from "../contracts";
 import Addresses from "../contracts/contracts/addresses.json";
+import CoinGecko from "coingecko-api";
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
+
+const CoinGeckoClient = new CoinGecko();
 
 const createProposal = async (props: any) => {
     try {
@@ -29,6 +32,7 @@ const createProposal = async (props: any) => {
             const ERCContract = Reward.connect(signer);
             var tx = await ERCContract.approve(Addresses.Pool, ethers.utils.parseUnits(value.payout));
             await tx.wait();
+            console.log(tx);
             return ({ status: true, message: "Successfully approved!" });
         } else if (submitType) {
             const Pool = poolContract.connect(signer);
@@ -87,4 +91,12 @@ const Claim = async (props: any) => {
     }
 }
 
-export { createProposal, addRewards, Claim };
+const Coins = async () => {
+    let data = await CoinGeckoClient.simple.price({
+        ids: ["aave"],
+        vs_currencies: ['usd']
+    });
+    console.log(data.data.aave.usd);
+}
+
+export { createProposal, addRewards, Claim, Coins };
