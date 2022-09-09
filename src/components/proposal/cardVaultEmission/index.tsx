@@ -15,7 +15,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 const ProposalCardVaultEmission = ({ proposal }: Props) => {
   const colHeads = ["Total Reward", "$/Vote"];
   return (
-    <Card className="">
+    <Card className="" elevation={0}>
       <Content className="card-rnd">
         <Box className="grid grid-cols-2 gap-8">
           {colHeads.map((c, idx) => (

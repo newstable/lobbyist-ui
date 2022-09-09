@@ -63,7 +63,7 @@ const ProposalCardActiveSymbol = ({
     });
 
     return (
-        <Card className="">
+        <Card className="" elevation={0}>
             <ProposalCardHeader
                 title={`${isHistory ? "Historical" : "Active"} Proposals for ${protocol}`}
             ></ProposalCardHeader>

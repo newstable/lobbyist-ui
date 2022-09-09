@@ -19,7 +19,7 @@ const ProposalCardVaultIncentive = ({ proposal, isProposer, voteWeight }: Props)
     ? ["Total Vote Weight"]
     : ["Total Vote Weight", "Available Voting Power"];
   return (
-    <Card className="">
+    <Card className="" elevation={0}>
       <ProposalCardHeader title="Proposal Info"></ProposalCardHeader>
       <Content className="card-rnd">
         <Box className="grid grid-cols-2 gap-8">
