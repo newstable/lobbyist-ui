@@ -4100,3 +4100,7 @@ input:checked+.toggle-bg {
 .modaladdpaper {
     background-color: #282931;
 }
+
+.gapbtm {
+    margin-bottom: 4rem;
+}

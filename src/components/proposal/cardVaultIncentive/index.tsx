@@ -17,7 +17,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 const ProposalCardVaultIncentive = ({ proposal, isProposer, voteWeight }: Props) => {
   const colHeads = isProposer
     ? ["Total Vote Weight"]
-    : ["Total Vote Weight", "My Voting Power"];
+    : ["Total Vote Weight", "Available Voting Power"];
   return (
     <Card className="">
       <ProposalCardHeader title="Vault Incentive Gauge"></ProposalCardHeader>
