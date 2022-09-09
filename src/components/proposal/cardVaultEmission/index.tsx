@@ -16,7 +16,7 @@ const ProposalCardVaultEmission = ({ proposal }: Props) => {
   const colHeads = ["Total Reward", "$/Vote"];
   return (
     <Card className="">
-      <Content>
+      <Content className="card-rnd">
         <Box className="grid grid-cols-2 gap-8">
           {colHeads.map((c, idx) => (
             <Box key={`colHead_${idx}`}>

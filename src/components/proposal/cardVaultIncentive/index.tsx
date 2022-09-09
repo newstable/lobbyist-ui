@@ -20,8 +20,8 @@ const ProposalCardVaultIncentive = ({ proposal, isProposer, voteWeight }: Props)
     : ["Total Vote Weight", "Available Voting Power"];
   return (
     <Card className="">
-      <ProposalCardHeader title="Vault Incentive Gauge"></ProposalCardHeader>
-      <Content>
+      <ProposalCardHeader title="Proposal Info"></ProposalCardHeader>
+      <Content className="card-rnd">
         <Box className="grid grid-cols-2 gap-8">
           {colHeads.map((c, idx) => (
             <Box key={`colHead_${idx}`}>

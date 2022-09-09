@@ -4104,3 +4104,8 @@ input:checked+.toggle-bg {
 .gapbtm {
     margin-bottom: 4rem;
 }
+
+.card-rnd {
+    border-radius: 2rem;
+}
+
