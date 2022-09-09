@@ -204,7 +204,7 @@ const ProposalSymbolVote = (props: Props) => {
 			</Box >
 			<Dialog className="modaladd" open={modal} onClose={handleClose}>
 				<DialogTitle className="modaladdpaper">Add more rewards to the proposal</DialogTitle>
-				<DialogContent className="modaladdpaper">
+				<DialogContent className="modaladdpapermid">
 					<TextField
 						autoFocus
 						margin="dense"
@@ -217,7 +217,7 @@ const ProposalSymbolVote = (props: Props) => {
 					>
 					</TextField>
 				</DialogContent>
-				<DialogActions className="modaladdpaper">
+				<DialogActions className="modaladdpaperbtm">
 					{addrewardButton ?
 						<Button onClick={() => { AddReward(); }}>Approve</Button>
 						:
