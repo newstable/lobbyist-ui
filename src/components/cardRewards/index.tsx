@@ -37,7 +37,8 @@ const CardRewards = (props: Props) => {
     { value: proposalCount }
   ]
   useEffect(() => {
-    const getActiveArray = activeProposals?.filter(element => element.myvoteAmount);
+    console.log(activeProposals);
+    const getActiveArray = activeProposals?.filter(element => element.myclaim == false);
     var pendingreward = 0;
     var totalEarned = 0;
     setCount(getActiveArray?.length);
