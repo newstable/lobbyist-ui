@@ -47,7 +47,7 @@ const ProposalCardActiveSymbol = ({
     const theme = useTheme();
     const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
 
-    const onJoinClick = (proposal: Proposal, idx: number) => {
+    const onJoinClick = (proposal: Proposal) => {
         const path = walletAddress === proposal.address ? "vote?proposer=1" : "vote";
         navigate(path, {
             state: {
@@ -187,7 +187,7 @@ const ProposalCardActiveSymbol = ({
                                                 <Button
                                                     variant="contained"
                                                     color="tealLight"
-                                                    onClick={() => onJoinClick(p, idx)}
+                                                    onClick={() => onJoinClick(p)}
                                                 >
                                                     View
                                                 </Button>

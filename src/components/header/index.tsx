@@ -9,13 +9,7 @@ import {
     MenuList,
     MenuItem,
     Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    IconButton,
-    Typography,
 } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
 import { styled } from "@mui/material/styles";
 import classNames from "classnames";
 import Web3Modal from "web3modal";
@@ -24,6 +18,9 @@ import { setWalletAddress } from "../../redux/slices/wallet";
 import { dispatch } from "../../redux/store";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import CallMadeSharpIcon from '@mui/icons-material/CallMadeSharp';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import { History } from "../../@types/proposal";
 
 import { colors } from "../../common";
 import { HeaderLeft } from "./left";
@@ -35,7 +32,7 @@ import useClipboard from "react-use-clipboard";
 const itemsList = [
     {
         name: "Polygon",
-        id: "0x89",
+        id: "0x13881",
         img: "../../../../assets/chains/matic.svg"
     },
     {
@@ -65,21 +62,39 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const Header: FC = () => {
-    const [provider, setProvider] = useState();
     const [library, setLibrary]: any = useState();
     const [account, setAccount] = useState("");
-    const [signature, setSignature] = useState("");
     const [error, setError] = useState("");
     const [chainId, setChainId]: any = useState();
-    const [message, setMessage] = useState("");
-    const [signedMessage, setSignedMessage] = useState("");
-    const [verified, setVerified] = useState();
     const [open, setOpen] = useState(false);
     const [walletInfo, setWalletInfo] = useState(false);
     const anchorRef = useRef<HTMLButtonElement>(null);
     const [selectedCrypto, setselectedCrypto] = useState("Polygon");
     const [selectedImg, setselectedImg] = useState("../../../../assets/chains/matic.svg");
     const [isCopied, setCopied] = useClipboard(account);
+    const [copyClipboard, setCopyClipboard] = useState(false);
+    const [walletType, setWalletType] = useState("");
+    const [history, setHistory] = useState<History[]>([]);
+
+    const addressCopy = () => {
+        setCopyClipboard(true);
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem("history")?.length)
+            setHistory(JSON.parse(`${localStorage.getItem("history")}`));
+        else {
+            setHistory([]);
+        }
+    }, [walletInfo])
+
+    useEffect(() => {
+        if (copyClipboard) {
+            setTimeout(() => {
+                setCopyClipboard(false);
+            }, 2000);
+        }
+    }, [copyClipboard])
 
     var styledAddress = account
         ? account.slice(0, 4) + "..." + account.slice(-4)
@@ -88,27 +103,40 @@ const Header: FC = () => {
     const connectWallet = async () => {
         try {
             const provider = await web3Modal.connect();
+            provider.on("accountsChanged", async (accounts: string[]) => {
+                if (accounts.length == 0) {
+                    await web3Modal.clearCachedProvider();
+                    dispatch(setWalletAddress(""));
+                    refreshState();
+                }
+            })
             const library = new ethers.providers.Web3Provider(provider);
+            if (library.connection.url == "metamask")
+                setWalletType("Metamask")
+            else
+                setWalletType(library.connection.url);
             const accounts = await library.listAccounts();
             const network = await library.getNetwork();
-            setProvider(provider);
             setLibrary(library);
             if (accounts) {
                 setAccount(accounts[0]);
                 dispatch(setWalletAddress(accounts[0]));
             }
             setChainId(network.chainId);
-            if (selectedCrypto != "Polygon") {
-                switchNetwork("Polygon");
-            }
         } catch (error: any) {
             setError(error);
         }
     };
 
     useEffect(() => {
-        switchNetwork("0x89");
-    }, [])
+        if (chainId != "0x13881" || chainId != "0x1") {
+            if (selectedCrypto == "Polygon") {
+                switchNetwork("0x13881");
+            } else {
+                switchNetwork("0x1");
+            }
+        }
+    }, [account])
 
     const switchNetwork = async (network: string) => {
         try {
@@ -145,16 +173,7 @@ const Header: FC = () => {
 
     const refreshState = () => {
         setAccount("");
-        setMessage("");
-        setSignature("");
-        setVerified(undefined);
     };
-
-    // const disconnect = async () => {
-    //     await web3Modal.clearCachedProvider();
-    //     dispatch(setWalletAddress(""));
-    //     refreshState();
-    // };
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -210,6 +229,11 @@ const Header: FC = () => {
         connectWallet();
     }
 
+    const clearHistory = () => {
+        localStorage.setItem("history", "");
+        setHistory([]);
+    }
+
     return (
         <>
             <header
@@ -239,6 +263,7 @@ const Header: FC = () => {
                         placement="bottom-start"
                         transition
                         disablePortal
+                        style={{ zIndex: "100000" }}
                     >
                         {({ TransitionProps, placement }) => (
                             <Grow
@@ -312,7 +337,7 @@ const Header: FC = () => {
                     </div>
                     <div className="wallet-modal-body">
                         <div className="justify-s w10">
-                            <div className="">Connected with Metamask</div>
+                            <div className="">Connected with {walletType}</div>
                             <div className="cursorpoint" onClick={() => { changeAddress(); }}>Change</div>
                         </div>
                         <div className="flex justify-start w10 font-1">
@@ -320,13 +345,31 @@ const Header: FC = () => {
                             <div className=""></div>
                         </div>
                         <div className="justify-s w10 dialog-footer" >
-                            <div className="cursorpoint" onClick={setCopied}><ContentCopyIcon />{isCopied ? "Copied" : "Copy address"}</div>
+                            <div className="cursorpoint" onClick={() => { setCopied(); addressCopy(); }}><ContentCopyIcon />{copyClipboard ? "Copied" : "Copy address"}</div>
                             <a href={"https://polygonscan.com/address/" + account} className="view"><OpenInNewIcon />View on Block Explorer</a>
                         </div>
                     </div>
-                    <div className="wallet-modal-footer">
-                        Your transactions will appear here...
-                    </div>
+                    {history.length > 0 ? (
+                        <>
+                            <div className="wallet-history">
+                                <div>Recent Transactions</div>
+                                <div className="clear" onClick={clearHistory}>Clear All</div>
+                            </div>
+                            {history.map((i, key) => {
+                                return (
+                                    < div className="wallet-history blue" key={`history_${key}`}>
+                                        <a href={"https://polygonscan.com/address/" + i.address} target="_blank">{i.type + " " + i.rewardCurrency}<CallMadeSharpIcon /></a>
+                                        <TaskAltIcon />
+                                    </div>
+                                )
+                            })}
+                        </>
+                    ) : (
+                        <div className="wallet-modal-footer">
+                            Your transactions will appear here...
+                        </div>
+                    )
+                    }
                 </div>
             </BootstrapDialog>
         </>

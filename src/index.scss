@@ -63,6 +63,20 @@ code {
         }
     }
 
+    .wallet-history {
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+
+        .clear {
+            cursor: pointer;
+        }
+    }
+
+    .blue {
+        color: #4388fb;
+    }
+
     .wallet-modal-body {
         display: flex;
         justify-content: space-between;

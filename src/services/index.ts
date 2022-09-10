@@ -6,14 +6,10 @@ axios.defaults.baseURL = process.env.REACT_APP_SERVERENDPOINT;
 
 var baseURL = "https://score.snapshot.org/";
 
-const Proposal_load = async () => {
+const Proposal_load = async (req: any) => {
     try {
-        var res = await axios.post("/api/load-proposal");
-        // return res.data;
+        var res = await axios.post("/api/load-proposal", req);
         dispatch(setCurrentProposal(res.data));
-        setTimeout(() => {
-            Proposal_load();
-        }, 5000);
     } catch (err: any) {
         return false;
     }
@@ -48,21 +44,11 @@ const GetVoteWeight = async (req: any) => {
     }
 }
 
-const GetMyProposals = async (req: any) => {
-    try {
-        var res = await axios.post("/api/getmyproposals", req);
-        return res.data;
-    } catch (err) {
-        console.log(err);
-    }
-}
-
 // Export Functions
 const Action = {
     Proposal_load,
     GetVoteWeight,
-    Vote,
-    GetMyProposals
+    Vote
 };
 
 export default Action;

@@ -28,7 +28,7 @@ const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight }: Props) =>
           ))}
         </Box>
         <Box className="grid grid-cols-2 gap-8">
-          <TextContent>${proposal.reward / proposal.votes * voteWeight}</TextContent>
+          <TextContent>${proposal.totalVoteWeight > 0 ? proposal.reward / proposal.votes * voteWeight : 0}</TextContent>
           <TextContent>{proposal.protocol}</TextContent>
         </Box>
       </Content>

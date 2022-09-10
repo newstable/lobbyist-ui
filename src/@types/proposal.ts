@@ -20,6 +20,8 @@ export type Proposal = {
   totalVoteWeight: number;
   poolId: number;
   votes: number;
+  myvoteAmount: number;
+  myclaim: boolean;
 };
 
 export type NewProposal = {
@@ -35,20 +37,10 @@ export type NewProposal = {
   paybackAmount: number
 }
 
-export type ActiveProposal = {
+export type History = {
   type: string;
-  name: string;
-  description: string;
-  protocol: string;
-  isClosed: boolean;
-  reward: number;
   rewardCurrency: string;
   address: string;
-  proposalId: string;
-  totalVoteWeight: number;
-  poolId: number;
-  votes: number;
-  claim: boolean;
 }
 
 export enum EnumProposalType {

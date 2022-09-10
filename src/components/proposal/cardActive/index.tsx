@@ -10,27 +10,32 @@ import {
 	useMediaQuery,
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
-import { Proposal, ActiveProposal } from "../../../@types/proposal";
+import { Proposal } from "../../../@types/proposal";
 import { TextContent, TextHead } from "../../text";
 import NumberType from "../../../common/number";
 import { useNavigate } from "react-router-dom";
 import { Claim } from "../../../blockchain";
-import { NotificationManager } from 'react-notifications';
 import { useEffect, useState } from "react";
+import { NotificationManager } from 'react-notifications';
 
 type Props = {
 	address: string;
-	proposals: ActiveProposal[];
+	proposals: Proposal[];
 };
 
 const Content = styled(CardContent)(({ theme }) => ({}));
 
 const ProposalCardActive = (props: Props) => {
 	const { address, proposals } = props;
+	const [myProposals, setMyProposals] = useState<Proposal[]>([]);
 
+	useEffect(() => {
+		var data = proposals?.filter(proposal => proposal.myclaim == false);
+		setMyProposals(data);
+	}, [proposals])
 	const navigate = useNavigate();
-	const onJoinClick = (proposal: ActiveProposal, idx: number) => {
-		const path = idx % 2 === 0 ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
+	const onJoinClick = (proposal: Proposal, idx: number) => {
+		const path = proposal.address !== address ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
 		navigate(path, {
 			state: {
 				proposal,
@@ -41,7 +46,6 @@ const ProposalCardActive = (props: Props) => {
 		var result = await Claim({ id: e, address: address });
 		if (result.status) {
 			NotificationManager.success(result.message, "Success");
-			// getMyProposals();
 		} else {
 			NotificationManager.error(result.message, "Error");
 		}
@@ -67,7 +71,7 @@ const ProposalCardActive = (props: Props) => {
 				</Box>
 				<Box className="flex flex-col gap-4">
 					{
-						proposals?.map((p, idx) => (
+						myProposals?.map((p, idx) => (
 							<Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
 								<Box
 									className={classNames(
@@ -119,7 +123,7 @@ const ProposalCardActive = (props: Props) => {
 											<Button variant="contained" color="tealLight" onClick={() => onJoinClick(p, idx)}>
 												View
 											</Button>
-										) : !p.claim ? (
+										) : !p.myclaim ? (
 											<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId)}>
 												Claim
 											</Button>

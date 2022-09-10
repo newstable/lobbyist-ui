@@ -27,8 +27,8 @@ const ProposalCardCreated = (props: Props) => {
   let { symbol } = useParams();
   const colHeads = ["Title", "Vote Incentives", "Total Votes", "$/Vote", ""];
   const navigate = useNavigate();
-  const onJoinClick = (proposal: Proposal, idx: number) => {
-    const path = idx % 2 === 0 ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
+  const onJoinClick = (proposal: Proposal) => {
+    const path = proposal.address !== address ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
     navigate(path, {
       state: {
         proposal,
@@ -104,7 +104,7 @@ const ProposalCardCreated = (props: Props) => {
                     <Box
                       className={classNames("flex", isAboveMd && "justify-center")}
                     >
-                      <Button variant="contained" color="tealLight" onClick={() => onJoinClick(p, idx)}>
+                      <Button variant="contained" color="tealLight" onClick={() => onJoinClick(p)}>
                         View
                       </Button>
                     </Box>

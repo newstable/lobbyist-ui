@@ -26,6 +26,8 @@ import Action from "../../services";
 import { ethers } from "ethers";
 import { NotificationManager } from 'react-notifications';
 import { addRewards } from "../../blockchain";
+import tokens from "../../token.json";
+import { Coins } from "../../blockchain";
 
 type Props = {};
 
@@ -46,20 +48,32 @@ const ProposalSymbolVote = (props: Props) => {
 	const { symbol } = useParams();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [addrewardButton, setButton] = useState(true);
+	const [currency, setRewardCurrency] = useState("");
+	const [currencyApi, setRewardCurrencyApi] = useState("");
+	const [usdAmount, setUsdAmount] = useState(0);
 
 	const isProposer = searchParams.get("proposer") && true;
 	const navState = location.state as any;
 	let { proposal: currentProposal } = navState;
 
 	useEffect(() => {
+		var rewardCurrency = tokens.filter(token => token.address == currentProposal.rewardCurrency);
+		setRewardCurrency(rewardCurrency[0].display);
+		setRewardCurrencyApi(rewardCurrency[0].api);
+	}, [currentProposal])
+
+	useEffect(() => {
 		GetInfo();
 	}, [])
+
+	useEffect(() => {
+		setUsdAmount(0);
+	}, [modal])
 
 	const GetInfo = async () => {
 		const proposalinfo = await getProposal({
 			variables: { id: currentProposal.proposalId }
 		})
-		console.log(proposalinfo.data.proposal);
 		setProposalInfo(proposalinfo.data.proposal);
 		const req = {
 			strategies: proposalinfo.data.proposal.strategies,
@@ -116,6 +130,9 @@ const ProposalSymbolVote = (props: Props) => {
 			walletAddress: walletAddress,
 			buttonType: addrewardButton
 		});
+		if (addrewardButton) {
+			handleClose();
+		}
 		if (!result.status) {
 			NotificationManager.error(result.message, "Error");
 		} else {
@@ -127,6 +144,12 @@ const ProposalSymbolVote = (props: Props) => {
 	const handleClose = () => {
 		setModal(false);
 	};
+
+	const onChangeAmount = async (amount: string) => {
+		setAddRewardAmount(Number(amount));
+		var result = await Coins(currencyApi);
+		setUsdAmount(result * Number(amount));
+	}
 
 	return (
 		<>
@@ -205,15 +228,24 @@ const ProposalSymbolVote = (props: Props) => {
 			<Dialog className="modaladd" open={modal} onClose={handleClose}>
 				<DialogTitle className="modaladdpaper">Add more rewards to the proposal</DialogTitle>
 				<DialogContent className="modaladdpapermid">
+				<div className="modaladdpaper title">
+					<div style={{ margin: "0 auto 0 0" }} className="modaladdpaper">
+						<div>Reward Currency :&nbsp;</div>
+						<div>{currency}</div>
+					</div>
+					<div style={{ margin: "0 0 0 auto" }} className="modaladdpaper">
+						<div>USD Amount :&nbsp;</div>
+						<div>{usdAmount.toFixed(2)}</div>
+					</div>
+				</div>
+				<DialogContent className="modaladdpaper">
 					<TextField
 						autoFocus
-						margin="dense"
 						id="reward"
 						label="Reward Amount"
 						type="number"
 						fullWidth
-						variant="standard"
-						onChange={(e) => setAddRewardAmount(Number(e.target.value))}
+						onChange={(e) => onChangeAmount(e.target.value)}
 					>
 					</TextField>
 				</DialogContent>
@@ -221,7 +253,7 @@ const ProposalSymbolVote = (props: Props) => {
 					{addrewardButton ?
 						<Button onClick={() => { AddReward(); }}>Approve</Button>
 						:
-						<Button onClick={() => { handleClose(); AddReward(); }}>Add Rewards</Button>
+						<Button onClick={() => { AddReward(); }}>Add Rewards</Button>
 					}
 				</DialogActions>
 			</Dialog>

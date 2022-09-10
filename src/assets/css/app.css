@@ -4093,6 +4093,7 @@ input:checked+.toggle-bg {
     top: -10px;
     transform: translateX(-50%) scaleY(-1)
 }
+
 .modaladd {
     background-color: 31, 32, 40, 0.96;
     border-radius: 2rem;
@@ -4134,3 +4135,9 @@ input:checked+.toggle-bg {
     margin-bottom: 2rem;
 }
 
+    display: flex;
+}
+
+.title {
+    padding: 0 24px;
+}
