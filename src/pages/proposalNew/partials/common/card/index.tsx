@@ -18,7 +18,8 @@ const ProposalNewCard = ({ title, slug, isType, isSolid }: Props) => {
   const navigate = useNavigate();
 
   const onClickNavigate = () => {
-    slug && navigate(slug);
+    if (title != "Variable")
+      slug && navigate(slug);
   };
   return (
     <Card className="cursor-pointer" onClick={onClickNavigate}>
