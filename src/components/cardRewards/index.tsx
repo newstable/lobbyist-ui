@@ -12,6 +12,7 @@ import tokens from "../../token.json";
 
 type Props = {
   activeProposals: Proposal[];
+  address: string;
 };
 
 const Content = styled(CardContent)(({ theme }) => ({
@@ -20,7 +21,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 }));
 
 const CardRewards = (props: Props) => {
-  const { activeProposals } = props;
+  const { activeProposals, address } = props;
   const [proposalCount, setCount] = useState(0);
   const [price, setPrice] = useState(0);
   const [earn, setEarn] = useState(0);
@@ -53,7 +54,7 @@ const CardRewards = (props: Props) => {
       setPrice(pendingreward);
       setEarn(totalEarned);
     })
-  }, [activeProposals])
+  }, [activeProposals, address])
   return (
     <Card className="">
       <ProposalCardHeader title="My Stats"></ProposalCardHeader>

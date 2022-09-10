@@ -20,7 +20,7 @@ const Homepage = (props: Props) => {
 	return (
 		<Box className="main-body flex flex-col grow">
 			<Box className="flex flex-col min-h-full main-content gap-14 mb-16">
-				<CardRewards activeProposals={filteredProposals} />
+				<CardRewards activeProposals={filteredProposals} address={walletAddress} />
 				<ProposalCardActive address={walletAddress} proposals={filteredProposals} />
 				<ProposalCardCreated proposals={filteredProposals} address={walletAddress} />
 			</Box>
