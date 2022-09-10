@@ -30,8 +30,8 @@ const ProposalCardVaultIncentive = ({ proposal, isProposer, voteWeight }: Props)
           ))}
         </Box>
         <Box className="grid grid-cols-2 gap-8">
-          <TextContent>{proposal.totalVoteWeight}</TextContent>
-          {!isProposer && <TextContent>{voteWeight}</TextContent>}
+          <TextContent>{proposal.totalVoteWeight.toFixed(2)}</TextContent>
+          {!isProposer && <TextContent>{voteWeight?.toFixed(2)}</TextContent>}
           {/* {!isProposer && <TextContent>{`${proposal.userVote}`}</TextContent>} */}
         </Box>
       </Content>

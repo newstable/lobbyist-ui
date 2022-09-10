@@ -7,6 +7,8 @@ import TextField from '@mui/material/TextField';
 import { useEffect, useState } from "react";
 import { useLocation, useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { EnumProtocolName } from "../../@types/protocol";
+import classNames from "classnames";
+import styles from "../../components/form/styles.module.scss";
 import { colors } from "../../common";
 import {
 	NavBack,
@@ -53,6 +55,7 @@ const ProposalSymbolVote = (props: Props) => {
 	const [usdAmount, setUsdAmount] = useState(0);
 
 	const isProposer = searchParams.get("proposer") && true;
+	const [showMore, setShowMore] = useState(true);
 	const navState = location.state as any;
 	let { proposal: currentProposal } = navState;
 
@@ -60,11 +63,12 @@ const ProposalSymbolVote = (props: Props) => {
 		var rewardCurrency = tokens.filter(token => token.address == currentProposal.rewardCurrency);
 		setRewardCurrency(rewardCurrency[0].display);
 		setRewardCurrencyApi(rewardCurrency[0].api);
+		let tundo = currentProposal.description.toString();
 	}, [currentProposal])
 
 	useEffect(() => {
 		GetInfo();
-	}, [])
+	}, [walletAddress])
 
 	useEffect(() => {
 		setUsdAmount(0);
@@ -79,7 +83,8 @@ const ProposalSymbolVote = (props: Props) => {
 			strategies: proposalinfo.data.proposal.strategies,
 			snapshot: proposalinfo.data.proposal.snapshot,
 			space: proposalinfo.data.proposal.space.id,
-			address: walletAddress
+			address: walletAddress,
+			network: proposalinfo.data.proposal.network
 		}
 		const result = await Action.GetVoteWeight(req);
 		setVoteWeight(result.vp);
@@ -99,11 +104,18 @@ const ProposalSymbolVote = (props: Props) => {
 			}
 			const web3 = new Web3Provider(window.ethereum);
 			const [account] = await web3.listAccounts();
+			let choice: any;
+			if (proposalInfo.type == "single-choice") {
+				choice = proposalInfo.choices.indexOf(currentProposal.protocol) + 1
+			} else {
+				choice = { [proposalInfo.choices.indexOf(currentProposal.protocol) + 1]: 1 };
+
+			}
 			const receipt = await client.vote(web3, account, {
 				space: proposalInfo.space.id,
 				proposal: proposalInfo.id,
 				type: proposalInfo.type,
-				choice: proposalInfo.choices.indexOf(currentProposal.protocol) + 1,
+				choice: choice,
 				reason: 'This choice makes a lot of sense',
 				app: 'Lobbyist'
 			});
@@ -191,6 +203,7 @@ const ProposalSymbolVote = (props: Props) => {
 								<Typography color={colors.textGray}>
 									{navState.proposal.description.length > 80 ? (navState.proposal.description.slice(0, 80) + "...") : navState.proposal.description}
 								</Typography>
+								<Button variant="outlined" color="inherit" className="load-button" onClick={() => setShowMore(!showMore)}>{showMore ? "Show more" : "Show less"}</Button>
 							</Box>
 							<Box className="flex flex-col gap-8">
 								<ProposalCardVaultIncentive
@@ -206,6 +219,7 @@ const ProposalSymbolVote = (props: Props) => {
 									proposal={currentProposal}
 									isProposer={isProposer}
 									voteWeight={voteWeight}
+									voteType={proposalInfo.type}
 								/>
 							</Box>
 						</Box>
@@ -226,23 +240,24 @@ const ProposalSymbolVote = (props: Props) => {
 				<Box className="mt-16 mb-32"></Box>
 			</Box >
 			<Dialog className="modaladd" open={modal} onClose={handleClose}>
-				<DialogTitle className="modaladdpaper">Add more rewards to the proposal</DialogTitle>
+				<DialogTitle className="modaladdpaper modaladdpaper-title">Add more rewards to the proposal</DialogTitle>
 				<DialogContent className="modaladdpapermid">
-				<div className="modaladdpaper title">
-					<div style={{ margin: "0 auto 0 0" }} className="modaladdpaper">
-						<div>Reward Currency :&nbsp;</div>
-						<div>{currency}</div>
+					<div className="modaladdpaper title">
+						<div style={{ margin: "0 auto 0 0" }} className="modaladdpaper">
+							<div>Reward Currency :&nbsp;</div>
+							<div>{currency}</div>
+						</div>
+						<div style={{ margin: "0 0 0 auto" }} className="modaladdpaper">
+							<div>USD Amount :&nbsp;</div>
+							<div>{usdAmount.toFixed(2)}</div>
+						</div>
 					</div>
-					<div style={{ margin: "0 0 0 auto" }} className="modaladdpaper">
-						<div>USD Amount :&nbsp;</div>
-						<div>{usdAmount.toFixed(2)}</div>
-					</div>
-				</div>
+				</DialogContent>
 				<DialogContent className="modaladdpaper">
 					<TextField
-						autoFocus
+						className={classNames(styles.input)}
 						id="reward"
-						label="Reward Amount"
+						placeholder="Input your amount"
 						type="number"
 						fullWidth
 						onChange={(e) => onChangeAmount(e.target.value)}

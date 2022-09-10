@@ -30,7 +30,7 @@ const GetVoteWeight = async (req: any) => {
             "method": "get_vp",
             "params": {
                 "address": req.address,
-                "network": "1",
+                "network": req.network,
                 "strategies": req.strategies,
                 "snapshot": req.snapshot,
                 "space": req.space,

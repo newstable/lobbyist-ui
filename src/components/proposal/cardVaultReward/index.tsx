@@ -7,13 +7,14 @@ type Props = {
   proposal: Proposal;
   isProposer?: boolean | string | null;
   voteWeight: number;
+  voteType: string;
 };
 
 const Content = styled(CardContent)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
 }));
 
-const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight }: Props) => {
+const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }: Props) => {
   const colHeads = isProposer
     ? ["Total rewards to distribute", "Voting For"]
     : ["My Reward Amount", "Voting For"];
@@ -28,8 +29,8 @@ const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight }: Props) =>
           ))}
         </Box>
         <Box className="grid grid-cols-2 gap-8">
-          <TextContent>${proposal.totalVoteWeight > 0 ? proposal.reward / proposal.votes * voteWeight : 0}</TextContent>
-          <TextContent>{proposal.protocol}</TextContent>
+          <TextContent>${proposal.totalVoteWeight > 0 ? (proposal.reward / proposal.votes * voteWeight).toFixed(2) : 0}</TextContent>
+          <TextContent>{voteType != "single-choice" ? "100% for " + proposal.protocol : proposal.protocol}</TextContent>
         </Box>
       </Content>
     </Card>

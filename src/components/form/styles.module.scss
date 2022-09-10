@@ -3,6 +3,11 @@
 .input {
   background-color: #1f2028;
 
+  :focus {
+    outline: white !important;
+    border-color: white !important;
+  }
+
   img {
     display: inline;
     width: 18px;
