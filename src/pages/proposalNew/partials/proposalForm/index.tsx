@@ -193,11 +193,6 @@ const ProposalForm = (props: Props) => {
         control,
         name: "rangeNum",
     });
-
-    // const { append: payoutAppend, remove: payoutRemove } = useFieldArray({
-    //     control,
-    //     name: "payout",
-    // });
     const OnFormSubmit = async (value: any) => {
         if (walletAddress === "") {
             NotificationManager.warning("Please connect wallet...!", "Warning");

@@ -10,6 +10,7 @@ import { EnumProtocolName } from "../../@types/protocol";
 import classNames from "classnames";
 import styles from "../../components/form/styles.module.scss";
 import { colors } from "../../common";
+import { Remarkable } from 'remarkable';
 import {
 	NavBack,
 	ProposalCardVaultEmission,
@@ -30,6 +31,8 @@ import { NotificationManager } from 'react-notifications';
 import { addRewards } from "../../blockchain";
 import tokens from "../../token.json";
 import { Coins } from "../../blockchain";
+
+var md = new Remarkable();
 
 type Props = {};
 
@@ -56,6 +59,7 @@ const ProposalSymbolVote = (props: Props) => {
 
 	const isProposer = searchParams.get("proposer") && true;
 	const [showMore, setShowMore] = useState(true);
+	const [description, setDescription] = useState("");
 	const navState = location.state as any;
 	let { proposal: currentProposal } = navState;
 
@@ -63,7 +67,7 @@ const ProposalSymbolVote = (props: Props) => {
 		var rewardCurrency = tokens.filter(token => token.address == currentProposal.rewardCurrency);
 		setRewardCurrency(rewardCurrency[0].display);
 		setRewardCurrencyApi(rewardCurrency[0].api);
-		let tundo = currentProposal.description.toString();
+		setDescription(md.render(currentProposal.description));
 	}, [currentProposal])
 
 	useEffect(() => {
@@ -197,14 +201,20 @@ const ProposalSymbolVote = (props: Props) => {
 				</Box>
 				<Grid container spacing={2}>
 					<Grid item xs={12} md={6}>
-						<Box className="flex flex-col gap-12 mt-12">
+						<Box className="flex flex-col mt-12">
 							<Box className="flex flex-col">
-								<Typography variant="h6">{navState.proposal.name}</Typography>
+								<Typography variant="h5">{navState.proposal.name}</Typography>
 								<Typography color={colors.textGray}>
-									{navState.proposal.description.length > 80 ? (navState.proposal.description.slice(0, 80) + "...") : navState.proposal.description}
+									{showMore ? (
+										<div className="description" dangerouslySetInnerHTML={{ __html: description.slice(0, 80) }}></div>
+									) : <div className="description" dangerouslySetInnerHTML={{ __html: description }}></div>}
 								</Typography>
-								<Button variant="outlined" color="inherit" className="load-button" onClick={() => setShowMore(!showMore)}>{showMore ? "Show more" : "Show less"}</Button>
+								{description.length > 80 ? (
+									<Button variant="outlined" color="inherit" className="load-button" onClick={() => setShowMore(!showMore)}>{showMore ? "Show more" : "Show less"}</Button>
+								) : ""
+								}
 							</Box>
+							{voteWeight > 0 ? voteWeight + " " + currency : ""}
 							<Box className="flex flex-col gap-8">
 								<ProposalCardVaultIncentive
 									proposal={currentProposal}
@@ -213,7 +223,7 @@ const ProposalSymbolVote = (props: Props) => {
 								/>
 								<ProposalCardVaultEmission
 									proposal={currentProposal}
-									isProposer={isProposer}
+									currency={currency}
 								/>
 								<ProposalCardVaultReward
 									proposal={currentProposal}
@@ -266,9 +276,9 @@ const ProposalSymbolVote = (props: Props) => {
 				</DialogContent>
 				<DialogActions className="modaladdpaperbtm">
 					{addrewardButton ?
-						<Button onClick={() => { AddReward(); }}>Approve</Button>
+						<Button className="proposer-button" variant="contained" color="tealLight" onClick={() => { AddReward(); }}>Approve</Button>
 						:
-						<Button onClick={() => { AddReward(); }}>Add Rewards</Button>
+						<Button className="proposer-button" variant="contained" color="tealLight" onClick={() => { AddReward(); }}>Add Rewards</Button>
 					}
 				</DialogActions>
 			</Dialog>

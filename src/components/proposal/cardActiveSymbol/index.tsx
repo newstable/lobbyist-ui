@@ -85,12 +85,12 @@ const ProposalCardActiveSymbol = ({
                 </Box>
                 <Box
                     className={classNames(
-                        "grid grid-cols-5 gap-8 px-6 mb-8",
+                        "grid grid-cols-6 gap-8 px-6 mb-8",
                         !isAboveMd && "hidden"
                     )}
                 >
                     {colHeads.map((c, idx) => (
-                        <Box key={`colHead_${idx}`}>
+                        <Box className={idx == 0 ? "table-first" : ""} key={`colHead_${idx}`}>
                             <TextHead>{c}</TextHead>
                         </Box>
                     ))}
@@ -107,13 +107,13 @@ const ProposalCardActiveSymbol = ({
                                         className={classNames(
                                             "grid gap-8",
                                             isAboveMd
-                                                ? "grid-cols-5 items-center"
+                                                ? "grid-cols-6 items-center"
                                                 : "grid-cols-2"
                                         )}
                                     >
                                         <Box
                                             className={classNames(
-                                                "flex flex-col",
+                                                "flex flex-col table-first",
                                                 !isAboveMd && "gap-1"
                                             )}
                                         >

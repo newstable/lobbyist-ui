@@ -15,9 +15,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 }));
 
 const ProposalCardVaultIncentive = ({ proposal, isProposer, voteWeight }: Props) => {
-  const colHeads = isProposer
-    ? ["Total Vote Weight"]
-    : ["Total Vote Weight", "Available Voting Power"];
+  const colHeads = ["Total Vote Weight"];
   return (
     <Card className="" elevation={0}>
       <ProposalCardHeader title="Proposal Info"></ProposalCardHeader>
@@ -31,8 +29,7 @@ const ProposalCardVaultIncentive = ({ proposal, isProposer, voteWeight }: Props)
         </Box>
         <Box className="grid grid-cols-2 gap-8">
           <TextContent>{proposal.totalVoteWeight.toFixed(2)}</TextContent>
-          {!isProposer && <TextContent>{voteWeight?.toFixed(2)}</TextContent>}
-          {/* {!isProposer && <TextContent>{`${proposal.userVote}`}</TextContent>} */}
+          {/* {!isProposer && <TextContent>{voteWeight?.toFixed(2)}</TextContent>} */}
         </Box>
       </Content>
     </Card>
