@@ -38,7 +38,7 @@ const ProposalCardCreated = (props: Props) => {
   const theme = useTheme();
   const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
   return (
-    <Card className="">
+    <Card className="" elevation={0}>
       <ProposalCardHeader title="My created proposals"></ProposalCardHeader>
       <Content className="!p-0">
         <Box

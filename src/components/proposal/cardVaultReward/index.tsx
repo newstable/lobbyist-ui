@@ -18,8 +18,8 @@ const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight }: Props) =>
     ? ["Total rewards to distribute", "Voting For"]
     : ["My Reward Amount", "Voting For"];
   return (
-    <Card className="">
-      <Content>
+    <Card className="" elevation={0}>
+      <Content className="card-rnd">
         <Box className="grid grid-cols-2 gap-8">
           {colHeads.map((c, idx) => (
             <Box key={`colHead_${idx}`}>

@@ -155,15 +155,12 @@ const ProposalSymbolVote = (props: Props) => {
 		<>
 			<Box className="main-body flex flex-col grow">
 				<Box className="flex flex-col main-content gap-14 margindw">
-					<Box className="flex justify-between proposer-flex">
+					<Box className="gapbtm flex justify-between proposer-flex">
 						<NavBack />
 						{isProposer ? (
 							<Box className="flex gap-8">
 								<Button onClick={() => setModal(true)} className="proposer-button" variant="contained" color="tealLight">
 									Add Rewards
-								</Button>
-								<Button onClick={() => setModal(true)} className="proposer-button" variant="contained" color="tealLight">
-									Clawback
 								</Button>
 							</Box>
 						) : (
@@ -230,6 +227,7 @@ const ProposalSymbolVote = (props: Props) => {
 			</Box >
 			<Dialog className="modaladd" open={modal} onClose={handleClose}>
 				<DialogTitle className="modaladdpaper">Add more rewards to the proposal</DialogTitle>
+				<DialogContent className="modaladdpapermid">
 				<div className="modaladdpaper title">
 					<div style={{ margin: "0 auto 0 0" }} className="modaladdpaper">
 						<div>Reward Currency :&nbsp;</div>
@@ -251,7 +249,7 @@ const ProposalSymbolVote = (props: Props) => {
 					>
 					</TextField>
 				</DialogContent>
-				<DialogActions className="modaladdpaper">
+				<DialogActions className="modaladdpaperbtm">
 					{addrewardButton ?
 						<Button onClick={() => { AddReward(); }}>Approve</Button>
 						:

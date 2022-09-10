@@ -4096,10 +4096,45 @@ input:checked+.toggle-bg {
 
 .modaladd {
     background-color: 31, 32, 40, 0.96;
+    border-radius: 2rem;
 }
 
 .modaladdpaper {
     background-color: #282931;
+    -webkit-border-top-left-radius: 2rem;
+    -webkit-border-top-right-radius: 2rem;
+    -moz-border-radius-topleft: 2rem;
+    -moz-border-radius-topright: 2rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+.modaladdpapermid {
+    background-color: #282931;
+}
+
+.modaladdpaperbtm {
+    background-color: #282931;
+    -webkit-border-bottom-right-radius: 2rem;
+    -webkit-border-bottom-left-radius: 2rem;
+    -moz-border-radius-bottomright: 2rem;
+    -moz-border-radius-bottomleft: 2rem;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+}
+
+.gapbtm {
+    margin-bottom: 4rem;
+}
+
+.card-rnd {
+    border-radius: 2rem;
+}
+
+.wallet-modal-footer {
+    margin-bottom: 2rem;
+}
+
     display: flex;
 }
 

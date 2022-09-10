@@ -17,11 +17,11 @@ const Content = styled(CardContent)(({ theme }) => ({
 const ProposalCardVaultIncentive = ({ proposal, isProposer, voteWeight }: Props) => {
   const colHeads = isProposer
     ? ["Total Vote Weight"]
-    : ["Total Vote Weight", "My Voting Power"];
+    : ["Total Vote Weight", "Available Voting Power"];
   return (
-    <Card className="">
-      <ProposalCardHeader title="Vault Incentive Gauge"></ProposalCardHeader>
-      <Content>
+    <Card className="" elevation={0}>
+      <ProposalCardHeader title="Proposal Info"></ProposalCardHeader>
+      <Content className="card-rnd">
         <Box className="grid grid-cols-2 gap-8">
           {colHeads.map((c, idx) => (
             <Box key={`colHead_${idx}`}>

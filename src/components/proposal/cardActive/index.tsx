@@ -54,7 +54,7 @@ const ProposalCardActive = (props: Props) => {
 	const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
 	const colHeads = ["Title", "Vote Incentives", "Total Votes", "$/Vote", ""];
 	return (
-		<Card className="">
+		<Card className="" elevation={0}>
 			<ProposalCardHeader title="My active proposals"></ProposalCardHeader>
 			<Content className="!p-0">
 				<Box

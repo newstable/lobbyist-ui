@@ -285,7 +285,6 @@ const ProposalForm = (props: Props) => {
                         />
                         <FormTextField
                             label="Proposal End Time"
-                            placeholder="Snapshot proposal end time"
                             name="endTime"
                             control={control}
                             time={time}
