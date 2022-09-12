@@ -98,7 +98,7 @@ const ProposalCardCreated = (props: Props) => {
                         {colHeads[3]}
                       </TextHead>
                       <TextContent>${p.votes == 0 ? ("0") : (
-                        NumberType(Number((p.reward / p.votes).toFixed(2)))
+                        NumberType(Number((p.usdAmount / p.votes).toFixed(2)))
                       )}</TextContent>
                     </Box>
                     <Box
