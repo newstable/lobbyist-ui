@@ -5,14 +5,13 @@ import { TextContent, TextHead } from "../../text";
 
 type Props = {
   proposal: Proposal;
-  currency: string;
 };
 
 const Content = styled(CardContent)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
 }));
 
-const ProposalCardVaultEmission = ({ proposal, currency }: Props) => {
+const ProposalCardVaultEmission = ({ proposal }: Props) => {
   const colHeads = ["Total Reward", "$/Vote"];
   return (
     <Card className="" elevation={0}>
@@ -27,9 +26,6 @@ const ProposalCardVaultEmission = ({ proposal, currency }: Props) => {
         <Box className="grid grid-cols-2 gap-8">
           <TextContent>${proposal.usdAmount.toFixed(2)}</TextContent>
           <TextContent>{proposal.votes == 0 ? 0 : "$" + (proposal.usdAmount / proposal.votes).toFixed(2)}</TextContent>
-        </Box>
-        <Box>
-          <TextContent>{currency}</TextContent>
         </Box>
       </Content>
     </Card>

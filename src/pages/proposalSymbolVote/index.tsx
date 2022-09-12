@@ -243,7 +243,6 @@ const ProposalSymbolVote = (props: Props) => {
 								/>
 								<ProposalCardVaultEmission
 									proposal={currentProposal}
-									currency={currency}
 								/>
 								<ProposalCardVaultReward
 									proposal={currentProposal}

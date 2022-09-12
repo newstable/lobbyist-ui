@@ -6,6 +6,7 @@ import {
     useTheme,
     useMediaQuery,
     InputAdornment,
+    TextField,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
@@ -18,7 +19,6 @@ import {
     EnumProtocolSymbolName,
     Protocol,
 } from "../../../@types/protocol";
-import { FormTextField } from "../../form";
 import { TextContent, TextHead } from "../../text";
 import { ProposalCardHeader } from "../cardHeader";
 import NumberType from "../../../common/number";
@@ -26,6 +26,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "../../../redux/store";
 import { RootState } from "../../../redux/store";
 import tokens from "../../../token.json";
+import styles from "../../form/styles.module.scss";
 import { Coins } from "../../../blockchain";
 
 type Props = {
@@ -41,6 +42,8 @@ const ProposalCardActiveSymbol = ({
     proposals,
     isHistory,
 }: Props) => {
+    const [realProposals, setRealProposals] = useState<Proposal[]>([]);
+    const [text, setText] = useState("");
     const walletAddress: any = useSelector(
         (state: RootState) => state.wallet.address
     );
@@ -58,11 +61,10 @@ const ProposalCardActiveSymbol = ({
         });
     };
 
-    const { control } = useForm({
-        defaultValues: {
-            searchText: "",
-        },
-    });
+    useEffect(() => {
+        var search: Proposal[] = proposals?.filter((proposal) => proposal.name.search(text) > -1);
+        setRealProposals(search);
+    }, [text, proposals])
 
     return (
         <Card className="" elevation={0}>
@@ -71,18 +73,18 @@ const ProposalCardActiveSymbol = ({
             ></ProposalCardHeader>
             <Content className="!p-0">
                 <Box className="mb-16">
-                    <FormTextField
-                        name="minimumProposal"
-                        control={control}
-                        inputProps={{
+                    <TextField
+                        className={classNames(styles.input, "bg-black")}
+                        placeholder="Search for proposals..."
+                        fullWidth
+                        onChange={(e) => setText(e.target.value)}
+                        InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
                                     <SearchIcon />
                                 </InputAdornment>
                             ),
                         }}
-                        inputClass="bg-black"
-                        placeholder="Search for proposals..."
                     />
                 </Box>
                 <Box
@@ -98,7 +100,7 @@ const ProposalCardActiveSymbol = ({
                     ))}
                 </Box>
                 <Box className="flex flex-col gap-4">
-                    {proposals?.map((p, idx) => (
+                    {realProposals?.map((p, idx) => (
                         p.type === protocol ?
                             p.isClosed == isHistory ?
                                 <Box
