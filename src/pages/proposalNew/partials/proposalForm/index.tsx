@@ -408,7 +408,7 @@ const ProposalForm = (props: Props) => {
                         <strong>Total proposal value</strong>
                         <Box className="flex flex-col gap-8">
                             <Box className="grid grid-cols-3 gap-8">
-                                <Typography className="col-span-2">
+                                <Typography className="feetitle col-span-2">
                                     Max Reward
                                 </Typography>
                                 <Typography className="text-right">
@@ -424,15 +424,11 @@ const ProposalForm = (props: Props) => {
                                     <br />
                                     ${(maxReward * 0.025 * usd).toFixed(2)}
                                 </Typography>
-                                <Typography className="col-span-2">
-                                    Total Reward
-                                </Typography>
-                                <Typography className="text-right">
-                                    {maxReward + " " + rewardType}
-                                    <br />
-                                    ${(maxReward * 0.975 * usd).toFixed(2)}
-                                </Typography>
+                                
                             </Box>
+                            <Typography className="feename">
+                                    The fee will be deducted from the Max Reward on deposit
+                                </Typography>
                         </Box>
                         {myloading ? (
                             <Button
