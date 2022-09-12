@@ -16,7 +16,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 
 const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }: Props) => {
   const colHeads = isProposer
-    ? ["Total rewards to distribute", "Voting For"]
+    ? ["My Reward", "Voting For"]
     : ["My Reward Amount", "Voting For"];
   return (
     <Card className="" elevation={0}>

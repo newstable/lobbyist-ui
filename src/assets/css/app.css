@@ -4168,3 +4168,11 @@ h6 {
 .table-first {
     grid-column: 1/3;
 }
+
+.feename {
+    color: #3a78ff;
+}
+
+.feetitle {
+    font-weight: 800;
+}

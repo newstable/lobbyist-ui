@@ -228,11 +228,11 @@ const ProposalSymbolVote = (props: Props) => {
 									) : <div className="description" dangerouslySetInnerHTML={{ __html: description }}></div>}
 								</Typography>
 								{description.length > 80 ? (
-									<Button variant="outlined" color="inherit" className="load-button" onClick={() => setShowMore(!showMore)}>{showMore ? "Show more" : "Show less"}</Button>
+									<Button color="inherit" className="load-button" onClick={() => setShowMore(!showMore)}>{showMore ? "Show more" : "Show less"}</Button>
 								) : ""
 								}
 							</Box>
-							{voteWeight > 0 ? voteWeight + " " + currency : ""}
+							<Typography>My Available Voting Power: {voteWeight > 0 ? voteWeight + " " + currency : ""}</Typography>
 							<Box className="flex flex-col gap-8">
 								<ProposalCardVaultIncentive
 									proposal={currentProposal}
