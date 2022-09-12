@@ -25,10 +25,12 @@ const ProposalNewCard = ({ title, slug, isType, isSolid }: Props) => {
     <Card className="cursor-pointer" onClick={onClickNavigate}>
       {isType ? (
         <Content className="h-60 flex items-center justify-center">
-          <Typography variant="caption">{title}</Typography>
-          {title == "Variable" ? (
-            <div style={{ color: "grey" }}> Coming soon</div>
-          ) : ""}
+          <div style={{ textAlign: "center" }}>
+            <Typography variant="caption">{title}</Typography>
+            {title == "Variable" ? (
+              <div style={{ color: "grey" }}> Coming soon</div>
+            ) : ""}
+          </div>
         </Content>
       ) : (
         <>
