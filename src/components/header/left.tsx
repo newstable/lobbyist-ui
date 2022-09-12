@@ -7,7 +7,7 @@ import { ReactComponent as DashboardIcon } from "../../assets/icons/dash.svg";
 import { ReactComponent as ProQidaoIcon } from "../../assets/icons/pro-qidao.svg";
 import { ReactComponent as ProAaveIcon } from "../../assets/icons/pro-aave.svg";
 import { ReactComponent as ProVesqIcon } from "../../assets/icons/vesq.svg";
-import { ReactComponent as ConvexIcon } from "../../assets/icons/convex.svg";
+// import { ReactComponent as ConvexIcon } from "../../assets/icons/convex.svg";
 import { EnumProtocolName } from "../../@types/protocol";
 import styles from "./styles.module.scss";
 
@@ -28,9 +28,9 @@ const HeaderLeft = (props: Props) => {
   if (symbol) {
     title = EnumProtocolName[symbol as keyof typeof EnumProtocolName];
     switch (title) {
-      case EnumProtocolName.convex:
-        TitleIcon = ConvexIcon;
-        break;
+      // case EnumProtocolName.convex:
+      //   TitleIcon = ConvexIcon;
+      //   break;
       case EnumProtocolName.qidao:
         TitleIcon = ProQidaoIcon;
         break;

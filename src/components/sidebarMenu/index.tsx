@@ -8,7 +8,7 @@ import { ReactComponent as GaugeIcon } from "../../assets/icons/gauge.svg";
 import { ReactComponent as ChartIcon } from "../../assets/icons/chart.svg";
 import { ReactComponent as ProAvaeIcon } from "../../assets/icons/pro-aave.svg";
 import { ReactComponent as CurveIcon } from "../../assets/icons/crv.svg";
-import { ReactComponent as ConvexIcon } from "../../assets/icons/convex.svg";
+// import { ReactComponent as ConvexIcon } from "../../assets/icons/convex.svg";
 import { ReactComponent as BalancerIcon } from "../../assets/icons/bal.svg";
 import { ReactComponent as ProQiIcon } from "../../assets/icons/pro-qidao.svg";
 import { ReactComponent as ProVesqIcon } from "../../assets/icons/vesq.svg";
@@ -47,8 +47,8 @@ const SidebarMenu = (props: Props) => {
         return ProFraxIcon;
       case "curve":
         return CurveIcon;
-      case "convex":
-        return ConvexIcon;
+      // case "convex":
+      //   return ConvexIcon;
       case "balancer":
         return BalancerIcon;
       case "pro-qidao":
@@ -77,12 +77,12 @@ const SidebarMenu = (props: Props) => {
       href: "/",
       separator: true,
     },
-    {
-      icon: "convex",
-      text: "Convex",
-      href: "/proposal/convex",
-      separator: true,
-    },
+    // {
+    //   icon: "convex",
+    //   text: "Convex",
+    //   href: "/proposal/convex",
+    //   separator: true,
+    // },
     {
       icon: "pro-qidao",
       text: "QiDAO",
@@ -159,7 +159,7 @@ const SidebarMenu = (props: Props) => {
             )}
             underline="none"
           >
-          <img src={Logo} alt="" />
+            <img src={Logo} alt="" />
           </Link>
         </Box>
 
