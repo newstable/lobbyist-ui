@@ -287,7 +287,7 @@ const ProposalSymbolVote = (props: Props) => {
 						</div>
 						<div style={{ margin: "0 0 0 auto" }} className="modaladdpaper">
 							<div>USD Amount :&nbsp;</div>
-							<div>{usdAmount.toFixed(2)}</div>
+							<div>{(usdAmount * 0.025).toFixed(2)}</div>
 						</div>
 					</div>
 				</DialogContent>
