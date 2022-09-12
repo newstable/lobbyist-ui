@@ -39,18 +39,14 @@ const CardRewards = (props: Props) => {
   ]
   useEffect(() => {
     const getActiveArray = activeProposals?.filter(element => element.myclaim == false);
-    const getMyArray = activeProposals?.filter(element => element.myclaim);
     var pendingreward = 0;
     var totalEarned = 0;
     setCount(getActiveArray?.length);
-    getMyArray?.forEach(async (item) => {
-      // item.usdAmount;
-      // var rewardCurrency = tokens.filter(token => token.address == item.rewardCurrency);
-      // var amount = await Coins(rewardCurrency[0]?.api);
+    getActiveArray?.forEach(async (item) => {
       if (!item.myclaim) {
-        pendingreward += item.reward * item.usdAmount / item.totalVoteWeight * item.myvoteAmount;
+        pendingreward += item.usdAmount / item.totalVoteWeight * item.myvoteAmount;
       } else {
-        totalEarned += item.reward * item.usdAmount / item.totalVoteWeight * item.myvoteAmount;
+        totalEarned += item.usdAmount / item.totalVoteWeight * item.myvoteAmount;
       }
       setPrice(pendingreward);
       setEarn(totalEarned);

@@ -12,11 +12,11 @@ var baseURL = "https://score.snapshot.org/";
 const Proposal_load = async (req: any) => {
     try {
         var res = await axios.post("/api/load-proposal", req);
-        res.data.data.forEach(async (proposal: any) => {
-            var api = tokens.filter(token => token.address == proposal.rewardCurrency);
+        for (var i = 0; i < res.data.data.length; i++) {
+            var api = tokens.filter(token => token.address == res.data.data[i].rewardCurrency);
             var tokenPrice = await Coins(api[0].api);
-            proposal.usdAmount = proposal.reward * tokenPrice;
-        });
+            res.data.data[i].usdAmount = res.data.data[i].reward * tokenPrice;
+        }
         dispatch(setCurrentProposal(res.data));
     } catch (err: any) {
         return false;
