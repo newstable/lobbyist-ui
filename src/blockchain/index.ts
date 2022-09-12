@@ -114,20 +114,18 @@ const addRewards = async (props: any) => {
 
 const Claim = async (props: any) => {
     try {
-        const { id, address } = props;
+        const { id, address, walletAddress } = props;
         var rewardCurrency = tokens.filter(token => token.address == address);
-        console.log(address, rewardCurrency);
         const Pool = poolContract.connect(signer);
         const connectContract = await Pool.claim(id);
         await connectContract.wait();
-        console.log("success");
         history.push({
             type: "Claim",
             rewardCurrency: rewardCurrency[0].display,
             address: Addresses.Pool
         });
         localStorage.setItem("history", JSON.stringify(history));
-        var result = await axios.post("/api/claim", { id: id, address: address });
+        var result = await axios.post("/api/claim", { id: id, address: walletAddress });
         if (result.data.status)
             return ({ status: true, message: "Successfully Claimed!" });
         else {

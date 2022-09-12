@@ -39,10 +39,11 @@ const CardRewards = (props: Props) => {
   ]
   useEffect(() => {
     const getActiveArray = activeProposals?.filter(element => element.myclaim == false);
+    const myProposals = activeProposals?.filter(element => element.myvoteAmount);
     var pendingreward = 0;
     var totalEarned = 0;
     setCount(getActiveArray?.length);
-    getActiveArray?.forEach(async (item) => {
+    myProposals?.forEach(async (item) => {
       if (!item.myclaim) {
         pendingreward += item.usdAmount / item.totalVoteWeight * item.myvoteAmount;
       } else {

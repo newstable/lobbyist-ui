@@ -42,8 +42,8 @@ const ProposalCardActive = (props: Props) => {
 			},
 		});
 	};
-	const onClaim = async (e: number) => {
-		var result = await Claim({ id: e, address: address });
+	const onClaim = async (e: number, currency: string) => {
+		var result = await Claim({ id: e, address: currency, walletAddress: address });
 		if (result.status) {
 			NotificationManager.success(result.message, "Success");
 		} else {
@@ -59,12 +59,12 @@ const ProposalCardActive = (props: Props) => {
 			<Content className="!p-0">
 				<Box
 					className={classNames(
-						"grid grid-cols-5 gap-8 px-6 mb-8",
+						"grid grid-cols-6 gap-8 px-6 mb-8",
 						!isAboveMd && "hidden"
 					)}
 				>
 					{colHeads.map((c, idx) => (
-						<Box key={`colHead_${idx}`}>
+						<Box className={idx == 0 ? "table-first" : ""} key={`colHead_${idx}`}>
 							<TextHead>{c}</TextHead>
 						</Box>
 					))}
@@ -76,11 +76,11 @@ const ProposalCardActive = (props: Props) => {
 								<Box
 									className={classNames(
 										"grid gap-8",
-										isAboveMd ? "grid-cols-5" : "grid-cols-2"
+										isAboveMd ? "grid-cols-6" : "grid-cols-2"
 									)}
 								>
 									<Box
-										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+										className={classNames("flex flex-col table-first", !isAboveMd && "gap-1")}
 									>
 										<TextHead className={classNames(isAboveMd && "hidden")}>
 											{colHeads[0]}
@@ -124,7 +124,7 @@ const ProposalCardActive = (props: Props) => {
 												View
 											</Button>
 										) : !p.myclaim ? (
-											<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId)}>
+											<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId, p.rewardCurrency)}>
 												Claim
 											</Button>
 										) : <></>}

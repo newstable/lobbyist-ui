@@ -30,7 +30,6 @@ const App = () => {
   }
   useEffect(() => {
     setAddress(walletAddress);
-
   }, [walletAddress]);
   const [time, setTime] = useState<number>();
   useEffect(() => {
