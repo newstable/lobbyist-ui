@@ -65,6 +65,7 @@ const ProposalCardActiveSymbol = ({
     });
 
     const converter = async (amount: number, rewardCurrency: string) => {
+        console.log(amount, rewardCurrency);
         var api = tokens.filter(token => token.address == rewardCurrency);
         var tokenPrice = await Coins(api[0].api);
         return NumberType(Number((amount * tokenPrice).toFixed(2)));
