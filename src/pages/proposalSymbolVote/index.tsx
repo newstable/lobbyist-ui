@@ -232,7 +232,9 @@ const ProposalSymbolVote = (props: Props) => {
 								) : ""
 								}
 							</Box>
-							<Typography>My Available Voting Power: {voteWeight > 0 ? voteWeight + " " + currency : ""}</Typography>
+							<Box className="flex flex-col gap-8">
+							<Typography className="vpa">MY AVAILABLE VOTING POWER: <strong className="currcol"> {voteWeight > 0 ? voteWeight + " " + currency : ""}</strong> </Typography>
+							</Box>
 							<Box className="flex flex-col gap-8">
 								<ProposalCardVaultIncentive
 									proposal={currentProposal}
@@ -268,12 +270,21 @@ const ProposalSymbolVote = (props: Props) => {
 				<Box className="mt-16 mb-32"></Box>
 			</Box >
 			<Dialog className="modaladd" open={modal} onClose={handleClose}>
-				<DialogTitle className="modaladdpaper modaladdpaper-title">Add more rewards to the proposal</DialogTitle>
+				<DialogTitle className="modaladdpaper modaladdpaper-title">Add more rewards</DialogTitle>
 				<DialogContent className="modaladdpapermid">
 					<div className="modaladdpaper title">
 						<div style={{ margin: "0 auto 0 0" }} className="modaladdpaper">
-							<div>Reward Currency :&nbsp;</div>
+							<div>Reward Currency:&nbsp;</div>
 							<div>{currency}</div>
+						</div>
+						<div style={{ margin: "0 0 0 auto" }} className="modaladdpaper">
+							<div>USD Amount :&nbsp;</div>
+							<div>{usdAmount.toFixed(2)}</div>
+						</div>
+					</div>
+					<div className="modaladdpaper titlebtm">
+						<div style={{ margin: "0 auto 0 0" }} className="modaladdpaper">
+							<div>2.5% Lobbyist Fee:&nbsp;</div>
 						</div>
 						<div style={{ margin: "0 0 0 auto" }} className="modaladdpaper">
 							<div>USD Amount :&nbsp;</div>
@@ -291,6 +302,9 @@ const ProposalSymbolVote = (props: Props) => {
 						onChange={(e) => onChangeAmount(e.target.value)}
 					>
 					</TextField>
+				</DialogContent>
+				<DialogContent className="modaladdpaper">
+				<Typography className="feedec">The fee will be deducted from the Max Reward on deposit</Typography>
 				</DialogContent>
 				<DialogActions className="modaladdpaperbtm">
 					{addrewardButton ?
