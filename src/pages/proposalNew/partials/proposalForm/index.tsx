@@ -414,7 +414,7 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     {maxReward + " " + rewardType}
                                     <br />
-                                    ${maxReward * usd}
+                                    ${(maxReward * usd).toFixed(2)}
                                 </Typography>
                                 <Typography className="col-span-2">
                                     Lobbyist Fee
@@ -422,7 +422,7 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     2.5%
                                     <br />
-                                    ${maxReward * 0.025 * usd}
+                                    ${(maxReward * 0.025 * usd).toFixed(2)}
                                 </Typography>
                                 <Typography className="col-span-2">
                                     Total Reward
@@ -430,7 +430,7 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     {maxReward + " " + rewardType}
                                     <br />
-                                    ${maxReward * 0.975 * usd}
+                                    ${(maxReward * 0.975 * usd).toFixed(2)}
                                 </Typography>
                             </Box>
                         </Box>
