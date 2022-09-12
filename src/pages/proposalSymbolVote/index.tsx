@@ -233,7 +233,7 @@ const ProposalSymbolVote = (props: Props) => {
 								}
 							</Box>
 							<Box className="flex flex-col gap-8">
-							<Typography className="vpa">MY AVAILABLE VOTING POWER: <strong className="currcol"> {voteWeight > 0 ? voteWeight + " " + currency : ""}</strong> </Typography>
+								<Typography className="vpa">MY AVAILABLE VOTING POWER: <strong className="currcol"> {voteWeight > 0 ? voteWeight.toFixed(2) + " " + currency : ""}</strong> </Typography>
 							</Box>
 							<Box className="flex flex-col gap-8">
 								<ProposalCardVaultIncentive
@@ -304,7 +304,7 @@ const ProposalSymbolVote = (props: Props) => {
 					</TextField>
 				</DialogContent>
 				<DialogContent className="modaladdpaper">
-				<Typography className="feedec">The fee will be deducted from the Max Reward on deposit</Typography>
+					<Typography className="feedec">The fee will be deducted from the Max Reward on deposit</Typography>
 				</DialogContent>
 				<DialogActions className="modaladdpaperbtm">
 					{addrewardButton ?

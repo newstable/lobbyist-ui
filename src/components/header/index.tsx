@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import classNames from "classnames";
-import Web3Modal from "web3modal";
+// import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 import { setWalletAddress } from "../../redux/slices/wallet";
 import { dispatch } from "../../redux/store";
@@ -21,12 +21,13 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import CallMadeSharpIcon from '@mui/icons-material/CallMadeSharp';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { History } from "../../@types/proposal";
+import { SafeAppWeb3Modal } from '@gnosis.pm/safe-apps-web3modal';
 
 import { colors } from "../../common";
 import { HeaderLeft } from "./left";
 import styles from "./styles.module.scss";
-import { providerOptions } from "../../providerOptions";
-import { toHex, truncateAddress } from "../../utils";
+// import { providerOptions } from "../../providerOptions";
+// import { toHex, truncateAddress } from "../../utils";
 import useClipboard from "react-use-clipboard";
 
 const itemsList = [
@@ -47,10 +48,12 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     color: colors.textGrayLight,
 }));
 
-const web3Modal = new Web3Modal({
-    cacheProvider: true, // optional
-    providerOptions, // required
-});
+const modal = new SafeAppWeb3Modal();
+
+// const web3Modal = new Web3Modal({
+//     cacheProvider: true, // optional
+//     providerOptions, // required
+// });
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -62,10 +65,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const Header: FC = () => {
-    const [library, setLibrary]: any = useState();
+    const [provider, setProvider] = useState(null);
     const [account, setAccount] = useState("");
-    const [error, setError] = useState("");
-    const [chainId, setChainId]: any = useState();
     const [open, setOpen] = useState(false);
     const [walletInfo, setWalletInfo] = useState(false);
     const anchorRef = useRef<HTMLButtonElement>(null);
@@ -102,78 +103,89 @@ const Header: FC = () => {
 
     const connectWallet = async () => {
         try {
-            const provider = await web3Modal.connect();
-            provider.on("accountsChanged", async (accounts: string[]) => {
-                if (accounts.length == 0) {
-                    await web3Modal.clearCachedProvider();
-                    dispatch(setWalletAddress(""));
-                    refreshState();
-                }
-            })
+            // const loadedAsSafeApp = await modal.isSafeApp();
+            const provider = await modal.requestProvider();
             const library = new ethers.providers.Web3Provider(provider);
             if (library.connection.url == "metamask")
                 setWalletType("Metamask")
             else
                 setWalletType(library.connection.url);
-            const accounts = await library.listAccounts();
-            const network = await library.getNetwork();
-            setLibrary(library);
-            if (accounts) {
-                setAccount(accounts[0]);
-                dispatch(setWalletAddress(accounts[0]));
-            }
-            setChainId(network.chainId);
-        } catch (error: any) {
-            setError(error);
+            setProvider(provider);
+        } catch {
+
         }
+        // try {
+        //     const provider = await web3Modal.connect();
+        //     provider.on("accountsChanged", async (accounts: string[]) => {
+        //         if (accounts.length == 0) {
+        //             await web3Modal.clearCachedProvider();
+        //             dispatch(setWalletAddress(""));
+        //             refreshState();
+        //         }
+        //     })
+        //     const library = new ethers.providers.Web3Provider(provider);
+        //     if (library.connection.url == "metamask")
+        //         setWalletType("Metamask")
+        //     else
+        //         setWalletType(library.connection.url);
+        //     const accounts = await library.listAccounts();
+        //     const network = await library.getNetwork();
+        //     setLibrary(library);
+        //     if (accounts) {
+        //         setAccount(accounts[0]);
+        //         dispatch(setWalletAddress(accounts[0]));
+        //     }
+        //     setChainId(network.chainId);
+        // } catch (error: any) {
+        //     setError(error);
+        // }
     };
 
     useEffect(() => {
-        if (chainId != "0x13881" || chainId != "0x1") {
-            if (selectedCrypto == "Polygon") {
-                switchNetwork("0x13881");
-            } else {
-                switchNetwork("0x1");
-            }
-        }
-    }, [account])
+        connectWallet();
+    }, []);
+    // useEffect(() => {
+    //     if (chainId != "0x13881" || chainId != "0x1") {
+    //         if (selectedCrypto == "Polygon") {
+    //             switchNetwork("0x13881");
+    //         } else {
+    //             switchNetwork("0x1");
+    //         }
+    //     }
+    // }, [account])
 
     const switchNetwork = async (network: string) => {
-        try {
-            await library.provider.request({
-                method: "wallet_switchEthereumChain",
-                params: [{ chainId: toHex(network) }],
-            });
-        } catch (switchError: any) {
-            if (switchError.code === 4902) {
-                try {
-                    await library.provider.request({
-                        method: "wallet_addEthereumChain",
-                        params: [
-                            {
-                                chainId: toHex("137"),
-                                chainName: "Polygon",
-                                rpcUrls: ["https://polygon-rpc.com/"],
-                                blockExplorerUrls: ["https://polygonscan.com/"],
-                            },
-                        ],
-                    });
-                } catch (addError) {
-                    throw addError;
-                }
-            }
-        }
+        // try {
+        //     await library.provider.request({
+        //         method: "wallet_switchEthereumChain",
+        //         params: [{ chainId: toHex(network) }],
+        //     });
+        // } catch (switchError: any) {
+        //     if (switchError.code === 4902) {
+        //         try {
+        //             await library.provider.request({
+        //                 method: "wallet_addEthereumChain",
+        //                 params: [
+        //                     {
+        //                         chainId: toHex("137"),
+        //                         chainName: "Polygon",
+        //                         rpcUrls: ["https://polygon-rpc.com/"],
+        //                         blockExplorerUrls: ["https://polygonscan.com/"],
+        //                     },
+        //                 ],
+        //             });
+        //         } catch (addError) {
+        //             throw addError;
+        //         }
+        //     }
+        // }
     };
 
-    useEffect(() => {
-        if (web3Modal.cachedProvider) {
-            connectWallet();
-        }
-    }, []);
-
-    const refreshState = () => {
-        setAccount("");
-    };
+    // useEffect(() => {
+    //     if (web3Modal.cachedProvider) {
+    //         connectWallet();
+    //     }
+    // }, []);
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -191,10 +203,10 @@ const Header: FC = () => {
     };
 
     const selectMenuItem = (crypto: string, id: string, img: string) => {
-        setOpen(false);
-        setselectedCrypto(crypto);
-        setselectedImg(img);
-        switchNetwork(id);
+        // setOpen(false);
+        // setselectedCrypto(crypto);
+        // setselectedImg(img);
+        // switchNetwork(id);
     };
 
     const handleListKeyDown = (event: React.KeyboardEvent) => {
@@ -224,9 +236,9 @@ const Header: FC = () => {
     };
 
     const changeAddress = async () => {
-        await web3Modal.clearCachedProvider();
-        onHandleModalClose();
-        connectWallet();
+        // await web3Modal.clearCachedProvider();
+        // onHandleModalClose();
+        // connectWallet();
     }
 
     const clearHistory = () => {
