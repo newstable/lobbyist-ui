@@ -18,7 +18,6 @@ const ProposalCardVaultIncentive = ({ proposal, isProposer, voteWeight }: Props)
   const colHeads = ["Total Vote Weight"];
   return (
     <Card className="" elevation={0}>
-      <ProposalCardHeader title="Proposal Info"></ProposalCardHeader>
       <Content className="card-rnd">
         <Box className="grid grid-cols-2 gap-8">
           {colHeads.map((c, idx) => (

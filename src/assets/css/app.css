@@ -4111,6 +4111,7 @@ input:checked+.toggle-bg {
     -moz-border-radius-topright: 2rem;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
+    text-align: center;
 }
 
 .modaladdpapermid {
@@ -4142,13 +4143,21 @@ input:checked+.toggle-bg {
 .title {
     padding: 0 24px;
     display: flex;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.titlebtm {
+    padding: 0 24px;
+    display: flex;
 }
 
 .load-button {
     width: 100px !important;
     min-width: 100px !important;
     font-size: 13px !important;
-    margin-left: auto !important;
+    margin-bottom: 3rem !important;
+    background-color: #282931 !important;
 }
 
 .description {
@@ -4170,9 +4179,31 @@ h6 {
 }
 
 .feename {
-    color: #3a78ff;
+    color: grey;
 }
 
 .feetitle {
     font-weight: 800;
+}
+
+.vpa {
+    font-size: 16px !important;
+    margin-bottom: 3rem !important;
+}
+
+.currcol {
+    color: #3a78ff;
+}
+ 
+.proposer-button {
+    width: 100%;
+    height: 50px;
+}
+
+.feedec {
+    color: grey;
+}
+
+.feehed {
+    font-size: 18px;
 }

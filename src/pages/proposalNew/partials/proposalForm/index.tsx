@@ -405,7 +405,7 @@ const ProposalForm = (props: Props) => {
                 </Box>
                 <Box>
                     <BoxForm className="flex flex-col p-8 md:p-12 rounded-md gap-8 mb-12 md:mb-0">
-                        <strong>Total proposal value</strong>
+                        <strong className="feehed">Total proposal value</strong>
                         <Box className="flex flex-col gap-8">
                             <Box className="grid grid-cols-3 gap-8">
                                 <Typography className="feetitle col-span-2">
