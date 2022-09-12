@@ -93,7 +93,7 @@ const ProposalCardActive = (props: Props) => {
 										<TextHead className={classNames(isAboveMd && "hidden")}>
 											{colHeads[1]}
 										</TextHead>
-										<TextContent>${NumberType(p.reward)}</TextContent>
+										<TextContent>${NumberType(Number(p.usdAmount.toFixed(2)))}</TextContent>
 									</Box>
 									<Box
 										className={classNames(
@@ -113,7 +113,7 @@ const ProposalCardActive = (props: Props) => {
 											{colHeads[3]}
 										</TextHead>
 										<TextContent>${p.votes == 0 ? ("0") : (
-											(p.reward / p.votes).toFixed(2)
+											NumberType(Number((p.usdAmount / p.votes).toFixed(2)))
 										)}</TextContent>
 									</Box>
 									<Box

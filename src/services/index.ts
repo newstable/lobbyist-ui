@@ -1,6 +1,9 @@
 import axios from "axios";
 import { setCurrentProposal } from "../redux/slices/proposal";
 import { dispatch } from "../redux/store";
+import tokens from "../token.json";
+import { Coins } from "../blockchain";
+import NumberType from "../common/number";
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVERENDPOINT;
 
@@ -9,6 +12,11 @@ var baseURL = "https://score.snapshot.org/";
 const Proposal_load = async (req: any) => {
     try {
         var res = await axios.post("/api/load-proposal", req);
+        res.data.data.forEach(async (proposal: any) => {
+            var api = tokens.filter(token => token.address == proposal.rewardCurrency);
+            var tokenPrice = await Coins(api[0].api);
+            proposal.usdAmount = proposal.reward * tokenPrice;
+        });
         dispatch(setCurrentProposal(res.data));
     } catch (err: any) {
         return false;

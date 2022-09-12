@@ -64,13 +64,6 @@ const ProposalCardActiveSymbol = ({
         },
     });
 
-    const converter = async (amount: number, rewardCurrency: string) => {
-        console.log(amount, rewardCurrency);
-        var api = tokens.filter(token => token.address == rewardCurrency);
-        var tokenPrice = await Coins(api[0].api);
-        return NumberType(Number((amount * tokenPrice).toFixed(2)));
-    }
-
     return (
         <Card className="" elevation={0}>
             <ProposalCardHeader
@@ -148,7 +141,7 @@ const ProposalCardActiveSymbol = ({
                                             >
                                                 {colHeads[1]}
                                             </TextHead>
-                                            <TextContent>{`$${converter(p.reward, p.rewardCurrency)}`}</TextContent>
+                                            <TextContent>{`$${NumberType(Number(p.usdAmount.toFixed(2)))}`}</TextContent>
                                         </Box>
                                         <Box
                                             className={classNames(
@@ -178,7 +171,7 @@ const ProposalCardActiveSymbol = ({
                                             >
                                                 {colHeads[3]}
                                             </TextHead>
-                                            <TextContent>{p.votes == 0 ? "$0" : "$" + converter(p.reward / p.votes, p.rewardCurrency)}</TextContent>
+                                            <TextContent>{p.votes == 0 ? "$0" : "$" + NumberType(Number((p.usdAmount / p.votes).toFixed(2)))}</TextContent>
                                         </Box>
                                         {isHistory ? (
                                             <Box
