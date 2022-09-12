@@ -24,6 +24,7 @@ import { setClickAddress } from "../../../../redux/slices/clickToken";
 import loader from "../../../../assets/loader.gif";
 import { createProposal } from "../../../../blockchain";
 import { Coins } from "../../../../blockchain";
+import NumberType from "../../../../common/number";
 
 const BoxForm = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
@@ -414,7 +415,7 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     {maxReward + " " + rewardType}
                                     <br />
-                                    ${(maxReward * usd).toFixed(2)}
+                                    ${NumberType((maxReward * usd).toFixed(2))}
                                 </Typography>
                                 <Typography className="col-span-2">
                                     Lobbyist Fee
@@ -422,13 +423,13 @@ const ProposalForm = (props: Props) => {
                                 <Typography className="text-right">
                                     2.5%
                                     <br />
-                                    ${(maxReward * 0.025 * usd).toFixed(2)}
+                                    ${NumberType((maxReward * 0.025 * usd).toFixed(2))}
                                 </Typography>
-                                
+
                             </Box>
                             <Typography className="feename">
-                                    The fee will be deducted from the Max Reward on deposit
-                                </Typography>
+                                The fee will be deducted from the Max Reward on deposit
+                            </Typography>
                         </Box>
                         {myloading ? (
                             <Button

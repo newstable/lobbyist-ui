@@ -2,6 +2,7 @@ import { Card, CardContent, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Proposal } from "../../../@types/proposal";
 import { TextContent, TextHead } from "../../text";
+import NumberType from "../../../common/number";
 
 type Props = {
   proposal: Proposal;
@@ -24,8 +25,8 @@ const ProposalCardVaultEmission = ({ proposal }: Props) => {
           ))}
         </Box>
         <Box className="grid grid-cols-2 gap-8">
-          <TextContent>${proposal.usdAmount.toFixed(2)}</TextContent>
-          <TextContent>{proposal.votes == 0 ? 0 : "$" + (proposal.usdAmount / proposal.votes).toFixed(2)}</TextContent>
+          <TextContent>${NumberType(proposal.usdAmount.toFixed(2))}</TextContent>
+          <TextContent>{proposal.votes == 0 ? 0 : "$" + NumberType((proposal.usdAmount / proposal.votes).toFixed(2))}</TextContent>
         </Box>
       </Content>
     </Card>
