@@ -27,14 +27,11 @@ const App = () => {
 
   const AllInfo = async () => {
     await Action.Proposal_load({ address: address });
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
+    if (loading) {
       setLoading(false);
-      NotificationManager.info("This app is currently in Beta, please use at your own risk", "Information")
-    }, 1000);
-  }, [loading])
+      NotificationManager.info("This app is currently in Beta, please use at your own risk", "Information");
+    }
+  }
 
   useEffect(() => {
     setAddress(walletAddress);
