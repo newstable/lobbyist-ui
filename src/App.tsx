@@ -8,6 +8,7 @@ import { AppRoutes } from "./routes";
 import Action from "./services";
 import { Coins } from "./blockchain";
 import { useSelector, RootState } from "./redux/store";
+import { NotificationManager } from 'react-notifications';
 
 interface init {
   votes: number;
@@ -27,6 +28,7 @@ const App = () => {
   const AllInfo = async () => {
     await Action.Proposal_load({ address: address });
     setLoading(false);
+    NotificationManager.info("This app is currently in Beta, please use at your own risk", "Information")
   }
   useEffect(() => {
     setAddress(walletAddress);
