@@ -31,8 +31,20 @@ import { NotificationManager } from 'react-notifications';
 import { addRewards } from "../../blockchain";
 import tokens from "../../token.json";
 import { Coins } from "../../blockchain";
+import { History } from "../../@types/proposal";
 
 var md = new Remarkable();
+var history: History[] = [];
+if (localStorage.getItem('history')) {
+	var data = JSON.parse(`${localStorage.getItem('history')}`);
+	data.forEach((element: any) => {
+		history.push({
+			type: element.type,
+			rewardCurrency: element.rewardCurrency,
+			address: element.address
+		});
+	});
+}
 
 type Props = {};
 
@@ -124,6 +136,11 @@ const ProposalSymbolVote = (props: Props) => {
 				app: 'Lobbyist'
 			});
 			if (receipt) {
+				history.push({
+					type: "Vote",
+					rewardCurrency: "",
+					address: walletAddress
+				})
 				const result: any = await Action.Vote(data);
 				if (result.status) {
 					NotificationManager.success("Voted Successfully", "Success");
