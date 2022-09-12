@@ -233,7 +233,7 @@ const ProposalSymbolVote = (props: Props) => {
 								}
 							</Box>
 							<Box className="flex flex-col gap-8">
-								<Typography className="vpa">MY AVAILABLE VOTING POWER: <strong className="currcol"> {voteWeight > 0 ? voteWeight.toFixed(2) + " " + currency : ""}</strong> </Typography>
+								<Typography className="vpa">MY AVAILABLE VOTING POWER: <strong className="currcol"> {voteWeight > 0 ? voteWeight.toFixed(2) + " " + proposalInfo.symbol : ""}</strong> </Typography>
 							</Box>
 							<Box className="flex flex-col gap-8">
 								<ProposalCardVaultIncentive
