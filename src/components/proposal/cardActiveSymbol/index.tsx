@@ -25,6 +25,8 @@ import NumberType from "../../../common/number";
 import { useEffect, useState } from "react";
 import { useSelector } from "../../../redux/store";
 import { RootState } from "../../../redux/store";
+import tokens from "../../../token.json";
+import { Coins } from "../../../blockchain";
 
 type Props = {
     protocol: string;
@@ -61,6 +63,12 @@ const ProposalCardActiveSymbol = ({
             searchText: "",
         },
     });
+
+    const converter = async (amount: number, rewardCurrency: string) => {
+        var api = tokens.filter(token => token.address == rewardCurrency);
+        var tokenPrice = await Coins(api[0].api);
+        return NumberType(Number((amount * tokenPrice).toFixed(2)));
+    }
 
     return (
         <Card className="" elevation={0}>
@@ -139,7 +147,7 @@ const ProposalCardActiveSymbol = ({
                                             >
                                                 {colHeads[1]}
                                             </TextHead>
-                                            <TextContent>{`$${NumberType(p.reward)}`}</TextContent>
+                                            <TextContent>{`$${converter(p.reward, p.rewardCurrency)}`}</TextContent>
                                         </Box>
                                         <Box
                                             className={classNames(
@@ -169,7 +177,7 @@ const ProposalCardActiveSymbol = ({
                                             >
                                                 {colHeads[3]}
                                             </TextHead>
-                                            <TextContent>{p.votes == 0 ? 0 : "$" + NumberType(Number((p.reward / p.votes).toFixed(2)))}</TextContent>
+                                            <TextContent>{p.votes == 0 ? "$0" : "$" + converter(p.reward / p.votes, p.rewardCurrency)}</TextContent>
                                         </Box>
                                         {isHistory ? (
                                             <Box
