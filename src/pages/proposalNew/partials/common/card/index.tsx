@@ -27,7 +27,7 @@ const ProposalNewCard = ({ title, slug, isType, isSolid }: Props) => {
         <Content className="h-60 flex items-center justify-center">
           <Typography variant="caption">{title}</Typography>
           {title == "Variable" ? (
-            <div style={{ color: "#99ff3c" }}>&nbsp;Coming soon</div>
+            <div style={{ color: "grey" }}> Coming soon</div>
           ) : ""}
         </Content>
       ) : (

@@ -277,7 +277,7 @@ const ProposalSymbolVote = (props: Props) => {
 							<div>{currency}</div>
 						</div>
 						<div style={{ margin: "0 0 0 auto" }} className="modaladdpaper">
-							<div>USD Amount :&nbsp;</div>
+							<div>USD Value:&nbsp;</div>
 							<div>{usdAmount.toFixed(2)}</div>
 						</div>
 					</div>
@@ -286,7 +286,7 @@ const ProposalSymbolVote = (props: Props) => {
 							<div>2.5% Lobbyist Fee:&nbsp;</div>
 						</div>
 						<div style={{ margin: "0 0 0 auto" }} className="modaladdpaper">
-							<div>USD Amount :&nbsp;</div>
+							<div>USD Value:&nbsp;</div>
 							<div>{(usdAmount * 0.025).toFixed(2)}</div>
 						</div>
 					</div>
