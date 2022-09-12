@@ -165,7 +165,7 @@ const ProposalSymbolVote = (props: Props) => {
 			walletAddress: walletAddress,
 			buttonType: addrewardButton
 		});
-		if (addrewardButton) {
+		if (!addrewardButton) {
 			handleClose();
 		}
 		if (!result.status) {
