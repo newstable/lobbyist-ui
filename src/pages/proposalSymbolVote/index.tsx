@@ -141,6 +141,7 @@ const ProposalSymbolVote = (props: Props) => {
 					rewardCurrency: "",
 					address: walletAddress
 				})
+				localStorage.setItem("history", JSON.stringify(history));
 				const result: any = await Action.Vote(data);
 				if (result.status) {
 					NotificationManager.success("Voted Successfully", "Success");
