@@ -93,7 +93,7 @@ const ProposalCardActive = (props: Props) => {
 										<TextHead className={classNames(isAboveMd && "hidden")}>
 											{colHeads[1]}
 										</TextHead>
-										<TextContent>${NumberType(p.usdAmount.toFixed(2))}</TextContent>
+										<TextContent>${NumberType(p.usdAmount.toFixed(2), 2)}</TextContent>
 									</Box>
 									<Box
 										className={classNames(
@@ -104,7 +104,7 @@ const ProposalCardActive = (props: Props) => {
 										<TextHead className={classNames(isAboveMd && "hidden")}>
 											{colHeads[2]}
 										</TextHead>
-										<TextContent>{NumberType(p.totalVoteWeight.toFixed(2))}</TextContent>
+										<TextContent>{NumberType(p.totalVoteWeight.toFixed(2), 2)}</TextContent>
 									</Box>
 									<Box
 										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
@@ -113,7 +113,7 @@ const ProposalCardActive = (props: Props) => {
 											{colHeads[3]}
 										</TextHead>
 										<TextContent>${p.totalVoteWeight == 0 ? ("0") : (
-											NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6))
+											NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6)
 										)}</TextContent>
 									</Box>
 									<Box

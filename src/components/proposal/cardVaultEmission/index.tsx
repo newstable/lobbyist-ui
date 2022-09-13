@@ -28,11 +28,11 @@ const ProposalCardVaultEmission = ({ proposal }: Props) => {
           ))}
         </Box>
         <Box className="grid grid-cols-2 gap-8">
-          <TextContent>${NumberType(proposal.usdAmount.toFixed(2))}</TextContent>
-          <TextContent>{proposal.totalVoteWeight == 0 ? 0 : "$" + NumberType((proposal.usdAmount / proposal.totalVoteWeight).toFixed(6))}</TextContent>
+          <TextContent>${NumberType(proposal.usdAmount.toFixed(2), 2)}</TextContent>
+          <TextContent>{proposal.totalVoteWeight == 0 ? 0 : "$" + NumberType((proposal.usdAmount / proposal.totalVoteWeight).toFixed(6), 6)}</TextContent>
         </Box>
         <Box className="grid grid-cols-2 gap-8" style={{ color: "#3a78ff" }}>
-          <TextContent>{NumberType(proposal.reward.toFixed(2)) + " " + rewardCurrency[0].display}</TextContent>
+          <TextContent>{NumberType(proposal.reward.toFixed(2), 2) + " " + rewardCurrency[0].display}</TextContent>
         </Box>
       </Content>
     </Card>

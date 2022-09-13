@@ -279,7 +279,7 @@ const ProposalSymbolVote = (props: Props) => {
 						</div>
 						<div style={{ margin: "0 0 0 auto" }} className="modaladdpaper">
 							<div>USD Value:&nbsp;</div>
-							<div>{NumberType(usdAmount.toFixed(2))}</div>
+							<div>{NumberType(usdAmount.toFixed(2), 2)}</div>
 						</div>
 					</div>
 					<div className="modaladdpaper titlebtm">
@@ -288,7 +288,7 @@ const ProposalSymbolVote = (props: Props) => {
 						</div>
 						<div style={{ margin: "0 0 0 auto" }} className="modaladdpaper">
 							<div>USD Value:&nbsp;</div>
-							<div>{NumberType((usdAmount * 0.025).toFixed(2))}</div>
+							<div>{NumberType((usdAmount * 0.025).toFixed(2), 2)}</div>
 						</div>
 					</div>
 				</DialogContent>
