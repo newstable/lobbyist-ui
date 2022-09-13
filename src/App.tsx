@@ -27,6 +27,12 @@ const App = () => {
 
   const AllInfo = async () => {
     Action.Proposal_load({ address: address });
+    setLoading(false);
+    if (loading) {
+      NotificationManager.info("This app is currently in Beta, please use at your own risk", "Information");
+      if (!window.ethereum)
+        NotificationManager.error("Please install wallet in your device", "Error");
+    }
   }
 
   useEffect(() => {
@@ -35,14 +41,6 @@ const App = () => {
   const [time, setTime] = useState<number>();
   useEffect(() => {
     const timer = setTimeout(() => { setTime(+new Date()); AllInfo() }, 5000)
-    setTimeout(() => {
-      setLoading(false);
-      if (loading) {
-        NotificationManager.info("This app is currently in Beta, please use at your own risk", "Information");
-        if (!window.ethereum)
-          NotificationManager.error("Please install wallet in your device", "Error");
-      }
-    }, 3000);
     return () => clearTimeout(timer)
   }, [time])
   return (

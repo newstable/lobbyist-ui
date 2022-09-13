@@ -1,5 +1,7 @@
 const NumberType = (num: string) => {
-    const decimal = "0." + num.split(".")[1];
+    var decimal = "0." + num.split(".")[1];
+    if (!num.split(".")[1])
+        decimal = "";
     var decimalstr = decimal.toString().slice(1, decimal.toString().length);
     const data = (Number(num) - Number(decimal)).toString();
     var str = "";
