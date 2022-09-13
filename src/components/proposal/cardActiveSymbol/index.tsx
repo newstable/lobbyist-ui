@@ -173,7 +173,7 @@ const ProposalCardActiveSymbol = ({
                                             >
                                                 {colHeads[3]}
                                             </TextHead>
-                                            <TextContent>{p.totalVoteWeight == 0 ? "$0" : "$" + NumberType((p.usdAmount / p.totalVoteWeight).toFixed(2))}</TextContent>
+                                            <TextContent>{p.totalVoteWeight == 0 ? "$0" : "$" + NumberType((p.usdAmount / p.totalVoteWeight).toFixed(4))}</TextContent>
                                         </Box>
                                         {isHistory ? (
                                             <Box
