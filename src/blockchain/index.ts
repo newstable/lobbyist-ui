@@ -5,9 +5,12 @@ import Addresses from "../contracts/contracts/addresses.json";
 import CoinGecko from "coingecko-api";
 import tokens from "../token.json";
 import { History } from "../@types/proposal";
-
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
+let provider: any;
+let signer: any;
+if (window.ethereum) {
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    signer = provider?.getSigner();
+}
 
 const CoinGeckoClient = new CoinGecko();
 var history: History[] = [];
