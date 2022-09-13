@@ -1,6 +1,7 @@
 import { Card, CardContent, Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Proposal } from "../../../@types/proposal";
+import NumberType from "../../../common/number";
 import { TextContent, TextHead } from "../../text";
 import { ProposalCardHeader } from "../cardHeader";
 
@@ -28,7 +29,7 @@ const ProposalCardVaultIncentive = ({ proposal, isProposer, voteWeight }: Props)
         </Box>
         <Box className="grid grid-cols-2 gap-8">
           <TextContent>{proposal.totalVoteWeight.toFixed(2)}</TextContent>
-          <TextContent>{proposal.myvoteAmount > 0 ? proposal.myvoteAmount : 0}</TextContent>
+          <TextContent>{proposal.myvoteAmount > 0 ? NumberType(proposal.myvoteAmount.toFixed(2)) : 0}</TextContent>
         </Box>
       </Content>
     </Card>
