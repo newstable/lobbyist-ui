@@ -113,7 +113,7 @@ const ProposalCardActive = (props: Props) => {
 											{colHeads[3]}
 										</TextHead>
 										<TextContent>${p.totalVoteWeight == 0 ? ("0") : (
-											NumberType((p.usdAmount / p.totalVoteWeight).toFixed(4))
+											NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6))
 										)}</TextContent>
 									</Box>
 									<Box
