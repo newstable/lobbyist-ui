@@ -129,9 +129,9 @@ const Header: FC = () => {
     };
 
     useEffect(() => {
-        if (chainId != "0x13881" || chainId != "0x1") {
+        if (chainId != "0x89" || chainId != "0x1") {
             if (selectedCrypto == "Polygon") {
-                switchNetwork("0x13881");
+                switchNetwork("0x89");
             } else {
                 switchNetwork("0x1");
             }
