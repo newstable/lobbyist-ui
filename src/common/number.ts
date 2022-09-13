@@ -1,7 +1,7 @@
 const NumberType = (num: string) => {
-    var decimal = Number(num) - Math.floor(Number(num));
-    var decimalstr = decimal.toFixed(2).slice(1, decimal.toString().length);
-    const data = (Number(num) - decimal).toString();
+    const decimal = "0." + num.split(".")[1];
+    var decimalstr = decimal.toString().slice(1, decimal.toString().length);
+    const data = (Number(num) - Number(decimal)).toString();
     var str = "";
     var count = Math.floor(data.length / 3);
     if (data.length / 3 - count == 0) {
