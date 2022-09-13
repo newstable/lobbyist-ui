@@ -103,22 +103,22 @@ const SidebarMenu = (props: Props) => {
     {
       icon: "twitter",
       text: "Twitter",
-      href: ("https://twitter.com"),
+      href: ("https://twitter.com/0xLobbyist"),
     },
     {
       icon: "discord",
       text: "Discord",
-      href: ("https://discord.com"),
+      href: ("https://discord.com/invite/kEfvQZSPUk"),
     },
     {
       icon: "mirror",
       text: "Mirror",
-      href: ("https://mirror.xyz"),
+      href: ("https://mirror.xyz/0xa0a8aE81215644cC7cB1d8d2a06ce8B0F2887E29"),
     },
     {
       icon: "docs",
       text: "Docs",
-      href: "/docs",
+      href: "https://vlabs-1.gitbook.io/lobbyist/",
     },
   ];
 
