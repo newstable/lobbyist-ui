@@ -19,7 +19,6 @@ export type Proposal = {
   proposalId: string;
   totalVoteWeight: number;
   poolId: number;
-  votes: number;
   myvoteAmount: number;
   myclaim: boolean;
   usdAmount: number;
