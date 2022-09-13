@@ -223,11 +223,11 @@ const ProposalSymbolVote = (props: Props) => {
 						<Box className="flex flex-col mt-12">
 							<Box className="flex flex-col">
 								<Typography variant="h5">{navState.proposal.name}</Typography>
-								<Typography color={colors.textGray}>
-									{showMore ? (
-										<div className="description" dangerouslySetInnerHTML={{ __html: description.slice(0, 80) }}></div>
-									) : <div className="description" dangerouslySetInnerHTML={{ __html: description }}></div>}
-								</Typography>
+								{/* <Typography color={colors.textGray}> */}
+								{showMore ? (
+									<div style={{ color: "gray" }} className="description" dangerouslySetInnerHTML={{ __html: description.slice(0, 80) }}></div>
+								) : <div style={{ color: "gray" }} className="description" dangerouslySetInnerHTML={{ __html: description }}></div>}
+								{/* </Typography> */}
 								{description.length > 80 ? (
 									<Button color="inherit" className="load-button" onClick={() => setShowMore(!showMore)}>{showMore ? "Show more" : "Show less"}</Button>
 								) : ""
