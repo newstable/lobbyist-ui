@@ -32,7 +32,7 @@ import useClipboard from "react-use-clipboard";
 const itemsList = [
     {
         name: "Polygon",
-        id: "0x13881",
+        id: "0x89",
         img: "../../../../assets/chains/matic.svg"
     },
     {
