@@ -108,53 +108,53 @@ const ProposalSymbolVote = (props: Props) => {
 	}
 
 	const voteProposal = async () => {
-		try {
-			if (!walletAddress) {
-				NotificationManager.error("Oops, Please connect wallet and try again!");
-				return;
-			}
-			var data = {
-				voter: walletAddress,
-				poolId: currentProposal.poolId,
-				voteAmount: voteWeight,
-				proposalId: currentProposal.proposalId
-			}
-			const web3 = new Web3Provider(window.ethereum);
-			const [account] = await web3.listAccounts();
-			let choice: any;
-			if (proposalInfo.type == "single-choice") {
-				choice = proposalInfo.choices.indexOf(currentProposal.protocol) + 1
-			} else {
-				choice = { [proposalInfo.choices.indexOf(currentProposal.protocol) + 1]: 1 };
+		// try {
+		// 	if (!walletAddress) {
+		// 		NotificationManager.error("Oops, Please connect wallet and try again!");
+		// 		return;
+		// 	}
+		// 	var data = {
+		// 		voter: walletAddress,
+		// 		poolId: currentProposal.poolId,
+		// 		voteAmount: voteWeight,
+		// 		proposalId: currentProposal.proposalId
+		// 	}
+		// 	const web3 = new Web3Provider(window.ethereum);
+		// 	const [account] = await web3.listAccounts();
+		// 	let choice: any;
+		// 	if (proposalInfo.type == "single-choice") {
+		// 		choice = proposalInfo.choices.indexOf(currentProposal.protocol) + 1
+		// 	} else {
+		// 		choice = { [proposalInfo.choices.indexOf(currentProposal.protocol) + 1]: 1 };
 
-			}
-			const receipt = await client.vote(web3, account, {
-				space: proposalInfo.space.id,
-				proposal: proposalInfo.id,
-				type: proposalInfo.type,
-				choice: choice,
-				reason: 'This choice makes a lot of sense',
-				app: 'Lobbyist'
-			});
-			if (receipt) {
-				history.push({
-					type: "Vote",
-					rewardCurrency: "",
-					address: walletAddress
-				})
-				localStorage.setItem("history", JSON.stringify(history));
-				const result: any = await Action.Vote(data);
-				if (result.status) {
-					NotificationManager.success("Voted Successfully", "Success");
-					navigate(`/proposal/${symbol}`);
-				} else {
-					NotificationManager.error("You already voted", "Error");
-				}
-			}
-		} catch (error: any) {
-			NotificationManager.error(`Oops,${error.error_description}`, "Error");
-			console.log(error.error_description);
-		}
+		// 	}
+		// 	const receipt = await client.vote(web3, account, {
+		// 		space: proposalInfo.space.id,
+		// 		proposal: proposalInfo.id,
+		// 		type: proposalInfo.type,
+		// 		choice: choice,
+		// 		reason: 'This choice makes a lot of sense',
+		// 		app: 'Lobbyist'
+		// 	});
+		// 	if (receipt) {
+		// 		history.push({
+		// 			type: "Vote",
+		// 			rewardCurrency: "",
+		// 			address: walletAddress
+		// 		})
+		// 		localStorage.setItem("history", JSON.stringify(history));
+		// 		const result: any = await Action.Vote(data);
+		// 		if (result.status) {
+		// 			NotificationManager.success("Voted Successfully", "Success");
+		// 			navigate(`/proposal/${symbol}`);
+		// 		} else {
+		// 			NotificationManager.error("You already voted", "Error");
+		// 		}
+		// 	}
+		// } catch (error: any) {
+		// 	NotificationManager.error(`Oops,${error.error_description}`, "Error");
+		// 	console.log(error.error_description);
+		// }
 	}
 
 	const AddReward = async () => {

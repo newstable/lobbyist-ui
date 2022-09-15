@@ -12,11 +12,11 @@ const ActiveProposals = ({ symbol, isHistory }: Props) => {
     const filteredProposals = proposalState.currentProposal.data;
 
     return (
-        <ProposalCardActiveSymbol
-            protocol={symbol}
-            proposals={filteredProposals}
-            isHistory={isHistory}
-        />
+        // <ProposalCardActiveSymbol
+        //     protocol={symbol}
+        //     proposals={filteredProposals}
+        //     isHistory={isHistory}
+        // />
     );
 };
 
