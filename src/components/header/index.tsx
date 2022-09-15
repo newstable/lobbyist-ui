@@ -62,140 +62,140 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const Header: FC = () => {
-    const [library, setLibrary]: any = useState();
-    const [account, setAccount] = useState("");
-    const [error, setError] = useState("");
-    const [chainId, setChainId]: any = useState();
-    const [open, setOpen] = useState(false);
-    const [walletInfo, setWalletInfo] = useState(false);
-    const anchorRef = useRef<HTMLButtonElement>(null);
-    const [selectedCrypto, setselectedCrypto] = useState("Polygon");
-    const [selectedImg, setselectedImg] = useState("../../../../assets/chains/matic.svg");
-    const [isCopied, setCopied] = useClipboard(account);
-    const [copyClipboard, setCopyClipboard] = useState(false);
-    const [walletType, setWalletType] = useState("");
-    const [history, setHistory] = useState<History[]>([]);
+    // const [library, setLibrary]: any = useState();
+    // const [account, setAccount] = useState("");
+    // const [error, setError] = useState("");
+    // const [chainId, setChainId]: any = useState();
+    // const [open, setOpen] = useState(false);
+    // const [walletInfo, setWalletInfo] = useState(false);
+    // const anchorRef = useRef<HTMLButtonElement>(null);
+    // const [selectedCrypto, setselectedCrypto] = useState("Polygon");
+    // const [selectedImg, setselectedImg] = useState("../../../../assets/chains/matic.svg");
+    // const [isCopied, setCopied] = useClipboard(account);
+    // const [copyClipboard, setCopyClipboard] = useState(false);
+    // const [walletType, setWalletType] = useState("");
+    // const [history, setHistory] = useState<History[]>([]);
 
-    const addressCopy = () => {
-        setCopyClipboard(true);
-    }
+    // const addressCopy = () => {
+    //     setCopyClipboard(true);
+    // }
 
-    useEffect(() => {
-        if (localStorage.getItem("history")?.length)
-            setHistory(JSON.parse(`${localStorage.getItem("history")}`));
-        else {
-            setHistory([]);
-        }
-    }, [walletInfo])
+    // useEffect(() => {
+    //     if (localStorage.getItem("history")?.length)
+    //         setHistory(JSON.parse(`${localStorage.getItem("history")}`));
+    //     else {
+    //         setHistory([]);
+    //     }
+    // }, [walletInfo])
 
-    useEffect(() => {
-        if (copyClipboard) {
-            setTimeout(() => {
-                setCopyClipboard(false);
-            }, 2000);
-        }
-    }, [copyClipboard])
+    // useEffect(() => {
+    //     if (copyClipboard) {
+    //         setTimeout(() => {
+    //             setCopyClipboard(false);
+    //         }, 2000);
+    //     }
+    // }, [copyClipboard])
 
-    var styledAddress = account
-        ? account.slice(0, 4) + "..." + account.slice(-4)
-        : "";
+    // var styledAddress = account
+    //     ? account.slice(0, 4) + "..." + account.slice(-4)
+    //     : "";
 
-    const connectWallet = async () => {
-        try {
-            const provider = await web3Modal.connect();
-            provider.on("accountsChanged", async (accounts: string[]) => {
-                if (accounts.length == 0) {
-                    await web3Modal.clearCachedProvider();
-                    dispatch(setWalletAddress(""));
-                    refreshState();
-                }
-            })
-            const library = new ethers.providers.Web3Provider(provider);
-            if (library.connection.url == "metamask")
-                setWalletType("Metamask")
-            else
-                setWalletType(library.connection.url);
-            const accounts = await library.listAccounts();
-            const network = await library.getNetwork();
-            setLibrary(library);
-            if (accounts) {
-                setAccount(accounts[0]);
-                dispatch(setWalletAddress(accounts[0]));
-            }
-            setChainId(network.chainId);
-        } catch (error: any) {
-            setError(error);
-        }
-    };
+    // const connectWallet = async () => {
+    //     try {
+    //         const provider = await web3Modal.connect();
+    //         provider.on("accountsChanged", async (accounts: string[]) => {
+    //             if (accounts.length == 0) {
+    //                 await web3Modal.clearCachedProvider();
+    //                 dispatch(setWalletAddress(""));
+    //                 refreshState();
+    //             }
+    //         })
+    //         const library = new ethers.providers.Web3Provider(provider);
+    //         if (library.connection.url == "metamask")
+    //             setWalletType("Metamask")
+    //         else
+    //             setWalletType(library.connection.url);
+    //         const accounts = await library.listAccounts();
+    //         const network = await library.getNetwork();
+    //         setLibrary(library);
+    //         if (accounts) {
+    //             setAccount(accounts[0]);
+    //             dispatch(setWalletAddress(accounts[0]));
+    //         }
+    //         setChainId(network.chainId);
+    //     } catch (error: any) {
+    //         setError(error);
+    //     }
+    // };
 
-    useEffect(() => {
-        if (chainId != "0x89" || chainId != "0x1") {
-            if (selectedCrypto == "Polygon") {
-                switchNetwork("0x89");
-            } else {
-                switchNetwork("0x1");
-            }
-        }
-    }, [account])
+    // useEffect(() => {
+    //     if (chainId != "0x89" || chainId != "0x1") {
+    //         if (selectedCrypto == "Polygon") {
+    //             switchNetwork("0x89");
+    //         } else {
+    //             switchNetwork("0x1");
+    //         }
+    //     }
+    // }, [account])
 
-    const switchNetwork = async (network: string) => {
-        try {
-            await library.provider.request({
-                method: "wallet_switchEthereumChain",
-                params: [{ chainId: toHex(network) }],
-            });
-        } catch (switchError: any) {
-            if (switchError.code === 4902) {
-                try {
-                    await library.provider.request({
-                        method: "wallet_addEthereumChain",
-                        params: [
-                            {
-                                chainId: toHex("137"),
-                                chainName: "Polygon",
-                                rpcUrls: ["https://polygon-rpc.com/"],
-                                blockExplorerUrls: ["https://polygonscan.com/"],
-                            },
-                        ],
-                    });
-                } catch (addError) {
-                    throw addError;
-                }
-            }
-        }
-    };
+    // const switchNetwork = async (network: string) => {
+    //     try {
+    //         await library.provider.request({
+    //             method: "wallet_switchEthereumChain",
+    //             params: [{ chainId: toHex(network) }],
+    //         });
+    //     } catch (switchError: any) {
+    //         if (switchError.code === 4902) {
+    //             try {
+    //                 await library.provider.request({
+    //                     method: "wallet_addEthereumChain",
+    //                     params: [
+    //                         {
+    //                             chainId: toHex("137"),
+    //                             chainName: "Polygon",
+    //                             rpcUrls: ["https://polygon-rpc.com/"],
+    //                             blockExplorerUrls: ["https://polygonscan.com/"],
+    //                         },
+    //                     ],
+    //                 });
+    //             } catch (addError) {
+    //                 throw addError;
+    //             }
+    //         }
+    //     }
+    // };
 
-    useEffect(() => {
-        if (web3Modal.cachedProvider) {
-            connectWallet();
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (web3Modal.cachedProvider) {
+    //         connectWallet();
+    //     }
+    // }, []);
 
-    const refreshState = () => {
-        setAccount("");
-    };
+    // const refreshState = () => {
+    //     setAccount("");
+    // };
 
-    const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
+    // const handleToggle = () => {
+    //     setOpen((prevOpen) => !prevOpen);
+    // };
 
-    const handleClose = (event: Event | React.SyntheticEvent) => {
-        if (
-            anchorRef.current &&
-            anchorRef.current.contains(event.target as HTMLElement)
-        ) {
-            return;
-        }
+    // const handleClose = (event: Event | React.SyntheticEvent) => {
+    //     if (
+    //         anchorRef.current &&
+    //         anchorRef.current.contains(event.target as HTMLElement)
+    //     ) {
+    //         return;
+    //     }
 
-        setOpen(false);
-    };
+    //     setOpen(false);
+    // };
 
-    const selectMenuItem = (crypto: string, id: string, img: string) => {
-        setOpen(false);
-        setselectedCrypto(crypto);
-        setselectedImg(img);
-        switchNetwork(id);
-    };
+    // const selectMenuItem = (crypto: string, id: string, img: string) => {
+    //     setOpen(false);
+    //     setselectedCrypto(crypto);
+    //     setselectedImg(img);
+    //     switchNetwork(id);
+    // };
 
     const handleListKeyDown = (event: React.KeyboardEvent) => {
         if (event.key === "Tab") {
