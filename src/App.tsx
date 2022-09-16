@@ -25,7 +25,7 @@ const App = () => {
   }, [darkMode]);
 
   const AllInfo = async () => {
-    Action.Proposal_load({ address: address });
+    await Action.Proposal_load({ address: address });
     setLoading(false);
     if (loading) {
       NotificationManager.info("This app is currently in Beta, please use at your own risk", "Information");
