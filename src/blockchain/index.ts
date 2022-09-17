@@ -41,6 +41,7 @@ const createProposal = async (props: any) => {
             creator: value.userAddress,
             isClosed: false
         }
+        console.log(newProposal);
         const Reward = ERCContract(address);
         const result = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(result);
@@ -118,6 +119,7 @@ const addRewards = async (props: any) => {
 const Claim = async (props: any) => {
     try {
         const { id, address, walletAddress } = props;
+        console.log(id);
         var rewardCurrency = tokens.filter(token => token.address == address);
         const Pool = poolContract.connect(signer);
         const connectContract = await Pool.claim(id);
