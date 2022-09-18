@@ -18,7 +18,6 @@ const providers = {
 };
 
 const provider = providers[supportChainId];
-
 const poolContract = new ethers.Contract(
     Addresses.Pool,
     Abis.Pool,
