@@ -355,14 +355,12 @@ const Header: FC = () => {
                                 <div>Recent Transactions</div>
                                 <div className="clear" onClick={clearHistory}>Clear All</div>
                             </div>
-                            {history.map((i, key) => {
-                                return (
-                                    < div className="wallet-history blue" key={`history_${key}`}>
-                                        <a href={"https://polygonscan.com/address/" + i.address} target="_blank">{i.type + " " + i.rewardCurrency}<CallMadeSharpIcon /></a>
-                                        <TaskAltIcon />
-                                    </div>
-                                )
-                            })}
+                            {history.map((i, key) => i.address == account ?
+                                < div className="wallet-history blue" key={`history_${key}`}>
+                                    <a href={"https://polygonscan.com/address/" + i.address} target="_blank">{i.type + " " + i.rewardCurrency}<CallMadeSharpIcon /></a>
+                                    <TaskAltIcon />
+                                </div> : ""
+                            )}
                         </>
                     ) : (
                         <div className="wallet-modal-footer">
