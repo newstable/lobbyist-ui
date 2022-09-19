@@ -238,13 +238,14 @@ const Header: FC = () => {
         <>
             <header
                 className={classNames(
-                    "flex items-center justify-between content w-full mx-auto",
+                    "mlg:flex items-center justify-between content w-full mx-auto",
                     styles.main
                 )}
             >
                 <HeaderLeft />
-                <Box className="hidden mlg:flex gap-6">
+                <Box className="flex gap-6 header-1">
                     <Button
+                        style={{ margin: "auto 0 0 auto" }}
                         variant="contained"
                         color={selectedCrypto == "Polygon" ? "third" : "tealLight"}
                         disableRipple

@@ -29,8 +29,6 @@ const App = () => {
     setLoading(false);
     if (loading) {
       NotificationManager.info("This app is currently in Beta, please use at your own risk", "Information");
-      if (!window.ethereum)
-        NotificationManager.error("Please install wallet in your device", "Error");
     }
   }
 
