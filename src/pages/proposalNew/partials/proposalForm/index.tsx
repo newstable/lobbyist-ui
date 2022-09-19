@@ -205,7 +205,7 @@ const ProposalForm = (props: Props) => {
             NotificationManager.warning("Please select a choice!", "Warning");
         } else {
             setMyLoading(true);
-            let signer: any = provider.getSigner();
+            let signer: any = provider?.getSigner();
             const result: any = await createProposal({
                 address: address,
                 walletAddress: walletAddress,

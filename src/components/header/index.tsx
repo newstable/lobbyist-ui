@@ -104,7 +104,7 @@ const Header: FC = () => {
     const connectWallet = async () => {
         try {
             const provider = await web3Modal.connect();
-            dispatch(setProvider(provider));
+
             provider.on("accountsChanged", async (accounts: string[]) => {
                 if (accounts.length == 0) {
                     await web3Modal.clearCachedProvider();
@@ -113,6 +113,7 @@ const Header: FC = () => {
                 }
             })
             const library = new ethers.providers.Web3Provider(provider);
+            dispatch(setProvider(library));
             if (library.connection.url == "metamask")
                 setWalletType("Metamask")
             else
@@ -168,9 +169,9 @@ const Header: FC = () => {
     };
 
     useEffect(() => {
-        if (web3Modal.cachedProvider) {
-            connectWallet();
-        }
+        // if (web3Modal.cachedProvider) {
+        connectWallet();
+        // }
     }, []);
 
     const refreshState = () => {

@@ -159,7 +159,7 @@ const ProposalSymbolVote = (props: Props) => {
 	}
 
 	const AddReward = async () => {
-		let signer: any = provider.getSigner();
+		let signer: any = provider?.getSigner();
 		const result: any = await addRewards({
 			id: currentProposal.poolId,
 			amount: addRewardAmount,

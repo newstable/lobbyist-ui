@@ -46,7 +46,7 @@ const ProposalCardActive = (props: Props) => {
 		});
 	};
 	const onClaim = async (e: number, currency: string) => {
-		let signer: any = provider.getSigner();
+		let signer: any = provider?.getSigner();
 		var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer });
 		if (result.status) {
 			NotificationManager.success(result.message, "Success");
