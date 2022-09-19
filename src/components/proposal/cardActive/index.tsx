@@ -17,6 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { Claim } from "../../../blockchain";
 import { useEffect, useState } from "react";
 import { NotificationManager } from 'react-notifications';
+import { useSelector } from "../../../redux/store";
+import { RootState } from "../../../redux/store";
 
 type Props = {
 	address: string;
@@ -26,6 +28,7 @@ type Props = {
 const Content = styled(CardContent)(({ theme }) => ({}));
 
 const ProposalCardActive = (props: Props) => {
+	const provider: any = useSelector((state: RootState) => state.provider.provider);
 	const { address, proposals } = props;
 	const [myProposals, setMyProposals] = useState<Proposal[]>([]);
 
@@ -43,7 +46,8 @@ const ProposalCardActive = (props: Props) => {
 		});
 	};
 	const onClaim = async (e: number, currency: string) => {
-		var result = await Claim({ id: e, address: currency, walletAddress: address });
+		let signer: any = provider.getSigner();
+		var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer });
 		if (result.status) {
 			NotificationManager.success(result.message, "Success");
 		} else {

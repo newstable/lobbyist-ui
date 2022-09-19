@@ -15,6 +15,7 @@ import classNames from "classnames";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 import { setWalletAddress } from "../../redux/slices/wallet";
+import { setProvider } from "../../redux/slices/provider";
 import { dispatch } from "../../redux/store";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -103,6 +104,7 @@ const Header: FC = () => {
     const connectWallet = async () => {
         try {
             const provider = await web3Modal.connect();
+            dispatch(setProvider(provider));
             provider.on("accountsChanged", async (accounts: string[]) => {
                 if (accounts.length == 0) {
                     await web3Modal.clearCachedProvider();

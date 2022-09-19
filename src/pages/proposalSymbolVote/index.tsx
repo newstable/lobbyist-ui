@@ -56,6 +56,7 @@ const ProposalSymbolVote = (props: Props) => {
 	const walletAddress: any = useSelector(
 		(state: RootState) => state.wallet.address
 	);
+	const provider: any = useSelector((state: RootState) => state.provider.provider);
 	const navigate = useNavigate();
 	const [getProposal] = useLazyQuery(GET_PROPOSAL);
 	const [voteWeight, setVoteWeight] = useState(0);
@@ -158,12 +159,14 @@ const ProposalSymbolVote = (props: Props) => {
 	}
 
 	const AddReward = async () => {
+		let signer: any = provider.getSigner();
 		const result: any = await addRewards({
 			id: currentProposal.poolId,
 			amount: addRewardAmount,
 			rewardtype: currentProposal.rewardCurrency,
 			walletAddress: walletAddress,
-			buttonType: addrewardButton
+			buttonType: addrewardButton,
+			signer: signer
 		});
 		if (!addrewardButton) {
 			handleClose();

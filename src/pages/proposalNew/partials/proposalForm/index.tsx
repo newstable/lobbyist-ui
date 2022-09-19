@@ -58,6 +58,8 @@ const ProposalForm = (props: Props) => {
         (state: RootState) => state.wallet.address
     );
 
+    const provider: any = useSelector((state: RootState) => state.provider.provider);
+
     useEffect(() => {
         if (props.name == "qidao") {
             setName("qidao.eth");
@@ -203,11 +205,13 @@ const ProposalForm = (props: Props) => {
             NotificationManager.warning("Please select a choice!", "Warning");
         } else {
             setMyLoading(true);
+            let signer: any = provider.getSigner();
             const result: any = await createProposal({
                 address: address,
                 walletAddress: walletAddress,
                 value: value,
                 submitType: submitType,
+                signer: signer
             });
             if (!result.status) {
                 NotificationManager.warning(result.message, "Warning");

@@ -5,12 +5,7 @@ import Addresses from "../contracts/contracts/addresses.json";
 import CoinGecko from "coingecko-api";
 import tokens from "../token.json";
 import { History } from "../@types/proposal";
-let provider: any;
-let signer: any;
-if (window.ethereum) {
-    provider = new ethers.providers.Web3Provider(window.ethereum);
-    signer = provider?.getSigner();
-}
+import { useSelector } from "../redux/store";
 
 const CoinGeckoClient = new CoinGecko();
 var history: History[] = [];
@@ -28,7 +23,7 @@ if (localStorage.getItem('history')) {
 
 const createProposal = async (props: any) => {
     try {
-        const { address, walletAddress, value, submitType } = props;
+        const { address, walletAddress, value, submitType, signer } = props;
         var rewardCurrency = tokens.filter(token => token.address == address);
         const newProposal = {
             proposalId: value.proposalId,
@@ -77,7 +72,7 @@ const createProposal = async (props: any) => {
 
 const addRewards = async (props: any) => {
     try {
-        const { id, amount, rewardtype, walletAddress, buttonType } = props;
+        const { id, amount, rewardtype, walletAddress, buttonType, signer } = props;
         var rewardCurrency = tokens.filter(token => token.address == rewardtype);
         const Reward = ERCContract(rewardtype);
         const myBalance = await Reward.balanceOf(walletAddress);
@@ -117,7 +112,7 @@ const addRewards = async (props: any) => {
 
 const Claim = async (props: any) => {
     try {
-        const { id, address, walletAddress } = props;
+        const { id, address, walletAddress, signer } = props;
         var rewardCurrency = tokens.filter(token => token.address == address);
         const Pool = poolContract.connect(signer);
         const connectContract = await Pool.claim(id);
