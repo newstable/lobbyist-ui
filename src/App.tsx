@@ -8,18 +8,10 @@ import { AppRoutes } from "./routes";
 import Action from "./services";
 import { useSelector, RootState } from "./redux/store";
 import { NotificationManager } from 'react-notifications';
-// import { Web3ModalProvider } from '@web3modal/react';
-// import type { ConfigOptions } from '@web3modal/react';
 
 interface init {
   votes: number;
 }
-
-// const modalConfig: ConfigOptions = {
-//   projectId: 1,
-//   theme: 'dark',
-//   accentColor: 'orange'
-// }
 
 const App = () => {
   const [address, setAddress] = useState("");
@@ -50,12 +42,10 @@ const App = () => {
   }, [time])
   return (
     <ThemeProvider theme={theme}>
-      {/* <Web3ModalProvider config={modalConfig} > */}
       <LoadingScreen loading={loading} bgColor="#282931" spinnerColor="#3a78ff">
         <CssBaseline />
         <AppRoutes />
       </LoadingScreen>
-      {/* </Web3ModalProvider> */}
     </ThemeProvider>
   );
 };
