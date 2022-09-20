@@ -66,3 +66,18 @@
     }
   }
 }
+
+
+
+@media (min-width:910px) {
+  .chooseChain {
+    position: absolute;
+    background-color: #282931;
+    left: 18rem;
+    top: 5%;
+  }
+
+  .choose-relative {
+    position: relative;
+  }
+}

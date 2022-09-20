@@ -35,6 +35,11 @@ const SidebarMenu = (props: Props) => {
   const [chain, setChain] = useState("Ethereum");
   const [iconName, setIconName] = useState("gauge");
   const [show, setShow] = useState(false);
+
+  const chooseChain = (e: any) => {
+    setChain(e.title);
+    setIconName(e.icon);
+  }
   const getIcon = (
     iconName: string
   ): React.FC<
@@ -197,7 +202,7 @@ const SidebarMenu = (props: Props) => {
               (pathname.length === 1 && pathname === link.href);
             const linkColor = isSelected ? colors.tealLight : colors.white;
             return (
-              <Box key={`lnk_${idx}`}>
+              <Box key={`lnk_${idx}`} className={link.disabled ? "choose-relative" : ""}>
                 {link.disabled ? (
                   <>
                     <Button
@@ -223,8 +228,33 @@ const SidebarMenu = (props: Props) => {
                       <ArrowForwardIosIcon className="ml-auto" />
                     </Button>
                     {show ?
-                      <div>
-                        {"asdfasdfasdfsad"}
+                      <div className={styles.chooseChain}>
+                        {chains.map((chain, key) => {
+                          return (
+                            <Button
+                              onClick={() => { setShow(false); chooseChain(chain) }}
+                              key={key}
+                              className="!p-0 mlg:!justify-start !py-4"
+                              startIcon={
+                                <Box
+                                  component="span"
+                                  className={classNames(
+                                    "ml-2 w-8 h-8 hidden mlg:flex items-center justify-center",
+                                    styles.menuIcon,
+                                    styles["menuIcon--disabled"]
+                                  )}
+                                >
+                                  <SvgIcon
+                                    component={getIcon(chain.icon)}
+                                    viewBox="0 0 31 31"
+                                  />
+                                </Box>
+                              }
+                            >
+                              {chain.title}
+                            </Button>
+                          );
+                        })}
                       </div>
                       : ""
                     }
