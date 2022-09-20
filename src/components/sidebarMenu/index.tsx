@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { useEffect, useState } from "react";
 import { Box, Link, Typography, SvgIcon, Divider, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -17,9 +18,12 @@ import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
 import { ReactComponent as MirrorIcon } from "../../assets/icons/mirror.svg";
 import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Logo from "../../assets/icons/logo.svg";
 import styles from "./styles.module.scss";
 import { colors } from "../../common";
+import chains from "./chains.json";
 
 type Props = {};
 
@@ -28,7 +32,9 @@ const SidebarMenu = (props: Props) => {
   const theme = useTheme();
   const { pathname } = useLocation();
   const isMobile = useMediaQuery(theme.breakpoints.down("mlg"));
-
+  const [chain, setChain] = useState("Ethereum");
+  const [iconName, setIconName] = useState("gauge");
+  const [show, setShow] = useState(false);
   const getIcon = (
     iconName: string
   ): React.FC<
@@ -77,12 +83,13 @@ const SidebarMenu = (props: Props) => {
       href: "/",
       separator: true,
     },
-    // {
-    //   icon: "convex",
-    //   text: "Convex",
-    //   href: "/proposal/convex",
-    //   separator: true,
-    // },
+    {
+      icon: iconName,
+      text: chain,
+      href: "#",
+      separator: true,
+      disabled: true
+    },
     {
       icon: "pro-qidao",
       text: "QiDAO",
@@ -192,27 +199,36 @@ const SidebarMenu = (props: Props) => {
             return (
               <Box key={`lnk_${idx}`}>
                 {link.disabled ? (
-                  <Button
-                    className="!p-0 mlg:!justify-start !py-4"
-                    startIcon={
-                      <Box
-                        component="span"
-                        className={classNames(
-                          "ml-2 w-8 h-8 hidden mlg:flex items-center justify-center",
-                          styles.menuIcon,
-                          styles["menuIcon--disabled"]
-                        )}
-                      >
-                        <SvgIcon
-                          component={getIcon(link.icon)}
-                          viewBox="0 0 31 31"
-                        />
-                      </Box>
+                  <>
+                    <Button
+                      onClick={() => setShow(!show)}
+                      className="!p-0 mlg:!justify-start !py-4"
+                      startIcon={
+                        <Box
+                          component="span"
+                          className={classNames(
+                            "ml-2 w-8 h-8 hidden mlg:flex items-center justify-center",
+                            styles.menuIcon,
+                            styles["menuIcon--disabled"]
+                          )}
+                        >
+                          <SvgIcon
+                            component={getIcon(link.icon)}
+                            viewBox="0 0 31 31"
+                          />
+                        </Box>
+                      }
+                    >
+                      {link.text}
+                      <ArrowForwardIosIcon className="ml-auto" />
+                    </Button>
+                    {show ?
+                      <div>
+                        {"asdfasdfasdfsad"}
+                      </div>
+                      : ""
                     }
-                    disabled
-                  >
-                    {link.text}
-                  </Button>
+                  </>
                 ) : (
                   <Link
                     key={`lnk_${idx}`}
