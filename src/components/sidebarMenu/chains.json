@@ -4,10 +4,6 @@
         "title": "Ethereum"
     },
     {
-        "icon": "bnb",
-        "title": "Binance"
-    },
-    {
         "icon": "matic",
         "title": "Polygon"
     }

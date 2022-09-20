@@ -18,6 +18,8 @@ import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
 import { ReactComponent as MirrorIcon } from "../../assets/icons/mirror.svg";
 import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
+import { ReactComponent as EthIcon } from "../../assets/tokens/eth.svg";
+import { ReactComponent as MaticIcon } from "../../assets/tokens/matic.svg";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Logo from "../../assets/icons/logo.svg";
@@ -50,6 +52,10 @@ const SidebarMenu = (props: Props) => {
     switch (iconName) {
       case "gauge":
         return GaugeIcon;
+      case "eth":
+        return EthIcon;
+      case "matic":
+        return MaticIcon;
       case "chart":
         return ChartIcon;
       case "pro-aave":
@@ -202,7 +208,7 @@ const SidebarMenu = (props: Props) => {
               (pathname.length === 1 && pathname === link.href);
             const linkColor = isSelected ? colors.tealLight : colors.white;
             return (
-              <Box key={`lnk_${idx}`} className={link.disabled ? "choose-relative" : ""}>
+              <Box key={`lnk_${idx}`} className={link.disabled ? "relative" : ""}>
                 {link.disabled ? (
                   <>
                     <Button

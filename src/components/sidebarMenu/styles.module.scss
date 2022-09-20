@@ -67,7 +67,10 @@
   }
 }
 
-
+.chooseChain {
+  display: flex;
+  flex-direction: column;
+}
 
 @media (min-width:910px) {
   .chooseChain {
@@ -75,9 +78,5 @@
     background-color: #282931;
     left: 18rem;
     top: 5%;
-  }
-
-  .choose-relative {
-    position: relative;
   }
 }
