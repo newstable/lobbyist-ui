@@ -9,7 +9,6 @@ import { useLocation, useParams, useSearchParams, useNavigate } from "react-rout
 import { EnumProtocolName } from "../../@types/protocol";
 import classNames from "classnames";
 import styles from "../../components/form/styles.module.scss";
-import { colors } from "../../common";
 import { Remarkable } from 'remarkable';
 import {
 	NavBack,
@@ -22,11 +21,8 @@ import { useSelector } from "../../redux/store";
 import { RootState } from "../../redux/store";
 import { GET_PROPOSAL } from "../../gql";
 import { useLazyQuery } from "@apollo/client";
-import proposal from "../../redux/slices/proposal";
-import { Web3Provider } from '@ethersproject/providers';
 import snapshot from '@snapshot-labs/snapshot.js';
 import Action from "../../services";
-import { ethers } from "ethers";
 import { NotificationManager } from 'react-notifications';
 import { addRewards } from "../../blockchain";
 import tokens from "../../token.json";
@@ -120,7 +116,6 @@ const ProposalSymbolVote = (props: Props) => {
 				voteAmount: voteWeight,
 				proposalId: currentProposal.proposalId
 			}
-			const web3 = new Web3Provider(window.ethereum);
 			let choice: any;
 			if (proposalInfo.type == "single-choice") {
 				choice = proposalInfo.choices.indexOf(currentProposal.protocol) + 1
