@@ -43,6 +43,8 @@ const itemsList = [
     },
 ];
 
+console.log(window.ethereum);
+
 const StyledPaper = styled(Paper)(({ theme }) => ({
     backgroundColor: "rgba(7, 16, 24, 0.81)",
     color: colors.textGrayLight,
