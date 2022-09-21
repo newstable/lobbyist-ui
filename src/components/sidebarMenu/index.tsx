@@ -79,7 +79,7 @@ const SidebarMenu = (props: Props) => {
     },
     {
       icon: "",
-      text: "Matic",
+      text: "Polygon",
       href: "#",
       disabled: true
     },
@@ -200,7 +200,7 @@ const SidebarMenu = (props: Props) => {
                 {link.disabled ? (
                   <>
                     <div style={{ color: "gray" }}
-                      className="!p-0 mlg:!justify-start !py-4 text-3xl"
+                      className="!p-0 mlg:!justify-start !py-4 text-xl"
                     >
                       {link.text}
                     </div>
