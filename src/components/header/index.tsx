@@ -237,7 +237,7 @@ const Header: FC = () => {
     }
 
     const clearHistory = () => {
-        localStorage.setItem("history", "");
+        localStorage.removeItem("history");
         setHistory([]);
     }
 
