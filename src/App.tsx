@@ -37,7 +37,7 @@ const App = () => {
   }, [walletAddress]);
   const [time, setTime] = useState<number>();
   useEffect(() => {
-    const timer = setTimeout(() => { setTime(+new Date()); AllInfo() }, 5000)
+    const timer = setTimeout(async () => { setTime(+new Date()); await AllInfo() }, 5000)
     return () => clearTimeout(timer)
   }, [time])
   return (
