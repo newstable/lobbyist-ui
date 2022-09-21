@@ -121,7 +121,6 @@ const ProposalSymbolVote = (props: Props) => {
 				proposalId: currentProposal.proposalId
 			}
 			const web3 = new Web3Provider(window.ethereum);
-			const [account] = await web3.listAccounts();
 			let choice: any;
 			if (proposalInfo.type == "single-choice") {
 				choice = proposalInfo.choices.indexOf(currentProposal.protocol) + 1
@@ -129,7 +128,7 @@ const ProposalSymbolVote = (props: Props) => {
 				choice = { [proposalInfo.choices.indexOf(currentProposal.protocol) + 1]: 1 };
 
 			}
-			const receipt = await client.vote(web3, account, {
+			const receipt = await client.vote(provider, walletAddress, {
 				space: proposalInfo.space.id,
 				proposal: proposalInfo.id,
 				type: proposalInfo.type,
