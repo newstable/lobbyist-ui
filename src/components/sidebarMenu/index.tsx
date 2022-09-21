@@ -18,14 +18,9 @@ import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
 import { ReactComponent as MirrorIcon } from "../../assets/icons/mirror.svg";
 import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
-import { ReactComponent as EthIcon } from "../../assets/tokens/eth.svg";
-import { ReactComponent as MaticIcon } from "../../assets/tokens/matic.svg";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Logo from "../../assets/icons/logo.svg";
 import styles from "./styles.module.scss";
 import { colors } from "../../common";
-import chains from "./chains.json";
 
 type Props = {};
 
@@ -34,14 +29,6 @@ const SidebarMenu = (props: Props) => {
   const theme = useTheme();
   const { pathname } = useLocation();
   const isMobile = useMediaQuery(theme.breakpoints.down("mlg"));
-  const [chain, setChain] = useState("Ethereum");
-  const [iconName, setIconName] = useState("gauge");
-  const [show, setShow] = useState(false);
-
-  const chooseChain = (e: any) => {
-    setChain(e.title);
-    setIconName(e.icon);
-  }
   const getIcon = (
     iconName: string
   ): React.FC<
@@ -52,10 +39,6 @@ const SidebarMenu = (props: Props) => {
     switch (iconName) {
       case "gauge":
         return GaugeIcon;
-      case "eth":
-        return EthIcon;
-      case "matic":
-        return MaticIcon;
       case "chart":
         return ChartIcon;
       case "pro-aave":
@@ -95,10 +78,9 @@ const SidebarMenu = (props: Props) => {
       separator: true,
     },
     {
-      icon: iconName,
-      text: chain,
+      icon: "",
+      text: "Matic",
       href: "#",
-      separator: true,
       disabled: true
     },
     {
@@ -111,6 +93,12 @@ const SidebarMenu = (props: Props) => {
       text: "Aave",
       href: "/proposal/aave",
       separator: true,
+    },
+    {
+      icon: "",
+      text: "Mumbai",
+      href: "#",
+      disabled: true
     },
     {
       icon: "pro-vesq",
@@ -211,59 +199,11 @@ const SidebarMenu = (props: Props) => {
               <Box key={`lnk_${idx}`} className={link.disabled ? "relative" : ""}>
                 {link.disabled ? (
                   <>
-                    <Button
-                      onClick={() => setShow(!show)}
-                      className="!p-0 mlg:!justify-start !py-4"
-                      startIcon={
-                        <Box
-                          component="span"
-                          className={classNames(
-                            "ml-2 w-8 h-8 hidden mlg:flex items-center justify-center",
-                            styles.menuIcon,
-                            styles["menuIcon--disabled"]
-                          )}
-                        >
-                          <SvgIcon
-                            component={getIcon(link.icon)}
-                            viewBox="0 0 31 31"
-                          />
-                        </Box>
-                      }
+                    <div style={{ color: "gray" }}
+                      className="!p-0 mlg:!justify-start !py-4 text-3xl"
                     >
                       {link.text}
-                      <ArrowForwardIosIcon className="ml-auto" />
-                    </Button>
-                    {show ?
-                      <div className={styles.chooseChain}>
-                        {chains.map((chain, key) => {
-                          return (
-                            <Button
-                              onClick={() => { setShow(false); chooseChain(chain) }}
-                              key={key}
-                              className="!p-0 mlg:!justify-start !py-4"
-                              startIcon={
-                                <Box
-                                  component="span"
-                                  className={classNames(
-                                    "ml-2 w-8 h-8 hidden mlg:flex items-center justify-center",
-                                    styles.menuIcon,
-                                    styles["menuIcon--disabled"]
-                                  )}
-                                >
-                                  <SvgIcon
-                                    component={getIcon(chain.icon)}
-                                    viewBox="0 0 31 31"
-                                  />
-                                </Box>
-                              }
-                            >
-                              {chain.title}
-                            </Button>
-                          );
-                        })}
-                      </div>
-                      : ""
-                    }
+                    </div>
                   </>
                 ) : (
                   <Link
