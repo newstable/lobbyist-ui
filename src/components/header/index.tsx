@@ -43,8 +43,6 @@ const itemsList = [
     },
 ];
 
-console.log(window.ethereum);
-
 const StyledPaper = styled(Paper)(({ theme }) => ({
     backgroundColor: "rgba(7, 16, 24, 0.81)",
     color: colors.textGrayLight,
@@ -115,7 +113,12 @@ const Header: FC = () => {
                 }
             })
             const library = new ethers.providers.Web3Provider(provider);
-            dispatch(setProvider(library));
+            if (window.ethereum) {
+                const provider = new ethers.providers.Web3Provider(window.ethereum)
+                dispatch(setProvider(provider));
+            } else {
+                dispatch(setProvider(library));
+            }
             if (library.connection.url == "metamask")
                 setWalletType("Metamask")
             else
@@ -171,9 +174,9 @@ const Header: FC = () => {
     };
 
     useEffect(() => {
-        // if (web3Modal.cachedProvider) {
-        connectWallet();
-        // }
+        if (web3Modal.cachedProvider) {
+            connectWallet();
+        }
     }, []);
 
     const refreshState = () => {
