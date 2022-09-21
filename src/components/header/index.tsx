@@ -113,12 +113,11 @@ const Header: FC = () => {
                 }
             })
             const library = new ethers.providers.Web3Provider(provider);
-            if (window.ethereum) {
-                const provider = new ethers.providers.Web3Provider(window.ethereum)
-                dispatch(setProvider(provider));
-            } else {
-                dispatch(setProvider(library));
-            }
+            dispatch(setProvider(library));
+            // if (window.ethereum) {
+            //     const provider = new ethers.providers.Web3Provider(window.ethereum)
+            //     dispatch(setProvider(provider));
+            // }
             if (library.connection.url == "metamask")
                 setWalletType("Metamask")
             else
