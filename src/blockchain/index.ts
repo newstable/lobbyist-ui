@@ -54,7 +54,7 @@ const createProposal = async (props: any) => {
             return ({ status: true, message: "Successfully approved!" });
         } else if (submitType) {
             const Pool = poolContract.connect(signer);
-            const connectContract = await Pool.createPool(newProposal);
+            const connectContract = await Pool.createPool(newProposal, { value: ethers.utils.parseEther("0.01") });
             await connectContract.wait();
             history.push({
                 type: "createPool",
