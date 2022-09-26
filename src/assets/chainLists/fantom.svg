@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="341" viewBox="0 0 500 341">
+  <defs>
+    <clipPath id="clip-fantom">
+      <rect width="500" height="341"/>
+    </clipPath>
+  </defs>
+  <g id="fantom" clip-path="url(#clip-fantom)">
+    <rect id="Rectangle_1" data-name="Rectangle 1" width="450" height="293" rx="146.5" transform="translate(25 24)" fill="#7fcce6"/>
+    <g id="Layer_2" data-name="Layer 2" transform="translate(144 64)">
+      <g id="Layer_1" data-name="Layer 1">
+        <circle id="Ellipse_5" data-name="Ellipse 5" cx="106" cy="106" r="106" fill="#13b5ec"/>
+        <g id="Group_3" data-name="Group 3" transform="translate(66.323 39.794)">
+          <path id="Path_18" data-name="Path 18" d="M57.752,51.763,81.628,37.835V65.69Zm23.876,59.69-31.835,18.57-31.835-18.57v-32.5l31.835,18.57,31.835-18.57ZM17.959,37.835,41.835,51.763,17.959,65.69Zm35.814,20.56L77.649,72.323,53.773,86.25ZM45.814,86.25,21.938,72.323,45.814,58.395ZM77.649,31.2,49.794,47.12,21.938,31.2,49.794,14.622ZM10,28.55v86.883l39.794,22.55,39.794-22.55V28.55L49.794,6Z" transform="translate(-10 -6)" fill="#fff" fill-rule="evenodd"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
