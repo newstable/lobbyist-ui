@@ -22,6 +22,7 @@ export type Proposal = {
   myvoteAmount: number;
   myclaim: boolean;
   usdAmount: number;
+  chain:string;
 };
 
 export type NewProposal = {

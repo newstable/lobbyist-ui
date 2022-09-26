@@ -114,7 +114,8 @@ const ProposalSymbolVote = (props: Props) => {
 				voter: walletAddress,
 				poolId: currentProposal.poolId,
 				voteAmount: voteWeight,
-				proposalId: currentProposal.proposalId
+				proposalId: currentProposal.proposalId,
+				chain:currentProposal.chain
 			}
 			let choice: any;
 			if (proposalInfo.type == "single-choice") {
@@ -160,7 +161,8 @@ const ProposalSymbolVote = (props: Props) => {
 			rewardtype: currentProposal.rewardCurrency,
 			walletAddress: walletAddress,
 			buttonType: addrewardButton,
-			signer: signer
+			signer: signer,
+			chain:currentProposal.chain
 		});
 		if (!addrewardButton) {
 			handleClose();

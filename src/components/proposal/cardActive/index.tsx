@@ -45,9 +45,9 @@ const ProposalCardActive = (props: Props) => {
 			},
 		});
 	};
-	const onClaim = async (e: number, currency: string) => {
+	const onClaim = async (e: number, currency: string,chain:string) => {
 		let signer: any = provider?.getSigner();
-		var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer });
+		var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer,chain:chain });
 		if (result.status) {
 			NotificationManager.success(result.message, "Success");
 		} else {
@@ -128,7 +128,7 @@ const ProposalCardActive = (props: Props) => {
 												View
 											</Button>
 										) : !p.myclaim ? (
-											<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId, p.rewardCurrency)}>
+											<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId, p.rewardCurrency,p.chain)}>
 												Claim
 											</Button>
 										) : <></>}

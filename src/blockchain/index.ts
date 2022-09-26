@@ -72,7 +72,7 @@ const createProposal = async (props: any) => {
 
 const addRewards = async (props: any) => {
     try {
-        const { id, amount, rewardtype, walletAddress, buttonType, signer } = props;
+        const { id, amount, rewardtype, walletAddress, buttonType, signer,chain } = props;
         var rewardCurrency = tokens.filter(token => token.address == rewardtype);
         const Reward = ERCContract(rewardtype);
         const myBalance = await Reward.balanceOf(walletAddress);
@@ -101,7 +101,7 @@ const addRewards = async (props: any) => {
                 address: Addresses.Pool
             });
             localStorage.setItem("history", JSON.stringify(history));
-            var result = await axios.post("/api/addreward", { poolId: id, rewardAmount: amount });
+            var result = await axios.post("/api/addreward", { poolId: id, rewardAmount: amount,chain:chain });
             if (result.data.status)
                 return ({ status: true, message: "Successfully Added!" });
         }
@@ -112,7 +112,7 @@ const addRewards = async (props: any) => {
 
 const Claim = async (props: any) => {
     try {
-        const { id, address, walletAddress, signer } = props;
+        const { id, address, walletAddress, signer,chain } = props;
         var rewardCurrency = tokens.filter(token => token.address == address);
         const Pool = poolContract.connect(signer);
         const connectContract = await Pool.claim(id);
@@ -123,7 +123,7 @@ const Claim = async (props: any) => {
             address: Addresses.Pool
         });
         localStorage.setItem("history", JSON.stringify(history));
-        var result = await axios.post("/api/claim", { id: id, address: walletAddress });
+        var result = await axios.post("/api/claim", { id: id, address: walletAddress,chain:chain });
         if (result.data.status)
             return ({ status: true, message: "Successfully Claimed!" });
         else {
