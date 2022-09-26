@@ -57,6 +57,10 @@ const ProposalForm = (props: Props) => {
     const walletAddress: any = useSelector(
         (state: RootState) => state.wallet.address
     );
+    const chainName: any = useSelector(
+        (state: RootState) => state.chain.name
+    );
+
 
     const provider: any = useSelector((state: RootState) => state.provider.provider);
 
@@ -211,7 +215,8 @@ const ProposalForm = (props: Props) => {
                 walletAddress: walletAddress,
                 value: value,
                 submitType: submitType,
-                signer: signer
+                signer: signer,
+                chain:chainName
             });
             if (!result.status) {
                 NotificationManager.warning(result.message, "Warning");

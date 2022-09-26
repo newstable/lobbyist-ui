@@ -18,11 +18,15 @@ const providers = {
 };
 
 const provider = providers[supportChainId];
-const poolContract = new ethers.Contract(
-    Addresses.Pool,
-    Abis.Pool,
-    provider
-)
+
+const POOLContract = (e:any)=>{
+    const contract = new ethers.contract(
+        Addresses[e.chain],
+        Abis.Pool,
+        e.signer
+    );
+    return contract;
+}
 
 const ERCContract = (e: any) => {
     const result = new ethers.Contract(
@@ -31,7 +35,7 @@ const ERCContract = (e: any) => {
     return result;
 }
 export {
-    poolContract,
+    POOLContract,
     ERCContract,
     provider
 };

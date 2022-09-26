@@ -15,6 +15,7 @@ import classNames from "classnames";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 import { setWalletAddress } from "../../redux/slices/wallet";
+import { setChainName } from "../../redux/slices/chain";
 import { setProvider } from "../../redux/slices/provider";
 import { dispatch } from "../../redux/store";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -130,6 +131,7 @@ const Header: FC = () => {
                 dispatch(setWalletAddress(accounts[0]));
             }
             setChainId(network.chainId);
+            dispatch(setWalletAddress(network.chainName));
         } catch (error: any) {
             setError(error);
         }
@@ -152,6 +154,7 @@ const Header: FC = () => {
                 params: [{ chainId: toHex(network) }],
             });
         } catch (switchError: any) {
+            setChainId(chainId);
             if (switchError.code === 4902) {
                 try {
                     await library.provider.request({
