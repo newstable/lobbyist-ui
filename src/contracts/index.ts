@@ -4,20 +4,20 @@ import { ethers } from "ethers";
 const Abis = require("./contracts/abis.json");
 const Addresses = require("./contracts/addresses.json");
 
-const supportChainId = 0x89;
-
 const RPCS = {
-    4002: "https://ftm-test.babylonswap.finance",
-    0x89: "https://polygon-rpc.com",
-    0x13881: "https://rpc-mumbai.maticvigil.com",
+    1:"https://mainnet.infura.io/v3/",
+    10:"https://mainnet.optimism.io",
+    137:"https://polygon-rpc.com",
+    250:"https://rpc.ftm.tools",
+    42161:"https://arb1.arbitrum.io/rpc"
 };
 const providers = {
-    0x13881: new ethers.providers.JsonRpcProvider(RPCS[0x13881]),
-    0x89: new ethers.providers.JsonRpcProvider(RPCS[0x89]),
-    4002: new ethers.providers.JsonRpcProvider(RPCS[4002]),
+    "Ethereum": new ethers.providers.JsonRpcProvider(RPCS[1]),
+    "Optimism": new ethers.providers.JsonRpcProvider(RPCS[10]),
+    "Polygon": new ethers.providers.JsonRpcProvider(RPCS[137]),
+    "Fantom": new ethers.providers.JsonRpcProvider(RPCS[250]),
+    "Arbitrum": new ethers.providers.JsonRpcProvider(RPCS[42161]),
 };
-
-const provider = providers[supportChainId];
 
 const POOLContract = (e:any)=>{
     const contract = new ethers.contract(
@@ -30,12 +30,12 @@ const POOLContract = (e:any)=>{
 
 const ERCContract = (e: any) => {
     const result = new ethers.Contract(
-        e, Abis.ERC20, provider
+        e, Abis.ERC20, providers["Polygon"]
     )
     return result;
 }
 export {
     POOLContract,
     ERCContract,
-    provider
+    providers
 };
