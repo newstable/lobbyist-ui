@@ -25,7 +25,7 @@ const Content = styled(CardContent)(({ theme }) => ({}));
 const ProposalCardCreated = (props: Props) => {
   const { proposals, address } = props
   let { symbol } = useParams();
-  const colHeads = ["Title", "Vote Incentives", "Total Votes", "$/Vote", ""];
+  const colHeads = ["Title", "Voting For","Vote Incentives", "Total Votes", "$/Vote", ""];
   const navigate = useNavigate();
   const onJoinClick = (proposal: Proposal) => {
     const path = proposal.address !== address ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
@@ -48,7 +48,7 @@ const ProposalCardCreated = (props: Props) => {
           )}
         >
           {colHeads.map((c, idx) => (
-            <Box className={idx == 0 ? "table-first" : ""} key={`colHead_${idx}`}>
+            <Box key={`colHead_${idx}`}>
               <TextHead>{c}</TextHead>
             </Box>
           ))}
@@ -65,7 +65,7 @@ const ProposalCardCreated = (props: Props) => {
                     )}
                   >
                     <Box
-                      className={classNames("flex flex-col table-first", !isAboveMd && "gap-1")}
+                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
                     >
                       <TextHead className={classNames(isAboveMd && "hidden")}>
                         {colHeads[0]}
@@ -78,6 +78,14 @@ const ProposalCardCreated = (props: Props) => {
                       <TextHead className={classNames(isAboveMd && "hidden")}>
                         {colHeads[1]}
                       </TextHead>
+                      <TextContent>{p.protocol}</TextContent>
+                    </Box>
+                    <Box
+                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                    >
+                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                        {colHeads[2]}
+                      </TextHead>
                       <TextContent>${NumberType(p.usdAmount.toFixed(2), 2)}</TextContent>
                     </Box>
                     <Box
@@ -87,7 +95,7 @@ const ProposalCardCreated = (props: Props) => {
                       )}
                     >
                       <TextHead className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[2]}
+                        {colHeads[3]}
                       </TextHead>
                       <TextContent>{NumberType(p.totalVoteWeight.toFixed(2), 2)}</TextContent>
                     </Box>
@@ -95,7 +103,7 @@ const ProposalCardCreated = (props: Props) => {
                       className={classNames("flex flex-col", !isAboveMd && "gap-1")}
                     >
                       <TextHead className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[3]}
+                        {colHeads[4]}
                       </TextHead>
                       <TextContent>${p.totalVoteWeight == 0 ? ("0") : (
                         NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6)

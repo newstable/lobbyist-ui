@@ -47,7 +47,7 @@ const ProposalCardActiveSymbol = ({
     const walletAddress: any = useSelector(
         (state: RootState) => state.wallet.address
     );
-    const colHeads = ["Name", "Vote Incentive", "Total Votes", "$/Vote", ""];
+    const colHeads = ["Name","Voting For", "Vote Incentive", "Total Votes", "$/Vote", ""];
     const navigate = useNavigate();
     const theme = useTheme();
     const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
@@ -94,7 +94,7 @@ const ProposalCardActiveSymbol = ({
                     )}
                 >
                     {colHeads.map((c, idx) => (
-                        <Box className={idx == 0 ? "table-first" : ""} key={`colHead_${idx}`}>
+                        <Box key={`colHead_${idx}`}>
                             <TextHead>{c}</TextHead>
                         </Box>
                     ))}
@@ -117,7 +117,7 @@ const ProposalCardActiveSymbol = ({
                                     >
                                         <Box
                                             className={classNames(
-                                                "flex flex-col table-first",
+                                                "flex flex-col",
                                                 !isAboveMd && "gap-1"
                                             )}
                                         >
@@ -143,7 +143,7 @@ const ProposalCardActiveSymbol = ({
                                             >
                                                 {colHeads[1]}
                                             </TextHead>
-                                            <TextContent>{`$${NumberType(p.usdAmount.toFixed(2), 2)}`}</TextContent>
+                                            <TextContent>{p.protocol}</TextContent>
                                         </Box>
                                         <Box
                                             className={classNames(
@@ -158,7 +158,7 @@ const ProposalCardActiveSymbol = ({
                                             >
                                                 {colHeads[2]}
                                             </TextHead>
-                                            <TextContent>{NumberType(p.totalVoteWeight.toFixed(2), 2)}</TextContent>
+                                            <TextContent>{`$${NumberType(p.usdAmount.toFixed(2), 2)}`}</TextContent>
                                         </Box>
                                         <Box
                                             className={classNames(
@@ -172,6 +172,21 @@ const ProposalCardActiveSymbol = ({
                                                 )}
                                             >
                                                 {colHeads[3]}
+                                            </TextHead>
+                                            <TextContent>{NumberType(p.totalVoteWeight.toFixed(2), 2)}</TextContent>
+                                        </Box>
+                                        <Box
+                                            className={classNames(
+                                                "flex flex-col",
+                                                !isAboveMd && "gap-1"
+                                            )}
+                                        >
+                                            <TextHead
+                                                className={classNames(
+                                                    isAboveMd && "hidden"
+                                                )}
+                                            >
+                                                {colHeads[4]}
                                             </TextHead>
                                             <TextContent>{p.totalVoteWeight == 0 ? "$0" : "$" + NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6)}</TextContent>
                                         </Box>
