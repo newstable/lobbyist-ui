@@ -162,13 +162,14 @@ const Header: FC = () => {
   };
 
   useEffect(() => {
+    console.log(chainId);
     if (
-      chainId != 137 ||
-      chainId != 1 ||
-      chainId != 56 ||
-      chainId != 250 ||
-      chainId != 43114 ||
-      chainId != 10 ||
+      chainId != 137 &&
+      chainId != 1 &&
+      chainId != 56 &&
+      chainId != 250 &&
+      chainId != 43114 &&
+      chainId != 10 &&
       chainId != 42161
     ) {
       if (selectedCrypto == "Polygon") {
