@@ -1,13 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // ----------------------------------------------------------------------
-
-interface initialStateObject {
-    name: string;
-}
-
-const initialState: initialStateObject = {
-    name: "Polygon",
+const initialState = {
+    id: 137,
 };
 
 const slice = createSlice({
@@ -15,7 +10,7 @@ const slice = createSlice({
     initialState,
     reducers: {
         setChainName(state, action) {
-            state.address = action.payload;
+            state.id = action.payload;
         },
     },
 });

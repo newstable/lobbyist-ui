@@ -22,7 +22,7 @@ export type Proposal = {
   myvoteAmount: number;
   myclaim: boolean;
   usdAmount: number;
-  chain:string;
+  chain: string;
 };
 
 export type NewProposal = {
@@ -40,7 +40,7 @@ export type NewProposal = {
 
 export type History = {
   type: string;
-  chain:string;
+  chain: number;
   rewardCurrency: string;
   address: string;
 }

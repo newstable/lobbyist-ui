@@ -15,7 +15,7 @@ if (localStorage.getItem('history')) {
     data.forEach((element: any) => {
         history.push({
             type: element.type,
-            chain:element.chain,
+            chain: element.chain,
             rewardCurrency: element.rewardCurrency,
             address: element.address
         });
@@ -24,7 +24,7 @@ if (localStorage.getItem('history')) {
 
 const createProposal = async (props: any) => {
     try {
-        const { address, walletAddress, value, submitType, signer ,chain } = props;
+        const { address, walletAddress, value, submitType, signer, chain } = props;
         var rewardCurrency = tokens.filter(token => token.address == address);
         const newProposal = {
             proposalId: value.proposalId,
@@ -44,25 +44,27 @@ const createProposal = async (props: any) => {
             return ({ status: false, message: "Your reward balance is not enough!" });
         } else if (!submitType) {
             const ERCContract = Reward.connect(signer);
+            // @ts-ignore
             var tx = await ERCContract.approve(Addresses[chain], ethers.utils.parseUnits(value.payout));
             await tx.wait();
             history.push({
                 type: "Approve",
-                chain:chain,
+                chain: chain,
                 rewardCurrency: rewardCurrency[0].display,
                 address: walletAddress
             });
             localStorage.setItem("history", JSON.stringify(history));
             return ({ status: true, message: "Successfully approved!" });
         } else if (submitType) {
-            const poolContract = POOLContract({chain,signer});
+            const poolContract = POOLContract({ chain, signer });
             const Pool = poolContract.connect(signer);
             const connectContract = await Pool.createPool(newProposal, { value: ethers.utils.parseEther("0.01") });
             await connectContract.wait();
             history.push({
                 type: "createPool",
-                chain:chain,
+                chain: chain,
                 rewardCurrency: rewardCurrency[0].display,
+                // @ts-ignore
                 address: Addresses[chain]
             });
             localStorage.setItem("history", JSON.stringify(history));
@@ -76,7 +78,7 @@ const createProposal = async (props: any) => {
 
 const addRewards = async (props: any) => {
     try {
-        const { id, amount, rewardtype, walletAddress, buttonType, signer,chain } = props;
+        const { id, amount, rewardtype, walletAddress, buttonType, signer, chain } = props;
         var rewardCurrency = tokens.filter(token => token.address == rewardtype);
         const Reward = ERCContract(rewardtype);
         const myBalance = await Reward.balanceOf(walletAddress);
@@ -86,29 +88,31 @@ const addRewards = async (props: any) => {
         }
         else if (buttonType) {
             const erc = Reward.connect(signer);
+            // @ts-ignore
             var tx = await erc.approve(Addresses[chain], ethers.utils.parseUnits(amount.toString()));
             await tx.wait();
             history.push({
                 type: "Approve",
-                chain:chain,
+                chain: chain,
                 rewardCurrency: rewardCurrency[0].display,
                 address: walletAddress
             });
             localStorage.setItem("history", JSON.stringify(history));
             return ({ status: true, message: "Successfully Approved!" });
         } else {
-            const poolContract = POOLContract({chain,signer});
+            const poolContract = POOLContract({ chain, signer });
             const Pool = poolContract.connect(signer);
             const connectContract = await Pool.addReward(id, ethers.utils.parseUnits(amount.toString()));
             await connectContract.wait();
             history.push({
                 type: "Add Reward",
-                chain:chain,
+                chain: chain,
                 rewardCurrency: rewardCurrency[0].display,
+                // @ts-ignore
                 address: Addresses[chain]
             });
             localStorage.setItem("history", JSON.stringify(history));
-            var result = await axios.post("/api/addreward", { poolId: id, rewardAmount: amount,chain:chain });
+            var result = await axios.post("/api/addreward", { poolId: id, rewardAmount: amount, chain: chain });
             if (result.data.status)
                 return ({ status: true, message: "Successfully Added!" });
         }
@@ -119,20 +123,21 @@ const addRewards = async (props: any) => {
 
 const Claim = async (props: any) => {
     try {
-        const { id, address, walletAddress, signer,chain } = props;
+        const { id, address, walletAddress, signer, chain } = props;
         var rewardCurrency = tokens.filter(token => token.address == address);
-        const poolContract = POOLContract({chain,signer});
+        const poolContract = POOLContract({ chain, signer });
         const Pool = poolContract.connect(signer);
         const connectContract = await Pool.claim(id);
         await connectContract.wait();
         history.push({
             type: "Claim",
-            chain:chain,
+            chain: chain,
             rewardCurrency: rewardCurrency[0].display,
+            // @ts-ignore
             address: Addresses[chain]
         });
         localStorage.setItem("history", JSON.stringify(history));
-        var result = await axios.post("/api/claim", { id: id, address: walletAddress,chain:chain });
+        var result = await axios.post("/api/claim", { id: id, address: walletAddress, chain: chain });
         if (result.data.status)
             return ({ status: true, message: "Successfully Claimed!" });
         else {
