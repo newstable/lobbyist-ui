@@ -15,7 +15,7 @@ import classNames from "classnames";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 import { setWalletAddress } from "../../redux/slices/wallet";
-import { setChainName } from "../../redux/slices/chain";
+import chain, { setChainName } from "../../redux/slices/chain";
 import { setProvider } from "../../redux/slices/provider";
 import { dispatch } from "../../redux/store";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -155,10 +155,6 @@ const Header: FC = () => {
         setAccount(accounts[0]);
         dispatch(setWalletAddress(accounts[0]));
       }
-      console.log(
-        network,
-        "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-      );
       setChainId(network.chainId);
     } catch (error: any) {
       setError(error);
@@ -166,7 +162,15 @@ const Header: FC = () => {
   };
 
   useEffect(() => {
-    if (chainId != "0x89" || chainId != "0x1") {
+    if (
+      chainId != 137 ||
+      chainId != 1 ||
+      chainId != 56 ||
+      chainId != 250 ||
+      chainId != 43114 ||
+      chainId != 10 ||
+      chainId != 42161
+    ) {
       if (selectedCrypto == "Polygon") {
         switchNetwork("0x89");
       } else {
