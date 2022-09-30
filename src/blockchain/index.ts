@@ -6,7 +6,7 @@ import CoinGecko from "coingecko-api";
 import tokens from "../token.json";
 import { History } from "../@types/proposal";
 import { useSelector } from "../redux/store";
-
+import chainscan from "../chainscan.json";
 const CoinGeckoClient = new CoinGecko();
 var history: History[] = [];
 
@@ -49,7 +49,7 @@ const createProposal = async (props: any) => {
             await tx.wait();
             history.push({
                 type: "Approve",
-                chain: chain,
+                chain: chainscan[chain],
                 rewardCurrency: rewardCurrency[0].display,
                 address: walletAddress
             });
@@ -62,7 +62,7 @@ const createProposal = async (props: any) => {
             await connectContract.wait();
             history.push({
                 type: "createPool",
-                chain: chain,
+                chain: chainscan[chain],
                 rewardCurrency: rewardCurrency[0].display,
                 // @ts-ignore
                 address: Addresses[chain]
@@ -93,7 +93,7 @@ const addRewards = async (props: any) => {
             await tx.wait();
             history.push({
                 type: "Approve",
-                chain: chain,
+                chain: chainscan[chain],
                 rewardCurrency: rewardCurrency[0].display,
                 address: walletAddress
             });
@@ -106,7 +106,7 @@ const addRewards = async (props: any) => {
             await connectContract.wait();
             history.push({
                 type: "Add Reward",
-                chain: chain,
+                chain: chainscan[chain],
                 rewardCurrency: rewardCurrency[0].display,
                 // @ts-ignore
                 address: Addresses[chain]
@@ -131,7 +131,7 @@ const Claim = async (props: any) => {
         await connectContract.wait();
         history.push({
             type: "Claim",
-            chain: chain,
+            chain: chainscan[chain],
             rewardCurrency: rewardCurrency[0].display,
             // @ts-ignore
             address: Addresses[chain]

@@ -432,10 +432,7 @@ const Header: FC = () => {
               {history.map((i, key) =>
                 i.address == account ? (
                   <div className="wallet-history blue" key={`history_${key}`}>
-                    <a
-                      href={"https://polygonscan.com/address/" + i.address}
-                      target="_blank"
-                    >
+                    <a href={i.chain + i.address} target="_blank">
                       {i.type + " " + i.rewardCurrency}
                       <CallMadeSharpIcon />
                     </a>

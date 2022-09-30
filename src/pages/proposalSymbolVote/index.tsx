@@ -34,6 +34,7 @@ import tokens from "../../token.json";
 import { Coins } from "../../blockchain";
 import NumberType from "../../common/number";
 import { History } from "../../@types/proposal";
+import chainscan from "../../chainscan.json";
 
 var md = new Remarkable();
 var history: History[] = [];
@@ -147,7 +148,7 @@ const ProposalSymbolVote = (props: Props) => {
       if (receipt) {
         history.push({
           type: "Vote",
-          chain: chianId,
+          chain: chainscan[chianId],
           rewardCurrency: "",
           address: walletAddress,
         });

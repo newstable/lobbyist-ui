@@ -40,7 +40,7 @@ export type NewProposal = {
 
 export type History = {
   type: string;
-  chain: number;
+  chain: any;
   rewardCurrency: string;
   address: string;
 }
