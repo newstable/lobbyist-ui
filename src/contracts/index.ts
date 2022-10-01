@@ -13,7 +13,7 @@ const RPCS = {
     42161: "https://arbitrum.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
     43114: "https://avax.getblock.io/mainnet/ext/bc/C/rpc?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5"
 };
-const providers = {
+const providers: any = {
     1: new ethers.providers.JsonRpcProvider(RPCS[1]),
     10: new ethers.providers.JsonRpcProvider(RPCS[10]),
     56: new ethers.providers.JsonRpcProvider(RPCS[56]),
@@ -34,7 +34,7 @@ const POOLContract = (e: any) => {
 
 const ERCContract = (e: any) => {
     const result = new ethers.Contract(
-        e, Abis.ERC20, providers[137]
+        e.address, Abis.ERC20, providers[e.chain]
     )
     return result;
 }
