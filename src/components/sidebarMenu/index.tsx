@@ -21,10 +21,16 @@ import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
 import Logo from "../../assets/icons/logo.svg";
 import styles from "./styles.module.scss";
 import { colors } from "../../common";
+import switchNetwork from "../header/switchchain";
+import { useSelector } from "../../redux/store";
+import { RootState } from "../../redux/store";
 
 type Props = {};
 
 const SidebarMenu = (props: Props) => {
+  const library: any = useSelector(
+    (state: RootState) => state.provider.provider
+  );
   const { PUBLIC_URL } = process.env;
   const theme = useTheme();
   const { pathname } = useLocation();
@@ -81,45 +87,82 @@ const SidebarMenu = (props: Props) => {
       icon: "",
       text: "Polygon",
       href: "#",
-      disabled: true
+      disabled: true,
     },
     {
       icon: "pro-qidao",
       text: "QiDAO",
+      chain: 137,
       href: "/proposal/qidao",
     },
     {
-      icon: "pro-aave",
-      text: "Aave",
-      href: "/proposal/aave",
-      separator: true,
+      icon: "",
+      text: "Ethereum",
+      href: "#",
+      disabled: true,
+    },
+    {
+      icon: "pro-qidao",
+      text: "QiDAO",
+      chain: 1,
+      href: "/proposal/qidao",
     },
     {
       icon: "",
-      text: "Mumbai",
+      text: "Fantom",
       href: "#",
-      disabled: true
+      disabled: true,
     },
     {
-      icon: "pro-vesq",
-      text: "Vesq",
-      href: "/proposal/vesq",
-      separator: true,
+      icon: "pro-qidao",
+      chain: 250,
+      text: "QiDAO",
+      href: "/proposal/qidao",
     },
+    {
+      icon: "",
+      text: "Binance",
+      href: "#",
+      disabled: true,
+    },
+    {
+      icon: "pro-qidao",
+      text: "QiDAO",
+      chain: 56,
+      href: "/proposal/qidao",
+    },
+    // {
+    //   icon: "pro-aave",
+    //   text: "Aave",
+    //   href: "/proposal/aave",
+    //   separator: true,
+    // },
+    // {
+    //   icon: "",
+    //   text: "Mumbai",
+    //   href: "#",
+    //   disabled: true
+    // },
+    // {
+    //   icon: "pro-vesq",
+    //   text: "Vesq",
+    //   href: "/proposal/vesq",
+    //   separator: true,
+    // },
     {
       icon: "twitter",
       text: "Twitter",
-      href: ("https://twitter.com/0xLobbyist"),
+      href: "https://twitter.com/0xLobbyist",
     },
     {
       icon: "discord",
       text: "Discord",
-      href: ("https://discord.com/invite/kEfvQZSPUk"),
+      href: "https://discord.com/invite/kEfvQZSPUk",
     },
     {
       icon: "mirror",
       text: "Mirror",
-      href: ("https://mirror.xyz/0xa0a8aE81215644cC7cB1d8d2a06ce8B0F2887E29"),
+      href: "https://mirror.xyz/0xa0a8aE81215644cC7cB1d8d2a06ce8B0F2887E29",
     },
     {
       icon: "docs",
@@ -160,7 +203,7 @@ const SidebarMenu = (props: Props) => {
           <Link
             href={PUBLIC_URL}
             className={classNames(
-              "px-4 relative block mlg:px-0 mlg\pt-12",
+              "px-4 relative block mlg:px-0 mlgpt-12",
               styles.menuLogo
             )}
             underline="none"
@@ -196,10 +239,14 @@ const SidebarMenu = (props: Props) => {
               (pathname.length === 1 && pathname === link.href);
             const linkColor = isSelected ? colors.tealLight : colors.white;
             return (
-              <Box key={`lnk_${idx}`} className={link.disabled ? "relative" : ""}>
+              <Box
+                key={`lnk_${idx}`}
+                className={link.disabled ? "relative" : ""}
+              >
                 {link.disabled ? (
                   <>
-                    <div style={{ color: "gray" }}
+                    <div
+                      style={{ color: "gray" }}
                       className="!p-0 mlg:!justify-start !py-4 text-xl"
                     >
                       {link.text}
@@ -212,6 +259,7 @@ const SidebarMenu = (props: Props) => {
                     color={linkColor}
                     className={classNames("py-4 flex")}
                     underline="none"
+                    onClick={() => switchNetwork(`${link.chain}`, library)}
                   >
                     <Box
                       component="span"

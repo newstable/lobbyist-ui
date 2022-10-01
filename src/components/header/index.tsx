@@ -30,6 +30,7 @@ import styles from "./styles.module.scss";
 import { providerOptions } from "../../providerOptions";
 import { toHex, truncateAddress } from "../../utils";
 import useClipboard from "react-use-clipboard";
+import switchNetwork from "./switchchain";
 
 const itemsList = [
   {
@@ -142,10 +143,6 @@ const Header: FC = () => {
       });
       const library = new ethers.providers.Web3Provider(provider);
       dispatch(setProvider(library));
-      // if (window.ethereum) {
-      //     const provider = new ethers.providers.Web3Provider(window.ethereum)
-      //     dispatch(setProvider(provider));
-      // }
       if (library.connection.url == "metamask") setWalletType("Metamask");
       else setWalletType(library.connection.url);
       const accounts = await library.listAccounts();
@@ -162,7 +159,6 @@ const Header: FC = () => {
   };
 
   useEffect(() => {
-    console.log(chainId);
     if (
       chainId != 137 &&
       chainId != 1 &&
@@ -172,41 +168,25 @@ const Header: FC = () => {
       chainId != 10 &&
       chainId != 42161
     ) {
-      if (selectedCrypto == "Polygon") {
-        switchNetwork("0x89");
-      } else {
-        switchNetwork("0x1");
-      }
+      if (selectedCrypto == "Polygon") switchNetwork("0x89", library);
+      else if (selectedCrypto == "Ethereum") switchNetwork("0x1", library);
+      else if (selectedCrypto == "Binance") switchNetwork("56", library);
+      else if (selectedCrypto == "Fantom") switchNetwork("250", library);
+      else if (selectedCrypto == "Avalanche") switchNetwork("42161", library);
+      else if (selectedCrypto == "Arbitrum") switchNetwork("43114", library);
+      else if (selectedCrypto == "Optimism") switchNetwork("10", library);
+    } else {
+      if (chainId == 1) setselectedCrypto("Ethereum");
+      else if (chainId == 10) setselectedCrypto("Optimism");
+      else if (chainId == 56) setselectedCrypto("Binance");
+      else if (chainId == 137) setselectedCrypto("Polygon");
+      else if (chainId == 250) setselectedCrypto("Fantom");
+      else if (chainId == 42161) setselectedCrypto("Avalanche");
+      else if (chainId == 43114) setselectedCrypto("Arbitrum");
     }
   }, [account]);
 
-  const switchNetwork = async (network: string) => {
-    try {
-      await library.provider.request({
-        method: "wallet_switchEthereumChain",
-        params: [{ chainId: toHex(network) }],
-      });
-    } catch (switchError: any) {
-      setChainId(chainId);
-      if (switchError.code === 4902) {
-        try {
-          await library.provider.request({
-            method: "wallet_addEthereumChain",
-            params: [
-              {
-                chainId: toHex("137"),
-                chainName: "Polygon",
-                rpcUrls: ["https://polygon-rpc.com/"],
-                blockExplorerUrls: ["https://polygonscan.com/"],
-              },
-            ],
-          });
-        } catch (addError) {
-          throw addError;
-        }
-      }
-    }
-  };
+  const checkChainId = () => {};
 
   useEffect(() => {
     if (web3Modal.cachedProvider) {
@@ -237,7 +217,7 @@ const Header: FC = () => {
     setOpen(false);
     setselectedCrypto(crypto);
     setselectedImg(img);
-    switchNetwork(id);
+    switchNetwork(id, library);
   };
 
   const handleListKeyDown = (event: React.KeyboardEvent) => {
