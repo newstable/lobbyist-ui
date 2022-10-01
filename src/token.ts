@@ -154,98 +154,98 @@ const Tokens: any =
             "value": 0,
             "display": "WFTM",
             "address": "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/ftm.svg",
             "api": "fantom"
         },
         {
             "value": 1,
             "display": "FETH",
             "address": "0x658b0c7613e890EE50B8C4BC6A3f41ef411208aD",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/eth.svg",
             "api": "ethereum"
         },
         {
             "value": 2,
             "display": "FBTC",
             "address": "0xe1146b9AC456fCbB60644c36Fd3F868A9072fc6E",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/wbtc.svg",
             "api": "bitcoin"
         },
         {
             "value": 3,
             "display": "DAI",
             "address": "0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/dai.svg",
             "api": "dai"
         },
         {
             "value": 4,
             "display": "FRAX",
             "address": "0xdc301622e621166BD8E82f2cA0A26c13Ad0BE355",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/frax.svg",
             "api": "frax"
         },
         {
             "value": 5,
             "display": "MAI",
             "address": "0xfB98B335551a418cD0737375a2ea0ded62Ea213b",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/mai.png",
             "api": "mimatic"
         },
         {
             "value": 6,
             "display": "FUSD",
             "address": "0xAd84341756Bf337f5a0164515b1f6F993D194E1f",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/usdt.svg",
             "api": "fantom-usd"
         },
         {
             "value": 7,
             "display": "MIM",
             "address": "0x82f0B8B456c1A451378467398982d4834b6829c1",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/mim.svg",
             "api": "magic-internet-money"
         },
         {
             "value": 8,
             "display": "AAVE",
             "address": "0x6a07A792ab2965C72a5B8088d3a069A7aC3a993B",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/aave.svg",
             "api": "aave"
         },
         {
             "value": 9,
             "display": "CRV",
             "address": "0x1E4F97b9f9F913c46F1632781732927B9019C68b",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/crv.svg",
             "api": "curve-dao-token"
         },
         {
             "value": 10,
             "display": "SUSHI",
             "address": "0xae75A438b2E0cB8Bb01Ec1E1e376De11D44477CC",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/sushi.svg",
             "api": "sushi"
         },
         {
             "value": 11,
             "display": "BIFI",
             "address": "0xd6070ae98b8069de6B494332d1A1a81B6179D960",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/bifi.svg",
             "api": "beefy-finance"
         },
         {
             "value": 12,
             "display": "FXS",
             "address": "0x7d016eec9c25232b01F23EF992D98ca97fc2AF5a",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/fxs.svg",
             "api": "frax-share"
         },
         {
             "value": 13,
             "display": "LINK",
             "address": "0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/link.svg",
             "api": "chainlink"
         },
     ],
@@ -254,42 +254,42 @@ const Tokens: any =
             "value": 0,
             "display": "WBNB",
             "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/bsc.svg",
             "api": "binancecoin"
         },
         {
             "value": 1,
             "display": "ETH",
             "address": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/eth.svg",
             "api": "ethereum"
         },
         {
             "value": 2,
             "display": "BTCB",
             "address": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/wbtc.svg",
             "api": "bitcoin"
         },
         {
             "value": 3,
             "display": "vDAI",
             "address": "0x334b3eCB4DCa3593BCCC3c7EBD1A1C1d1780FBF1",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/dai.svg",
             "api": "venus-dai"
         },
         {
             "value": 4,
             "display": "FRAX",
             "address": "0x90C97F71E18723b0Cf0dfa30ee176Ab653E89F40",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/frax.svg",
             "api": "frax"
         },
         {
             "value": 5,
             "display": "DAI",
             "address": "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/dai.svg",
             "api": "dai"
         },
         {
@@ -303,28 +303,28 @@ const Tokens: any =
             "value": 7,
             "display": "BSC-USD",
             "address": "0x55d398326f99059fF775485246999027B3197955",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/usdt.svg",
             "api": "binance-usd"
         },
         {
             "value": 8,
             "display": "BIFI",
             "address": "0xCa3F508B8e4Dd382eE878A314789373D80A5190A",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/bifi.svg",
             "api": "beefy-finance"
         },
         {
             "value": 9,
             "display": "FXS",
             "address": "0xe48A3d7d0Bc88d552f730B62c006bC925eadB9eE",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/fxs.svg",
             "api": "frax-share"
         },
         {
             "value": 10,
             "display": "LINK",
             "address": "0xF8A0BF9cF54Bb92F17374d9e9A321E6a111a51bD",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/link.svg",
             "api": "chainlink"
         },
     ],
@@ -333,77 +333,77 @@ const Tokens: any =
             "value": 0,
             "display": "WAVAX",
             "address": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/avax.svg",
             "api": "wrapped-avax"
         },
         {
             "value": 1,
             "display": "WETH",
             "address": "0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/eth.svg",
             "api": "ethereum"
         },
         {
             "value": 2,
             "display": "WBTC",
             "address": "0x50b7545627a5162F82A992c33b87aDc75187B218",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/wbtc.svg",
             "api": "bitcoin"
         },
         {
             "value": 3,
             "display": "DAI.e",
             "address": "0xd586E7F844cEa2F87f50152665BCbc2C279D8d70",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/dai.svg",
             "api": "venus-dai"
         },
         {
             "value": 4,
             "display": "FRAX",
             "address": "0x90C97F71E18723b0Cf0dfa30ee176Ab653E89F40",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/frax.svg",
             "api": "frax"
         },
         {
             "value": 5,
             "display": "USDT",
             "address": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/usdt.svg",
             "api": "tether"
         },
         {
             "value": 6,
             "display": "MIM",
             "address": "0x130966628846BFd36ff31a822705796e8cb8C18D",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/mim.svg",
             "api": "magic-internet-money"
         },
         {
             "value": 7,
             "display": "CRV.e",
             "address": "0x249848BeCA43aC405b8102Ec90Dd5F22CA513c06",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/crv.svg",
             "api": "curve-dao-token"
         },
         {
             "value": 8,
             "display": "BIFI",
             "address": "0xCa3F508B8e4Dd382eE878A314789373D80A5190A",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/bifi.svg",
             "api": "beefy-finance"
         },
         {
             "value": 9,
             "display": "FXS",
             "address": "0xe48A3d7d0Bc88d552f730B62c006bC925eadB9eE",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/fxs.svg",
             "api": "frax-share"
         },
         {
             "value": 10,
             "display": "LINK",
             "address": "0xF8A0BF9cF54Bb92F17374d9e9A321E6a111a51bD",
-            "token": "../../../../assets/tokens/matic.svg",
+            "token": "../../../../assets/tokens/link.svg",
             "api": "chainlink"
         },
     ]
