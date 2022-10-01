@@ -97,14 +97,14 @@ const SidebarMenu = (props: Props) => {
     },
     {
       icon: "",
-      text: "Ethereum",
+      text: "Avalanche",
       href: "#",
       disabled: true,
     },
     {
       icon: "pro-qidao",
       text: "QiDAO",
-      chain: 1,
+      chain: 42161,
       href: "/proposal/qidao",
     },
     {
