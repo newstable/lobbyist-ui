@@ -8,7 +8,6 @@ import { TextHead } from "../text";
 import { useEffect, useState } from "react";
 import { Proposal } from "../../@types/proposal";
 import { Coins } from "../../blockchain";
-import tokens from "../../token.json";
 
 type Props = {
   activeProposals: Proposal[];
@@ -35,24 +34,30 @@ const CardRewards = (props: Props) => {
   const data = [
     { value: `$${price.toFixed(2)}` },
     { value: `$${earn.toFixed(2)}` },
-    { value: proposalCount }
-  ]
+    { value: proposalCount },
+  ];
   useEffect(() => {
-    const getActiveArray = activeProposals?.filter(element => element.myclaim == false);
-    const myProposals = activeProposals?.filter(element => element.myvoteAmount);
+    const getActiveArray = activeProposals?.filter(
+      (element) => element.myclaim == false
+    );
+    const myProposals = activeProposals?.filter(
+      (element) => element.myvoteAmount
+    );
     var pendingreward = 0;
     var totalEarned = 0;
     setCount(getActiveArray?.length);
     myProposals?.forEach(async (item) => {
       if (!item.myclaim) {
-        pendingreward += item.usdAmount / item.totalVoteWeight * item.myvoteAmount;
+        pendingreward +=
+          (item.usdAmount / item.totalVoteWeight) * item.myvoteAmount;
       } else {
-        totalEarned += item.usdAmount / item.totalVoteWeight * item.myvoteAmount;
+        totalEarned +=
+          (item.usdAmount / item.totalVoteWeight) * item.myvoteAmount;
       }
       setPrice(pendingreward);
       setEarn(totalEarned);
-    })
-  }, [activeProposals, address])
+    });
+  }, [activeProposals, address]);
   return (
     <Card className="">
       <ProposalCardHeader title="My Stats"></ProposalCardHeader>

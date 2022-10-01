@@ -16,7 +16,7 @@ import {
 import { colors } from "../../../../common";
 import { useEffect, useState } from "react";
 import { GET_PROPOSALS } from "../../../../gql";
-import tokens from "../../../../token.json";
+import { Tokens } from "../../../../token";
 import { useSelector } from "../../../../redux/store";
 import { RootState } from "../../../../redux/store";
 import { dispatch } from "../../../../redux/store";
@@ -78,7 +78,9 @@ const ProposalForm = (props: Props) => {
 
   useEffect(() => {
     const tokenPrice = async () => {
-      var currencyType = tokens.filter((token) => token.display == rewardType);
+      var currencyType = Tokens[chainName].filter(
+        (token: any) => token.display == rewardType
+      );
       var price = await Coins(currencyType[0].api);
       setUsd(price);
     };
@@ -386,7 +388,7 @@ const ProposalForm = (props: Props) => {
                   <FormSelect
                     label="Reward Currency"
                     placeholder="Choose your reward currency"
-                    items={tokens}
+                    items={Tokens[chainName]}
                     setReward={setRewardType}
                     setClickToken={clickToken}
                     name="rewardCurrency"

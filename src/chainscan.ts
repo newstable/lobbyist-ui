@@ -1,4 +1,4 @@
-[
+const Chainscan: any = [
     {
         "1": "https://etherscan.io/address/"
     },
@@ -21,3 +21,5 @@
         "43114": "https://avascan.info/address/"
     }
 ]
+
+export { Chainscan }

@@ -3,10 +3,10 @@ import { ethers } from "ethers";
 import { ERCContract, POOLContract } from "../contracts";
 import Addresses from "../contracts/contracts/addresses.json";
 import CoinGecko from "coingecko-api";
-import tokens from "../token.json";
+import { Tokens } from "../token";
 import { History } from "../@types/proposal";
 import { useSelector } from "../redux/store";
-import chainscan from "../chainscan.json";
+import { Chainscan } from "../chainscan";
 const CoinGeckoClient = new CoinGecko();
 var history: History[] = [];
 
@@ -22,10 +22,19 @@ if (localStorage.getItem('history')) {
     });
 }
 
+type Props = {
+    address: string;
+    walletAddress: string;
+    value: any;
+    submitType: boolean;
+    signer: any;
+    chain: string;
+}
+
 const createProposal = async (props: any) => {
     try {
-        const { address, walletAddress, value, submitType, signer, chain } = props;
-        var rewardCurrency = tokens.filter(token => token.address == address);
+        const { address, walletAddress, value, submitType, signer, chain }: Props = props;
+        var rewardCurrency = Tokens[chain].filter((token: any) => token.address == address);
         const newProposal = {
             proposalId: value.proposalId,
             name: value.proposalName,
@@ -49,7 +58,7 @@ const createProposal = async (props: any) => {
             await tx.wait();
             history.push({
                 type: "Approve",
-                chain: chainscan[chain],
+                chain: Chainscan[chain],
                 rewardCurrency: rewardCurrency[0].display,
                 address: walletAddress
             });
@@ -62,7 +71,7 @@ const createProposal = async (props: any) => {
             await connectContract.wait();
             history.push({
                 type: "createPool",
-                chain: chainscan[chain],
+                chain: Chainscan[chain],
                 rewardCurrency: rewardCurrency[0].display,
                 // @ts-ignore
                 address: Addresses[chain]
@@ -79,7 +88,7 @@ const createProposal = async (props: any) => {
 const addRewards = async (props: any) => {
     try {
         const { id, amount, rewardtype, walletAddress, buttonType, signer, chain } = props;
-        var rewardCurrency = tokens.filter(token => token.address == rewardtype);
+        var rewardCurrency = Tokens[chain].filter((token: any) => token.address == rewardtype);
         const Reward = ERCContract(rewardtype);
         const myBalance = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(myBalance);
@@ -93,7 +102,7 @@ const addRewards = async (props: any) => {
             await tx.wait();
             history.push({
                 type: "Approve",
-                chain: chainscan[chain],
+                chain: Chainscan[chain],
                 rewardCurrency: rewardCurrency[0].display,
                 address: walletAddress
             });
@@ -106,7 +115,7 @@ const addRewards = async (props: any) => {
             await connectContract.wait();
             history.push({
                 type: "Add Reward",
-                chain: chainscan[chain],
+                chain: Chainscan[chain],
                 rewardCurrency: rewardCurrency[0].display,
                 // @ts-ignore
                 address: Addresses[chain]
@@ -124,14 +133,14 @@ const addRewards = async (props: any) => {
 const Claim = async (props: any) => {
     try {
         const { id, address, walletAddress, signer, chain } = props;
-        var rewardCurrency = tokens.filter(token => token.address == address);
+        var rewardCurrency = Tokens[chain].filter((token: any) => token.address == address);
         const poolContract = POOLContract({ chain, signer });
         const Pool = poolContract.connect(signer);
         const connectContract = await Pool.claim(id);
         await connectContract.wait();
         history.push({
             type: "Claim",
-            chain: chainscan[chain],
+            chain: Chainscan[chain],
             rewardCurrency: rewardCurrency[0].display,
             // @ts-ignore
             address: Addresses[chain]

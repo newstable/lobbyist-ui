@@ -1,7 +1,7 @@
 import axios from "axios";
 import { setCurrentProposal } from "../redux/slices/proposal";
 import { dispatch } from "../redux/store";
-import tokens from "../token.json";
+import { Tokens } from "../token";
 import { Coins } from "../blockchain";
 import NumberType from "../common/number";
 
@@ -13,7 +13,7 @@ const Proposal_load = async (req: any) => {
     try {
         var res = await axios.post("/api/load-proposal", req);
         for (var i = 0; i < res.data.data.length; i++) {
-            var api = tokens.filter(token => token.address == res.data.data[i].rewardCurrency);
+            var api = Tokens[res.data.data[i].chain].filter((token: any) => token.address == res.data.data[i].rewardCurrency);
             var tokenPrice = await Coins(api[0].api);
             res.data.data[i].usdAmount = res.data.data[i].reward * tokenPrice;
         }

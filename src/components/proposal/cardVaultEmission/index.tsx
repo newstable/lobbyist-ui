@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import { Proposal } from "../../../@types/proposal";
 import { TextContent, TextHead } from "../../text";
 import NumberType from "../../../common/number";
-import tokens from "../../../token.json";
+import { Tokens } from "../../../token";
 import { colors } from "../../../common";
 
 type Props = {
@@ -16,8 +16,8 @@ const Content = styled(CardContent)(({ theme }) => ({
 
 const ProposalCardVaultEmission = ({ proposal }: Props) => {
   const colHeads = ["Total Reward", "$/Vote"];
-  var rewardCurrency = tokens.filter(
-    (token) => token.address == proposal.rewardCurrency
+  var rewardCurrency = Tokens[proposal.chain].filter(
+    (token: any) => token.address == proposal.rewardCurrency
   );
   return (
     <Card className="" elevation={0}>

@@ -30,11 +30,11 @@ import snapshot from "@snapshot-labs/snapshot.js";
 import Action from "../../services";
 import { NotificationManager } from "react-notifications";
 import { addRewards } from "../../blockchain";
-import tokens from "../../token.json";
+import { Tokens } from "../../token";
 import { Coins } from "../../blockchain";
 import NumberType from "../../common/number";
 import { History } from "../../@types/proposal";
-import chainscan from "../../chainscan.json";
+import { Chainscan } from "../../chainscan";
 
 var md = new Remarkable();
 var history: History[] = [];
@@ -84,8 +84,8 @@ const ProposalSymbolVote = (props: Props) => {
   let { proposal: currentProposal } = navState;
 
   useEffect(() => {
-    var rewardCurrency = tokens.filter(
-      (token) => token.address == currentProposal.rewardCurrency
+    var rewardCurrency = Tokens[currentProposal.chain].filter(
+      (token: any) => token.address == currentProposal.rewardCurrency
     );
     setRewardCurrency(rewardCurrency[0].display);
     setRewardCurrencyApi(rewardCurrency[0].api);
@@ -148,7 +148,7 @@ const ProposalSymbolVote = (props: Props) => {
       if (receipt) {
         history.push({
           type: "Vote",
-          chain: chainscan[chianId],
+          chain: Chainscan[chianId],
           rewardCurrency: "",
           address: walletAddress,
         });

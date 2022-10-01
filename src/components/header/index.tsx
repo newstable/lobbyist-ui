@@ -153,6 +153,7 @@ const Header: FC = () => {
         dispatch(setWalletAddress(accounts[0]));
       }
       setChainId(network.chainId);
+      dispatch(setChainName(network.chainId));
     } catch (error: any) {
       setError(error);
     }
