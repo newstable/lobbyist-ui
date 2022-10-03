@@ -150,7 +150,6 @@ const Header: FC = () => {
             });
             provider.on("chainChanged", (chainId: any) => {
                 var num = parseInt(chainId, 16);
-                console.log(num);
                 setChainId(num);
             })
             const library = new ethers.providers.Web3Provider(provider);
