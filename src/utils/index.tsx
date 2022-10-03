@@ -11,3 +11,7 @@ export const toHex = (num: string) => {
     const val = Number(num);
     return "0x" + val.toString(16);
 };
+
+export const fromHex = (num: number) => {
+    return num.toString(10);
+}

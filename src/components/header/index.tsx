@@ -28,7 +28,7 @@ import { colors } from "../../common";
 import { HeaderLeft } from "./left";
 import styles from "./styles.module.scss";
 import { providerOptions } from "../../providerOptions";
-import { toHex, truncateAddress } from "../../utils";
+import { fromHex } from "../../utils";
 import useClipboard from "react-use-clipboard";
 import switchNetwork from "./switchchain";
 
@@ -149,8 +149,9 @@ const Header: FC = () => {
                 }
             });
             provider.on("chainChanged", (chainId: any) => {
-                setChainId(chainId);
-                makeChain();
+                var num = parseInt(chainId, 16);
+                console.log(num);
+                setChainId(num);
             })
             const library = new ethers.providers.Web3Provider(provider);
             dispatch(setProvider(library));
@@ -171,7 +172,7 @@ const Header: FC = () => {
 
     useEffect(() => {
         makeChain();
-    }, [account]);
+    }, [account, chainId]);
 
     const makeChain = () => {
         if (
