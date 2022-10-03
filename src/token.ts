@@ -300,7 +300,7 @@ const Tokens: any =
             "api": "chainlink"
         },
     ],
-    "42161": [
+    "43114": [
         {
             "value": 0,
             "display": "WAVAX",
@@ -437,7 +437,7 @@ const Tokens: any =
             "api": "uniswap"
         }
     ],
-    "43114": [
+    "42161": [
         {
             "value": 0,
             "display": "WETH",

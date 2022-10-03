@@ -37,36 +37,49 @@ const itemsList = [
     name: "Polygon",
     id: "137",
     img: "../../../../assets/chains/matic.svg",
+    color:"#A986E3"
   },
   {
     name: "Ethereum",
     id: "1",
     img: "../../../../assets/chains/eth.svg",
+    color:"#3a78ff"
   },
   {
     name: "Binance",
     id: "56",
     img: "../../../../assets/chains/bsc.svg",
+    color:"#EDD075"
   },
   {
     name: "Fantom",
     id: "250",
     img: "../../../../assets/chains/fantom.svg",
+    color:"#89D3EB"
   },
   {
     name: "Avalanche",
     id: "43114",
     img: "../../../../assets/chains/avax.svg",
+    color:"#ED8D8E"
   },
   {
     name: "Optimism",
     id: "10",
     img: "../../../../assets/chains/optimism.svg",
+    color:"#FF909C"
   },
   {
     name: "Arbitrum",
     id: "42161",
     img: "../../../../assets/chains/arbitrum.svg",
+    color:"#5F6779"
+  },
+  {
+    name: "Mumbai",
+    id: "80001",
+    img: "../../../../assets/chains/matic.svg",
+    color:"#A986E3"
   },
 ];
 
@@ -97,6 +110,7 @@ const Header: FC = () => {
   const [open, setOpen] = useState(false);
   const [walletInfo, setWalletInfo] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
+  const [color,setColor] = useState("");
   const [selectedCrypto, setselectedCrypto] = useState("Polygon");
   const [selectedImg, setselectedImg] = useState(
     "../../../../assets/chains/matic.svg"
@@ -167,23 +181,43 @@ const Header: FC = () => {
       chainId != 250 &&
       chainId != 43114 &&
       chainId != 10 &&
-      chainId != 42161
+      chainId != 42161 &&
+      chainId != 80001
+
     ) {
-      if (selectedCrypto == "Polygon") switchNetwork("0x89", library);
-      else if (selectedCrypto == "Ethereum") switchNetwork("0x1", library);
-      else if (selectedCrypto == "Binance") switchNetwork("56", library);
-      else if (selectedCrypto == "Fantom") switchNetwork("250", library);
-      else if (selectedCrypto == "Avalanche") switchNetwork("42161", library);
-      else if (selectedCrypto == "Arbitrum") switchNetwork("43114", library);
-      else if (selectedCrypto == "Optimism") switchNetwork("10", library);
+      switchNetwork(`${chainId}`,library);
     } else {
-      if (chainId == 1) setselectedCrypto("Ethereum");
-      else if (chainId == 10) setselectedCrypto("Optimism");
-      else if (chainId == 56) setselectedCrypto("Binance");
-      else if (chainId == 137) setselectedCrypto("Polygon");
-      else if (chainId == 250) setselectedCrypto("Fantom");
-      else if (chainId == 42161) setselectedCrypto("Avalanche");
-      else if (chainId == 43114) setselectedCrypto("Arbitrum");
+      if (chainId == 1) {
+        setselectedCrypto("Ethereum");
+        setColor("#A986E3");
+    }else if (chainId == 10) {
+        setselectedCrypto("Optimism");
+        setColor("#3a78ff");
+    }
+      else if (chainId == 56) {
+        setselectedCrypto("Binance");
+        setColor("#EDD075");
+    }
+      else if (chainId == 137) {
+        setselectedCrypto("Polygon");
+        setColor("#89D3EB");
+    }
+      else if (chainId == 250) {
+        setselectedCrypto("Fantom");
+        setColor("#ED8D8E");
+    }
+      else if (chainId == 42161) {
+        setselectedCrypto("Avalanche");
+        setColor("#FF909C");
+    }
+      else if (chainId == 43114) {
+        setselectedCrypto("Arbitrum");
+        setColor("#5F6779");
+    }
+      else if (chainId == 80001) {
+        setselectedCrypto("Mumbai");
+        setColor("#A986E3");
+    }
     }
   }, [account]);
 
@@ -214,11 +248,12 @@ const Header: FC = () => {
     setOpen(false);
   };
 
-  const selectMenuItem = (crypto: string, id: string, img: string) => {
+  const selectMenuItem = (crypto: string, id: string, img: string,color:string) => {
     setOpen(false);
     setselectedCrypto(crypto);
     setselectedImg(img);
     switchNetwork(id, library);
+    setColor(color);
   };
 
   const handleListKeyDown = (event: React.KeyboardEvent) => {
@@ -269,9 +304,8 @@ const Header: FC = () => {
         <HeaderLeft />
         <Box className="flex gap-6 header-1">
           <Button
-            style={{ margin: "auto 0 0 auto" }}
+            style={{ margin: "auto 0 0 auto",backgroundColor:`${color}` }}
             variant="contained"
-            color={selectedCrypto == "Polygon" ? "third" : "tealLight"}
             disableRipple
             className="!cursor-default"
             component="button"
@@ -313,7 +347,7 @@ const Header: FC = () => {
                       {itemsList.map((il, idx) => (
                         <MenuItem
                           className="!justify-center"
-                          onClick={() => selectMenuItem(il.name, il.id, il.img)}
+                          onClick={() => selectMenuItem(il.name, il.id, il.img,il.color)}
                           key={`mi_${idx}`}
                         >
                           <img

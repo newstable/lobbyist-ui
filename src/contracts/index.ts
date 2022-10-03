@@ -11,7 +11,8 @@ const RPCS = {
     137: "https://matic.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
     250: "https://rpc.ftm.tools",
     42161: "https://arbitrum.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
-    43114: "https://avax.getblock.io/mainnet/ext/bc/C/rpc?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5"
+    43114: "https://avax.getblock.io/mainnet/ext/bc/C/rpc?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
+    80001: "https://polygon-testnet.public.blastapi.io"
 };
 const providers: any = {
     1: new ethers.providers.JsonRpcProvider(RPCS[1]),
@@ -21,6 +22,7 @@ const providers: any = {
     250: new ethers.providers.JsonRpcProvider(RPCS[250]),
     42161: new ethers.providers.JsonRpcProvider(RPCS[42161]),
     43114: new ethers.providers.JsonRpcProvider(RPCS[43114]),
+    80001: new ethers.providers.JsonRpcProvider(RPCS[80001]),
 };
 
 const POOLContract = (e: any) => {

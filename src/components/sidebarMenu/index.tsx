@@ -81,7 +81,6 @@ const SidebarMenu = (props: Props) => {
       icon: "gauge",
       text: "Dashboard",
       href: "/",
-      separator: true,
     },
     {
       icon: "",
@@ -104,7 +103,7 @@ const SidebarMenu = (props: Props) => {
     {
       icon: "pro-qidao",
       text: "QiDAO",
-      chain: 42161,
+      chain: 43114,
       href: "/proposal/qidao",
     },
     {
@@ -137,18 +136,19 @@ const SidebarMenu = (props: Props) => {
     //   href: "/proposal/aave",
     //   separator: true,
     // },
-    // {
-    //   icon: "",
-    //   text: "Mumbai",
-    //   href: "#",
-    //   disabled: true
-    // },
-    // {
-    //   icon: "pro-vesq",
-    //   text: "Vesq",
-    //   href: "/proposal/vesq",
-    //   separator: true,
-    // },
+    {
+      icon: "",
+      text: "Mumbai",
+      href: "#",
+      disabled: true
+    },
+    {
+      icon: "pro-vesq",
+      text: "Vesq",
+      chain:80001,
+      href: "/proposal/vesq",
+      separator: true,
+    },
     {
       icon: "twitter",
       text: "Twitter",
@@ -244,7 +244,7 @@ const SidebarMenu = (props: Props) => {
                 className={link.disabled ? "relative" : ""}
               >
                 {link.disabled ? (
-                  <>
+                  <><Divider className="!my-4" />
                     <div
                       style={{ color: "gray" }}
                       className="!p-0 mlg:!justify-start !py-4 text-xl"

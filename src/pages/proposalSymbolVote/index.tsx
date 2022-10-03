@@ -52,6 +52,16 @@ if (localStorage.getItem("history")) {
 
 type Props = {};
 
+const chainImg:any = {
+  1:"",
+  10:"",
+  56:"",
+  137:"",
+  250:"",
+  42161:"",
+  43114:""
+}
+
 const hub = "https://hub.snapshot.org";
 const client = new snapshot.Client712(hub);
 
@@ -246,6 +256,9 @@ const ProposalSymbolVote = (props: Props) => {
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Box className="flex flex-col mt-12">
+              <Box>
+                {chainImg[currentProposal.chain]}
+              </Box>
               <Box className="flex flex-col">
                 <Typography variant="h5">{navState.proposal.name}</Typography>
                 {/* <Typography color={colors.textGray}> */}
