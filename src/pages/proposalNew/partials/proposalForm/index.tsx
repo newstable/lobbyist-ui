@@ -273,7 +273,7 @@ const ProposalForm = (props: Props) => {
       onSubmit={handleSubmit(OnFormSubmit)}
     >
       <Box className="grid md:grid-cols-3 gap-8">
-        <Box className="flex flex-col md:col-span-2 gap-12">
+        <Box className=" flex flex-col md:col-span-2 gap-12">
           <BoxForm className="flex flex-col p-8 md:p-20 rounded-md  gap-8">
             <FormSelect
               label="Snapshot Proposal"
