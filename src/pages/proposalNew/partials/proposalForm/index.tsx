@@ -319,24 +319,6 @@ const ProposalForm = (props: Props) => {
                 control={control}
               />
             )}
-
-            {/* {!isGovernance && (
-                            <FormTextField
-                                label="Minimum Bribe"
-                                name="minimumBribe"
-                                textType="number"
-                                helpText="Enter minimum bribe value if applicable"
-                                control={control}
-                                rules={{
-                                    required: {
-                                        value: true,
-                                        message:
-                                            "You must enter minimum proposal.",
-                                    },
-                                }}
-                                placeholder="Enter minimum bribe amount if applicable"
-                            />
-                        )} */}
           </BoxForm>
           <BoxForm className="flex flex-col p-8 md:p-20 rounded-md gap-8">
             {votePercentFields.map((vp, idx) => (
@@ -370,21 +352,6 @@ const ProposalForm = (props: Props) => {
                     isVariable && "px-12"
                   )}
                 >
-                  {/* {!isGovernance && (
-                                        <FormSliderInput
-                                            label="Vote %"
-                                            helpText="Select the vote% per which payment would be made, eg: 1%"
-                                            name={`votePercent[${idx}].value`}
-                                            inputName={`votePercentNum[${idx}].value`}
-                                            index={idx}
-                                            control={control}
-                                            setValue={setValue}
-                                            valueLabelFormat={(value: number) =>
-                                                `${value}%`
-                                            }
-                                            isArray
-                                        />
-                                    )} */}
                   <FormSelect
                     label="Reward Currency"
                     placeholder="Choose your reward currency"
