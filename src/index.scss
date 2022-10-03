@@ -53,8 +53,6 @@ code {
     padding: 10px 30px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    display: grid;
 
     .wallet-modal-header {
         display: flex;
@@ -62,6 +60,7 @@ code {
         align-items: center;
         font-size: 20px;
         font-weight: bold;
+        margin-bottom: 30px;
 
         .close {
             font-size: 35px;
@@ -71,6 +70,7 @@ code {
 
     .wallet-history {
         display: flex;
+        margin-bottom: 20px;
         justify-content: space-between;
         font-size: 16px;
 
@@ -91,10 +91,13 @@ code {
         background: #232734;
         font-size: 15px;
         padding: 15px;
-        gap: 15px;
-        display: grid;
+        margin-bottom: 20px;
         border-radius: 20px;
         color: #7f8083;
+
+        .mg-m-1 {
+            margin-bottom: 10px;
+        }
 
         .font-1 {
             font-size: 20px;

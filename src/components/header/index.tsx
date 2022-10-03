@@ -388,7 +388,7 @@ const Header: FC = () => {
                         </div>
                     </div>
                     <div className="wallet-modal-body">
-                        <div className="justify-s w10">
+                        <div className="justify-s w10 mg-m-1">
                             <div className="">Connected with {walletType}</div>
                             <div
                                 className="cursorpoint"
@@ -399,7 +399,7 @@ const Header: FC = () => {
                                 Change
                             </div>
                         </div>
-                        <div className="flex justify-start w10 font-1">
+                        <div className="flex justify-start w10 font-1 mg-m-1">
                             <div className="address">{styledAddress}</div>
                             <div className=""></div>
                         </div>
