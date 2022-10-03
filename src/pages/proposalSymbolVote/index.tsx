@@ -53,13 +53,13 @@ if (localStorage.getItem("history")) {
 type Props = {};
 
 const chainImg: any = {
-  1: "",
-  10: "",
-  56: "",
-  137: "",
-  250: "",
-  42161: "",
-  43114: ""
+  1: "../../assets/chainLists/ethereum.svg",
+  10: "../../assets/chainLists/optimism.svg",
+  56: "../../assets/chainLists/bsc.svg",
+  137: "../../assets/chainLists/matic.svg",
+  250: "../../assets/chainLists/fantom.svg",
+  42161: "../../assets/chainLists/arbitrum.svg",
+  43114: "../../assets/chainLists/avax.svg"
 }
 
 const hub = "https://hub.snapshot.org";
@@ -257,7 +257,7 @@ const ProposalSymbolVote = (props: Props) => {
           <Grid item xs={12} md={6}>
             <Box className="flex flex-col mt-12">
               <Box>
-                {chainImg[currentProposal.chain]}
+                <img src={chainImg[currentProposal.chain]} width="70" alt="matic"></img>
               </Box>
               <Box className="flex flex-col">
                 <Typography variant="h5">{navState.proposal.name}</Typography>

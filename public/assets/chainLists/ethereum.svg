@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="341" viewBox="0 0 500 341">
+  <defs>
+    <clipPath id="clip-ethereum">
+      <rect width="500" height="341"/>
+    </clipPath>
+  </defs>
+  <g id="ethereum" clip-path="url(#clip-ethereum)">
+    <rect id="Rectangle_1" data-name="Rectangle 1" width="450" height="293" rx="146.5" transform="translate(25 24)" fill="#8c8c8c"/>
+    <circle id="Ellipse_7" data-name="Ellipse 7" cx="106" cy="106" r="106" transform="translate(144 64)" fill="#eaeaea"/>
+    <g id="Layer_x0020_1" transform="translate(197.96 85.251)">
+      <g id="_1421394342400">
+        <g id="Group_2" data-name="Group 2">
+          <path id="Path_12" data-name="Path 12" d="M384.637,0,383.5,3.863V115.939l1.137,1.135L436.66,86.322Z" transform="translate(-332.613)" fill="#343434"/>
+          <path id="Path_13" data-name="Path 13" d="M52.025,0,0,86.322l52.025,30.751V0Z" fill="#8c8c8c"/>
+          <path id="Path_14" data-name="Path 14" d="M387.881,755.625l-.641.782V796.33l.641,1.871,52.055-73.311Z" transform="translate(-335.856 -628.703)" fill="#3c3c3b"/>
+          <path id="Path_15" data-name="Path 15" d="M52.025,798.2V755.625L0,724.89Z" transform="translate(0 -628.703)" fill="#8c8c8c"/>
+          <path id="Path_16" data-name="Path 16" d="M392.07,526.729l52.023-30.751L392.07,472.33Z" transform="translate(-340.045 -409.655)" fill="#141414"/>
+          <path id="Path_17" data-name="Path 17" d="M0,495.977l52.025,30.751v-54.4Z" transform="translate(0 -409.655)" fill="#393939"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
