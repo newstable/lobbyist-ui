@@ -267,14 +267,14 @@ const ProposalForm = (props: Props) => {
 
   return (
     <Box
-      className="grid flex-col gap-8 "
+      className="flex flex-col gap-8 "
       component="form"
       autoComplete="off"
       onSubmit={handleSubmit(OnFormSubmit)}
     >
       <Box className="grid md:grid-cols-3 gap-8">
-        <Box className="grid flex-col md:col-span-2 gap-12">
-          <BoxForm className="grid flex-col p-8 md:p-20 rounded-md gap-8">
+        <Box className="flex flex-col md:col-span-2 gap-12">
+          <BoxForm className="flex flex-col p-8 md:p-20 rounded-md  gap-8">
             <FormSelect
               label="Snapshot Proposal"
               placeholder="Choose a snashot proposal"
@@ -320,17 +320,17 @@ const ProposalForm = (props: Props) => {
               />
             )}
           </BoxForm>
-          <BoxForm className="grid flex-col p-8 md:p-20 rounded-md gap-8">
+          <BoxForm className="flex flex-col p-8 md:p-20 rounded-md gap-8">
             {votePercentFields.map((vp, idx) => (
               <Box
                 key={vp.id}
                 className={classNames(
-                  "grid flex-col gap-8",
+                  "flex flex-col gap-8",
                   isVariable && "bg-[#1f2028] rounded pt-6 pb-12"
                 )}
               >
                 {isVariable && (
-                  <Box className="grid justify-between px-6">
+                  <Box className="flex justify-between px-6">
                     <Typography
                       variant="subtitle1"
                       color={colors.textGray}
@@ -348,7 +348,7 @@ const ProposalForm = (props: Props) => {
                 )}
                 <Box
                   className={classNames(
-                    "grid flex-col gap-8",
+                    "flex flex-col gap-8",
                     isVariable && "px-12"
                   )}
                 >
@@ -379,7 +379,7 @@ const ProposalForm = (props: Props) => {
               </Box>
             ))}
             {!isGovernance && !isFixed && (
-              <Box className="grid justify-end">
+              <Box className="flex justify-end">
                 <Button
                   variant="contained"
                   color="tealLight"
@@ -391,12 +391,12 @@ const ProposalForm = (props: Props) => {
               </Box>
             )}
           </BoxForm>
-          <Box className="mb-10 md:mb-20 grid justify-end"></Box>
+          <Box className="mb-10 md:mb-20 flex justify-end"></Box>
         </Box>
         <Box>
-          <BoxForm className="grid flex-col p-8 md:p-12 rounded-md gap-8 mb-12 md:mb-0">
+          <BoxForm className="flex flex-col p-8 md:p-12 rounded-md gap-8 mb-12 md:mb-0">
             <strong className="feehed">Total proposal value</strong>
-            <Box className="grid flex-col gap-8">
+            <Box className="flex flex-col gap-8">
               <Box className="grid grid-cols-3 gap-8">
                 <Typography className="feetitle col-span-2">
                   Max Reward

@@ -8,6 +8,9 @@ module.exports = {
       minWidth: {
         15: "15rem",
       },
+      gap: {
+        '11': '2.75rem',
+      }
     },
     container: {
       screens: {

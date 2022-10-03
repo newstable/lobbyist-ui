@@ -5,13 +5,13 @@ const Abis = require("./contracts/abis.json");
 const Addresses = require("./contracts/addresses.json");
 
 const RPCS = {
-    1: "https://eth.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
-    10: "https://op.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
-    56: "https://bsc.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
-    137: "https://polygonapi.terminet.io/rpc",
+    1: "https://eth-mainnet.nodereal.io/v1/1659dfb40aa24bbb8153a677b98064d7",
+    10: "https://mainnet.optimism.io",
+    56: "https://rpc-bsc.bnb48.club",
+    137: "https://matic-mainnet-full-rpc.bwarelabs.com",
     250: "https://rpc.ftm.tools",
-    42161: "https://arbitrum.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
-    43114: "https://avax.getblock.io/mainnet/ext/bc/C/rpc?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5"
+    42161: "https://arb1.arbitrum.io/rpc",
+    43114: "https://api.avax.network/ext/bc/C/rpc"
 };
 const providers: any = {
     1: new ethers.providers.JsonRpcProvider(RPCS[1]),

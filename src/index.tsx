@@ -6,10 +6,11 @@ import { ThemeCtxProvider } from "./common/themeContext";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import App from "./App";
-import "./index.scss";
-import "./assets/css/nucleo-icons.css"
-import "./assets/css/app.css"
 import 'react-notifications/lib/notifications.css';
+import "./assets/css/nucleo-icons.css"
+import "./assets/css/nucleo-svg.css"
+import "./assets/css/app.css"
+import "./index.scss";
 import { NotificationContainer } from 'react-notifications';
 
 const root = ReactDOM.createRoot(
