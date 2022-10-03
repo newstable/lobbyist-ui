@@ -145,7 +145,7 @@ const SidebarMenu = (props: Props) => {
     {
       icon: "pro-vesq",
       text: "Vesq",
-      chain:137,
+      chain: 137,
       href: "/proposal/vesq",
       separator: true,
     },
