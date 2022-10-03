@@ -75,12 +75,6 @@ const itemsList = [
     img: "../../../../assets/chains/arbitrum.svg",
     color:"#5F6779"
   },
-  {
-    name: "Mumbai",
-    id: "80001",
-    img: "../../../../assets/chains/matic.svg",
-    color:"#A986E3"
-  },
 ];
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -181,18 +175,17 @@ const Header: FC = () => {
       chainId != 250 &&
       chainId != 43114 &&
       chainId != 10 &&
-      chainId != 42161 &&
-      chainId != 80001
+      chainId != 42161 
 
     ) {
       switchNetwork(`${chainId}`,library);
     } else {
       if (chainId == 1) {
         setselectedCrypto("Ethereum");
-        setColor("#A986E3");
+        setColor("#3a78ff");
     }else if (chainId == 10) {
         setselectedCrypto("Optimism");
-        setColor("#3a78ff");
+        setColor("#FF909C");
     }
       else if (chainId == 56) {
         setselectedCrypto("Binance");
@@ -200,23 +193,19 @@ const Header: FC = () => {
     }
       else if (chainId == 137) {
         setselectedCrypto("Polygon");
-        setColor("#89D3EB");
+        setColor("#A986E3");
     }
       else if (chainId == 250) {
         setselectedCrypto("Fantom");
-        setColor("#ED8D8E");
+        setColor("#89D3EB");
     }
       else if (chainId == 42161) {
         setselectedCrypto("Avalanche");
-        setColor("#FF909C");
+        setColor("#ED8D8E");
     }
       else if (chainId == 43114) {
         setselectedCrypto("Arbitrum");
         setColor("#5F6779");
-    }
-      else if (chainId == 80001) {
-        setselectedCrypto("Mumbai");
-        setColor("#A986E3");
     }
     }
   }, [account]);
