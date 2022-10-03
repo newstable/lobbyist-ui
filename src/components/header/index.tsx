@@ -141,7 +141,6 @@ const Header: FC = () => {
   const connectWallet = async () => {
     try {
       const provider = await web3Modal.connect();
-
       provider.on("accountsChanged", async (accounts: string[]) => {
         if (accounts.length == 0) {
           await web3Modal.clearCachedProvider();
@@ -151,8 +150,7 @@ const Header: FC = () => {
       });
       const library = new ethers.providers.Web3Provider(provider);
       dispatch(setProvider(library));
-      if (library.connection.url == "metamask") setWalletType("Metamask");
-      else setWalletType(library.connection.url);
+      setWalletType(library.connection.url);
       const accounts = await library.listAccounts();
       const network = await library.getNetwork();
       setLibrary(library);
@@ -178,6 +176,8 @@ const Header: FC = () => {
       chainId != 42161 
 
     ) {
+        setselectedCrypto("Polygon");
+        setColor("#A986E3");
       switchNetwork(`${chainId}`,library);
     } else {
       if (chainId == 1) {
