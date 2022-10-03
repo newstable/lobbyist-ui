@@ -289,7 +289,7 @@ const Header: FC = () => {
                 )}
             >
                 <HeaderLeft />
-                <Box className="flex gap-6 header-1">
+                <Box className="grid gap-custom header-1">
                     <Button
                         style={{ margin: "auto 0 0 auto", backgroundColor: `${color}` }}
                         variant="contained"

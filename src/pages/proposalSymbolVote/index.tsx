@@ -212,11 +212,11 @@ const ProposalSymbolVote = (props: Props) => {
   return (
     <>
       <Box className="main-body flex flex-col grow">
-        <Box className="flex flex-col main-content gap-14 margindw">
+        <Box className="flex-col main-content gap-14 margindw">
           <Box className="gapbtm flex justify-between proposer-flex">
             <NavBack />
             {isProposer ? (
-              <Box className="flex gap-8">
+              <Box className="gap-8">
                 <Button
                   onClick={() => setModal(true)}
                   className="proposer-button"
@@ -227,7 +227,7 @@ const ProposalSymbolVote = (props: Props) => {
                 </Button>
               </Box>
             ) : (
-              <Box className="flex gap-8">
+              <Box className="grid gap-custom">
                 <Button
                   onClick={() => setModal(true)}
                   className="proposer-button"

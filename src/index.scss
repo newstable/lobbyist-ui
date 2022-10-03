@@ -274,6 +274,11 @@ body.show-menu .app>.main {
     display: grid;
 }
 
+.gap-custom {
+    gap: 1.25rem;
+    grid-template-columns: auto auto;
+}
+
 .gap-8 {
     gap: 2rem;
     display: grid;
