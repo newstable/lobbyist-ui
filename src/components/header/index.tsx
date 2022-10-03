@@ -148,6 +148,10 @@ const Header: FC = () => {
                     refreshState();
                 }
             });
+            provider.on("chainChanged", (chainId: any) => {
+                setChainId(chainId);
+                makeChain();
+            })
             const library = new ethers.providers.Web3Provider(provider);
             dispatch(setProvider(library));
             setWalletType(library.connection.url);
@@ -166,6 +170,10 @@ const Header: FC = () => {
     };
 
     useEffect(() => {
+        makeChain();
+    }, [account]);
+
+    const makeChain = () => {
         if (
             chainId != 137 &&
             chainId != 1 &&
@@ -208,7 +216,7 @@ const Header: FC = () => {
                 setColor("#5F6779");
             }
         }
-    }, [account]);
+    }
 
     useEffect(() => {
         if (web3Modal.cachedProvider) {
