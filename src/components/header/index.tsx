@@ -210,8 +210,6 @@ const Header: FC = () => {
     }
   }, [account]);
 
-  const checkChainId = () => {};
-
   useEffect(() => {
     if (web3Modal.cachedProvider) {
       connectWallet();
