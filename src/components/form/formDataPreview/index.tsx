@@ -17,6 +17,7 @@ const FormDataPreview = ({ label, value }: Props) => {
         <FormLabel className="basis-3/12">{label}</FormLabel>
         <Typography className="basis-9/12">{value}</Typography>
       </FormControl>
+
     </StyledEngineProvider>
   );
 };
