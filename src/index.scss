@@ -54,6 +54,7 @@ code {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    display: grid;
 
     .wallet-modal-header {
         display: flex;
@@ -91,6 +92,7 @@ code {
         font-size: 15px;
         padding: 15px;
         gap: 15px;
+        display: grid;
         border-radius: 20px;
         color: #7f8083;
 
@@ -269,18 +271,22 @@ body.show-menu .app>.main {
 
 .gap-5 {
     gap: 1.25rem;
+    display: grid;
 }
 
 .gap-8 {
     gap: 2rem;
+    display: grid;
 }
 
 .gap-14 {
     gap: 3.5rem;
+    display: grid;
 }
 
 .gap-20 {
     gap: 5rem;
+    display: grid;
 }
 
 .grid-cols-3 {

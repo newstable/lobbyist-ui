@@ -1414,6 +1414,7 @@ input:checked+.toggle-bg {
 }
 
 .gap-12 {
+    display: grid !important;
     gap: 3rem
 }
 
