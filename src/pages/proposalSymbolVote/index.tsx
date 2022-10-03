@@ -52,14 +52,14 @@ if (localStorage.getItem("history")) {
 
 type Props = {};
 
-const chainImg:any = {
-  1:"",
-  10:"",
-  56:"",
-  137:"",
-  250:"",
-  42161:"",
-  43114:""
+const chainImg: any = {
+  1: "",
+  10: "",
+  56: "",
+  137: "",
+  250: "",
+  42161: "",
+  43114: ""
 }
 
 const hub = "https://hub.snapshot.org";
@@ -334,9 +334,8 @@ const ProposalSymbolVote = (props: Props) => {
                 </Link>
                 <Link href={"/proposal/" + symbol}>
                   Go to{" "}
-                  {`${
-                    EnumProtocolName[symbol as keyof typeof EnumProtocolName]
-                  }`}
+                  {`${EnumProtocolName[symbol as keyof typeof EnumProtocolName]
+                    }`}
                 </Link>
               </Box>
             </Box>

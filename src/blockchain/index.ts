@@ -69,6 +69,7 @@ const createProposal = async (props: any) => {
             const Pool = poolContract.connect(signer);
             const connectContract = await Pool.createPool(newProposal, { value: ethers.utils.parseEther("0.01") });
             await connectContract.wait();
+            console.log("Chainscan:", Chainscan[chain]);
             history.push({
                 type: "createPool",
                 chain: Chainscan[chain],
@@ -89,7 +90,7 @@ const addRewards = async (props: any) => {
     try {
         const { id, amount, rewardtype, walletAddress, buttonType, signer, chain } = props;
         var rewardCurrency = Tokens[chain].filter((token: any) => token.address == rewardtype);
-        const Reward = ERCContract(rewardtype);
+        const Reward = ERCContract({ address: rewardtype, chain: chain });
         const myBalance = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(myBalance);
         if (Number(tokenAmount) < amount) {
