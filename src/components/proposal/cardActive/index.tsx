@@ -45,9 +45,9 @@ const ProposalCardActive = (props: Props) => {
 			},
 		});
 	};
-	const onClaim = async (e: number, currency: string,chain:string) => {
+	const onClaim = async (e: number, currency: string, chain: string) => {
 		let signer: any = provider?.getSigner();
-		var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer,chain:chain });
+		var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer, chain: chain });
 		if (result.status) {
 			NotificationManager.success(result.message, "Success");
 		} else {
@@ -56,7 +56,7 @@ const ProposalCardActive = (props: Props) => {
 	}
 	const theme = useTheme();
 	const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
-	const colHeads = ["Title","Voting For", "Vote Incentives", "Total Votes", "$/Vote", ""];
+	const colHeads = ["Title", "Voting For", "Vote Incentives", "Total Votes", "$/Vote", ""];
 	return (
 		<Card className="" elevation={0}>
 			<ProposalCardHeader title="My active proposals"></ProposalCardHeader>
@@ -136,7 +136,7 @@ const ProposalCardActive = (props: Props) => {
 												View
 											</Button>
 										) : !p.myclaim ? (
-											<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId, p.rewardCurrency,p.chain)}>
+											<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId, p.rewardCurrency, p.chain)}>
 												Claim
 											</Button>
 										) : <></>}

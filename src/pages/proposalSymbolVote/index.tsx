@@ -35,7 +35,6 @@ import { Coins } from "../../blockchain";
 import NumberType from "../../common/number";
 import { History } from "../../@types/proposal";
 import { Chainscan } from "../../chainscan";
-import symbols from "../proposalSymbol/symbols.json";
 
 var md = new Remarkable();
 var history: History[] = [];
