@@ -414,6 +414,7 @@ const Header: FC = () => {
                             <a
                                 href={Chainscan[chainId] + account}
                                 className="view"
+                                target="_blank"
                             >
                                 <OpenInNewIcon />
                                 View on Block Explorer

@@ -5,7 +5,7 @@ const Chainscan: any = {
     "137": "https://polygonscan.com/address/",
     "250": "https://ftmscan.com/address/",
     "42161": "https://arbiscan.io/address/",
-    "43114": "https://avascan.info/address/"
+    "43114": "https://avascan.info/blockchain/all/address/"
 }
 
 export { Chainscan }
