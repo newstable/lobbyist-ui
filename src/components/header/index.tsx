@@ -28,7 +28,6 @@ import { colors } from "../../common";
 import { HeaderLeft } from "./left";
 import styles from "./styles.module.scss";
 import { providerOptions } from "../../providerOptions";
-import { fromHex } from "../../utils";
 import useClipboard from "react-use-clipboard";
 import switchNetwork from "./switchchain";
 
@@ -105,7 +104,7 @@ const Header: FC = () => {
     const [walletInfo, setWalletInfo] = useState(false);
     const anchorRef = useRef<HTMLButtonElement>(null);
     const [color, setColor] = useState("");
-    const [selectedCrypto, setselectedCrypto] = useState("Polygon");
+    const [selectedCrypto, setselectedCrypto] = useState("");
     const [selectedImg, setselectedImg] = useState(
         "../../../../assets/chains/matic.svg"
     );
@@ -141,18 +140,7 @@ const Header: FC = () => {
     const connectWallet = async () => {
         try {
             const provider = await web3Modal.connect();
-            provider.on("accountsChanged", async (accounts: string[]) => {
-                if (accounts.length == 0) {
-                    await web3Modal.clearCachedProvider();
-                    dispatch(setWalletAddress(""));
-                    refreshState();
-                }
-            });
-            // provider.on("chainChanged", async (chain: any) => {
-            //     var num = parseInt(chain, 16);
-            //     setChainId(num);
-            //     dispatch(setChainName(num));
-            // });
+            addListners(provider);
             const library = new ethers.providers.Web3Provider(provider);
             dispatch(setProvider(library));
             setWalletType(library.connection.url);
@@ -169,6 +157,23 @@ const Header: FC = () => {
             setError(error);
         }
     };
+
+    async function addListners(web3ModalProvider: any) {
+        web3ModalProvider.on("accountsChanged", async (accounts: any) => {
+            if (accounts.length == 0) {
+                await web3Modal.clearCachedProvider();
+                dispatch(setWalletAddress(""));
+                refreshState();
+            }
+        });
+
+        // Subscribe to chainId change
+        web3ModalProvider.on("chainChanged", async (chainNum: any) => {
+            var num = parseInt(chainNum, 16);
+            setChainId(num);
+            dispatch(setChainName(num));
+        });
+    }
 
     useEffect(() => {
         makeChain();

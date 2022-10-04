@@ -13,10 +13,10 @@ const switchNetwork = async (network: string, library: any) => {
                     method: "wallet_addEthereumChain",
                     params: [
                         {
-                            chainId: toHex("137"),
-                            chainName: "Polygon",
-                            rpcUrls: ["https://polygon-rpc.com/"],
-                            blockExplorerUrls: ["https://polygonscan.com/"],
+                            chainId: toHex("1"),
+                            chainName: "Ethereum",
+                            rpcUrls: ["https://mainnet.infura.io/v3/"],
+                            blockExplorerUrls: ["https://etherscan.io"],
                         },
                     ],
                 });
