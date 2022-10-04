@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { CustomTabs as Tabs } from "../../components";
 import { useSelector } from "../../redux/store";
 import ActiveProposals from "./active";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -22,16 +23,16 @@ const ProposalSymbol = (props: Props) => {
       <Box className="flex flex-col min-h-full main-content gap-14">
         <Box className="flex justify-between">
           <Tabs tabIndex={tabIndex} tabs={tabs} setTabIndex={setTabIndex} />
-          <Button
-            variant="contained"
-            component="a"
-            color="tealLight"
-            className="h-16"
-            href={`/proposal/new/${symbol}`}
-            startIcon={<ControlPointIcon />}
-          >
-            Create Proposal
-          </Button>
+          <Link to={`/proposal/new/${symbol}`}>
+            <Button
+              variant="contained"
+              color="tealLight"
+              className="h-16"
+              startIcon={<ControlPointIcon />}
+            >
+              Create Proposal
+            </Button>
+          </Link>
         </Box>
         {tabIndex == 0 ? (
           <ActiveProposals symbol={paramSymbol} isHistory={false} />
