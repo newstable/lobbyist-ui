@@ -1,6 +1,12 @@
 .notpage {
+    width: 100vw;
+    height: 100vh;
     margin: auto;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     .error {
         font-size: 120px !important;
