@@ -38,7 +38,7 @@ const itemsList = [
         name: "Polygon",
         id: "137",
         img: "../../../../assets/chains/matic.svg",
-        color: "#A986E3"
+        color: "#472481"
     },
     {
         name: "Ethereum",
@@ -50,19 +50,19 @@ const itemsList = [
         name: "Binance",
         id: "56",
         img: "../../../../assets/chains/bsc.png",
-        color: "#EDD075"
+        color: "#A07B06"
     },
     {
         name: "Fantom",
         id: "250",
         img: "../../../../assets/chains/fantom.svg",
-        color: "#89D3EB"
+        color: "#0B6888"
     },
     {
         name: "Avalanche",
         id: "43114",
         img: "../../../../assets/chains/avax.png",
-        color: "#ED8D8E"
+        color: "#9B2A2A"
     },
     {
         name: "Optimism",

@@ -70,13 +70,6 @@ const ProposalSymbolVote = (props: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { symbol } = useParams();
-
-  useEffect(() => {
-    var mysymbol = symbols.filter((s) => s === symbol);
-    if (mysymbol.length === 0) {
-      navigate("/");
-    }
-  })
   const walletAddress: any = useSelector(
     (state: RootState) => state.wallet.address
   );
@@ -220,7 +213,7 @@ const ProposalSymbolVote = (props: Props) => {
   return (
     <>
       <Box className="main-body flex flex-col grow">
-        <Box className="flex-col main-content gap-14 margindw">
+        <Box className="flex-col main-content gap-14 margindw" style={{ marginBottom: "15px" }}>
           <Box className="flex justify-between proposer-flex">
             <NavBack />
             {isProposer ? (
@@ -264,7 +257,7 @@ const ProposalSymbolVote = (props: Props) => {
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Box className="flex flex-col mt-12">
-              <Box>
+              <Box style={{ marginBottom: "20px" }}>
                 <img src={chainImg[currentProposal.chain]} width="70" alt="matic"></img>
               </Box>
               <Box className="flex flex-col">
