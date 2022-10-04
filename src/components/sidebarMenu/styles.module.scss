@@ -1,82 +1,82 @@
 @use "../../styles/index.scss" as main;
 
 .main {
-  &Mobile {}
-
-  &Inner {
-    background: main.$var-clr-black;
-    transition: all 0.3s ease-in-out;
-
-    &:hover {
-      .menu {
-        &Text {}
-      }
-    }
-  }
-
-  body[class~="show-menu"] & {
     &Mobile {}
-  }
+
+    &Inner {
+        background: main.$var-clr-black;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            .menu {
+                &Text {}
+            }
+        }
+    }
+
+    body[class~="show-menu"] & {
+        &Mobile {}
+    }
 }
 
 .menu {
-  &Mobile {
-    transition: all 0.3s ease-in;
-    position: fixed;
-    align-items: center;
-    width: 100%;
-    text-align: center;
-    background: #1f2028;
-    left: 0;
-    top: -100%;
-    z-index: 3;
-    margin-top: 60px;
-    height: 0;
-    flex-direction: column;
-  }
-
-  &Hamburger,
-  &Logo {
-    z-index: 5;
-  }
-
-  &Icon {
-    @extend %menuIcon;
-    border-radius: 100px;
-    color: #071018cf;
-
-    &--disabled {
-      color: #5a5d60;
-    }
-  }
-
-  &Text {
-    margin-left: 10px;
-  }
-
-  body[class~="show-menu"] & {
     &Mobile {
-      display: flex;
-      height: calc(100vh - 60px);
-      top: 0px;
+        transition: all 0.3s ease-in;
+        position: fixed;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+        background: #1f2028;
+        left: 0;
+        top: -100%;
+        z-index: 3;
+        margin-top: 60px;
+        height: 0;
+        flex-direction: column;
+    }
+
+    &Hamburger,
+    &Logo {
+        z-index: 5;
+    }
+
+    &Icon {
+        @extend %menuIcon;
+        border-radius: 100px;
+        color: #071018cf;
+
+        &--disabled {
+            color: #5a5d60;
+        }
     }
 
     &Text {
-      font-size: 20px;
+        margin-left: 10px;
     }
-  }
+
+    body[class~="show-menu"] & {
+        &Mobile {
+            display: flex;
+            height: calc(100vh - 60px);
+            top: 0px;
+        }
+
+        &Text {
+            font-size: 20px;
+        }
+    }
 }
 
 .chooseChain {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 @media (min-width:910px) {
-  .chooseChain {
-    position: absolute;
-    background-color: #282931;
-    left: 18rem;
-    top: 5%;
-  }
+    .chooseChain {
+        position: absolute;
+        background-color: #282931;
+        left: 18rem;
+        top: 5%;
+    }
 }
