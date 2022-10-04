@@ -32,6 +32,7 @@ import useClipboard from "react-use-clipboard";
 import switchNetwork from "./switchchain";
 import { useSelector } from "../../redux/store";
 import { RootState } from "../../redux/store";
+import { Chainscan } from "../../chainscan";
 
 const itemsList = [
     {
@@ -411,7 +412,7 @@ const Header: FC = () => {
                                 {copyClipboard ? "Copied" : "Copy address"}
                             </div>
                             <a
-                                href={"https://polygonscan.com/address/" + account}
+                                href={Chainscan[chainId] + account}
                                 className="view"
                             >
                                 <OpenInNewIcon />
