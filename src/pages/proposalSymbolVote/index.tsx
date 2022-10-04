@@ -213,7 +213,7 @@ const ProposalSymbolVote = (props: Props) => {
     <>
       <Box className="main-body flex flex-col grow">
         <Box className="flex-col main-content gap-14 margindw">
-          <Box className="gapbtm flex justify-between proposer-flex">
+          <Box className="flex justify-between proposer-flex">
             <NavBack />
             {isProposer ? (
               <Box className="gap-8">

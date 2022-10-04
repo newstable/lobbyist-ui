@@ -46,6 +46,8 @@ const ProposalCardActiveSymbol = ({
   const walletAddress: any = useSelector(
     (state: RootState) => state.wallet.address
   );
+  const chain: any = useSelector((state: RootState) => state.chain.id);
+  console.log(proposals, chain);
   const colHeads = [
     "Name",
     "Voting For",
@@ -78,9 +80,8 @@ const ProposalCardActiveSymbol = ({
   return (
     <Card className="" elevation={0}>
       <ProposalCardHeader
-        title={`${
-          isHistory ? "Historical" : "Active"
-        } Proposals for ${protocol}`}
+        title={`${isHistory ? "Historical" : "Active"
+          } Proposals for ${protocol}`}
       ></ProposalCardHeader>
       <Content className="!p-0">
         <Box className="mb-16">
@@ -112,110 +113,112 @@ const ProposalCardActiveSymbol = ({
         </Box>
         <Box className="flex flex-col gap-4">
           {realProposals?.map((p, idx) =>
-            p.type === protocol ? (
-              p.isClosed == isHistory ? (
-                <Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
-                  <Box
-                    className={classNames(
-                      "grid gap-8",
-                      isAboveMd ? "grid-cols-6 items-center" : "grid-cols-2"
-                    )}
-                  >
-                    <Box
-                      className={classNames(
-                        "flex flex-col",
-                        !isAboveMd && "gap-1"
-                      )}
-                    >
-                      <TextHead className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[0]}
-                      </TextHead>
-                      <TextContent>
-                        {p.name.length > 20
-                          ? p.name.slice(0, 20) + "..."
-                          : p.name}
-                      </TextContent>
-                    </Box>
-                    <Box
-                      className={classNames(
-                        "flex flex-col",
-                        !isAboveMd && "gap-1"
-                      )}
-                    >
-                      <TextHead className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[1]}
-                      </TextHead>
-                      <TextContent>{p.protocol}</TextContent>
-                    </Box>
-                    <Box
-                      className={classNames(
-                        "flex flex-col",
-                        !isAboveMd && "gap-1"
-                      )}
-                    >
-                      <TextHead className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[2]}
-                      </TextHead>
-                      <TextContent>{`$${NumberType(
-                        p.usdAmount.toFixed(2),
-                        2
-                      )}`}</TextContent>
-                    </Box>
-                    <Box
-                      className={classNames(
-                        "flex flex-col",
-                        !isAboveMd && "gap-1"
-                      )}
-                    >
-                      <TextHead className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[3]}
-                      </TextHead>
-                      <TextContent>
-                        {NumberType(p.totalVoteWeight.toFixed(2), 2)}
-                      </TextContent>
-                    </Box>
-                    <Box
-                      className={classNames(
-                        "flex flex-col",
-                        !isAboveMd && "gap-1"
-                      )}
-                    >
-                      <TextHead className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[4]}
-                      </TextHead>
-                      <TextContent>
-                        {p.totalVoteWeight == 0
-                          ? "$0"
-                          : "$" +
-                            NumberType(
-                              (p.usdAmount / p.totalVoteWeight).toFixed(6),
-                              6
-                            )}
-                      </TextContent>
-                    </Box>
-                    {isHistory ? (
+            p.type === protocol ?
+              p.chain == chain ?
+                (
+                  p.isClosed == isHistory ? (
+                    <Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
                       <Box
-                        className={classNames(isAboveMd && "text-center")}
-                      ></Box>
-                    ) : (
-                      <Box className={classNames(isAboveMd && "text-center")}>
-                        <Button
-                          variant="contained"
-                          color="tealLight"
-                          onClick={() => onJoinClick(p)}
+                        className={classNames(
+                          "grid gap-8",
+                          isAboveMd ? "grid-cols-6 items-center" : "grid-cols-2"
+                        )}
+                      >
+                        <Box
+                          className={classNames(
+                            "flex flex-col",
+                            !isAboveMd && "gap-1"
+                          )}
                         >
-                          View
-                        </Button>
+                          <TextHead className={classNames(isAboveMd && "hidden")}>
+                            {colHeads[0]}
+                          </TextHead>
+                          <TextContent>
+                            {p.name.length > 20
+                              ? p.name.slice(0, 20) + "..."
+                              : p.name}
+                          </TextContent>
+                        </Box>
+                        <Box
+                          className={classNames(
+                            "flex flex-col",
+                            !isAboveMd && "gap-1"
+                          )}
+                        >
+                          <TextHead className={classNames(isAboveMd && "hidden")}>
+                            {colHeads[1]}
+                          </TextHead>
+                          <TextContent>{p.protocol}</TextContent>
+                        </Box>
+                        <Box
+                          className={classNames(
+                            "flex flex-col",
+                            !isAboveMd && "gap-1"
+                          )}
+                        >
+                          <TextHead className={classNames(isAboveMd && "hidden")}>
+                            {colHeads[2]}
+                          </TextHead>
+                          <TextContent>{`$${NumberType(
+                            p.usdAmount.toFixed(2),
+                            2
+                          )}`}</TextContent>
+                        </Box>
+                        <Box
+                          className={classNames(
+                            "flex flex-col",
+                            !isAboveMd && "gap-1"
+                          )}
+                        >
+                          <TextHead className={classNames(isAboveMd && "hidden")}>
+                            {colHeads[3]}
+                          </TextHead>
+                          <TextContent>
+                            {NumberType(p.totalVoteWeight.toFixed(2), 2)}
+                          </TextContent>
+                        </Box>
+                        <Box
+                          className={classNames(
+                            "flex flex-col",
+                            !isAboveMd && "gap-1"
+                          )}
+                        >
+                          <TextHead className={classNames(isAboveMd && "hidden")}>
+                            {colHeads[4]}
+                          </TextHead>
+                          <TextContent>
+                            {p.totalVoteWeight == 0
+                              ? "$0"
+                              : "$" +
+                              NumberType(
+                                (p.usdAmount / p.totalVoteWeight).toFixed(6),
+                                6
+                              )}
+                          </TextContent>
+                        </Box>
+                        {isHistory ? (
+                          <Box
+                            className={classNames(isAboveMd && "text-center")}
+                          ></Box>
+                        ) : (
+                          <Box className={classNames(isAboveMd && "text-center")}>
+                            <Button
+                              variant="contained"
+                              color="tealLight"
+                              onClick={() => onJoinClick(p)}
+                            >
+                              View
+                            </Button>
+                          </Box>
+                        )}
                       </Box>
-                    )}
-                  </Box>
-                </Box>
-              ) : (
-                <></>
-              )
-            ) : (
-              <></>
-            )
+                    </Box>
+                  ) : (
+                    <></>
+                  )
+                ) : (
+                  <></>
+                ) : (<></>)
           )}
         </Box>
       </Content>

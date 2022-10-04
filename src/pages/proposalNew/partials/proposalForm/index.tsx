@@ -51,13 +51,13 @@ const ProposalForm = (props: Props) => {
   const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
   const [proposalName, setProposalName] = useState("");
   const [proposalDescription, setProposalDescription] = useState("");
-  const [rewardType, setRewardType] = useState("WMATIC");
   const [maxReward, setMaxReward] = useState(0);
   const [usd, setUsd] = useState(0);
   const walletAddress: any = useSelector(
     (state: RootState) => state.wallet.address
   );
   const chainName: any = useSelector((state: RootState) => state.chain.id);
+  const [rewardType, setRewardType] = useState(Tokens[chainName][0].display);
 
   const provider: any = useSelector(
     (state: RootState) => state.provider.provider
