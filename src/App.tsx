@@ -31,7 +31,7 @@ const App = () => {
   setTimeout(() => {
     setLoading(false);
     NotificationManager.info("This app is currently in Beta, please use at your own risk", "Information");
-  }, 5000);
+  }, 3000);
 
   useEffect(() => {
     setAddress(walletAddress);
