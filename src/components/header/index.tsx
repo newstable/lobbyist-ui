@@ -15,7 +15,7 @@ import classNames from "classnames";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 import { setWalletAddress } from "../../redux/slices/wallet";
-import chain, { setChainName } from "../../redux/slices/chain";
+import { setChainName } from "../../redux/slices/chain";
 import { setProvider } from "../../redux/slices/provider";
 import { dispatch } from "../../redux/store";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -30,6 +30,8 @@ import styles from "./styles.module.scss";
 import { providerOptions } from "../../providerOptions";
 import useClipboard from "react-use-clipboard";
 import switchNetwork from "./switchchain";
+import { useSelector } from "../../redux/store";
+import { RootState } from "../../redux/store";
 
 const itemsList = [
     {
@@ -113,6 +115,10 @@ const Header: FC = () => {
     const [walletType, setWalletType] = useState("");
     const [history, setHistory] = useState<History[]>([]);
 
+    const chain: any = useSelector(
+        (state: RootState) => state.chain.id
+    );
+
     const addressCopy = () => {
         setCopyClipboard(true);
     };
@@ -177,24 +183,25 @@ const Header: FC = () => {
 
     useEffect(() => {
         makeChain();
-    }, [account, chainId]);
+    }, [chain]);
 
     const makeChain = () => {
         if (
-            chainId != 137 &&
-            chainId != 1 &&
-            chainId != 56 &&
-            chainId != 250 &&
-            chainId != 43114 &&
-            chainId != 10 &&
-            chainId != 42161
+            chain != 137 &&
+            chain != 1 &&
+            chain != 56 &&
+            chain != 250 &&
+            chain != 43114 &&
+            chain != 10 &&
+            chain != 42161
 
         ) {
             setselectedCrypto("Polygon");
             setColor("#A986E3");
-            switchNetwork(`${chainId}`, library);
+            switchNetwork(`${chain}`, library, chainId);
         } else {
-            var chainInfo = itemsList.filter((item) => item.id == chainId);
+            setChainId(chain);
+            var chainInfo = itemsList.filter((item) => item.id == chain);
             setselectedCrypto(chainInfo[0].name);
             setColor(chainInfo[0].color);
             setselectedImg(chainInfo[0].img);
@@ -228,7 +235,7 @@ const Header: FC = () => {
         setOpen(false);
         setselectedCrypto(crypto);
         setselectedImg(img);
-        switchNetwork(id, library);
+        switchNetwork(id, library, chainId);
         setColor(color);
     };
 

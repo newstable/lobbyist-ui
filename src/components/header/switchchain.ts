@@ -1,12 +1,18 @@
 import { toHex, truncateAddress } from "../../utils";
+import { setChainName } from "../../redux/slices/chain";
+import { dispatch } from "../../redux/store";
 
-const switchNetwork = async (network: string, library: any) => {
+
+
+const switchNetwork = async (network: string, library: any, chain: string) => {
     try {
+        dispatch(setChainName(network));
         await library.provider.request({
             method: "wallet_switchEthereumChain",
             params: [{ chainId: toHex(network) }],
         });
     } catch (switchError: any) {
+        dispatch(setChainName(chain));
         if (switchError.code === 4902) {
             try {
                 await library.provider.request({

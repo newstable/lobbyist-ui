@@ -32,6 +32,9 @@ const SidebarMenu = (props: Props) => {
   const library: any = useSelector(
     (state: RootState) => state.provider.provider
   );
+  const chain: any = useSelector(
+    (state: RootState) => state.chain.id
+  );
   const { PUBLIC_URL } = process.env;
   const theme = useTheme();
   const { pathname } = useLocation();
@@ -258,7 +261,7 @@ const SidebarMenu = (props: Props) => {
                     to={link.href}
                     color={linkColor}
                     className={classNames("py-4 flex")}
-                    onClick={() => switchNetwork(`${link.chain}`, library)}
+                    onClick={() => switchNetwork(`${link.chain}`, library, chain)}
                   >
                     <Box
                       component="span"
