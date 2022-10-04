@@ -35,6 +35,7 @@ import { Coins } from "../../blockchain";
 import NumberType from "../../common/number";
 import { History } from "../../@types/proposal";
 import { Chainscan } from "../../chainscan";
+import symbols from "../proposalSymbol/symbols.json";
 
 var md = new Remarkable();
 var history: History[] = [];
@@ -68,6 +69,14 @@ const client = new snapshot.Client712(hub);
 const ProposalSymbolVote = (props: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { symbol } = useParams();
+
+  useEffect(() => {
+    var mysymbol = symbols.filter((s) => s === symbol);
+    if (mysymbol.length === 0) {
+      navigate("/");
+    }
+  })
   const walletAddress: any = useSelector(
     (state: RootState) => state.wallet.address
   );
@@ -80,7 +89,6 @@ const ProposalSymbolVote = (props: Props) => {
   const [proposalInfo, setProposalInfo]: any = useState([]);
   const [modal, setModal] = useState(false);
   const [addRewardAmount, setAddRewardAmount] = useState(0);
-  const { symbol } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [addrewardButton, setButton] = useState(true);
   const [currency, setRewardCurrency] = useState("");
