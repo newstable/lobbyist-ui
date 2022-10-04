@@ -5,6 +5,7 @@ import ProposalNewPage from "../pages/proposalNew";
 import ProposalSymbolPage from "../pages/proposalSymbol";
 import ProposalSymbolVotePage from "../pages/proposalSymbolVote";
 import { ReactApp } from "../components";
+import NotPage from "../pages/NotPage";
 
 const { PUBLIC_URL } = process.env;
 
@@ -21,6 +22,7 @@ const AppRoutes: FC = () => {
           <Route path="/proposal/new/:protocol/:prsalType/:kpi/:status" element={<ProposalNewPage />} />
           <Route path="/proposal/:symbol" element={<ProposalSymbolPage />} />
           <Route path="/proposal/:symbol/vote" element={<ProposalSymbolVotePage />} />
+          <Route path="*" element={<NotPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
