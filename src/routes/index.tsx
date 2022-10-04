@@ -22,8 +22,8 @@ const AppRoutes: FC = () => {
           <Route path="/proposal/new/:protocol/:prsalType/:kpi/:status" element={<ProposalNewPage />} />
           <Route path="/proposal/:symbol" element={<ProposalSymbolPage />} />
           <Route path="/proposal/:symbol/vote" element={<ProposalSymbolVotePage />} />
-          <Route path="*" element={<NotPage />} />
         </Route>
+        <Route path="*" element={<NotPage />} />
       </Routes>
     </BrowserRouter>
   );
