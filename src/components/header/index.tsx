@@ -148,10 +148,11 @@ const Header: FC = () => {
                     refreshState();
                 }
             });
-            provider.on("chainChanged", (chainId: any) => {
-                var num = parseInt(chainId, 16);
+            provider.on("chainChanged", async (chain: any) => {
+                var num = parseInt(chain, 16);
                 setChainId(num);
-            })
+                dispatch(setChainName(num));
+            });
             const library = new ethers.providers.Web3Provider(provider);
             dispatch(setProvider(library));
             setWalletType(library.connection.url);
@@ -219,9 +220,7 @@ const Header: FC = () => {
     }
 
     useEffect(() => {
-        if (web3Modal.cachedProvider) {
-            connectWallet();
-        }
+        connectWallet();
     }, []);
 
     const refreshState = () => {

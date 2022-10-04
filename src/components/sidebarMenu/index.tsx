@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
-import { Box, Link, Typography, SvgIcon, Divider, Button } from "@mui/material";
+import { Box, Typography, SvgIcon, Divider, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useLocation } from "react-router-dom";
@@ -201,12 +202,11 @@ const SidebarMenu = (props: Props) => {
       >
         <Box>
           <Link
-            href={PUBLIC_URL}
+            to={PUBLIC_URL}
             className={classNames(
               "px-4 relative block mlg:px-0 mlgpt-12",
               styles.menuLogo
             )}
-            underline="none"
           >
             <img src={Logo} alt="" />
           </Link>
@@ -255,10 +255,9 @@ const SidebarMenu = (props: Props) => {
                 ) : (
                   <Link
                     key={`lnk_${idx}`}
-                    href={link.href}
+                    to={link.href}
                     color={linkColor}
                     className={classNames("py-4 flex")}
-                    underline="none"
                     onClick={() => switchNetwork(`${link.chain}`, library)}
                   >
                     <Box
