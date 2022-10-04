@@ -16,7 +16,6 @@ type Props = {};
 const ProposalNewPage = (props: Props) => {
   const { protocol, prsalType, kpi, status } = useParams();
 
-
   return (
     <Box className="main-body flex flex-col grow">
       <Box className="flex flex-col min-h-full main-content gap-14">

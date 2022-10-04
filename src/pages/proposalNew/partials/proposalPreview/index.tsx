@@ -10,7 +10,7 @@ const BoxForm = styled(Box)(({ theme }) => ({
 }));
 
 const ProposalPreview = (props: Props) => {
-  const { protocol, prsalType, kpi, status } = useParams();
+  const { protocol, prsalType, kpi } = useParams();
   const navigate = useNavigate();
 
   const onFundProposal = () => {
