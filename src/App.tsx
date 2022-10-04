@@ -33,7 +33,7 @@ const App = () => {
   }, 3000);
 
   useEffect(() => {
-    if (loading)
+    if (!loading)
       NotificationManager.info("This app is currently in Beta, please use at your own risk", "Information");
   }, [loading])
 
