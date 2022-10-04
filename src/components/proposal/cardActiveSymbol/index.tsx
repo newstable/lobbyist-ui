@@ -47,7 +47,6 @@ const ProposalCardActiveSymbol = ({
     (state: RootState) => state.wallet.address
   );
   const chain: any = useSelector((state: RootState) => state.chain.id);
-  console.log(proposals, chain);
   const colHeads = [
     "Name",
     "Voting For",
