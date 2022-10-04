@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Button } from "@mui/material";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { CustomTabs as Tabs } from "../../components";
-import { useSelector } from "../../redux/store";
 import ActiveProposals from "./active";
 import { Link } from "react-router-dom";
+import symbols from "./symbols.json";
 
 type Props = {};
 
 const tabs: string[] = ["Proposals", "History"];
 
 const ProposalSymbol = (props: Props) => {
+  const navigate = useNavigate();
   let { symbol } = useParams();
   const [tabIndex, setTabIndex] = useState(0);
-
-
+  useEffect(() => {
+    var mysymbol = symbols.filter((s) => s === symbol);
+    if (mysymbol.length === 0) {
+      navigate("/");
+    }
+  })
   const paramSymbol = symbol ?? "";
 
   return (
@@ -34,7 +39,7 @@ const ProposalSymbol = (props: Props) => {
             </Button>
           </Link>
         </Box>
-        {tabIndex == 0 ? (
+        {tabIndex === 0 ? (
           <ActiveProposals symbol={paramSymbol} isHistory={false} />
         ) :
           (

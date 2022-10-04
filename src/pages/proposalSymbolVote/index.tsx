@@ -66,6 +66,8 @@ const hub = "https://hub.snapshot.org";
 const client = new snapshot.Client712(hub);
 
 const ProposalSymbolVote = (props: Props) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const walletAddress: any = useSelector(
     (state: RootState) => state.wallet.address
   );
@@ -73,13 +75,11 @@ const ProposalSymbolVote = (props: Props) => {
     (state: RootState) => state.provider.provider
   );
   const chianId: any = useSelector((state: RootState) => state.chain.id);
-  const navigate = useNavigate();
   const [getProposal] = useLazyQuery(GET_PROPOSAL);
   const [voteWeight, setVoteWeight] = useState(0);
   const [proposalInfo, setProposalInfo]: any = useState([]);
   const [modal, setModal] = useState(false);
   const [addRewardAmount, setAddRewardAmount] = useState(0);
-  const location = useLocation();
   const { symbol } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [addrewardButton, setButton] = useState(true);
@@ -95,7 +95,7 @@ const ProposalSymbolVote = (props: Props) => {
 
   useEffect(() => {
     var rewardCurrency = Tokens[currentProposal.chain].filter(
-      (token: any) => token.address == currentProposal.rewardCurrency
+      (token: any) => token.address === currentProposal.rewardCurrency
     );
     setRewardCurrency(rewardCurrency[0].display);
     setRewardCurrencyApi(rewardCurrency[0].api);
@@ -140,7 +140,7 @@ const ProposalSymbolVote = (props: Props) => {
         chain: currentProposal.chain,
       };
       let choice: any;
-      if (proposalInfo.type == "single-choice") {
+      if (proposalInfo.type === "single-choice") {
         choice = proposalInfo.choices.indexOf(currentProposal.protocol) + 1;
       } else {
         choice = {
@@ -236,7 +236,7 @@ const ProposalSymbolVote = (props: Props) => {
                 >
                   Add Rewards
                 </Button>
-                {voteWeight == 0 ? (
+                {voteWeight === 0 ? (
                   <Button disabled variant="contained" color="secondary">
                     Vote
                   </Button>

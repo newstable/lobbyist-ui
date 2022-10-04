@@ -6,12 +6,9 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import classNames from "classnames";
 import { useQuery } from "@apollo/client";
 import { NotificationManager } from "react-notifications";
-import { ethers } from "ethers";
 import {
   FormTextField,
   FormSelect,
-  FormSliderInput,
-  FormRangeSliderInput,
 } from "../../../../components/form";
 import { colors } from "../../../../common";
 import { useEffect, useState } from "react";
@@ -49,8 +46,8 @@ const ProposalForm = (props: Props) => {
   const [address, setAddress] = useState("");
   const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
   const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
-  const [proposalName, setProposalName] = useState("");
-  const [proposalDescription, setProposalDescription] = useState("");
+  // const [proposalName, setProposalName] = useState("");
+  // const [proposalDescription, setProposalDescription] = useState("");
   const [maxReward, setMaxReward] = useState(0);
   const [usd, setUsd] = useState(0);
   const walletAddress: any = useSelector(
@@ -64,22 +61,22 @@ const ProposalForm = (props: Props) => {
   );
 
   useEffect(() => {
-    if (props.name == "qidao") {
+    if (props.name === "qidao") {
       setName("qidao.eth");
       setValue("platformType", "qidao");
-    } else if (props.name == "aave") {
+    } else if (props.name === "aave") {
       setName("aave.eth");
       setValue("platformType", "aave");
-    } else if (props.name == "vesq") {
+    } else if (props.name === "vesq") {
       setName("vesqdao.eth");
       setValue("platformType", "vesq");
     }
-  }, []);
+  }, [props.name]);
 
   useEffect(() => {
     const tokenPrice = async () => {
       var currencyType = Tokens[chainName].filter(
-        (token: any) => token.display == rewardType
+        (token: any) => token.display === rewardType
       );
       var price = await Coins(currencyType[0].api);
       setUsd(price);
@@ -93,7 +90,7 @@ const ProposalForm = (props: Props) => {
     }
   }, [walletAddress]);
 
-  const { data, loading, error } = useQuery(GET_PROPOSALS, {
+  const { data } = useQuery(GET_PROPOSALS, {
     variables: { name: name },
     pollInterval: 0,
   });
@@ -112,8 +109,8 @@ const ProposalForm = (props: Props) => {
     setValue("proposalId", data?.proposals[e].id);
     setValue("proposalName", data?.proposals[e].title);
     setValue("proposalDescription", data?.proposals[e].body);
-    setProposalName(data?.proposals[e].title);
-    setProposalDescription(data?.proposals[e].body);
+    // setProposalName(data?.proposals[e].title);
+    // setProposalDescription(data?.proposals[e].body);
     timeStyle(date);
   };
 
@@ -161,7 +158,7 @@ const ProposalForm = (props: Props) => {
   }, [data]);
 
   const navigate = useNavigate();
-  const { prsalType, kpi } = useParams();
+  const { prsalType } = useParams();
 
   const clickToken = (e: any) => {
     setAddress(e);
@@ -172,7 +169,6 @@ const ProposalForm = (props: Props) => {
     handleSubmit,
     control,
     setValue,
-    formState: { errors },
   } = useForm({
     defaultValues: {
       platformType: "",
@@ -216,12 +212,12 @@ const ProposalForm = (props: Props) => {
   const OnFormSubmit = async (value: any) => {
     if (walletAddress === "") {
       NotificationManager.warning("Please connect wallet...!", "Warning");
-    } else if (value.snapshotProposal == "") {
+    } else if (value.snapshotProposal === "") {
       NotificationManager.warning(
         "Please select a proposal on snapshot!",
         "Warning"
       );
-    } else if (value.desiredVote == "") {
+    } else if (value.desiredVote === "") {
       NotificationManager.warning("Please select a choice!", "Warning");
     } else {
       setMyLoading(true);
@@ -417,7 +413,7 @@ const ProposalForm = (props: Props) => {
             </Box>
             {myloading ? (
               <Button variant="contained" color="tealLight">
-                <img style={{ width: "25px" }} src={loader}></img>
+                <img style={{ width: "25px" }} alt="" src={loader}></img>
               </Button>
             ) : submitType ? (
               <Button variant="contained" color="tealLight" type="submit">
