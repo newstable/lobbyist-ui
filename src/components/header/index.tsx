@@ -49,7 +49,7 @@ const itemsList = [
     {
         name: "Binance",
         id: "56",
-        img: "../../../../assets/chains/bsc.svg",
+        img: "../../../../assets/chains/bsc.png",
         color: "#EDD075"
     },
     {
@@ -61,13 +61,13 @@ const itemsList = [
     {
         name: "Avalanche",
         id: "43114",
-        img: "../../../../assets/chains/avax.svg",
+        img: "../../../../assets/chains/avax.png",
         color: "#ED8D8E"
     },
     {
         name: "Optimism",
         id: "10",
-        img: "../../../../assets/chains/optimism.svg",
+        img: "../../../../assets/chains/optimism.png",
         color: "#FF909C"
     },
     {
@@ -105,7 +105,7 @@ const Header: FC = () => {
     const [open, setOpen] = useState(false);
     const [walletInfo, setWalletInfo] = useState(false);
     const anchorRef = useRef<HTMLButtonElement>(null);
-    const [color, setColor] = useState("");
+    const [backColor, setBackColor] = useState("");
     const [selectedCrypto, setselectedCrypto] = useState("");
     const [selectedImg, setselectedImg] = useState(
         "../../../../assets/chains/matic.svg"
@@ -197,13 +197,13 @@ const Header: FC = () => {
 
         ) {
             setselectedCrypto("Polygon");
-            setColor("#A986E3");
+            setBackColor("#A986E3");
             switchNetwork(`${chain}`, library, chainId);
         } else {
             setChainId(chain);
             var chainInfo = itemsList.filter((item) => item.id == chain);
             setselectedCrypto(chainInfo[0].name);
-            setColor(chainInfo[0].color);
+            setBackColor(chainInfo[0].color);
             setselectedImg(chainInfo[0].img);
         }
     }
@@ -236,7 +236,7 @@ const Header: FC = () => {
         setselectedCrypto(crypto);
         setselectedImg(img);
         switchNetwork(id, library, chainId);
-        setColor(color);
+        setBackColor(color);
     };
 
     const handleListKeyDown = (event: React.KeyboardEvent) => {
@@ -287,7 +287,7 @@ const Header: FC = () => {
                 <HeaderLeft />
                 <Box className="grid gap-custom header-1">
                     <Button
-                        style={{ margin: "auto 0 0 auto", backgroundColor: `${color}` }}
+                        style={{ margin: "auto 0 0 auto", backgroundColor: `${backColor}` }}
                         variant="contained"
                         disableRipple
                         className="!cursor-default"
