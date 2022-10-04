@@ -148,11 +148,11 @@ const Header: FC = () => {
                     refreshState();
                 }
             });
-            provider.on("chainChanged", async (chain: any) => {
-                var num = parseInt(chain, 16);
-                setChainId(num);
-                dispatch(setChainName(num));
-            });
+            // provider.on("chainChanged", async (chain: any) => {
+            //     var num = parseInt(chain, 16);
+            //     setChainId(num);
+            //     dispatch(setChainName(num));
+            // });
             const library = new ethers.providers.Web3Provider(provider);
             dispatch(setProvider(library));
             setWalletType(library.connection.url);
@@ -189,33 +189,10 @@ const Header: FC = () => {
             setColor("#A986E3");
             switchNetwork(`${chainId}`, library);
         } else {
-            if (chainId == 1) {
-                setselectedCrypto("Ethereum");
-                setColor("#3a78ff");
-            } else if (chainId == 10) {
-                setselectedCrypto("Optimism");
-                setColor("#FF909C");
-            }
-            else if (chainId == 56) {
-                setselectedCrypto("Binance");
-                setColor("#EDD075");
-            }
-            else if (chainId == 137) {
-                setselectedCrypto("Polygon");
-                setColor("#A986E3");
-            }
-            else if (chainId == 250) {
-                setselectedCrypto("Fantom");
-                setColor("#89D3EB");
-            }
-            else if (chainId == 42161) {
-                setselectedCrypto("Avalanche");
-                setColor("#ED8D8E");
-            }
-            else if (chainId == 43114) {
-                setselectedCrypto("Arbitrum");
-                setColor("#5F6779");
-            }
+            var chainInfo = itemsList.filter((item) => item.id == chainId);
+            setselectedCrypto(chainInfo[0].name);
+            setColor(chainInfo[0].color);
+            setselectedImg(chainInfo[0].img);
         }
     }
 
