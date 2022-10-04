@@ -162,10 +162,12 @@ const Claim = async (props: any) => {
 
 const Coins = async (ids: string) => {
     try {
-        let data = await CoinGeckoClient.simple.price({
-            ids: [ids],
-            vs_currencies: ['usd']
-        });
+        var url = `https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&x_cg_pro_api_key=${process.env.REACT_APP_COINGECKO_API}`;
+        let data = await axios.get(url);
+        // let data = await CoinGeckoClient.simple.price({
+        //     ids: [ids],
+        //     vs_currencies: ['usd']
+        // });
         return data.data[ids].usd;
     } catch (error: any) {
         return 0;
