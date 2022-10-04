@@ -1,4 +1,5 @@
-import { Box, Button, Grid, Link, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -156,12 +157,6 @@ const ProposalSymbolVote = (props: Props) => {
         app: "Lobbyist",
       });
       if (receipt) {
-        history.push({
-          type: "Vote",
-          chain: Chainscan[chianId],
-          rewardCurrency: "",
-          address: walletAddress,
-        });
         localStorage.setItem("history", JSON.stringify(history));
         const result: any = await Action.Vote(data);
         if (result.status) {
@@ -321,7 +316,7 @@ const ProposalSymbolVote = (props: Props) => {
             <TimeRemaining time={proposalInfo.end * 1000}></TimeRemaining>
             <Box className="relative flex flex-auto">
               <Box className="flex flex-col flex-auto gap-2 text-center pt-6 md:text-right md:pt-0 md:absolute md:right-0 md:bottom-0">
-                <Link
+                <a
                   href={
                     "https://snapshot.org/#/" +
                     symbol +
@@ -329,10 +324,11 @@ const ProposalSymbolVote = (props: Props) => {
                     "/proposal/" +
                     proposalInfo.id
                   }
+                  target="_block"
                 >
                   Go to Snapshot
-                </Link>
-                <Link href={"/proposal/" + symbol}>
+                </a>
+                <Link to={"/proposal/" + symbol}>
                   Go to{" "}
                   {`${EnumProtocolName[symbol as keyof typeof EnumProtocolName]
                     }`}
