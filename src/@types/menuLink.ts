@@ -5,4 +5,5 @@ export interface MenuLink {
   chain?: number;
   disabled?: boolean;
   separator?: boolean;
+  out?: boolean;
 }

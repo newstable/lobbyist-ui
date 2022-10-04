@@ -157,21 +157,25 @@ const SidebarMenu = (props: Props) => {
       icon: "twitter",
       text: "Twitter",
       href: "https://twitter.com/0xLobbyist",
+      out: true,
     },
     {
       icon: "discord",
       text: "Discord",
       href: "https://discord.com/invite/kEfvQZSPUk",
+      out: true,
     },
     {
       icon: "mirror",
       text: "Mirror",
       href: "https://mirror.xyz/0xa0a8aE81215644cC7cB1d8d2a06ce8B0F2887E29",
+      out: true,
     },
     {
       icon: "docs",
       text: "Docs",
       href: "https://vlabs-1.gitbook.io/lobbyist/",
+      out: true,
     },
   ];
 
@@ -255,6 +259,42 @@ const SidebarMenu = (props: Props) => {
                       {link.text}
                     </div>
                   </>
+                ) : link.out ? (
+                  <a
+                    key={`lnk_${idx}`}
+                    href={link.href}
+                    color={linkColor}
+                    className={classNames("py-4 flex")}
+                    target="_blank"
+                    onClick={() => switchNetwork(`${link.chain}`, library, chain)}
+                  >
+                    <Box
+                      component="span"
+                      className={classNames("flex gap-2 items-center")}
+                    >
+                      <Box
+                        component="span"
+                        className={classNames(
+                          "w-8 h-8 hidden mlg:flex items-center justify-center",
+                          styles.menuIcon
+                        )}
+                      >
+                        <SvgIcon
+                          component={getIcon(link.icon)}
+                          viewBox="0 0 31 31"
+                        />
+                      </Box>
+                      <Typography
+                        className={classNames(
+                          "mlg:items-center",
+                          styles.menuText
+                        )}
+                        variant="subtitle2"
+                      >
+                        {link.text}
+                      </Typography>
+                    </Box>
+                  </a>
                 ) : (
                   <Link
                     key={`lnk_${idx}`}
