@@ -41,7 +41,7 @@ const ProposalCardActiveSymbol = ({
     proposals,
     isHistory,
 }: Props) => {
-    const [realProposals, setRealProposals] = useState<Proposal[]>([]);
+    const [realProposals, setRealProposals] = useState<Proposal[]>(proposals);
     const [text, setText] = useState("");
     const walletAddress: any = useSelector(
         (state: RootState) => state.wallet.address
@@ -71,7 +71,7 @@ const ProposalCardActiveSymbol = ({
 
     useEffect(() => {
         var search: Proposal[] = proposals?.filter(
-            (proposal) => proposal.name.search(text) > -1
+            (proposal) => proposal.name.search(new RegExp(text, "i")) > -1
         );
         setRealProposals(search);
     }, [text, proposals]);
