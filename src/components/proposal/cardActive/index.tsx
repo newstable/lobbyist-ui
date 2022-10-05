@@ -37,6 +37,10 @@ const ChainImg: any = {
 
 const Content = styled(CardContent)(({ theme }) => ({}));
 
+const Text_Head = styled(TextHead)(({ theme }) => ({
+	fontSize: "100%"
+}))
+
 const ProposalCardActive = (props: Props) => {
 	const provider: any = useSelector((state: RootState) => state.provider.provider);
 	const { address, proposals } = props;
@@ -78,7 +82,7 @@ const ProposalCardActive = (props: Props) => {
 				>
 					{colHeads.map((c, idx) => (
 						<Box key={`colHead_${idx}`}>
-							<TextHead>{c}</TextHead>
+							<Text_Head>{c}</Text_Head>
 						</Box>
 					))}
 				</Box>
