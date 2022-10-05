@@ -38,7 +38,7 @@ const itemsList = [
     {
         name: "Polygon",
         id: "137",
-        img: "../../../../assets/chains/matic.svg",
+        img: "../../../../assets/chains/polygon.svg",
         color: "#472481"
     },
     {
