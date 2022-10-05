@@ -47,7 +47,7 @@ const Item = (props: Props) => {
             </div>
             <div>
                 <p className="item-font-1">TOTAL VOTES</p>
-                <h4>{proposal.totalVoteWeight}</h4>
+                <h4>{NumberType((proposal.totalVoteWeight).toString(), 2)}</h4>
             </div>
             <div className="flex justify-between">
                 <div>
