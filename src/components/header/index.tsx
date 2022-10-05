@@ -45,7 +45,7 @@ const itemsList = [
         name: "Ethereum",
         id: "1",
         img: "../../../../assets/chains/eth.svg",
-        color: "##8C8C8C"
+        color: "#8C8C8C"
     },
     {
         name: "Binance",
