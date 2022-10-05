@@ -36,7 +36,7 @@ const Item = (props: Props) => {
     return (
         <div className="item item-gap">
             <img width="30" src={ChainImg[proposal.chain]}></img>
-            <h2 className="item-font-2">{proposal.name.length > 25 ? (proposal.name.slice(0, 25) + "...") : proposal.name}</h2>
+            <h2 className="item-font-2">{proposal.name.length > 20 ? (proposal.name.slice(0, 20) + "...") : proposal.name}</h2>
             <div>
                 <p className="item-font-1">VOTING FOR</p>
                 <h4>{proposal.protocol}</h4>
