@@ -45,7 +45,7 @@ const itemsList = [
         name: "Ethereum",
         id: "1",
         img: "../../../../assets/chains/eth.svg",
-        color: "#3a78ff"
+        color: "##8C8C8C"
     },
     {
         name: "Binance",
@@ -198,7 +198,7 @@ const Header: FC = () => {
 
         ) {
             setselectedCrypto("Polygon");
-            setBackColor("#A986E3");
+            setBackColor("#472481");
             switchNetwork(`${chain}`, library, chainId);
         } else {
             setChainId(chain);
