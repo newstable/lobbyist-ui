@@ -539,13 +539,6 @@ const Tokens: any =
             "api": "ethereum"
         },
         {
-            "value": 0,
-            "display": "WETH",
-            "address": "0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB",
-            "token": "../../../../assets/tokens/eth.svg",
-            "api": "ethereum"
-        },
-        {
             "value": 1,
             "display": "WBTC",
             "address": "0x50b7545627a5162F82A992c33b87aDc75187B218",
