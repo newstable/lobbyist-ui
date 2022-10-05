@@ -87,6 +87,11 @@ const SidebarMenu = (props: Props) => {
       href: "/",
     },
     {
+      icon: "gauge",
+      text: "Wall",
+      href: "/wall",
+    },
+    {
       icon: "",
       text: "Polygon",
       href: "#",

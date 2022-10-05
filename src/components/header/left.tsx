@@ -14,7 +14,7 @@ import styles from "./styles.module.scss";
 type Props = {};
 
 const HeaderLeft = (props: Props) => {
-  const { symbol, protocol, prsalType, kpi, status } = useParams();
+  const { symbol, protocol, prsalType, kpi, status, id } = useParams();
   const location = useLocation();
 
   const locationArr = location.pathname.split("/").filter(p => p.length);
@@ -43,6 +43,9 @@ const HeaderLeft = (props: Props) => {
       default:
         break;
     }
+  } else if (id) {
+    title = EnumProtocolName[id as keyof typeof EnumProtocolName];
+    TitleIcon = ProVesqIcon;
   }
   if (locationArr[0] === "proposal") {
     const isNew = locationArr[1] === "new";

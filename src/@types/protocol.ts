@@ -9,6 +9,7 @@ export enum EnumProtocolName {
   qidao = "QiDAO",
   aave = "Aave",
   vesq = "Vesq",
+  wall = "Social Wall"
   // convex = "Convex",
 }
 

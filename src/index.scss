@@ -433,3 +433,9 @@ body.show-menu .app>.main {
         position: absolute;
     }
 }
+
+@media (max-width:612px) {
+    .dp\:hidden {
+        display: none;
+    }
+}

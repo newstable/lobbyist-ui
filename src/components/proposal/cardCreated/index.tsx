@@ -15,6 +15,16 @@ import { TextContent, TextHead } from "../../text";
 import { useParams } from "react-router-dom";
 import NumberType from "../../../common/number";
 
+const ChainImg: any = {
+  1: "../../assets/chains/ethereum.svg",
+  10: "../../assets/chains/optimism.svg",
+  56: "../../assets/chains/bsc.svg",
+  137: "../../assets/chains/polygon.svg",
+  250: "../../assets/chains/fantom.svg",
+  42161: "../../assets/chains/arbitrum.svg",
+  43114: "../../assets/chains/avalanche.svg"
+}
+
 type Props = {
   proposals: Proposal[],
   address: string
@@ -25,7 +35,7 @@ const Content = styled(CardContent)(({ theme }) => ({}));
 const ProposalCardCreated = (props: Props) => {
   const { proposals, address } = props
   let { symbol } = useParams();
-  const colHeads = ["Title", "Voting For","Vote Incentives", "Total Votes", "$/Vote", ""];
+  const colHeads = ["Title", "Voting For", "Vote Incentives", "Total Votes", "$/Vote", "Chain", ""];
   const navigate = useNavigate();
   const onJoinClick = (proposal: Proposal) => {
     const path = proposal.address !== address ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
@@ -43,7 +53,7 @@ const ProposalCardCreated = (props: Props) => {
       <Content className="!p-0">
         <Box
           className={classNames(
-            "grid grid-cols-6 gap-8 px-6 mb-8",
+            "grid grid-cols-7 gap-8 px-6 mb-8",
             !isAboveMd && "hidden"
           )}
         >
@@ -61,7 +71,7 @@ const ProposalCardCreated = (props: Props) => {
                   <Box
                     className={classNames(
                       "grid gap-8",
-                      isAboveMd ? "grid-cols-6" : "grid-cols-2"
+                      isAboveMd ? "grid-cols-7" : "grid-cols-2"
                     )}
                   >
                     <Box
@@ -108,6 +118,14 @@ const ProposalCardCreated = (props: Props) => {
                       <TextContent>${p.totalVoteWeight == 0 ? ("0") : (
                         NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6)
                       )}</TextContent>
+                    </Box>
+                    <Box
+                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                    >
+                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                        {colHeads[5]}
+                      </TextHead>
+                      <img width="40" src={ChainImg[p.chain]}></img>
                     </Box>
                     <Box
                       className={classNames("flex", isAboveMd && "justify-center")}
