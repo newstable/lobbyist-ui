@@ -6,14 +6,14 @@ import { useEffect, useState } from "react";
 import { Proposal } from "../../@types/proposal";
 
 const Wall = () => {
-    const [sort, setSort] = useState();
+    const [sort, setSort] = useState("");
     const [sortProposal, setSortProposal] = useState<Proposal[]>([]);
     const proposalState = useSelector((state) => state.proposal);
     // @ts-ignore
     const proposals = proposalState.currentProposal.data;
     useEffect(() => {
         setProposal();
-    }, [sort, proposalState])
+    }, [sort, proposalState]);
 
     const setProposal = () => {
         var search: Proposal[] = proposals?.filter(
@@ -24,6 +24,7 @@ const Wall = () => {
     const selectChain = (e: any) => {
         setSort(e);
     }
+
     return (
         <div className="wall">
             <div className="flex items-center">
@@ -39,7 +40,7 @@ const Wall = () => {
                     <option value={43114}>Arvalanche</option>
                 </select>
             </div>
-            <div className="justify-center mt-12 grid-cols-3 grid gap-20">
+            <div className="justify-center mt-12 wall-grid-col grid gap-8">
                 {sortProposal?.map((proposal, key) => {
                     return (
                         <Item proposal={proposal} key={key} />
