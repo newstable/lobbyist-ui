@@ -134,6 +134,30 @@ const SidebarMenu = (props: Props) => {
       chain: 56,
       href: "/proposal/qidao",
     },
+    {
+      icon: "",
+      text: "Arbitrum",
+      href: "#",
+      disabled: true,
+    },
+    {
+      icon: "pro-qidao",
+      text: "QiDAO",
+      chain: 42161,
+      href: "/proposal/qidao",
+    },
+    {
+      icon: "",
+      text: "Optimism",
+      href: "#",
+      disabled: true,
+    },
+    {
+      icon: "pro-qidao",
+      text: "QiDAO",
+      chain: 10,
+      href: "/proposal/qidao",
+    },
     // {
     //   icon: "pro-aave",
     //   text: "Aave",
