@@ -529,6 +529,78 @@ const Tokens: any =
             "token": "../../../../assets/tokens/bal.svg",
             "api": "balancer"
         }
+    ],
+    "1": [
+        {
+            "value": 0,
+            "display": "WETH",
+            "address": "0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB",
+            "token": "../../../../assets/tokens/eth.svg",
+            "api": "ethereum"
+        },
+        {
+            "value": 0,
+            "display": "WETH",
+            "address": "0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB",
+            "token": "../../../../assets/tokens/eth.svg",
+            "api": "ethereum"
+        },
+        {
+            "value": 1,
+            "display": "WBTC",
+            "address": "0x50b7545627a5162F82A992c33b87aDc75187B218",
+            "token": "../../../../assets/tokens/wbtc.svg",
+            "api": "bitcoin"
+        },
+        {
+            "value": 2,
+            "display": "DAI.e",
+            "address": "0xd586E7F844cEa2F87f50152665BCbc2C279D8d70",
+            "token": "../../../../assets/tokens/dai.svg",
+            "api": "dai"
+        },
+        {
+            "value": 3,
+            "display": "FRAX",
+            "address": "0xD24C2Ad096400B6FBcd2ad8B24E7acBc21A1da64",
+            "token": "../../../../assets/tokens/frax.svg",
+            "api": "frax"
+        },
+        {
+            "value": 4,
+            "display": "USDT",
+            "address": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
+            "token": "../../../../assets/tokens/usdt.svg",
+            "api": "tether"
+        },
+        {
+            "value": 5,
+            "display": "CRV.e",
+            "address": "0x249848BeCA43aC405b8102Ec90Dd5F22CA513c06",
+            "token": "../../../../assets/tokens/crv.svg",
+            "api": "curve-dao-token"
+        },
+        {
+            "value": 6,
+            "display": "BIFI",
+            "address": "0xd6070ae98b8069de6B494332d1A1a81B6179D960",
+            "token": "../../../../assets/tokens/bifi.svg",
+            "api": "beefy-finance"
+        },
+        {
+            "value": 7,
+            "display": "FXS",
+            "address": "0x214DB107654fF987AD859F34125307783fC8e387",
+            "token": "../../../../assets/tokens/fxs.svg",
+            "api": "frax-share"
+        },
+        {
+            "value": 8,
+            "display": "LINK",
+            "address": "0x5947BB275c521040051D82396192181b413227A3",
+            "token": "../../../../assets/tokens/link.svg",
+            "api": "chainlink"
+        },
     ]
 }
 
