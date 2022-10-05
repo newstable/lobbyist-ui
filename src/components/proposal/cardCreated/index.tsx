@@ -32,6 +32,9 @@ type Props = {
 
 const Content = styled(CardContent)(({ theme }) => ({}));
 
+const Text_Head = styled(TextHead)(({ theme }) => ({
+  fontSize: "100%"
+}))
 const ProposalCardCreated = (props: Props) => {
   const { proposals, address } = props
   let { symbol } = useParams();
@@ -53,13 +56,12 @@ const ProposalCardCreated = (props: Props) => {
       <Content className="!p-0">
         <Box
           className={classNames(
-            "grid grid-cols-7 gap-8 px-6 mb-8",
-            !isAboveMd && "hidden"
+            "grid grid-cols-7 gap-8 px-6 mb-8 dp:hidden"
           )}
         >
           {colHeads.map((c, idx) => (
             <Box key={`colHead_${idx}`}>
-              <TextHead>{c}</TextHead>
+              <Text_Head>{c}</Text_Head>
             </Box>
           ))}
         </Box>
@@ -77,25 +79,25 @@ const ProposalCardCreated = (props: Props) => {
                     <Box
                       className={classNames("flex flex-col", !isAboveMd && "gap-1")}
                     >
-                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                      <Text_Head className={classNames(isAboveMd && "hidden")}>
                         {colHeads[0]}
-                      </TextHead>
+                      </Text_Head>
                       <TextContent>{p.name.length > 20 ? (p.name.slice(0, 20) + "...") : p.name}</TextContent>
                     </Box>
                     <Box
                       className={classNames("flex flex-col", !isAboveMd && "gap-1")}
                     >
-                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                      <Text_Head className={classNames(isAboveMd && "hidden")}>
                         {colHeads[1]}
-                      </TextHead>
-                      <TextContent>{p.protocol}</TextContent>
+                      </Text_Head>
+                      <TextContent>{p.protocol.length > 7 ? (p.protocol.slice(0, 7) + "...") : p.protocol}</TextContent>
                     </Box>
                     <Box
                       className={classNames("flex flex-col", !isAboveMd && "gap-1")}
                     >
-                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                      <Text_Head className={classNames(isAboveMd && "hidden")}>
                         {colHeads[2]}
-                      </TextHead>
+                      </Text_Head>
                       <TextContent>${NumberType(p.usdAmount.toFixed(2), 2)}</TextContent>
                     </Box>
                     <Box
@@ -104,17 +106,17 @@ const ProposalCardCreated = (props: Props) => {
                         !isAboveMd && "gap-1 col-span-3"
                       )}
                     >
-                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                      <Text_Head className={classNames(isAboveMd && "hidden")}>
                         {colHeads[3]}
-                      </TextHead>
+                      </Text_Head>
                       <TextContent>{NumberType(p.totalVoteWeight.toFixed(2), 2)}</TextContent>
                     </Box>
                     <Box
                       className={classNames("flex flex-col", !isAboveMd && "gap-1")}
                     >
-                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                      <Text_Head className={classNames(isAboveMd && "hidden")}>
                         {colHeads[4]}
-                      </TextHead>
+                      </Text_Head>
                       <TextContent>${p.totalVoteWeight == 0 ? ("0") : (
                         NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6)
                       )}</TextContent>
@@ -122,9 +124,9 @@ const ProposalCardCreated = (props: Props) => {
                     <Box
                       className={classNames("flex flex-col", !isAboveMd && "gap-1")}
                     >
-                      <TextHead className={classNames(isAboveMd && "hidden")}>
+                      <Text_Head className={classNames(isAboveMd && "hidden")}>
                         {colHeads[5]}
-                      </TextHead>
+                      </Text_Head>
                       <img width="40" src={ChainImg[p.chain]}></img>
                     </Box>
                     <Box

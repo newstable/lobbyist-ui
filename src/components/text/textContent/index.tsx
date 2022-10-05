@@ -6,7 +6,7 @@ type Props = {
 };
 
 const TextContent: React.FC<Props> = ({ children }) => (
-  <Typography variant="subtitle1" className="">
+  <Typography sx={{ fontSize: "100%" }} variant="subtitle1" className="">
     {children}
   </Typography>
 );
