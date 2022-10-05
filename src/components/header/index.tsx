@@ -69,7 +69,7 @@ const itemsList = [
         name: "Optimism",
         id: "10",
         img: "../../../../assets/chains/optimism.png",
-        color: "#FF909C"
+        color: "#A20214"
     },
     {
         name: "Arbitrum",
