@@ -43,7 +43,7 @@ const Wall = () => {
             <div className="justify-center mt-12 wall-grid-col grid gap-8">
                 {sortProposal?.map((proposal, key) => {
                     return (
-                        proposal.isClosed ? (
+                        !proposal.isClosed ? (
                             <Item proposal={proposal} key={key} />
                         ) : <></>
                     )
