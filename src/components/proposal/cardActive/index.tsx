@@ -99,25 +99,25 @@ const ProposalCardActive = (props: Props) => {
 									<Box
 										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
 									>
-										<TextHead className={classNames(isAboveMd && "hidden")}>
+										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[0]}
-										</TextHead>
+										</Text_Head>
 										<TextContent>{p.name.length > 20 ? (p.name.slice(0, 20) + "...") : p.name}</TextContent>
 									</Box>
 									<Box
 										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
 									>
-										<TextHead className={classNames(isAboveMd && "hidden")}>
+										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[1]}
-										</TextHead>
+										</Text_Head>
 										<TextContent>{p.protocol}</TextContent>
 									</Box>
 									<Box
 										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
 									>
-										<TextHead className={classNames(isAboveMd && "hidden")}>
+										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[2]}
-										</TextHead>
+										</Text_Head>
 										<TextContent>${NumberType(p.usdAmount.toFixed(2), 2)}</TextContent>
 									</Box>
 									<Box
@@ -126,17 +126,17 @@ const ProposalCardActive = (props: Props) => {
 											!isAboveMd && "gap-1 col-span-3"
 										)}
 									>
-										<TextHead className={classNames(isAboveMd && "hidden")}>
+										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[3]}
-										</TextHead>
+										</Text_Head>
 										<TextContent>{NumberType(p.totalVoteWeight.toFixed(2), 2)}</TextContent>
 									</Box>
 									<Box
 										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
 									>
-										<TextHead className={classNames(isAboveMd && "hidden")}>
+										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[4]}
-										</TextHead>
+										</Text_Head>
 										<TextContent>${p.totalVoteWeight == 0 ? ("0") : (
 											NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6)
 										)}</TextContent>
@@ -144,9 +144,9 @@ const ProposalCardActive = (props: Props) => {
 									<Box
 										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
 									>
-										<TextHead className={classNames(isAboveMd && "hidden")}>
+										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[5]}
-										</TextHead>
+										</Text_Head>
 										<img width="40" src={ChainImg[p.chain]}></img>
 									</Box>
 									<Box
