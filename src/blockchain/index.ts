@@ -47,7 +47,6 @@ const createProposal = async (props: any) => {
             isClosed: false
         }
         const Reward = ERCContract({ address, chain });
-        console.log(walletAddress);
         const result = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(result);
         if (Number(tokenAmount) < Number(value.payout)) {
@@ -70,7 +69,6 @@ const createProposal = async (props: any) => {
             const Pool = poolContract.connect(signer);
             const connectContract = await Pool.createPool(newProposal, { value: ethers.utils.parseEther("0.01") });
             await connectContract.wait();
-            console.log("Chainscan:", Chainscan[chain]);
             history.push({
                 type: "createPool",
                 chain: Chainscan[chain],

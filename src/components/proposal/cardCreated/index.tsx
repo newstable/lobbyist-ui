@@ -17,12 +17,12 @@ import NumberType from "../../../common/number";
 
 const ChainImg: any = {
   1: "../../assets/chains/ethereum.svg",
-  10: "../../assets/chains/optimism.svg",
-  56: "../../assets/chains/bsc.svg",
+  10: "../../assets/chains/optimism.png",
+  56: "../../assets/chains/bsc.png",
   137: "../../assets/chains/polygon.svg",
-  250: "../../assets/chains/fantom.svg",
-  42161: "../../assets/chains/arbitrum.svg",
-  43114: "../../assets/chains/avalanche.svg"
+  250: "../../assets/chains/fantom.png",
+  42161: "../../assets/chains/arbitrum.png",
+  43114: "../../assets/chains/avax.png"
 }
 
 type Props = {

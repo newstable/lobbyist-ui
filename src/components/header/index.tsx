@@ -350,6 +350,7 @@ const Header: FC = () => {
                     </Popper>
                     {!account ? (
                         <Button
+                            style={{ width: "150px" }}
                             variant="contained"
                             color="tealLight"
                             onClick={connectWallet}
@@ -358,6 +359,7 @@ const Header: FC = () => {
                         </Button>
                     ) : (
                         <Button
+                            style={{ width: "150px" }}
                             variant="contained"
                             color="tealLight"
                             onClick={handleClickOpen}

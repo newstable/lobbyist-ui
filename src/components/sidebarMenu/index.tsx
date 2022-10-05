@@ -330,7 +330,7 @@ const SidebarMenu = (props: Props) => {
                     to={link.href}
                     color={linkColor}
                     className={classNames("py-4 flex")}
-                    onClick={() => switchNetwork(`${link.chain}`, library, chain)}
+                    onClick={(event: any) => { switchNetwork(`${link.chain}`, library, chain) }}
                   >
                     <Box
                       component="span"
