@@ -57,10 +57,10 @@ const chainImg: any = {
   1: "../../assets/chainLists/ethereum.svg",
   10: "../../assets/chainLists/optimism.svg",
   56: "../../assets/chainLists/bsc.svg",
-  137: "../../assets/chainLists/matic.svg",
+  137: "../../assets/chainLists/polygon.svg",
   250: "../../assets/chainLists/fantom.svg",
   42161: "../../assets/chainLists/arbitrum.svg",
-  43114: "../../assets/chainLists/avax.svg"
+  43114: "../../assets/chainLists/avalanche.svg"
 }
 
 const hub = "https://hub.snapshot.org";
@@ -207,7 +207,7 @@ const ProposalSymbolVote = (props: Props) => {
   return (
     <>
       <Box className="main-body flex flex-col grow">
-        <Box className="flex-col main-content gap-14 margindw" style={{ marginBottom: "15px" }}>
+        <Box className="flex-col main-content gap-14 margindw" style={{ marginBottom: "30px" }}>
           <Box className="flex justify-between proposer-flex">
             <NavBack />
             {isProposer ? (
@@ -251,8 +251,8 @@ const ProposalSymbolVote = (props: Props) => {
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Box className="flex flex-col mt-12">
-              <Box style={{ marginBottom: "20px" }}>
-                <img src={chainImg[currentProposal.chain]} width="70" alt="matic"></img>
+              <Box style={{ marginBottom: "30px" }}>
+                <img src={chainImg[currentProposal.chain]} width="150" alt="matic"></img>
               </Box>
               <Box className="flex flex-col">
                 <Typography variant="h5">{navState.proposal.name}</Typography>
