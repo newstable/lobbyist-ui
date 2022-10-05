@@ -26,7 +26,7 @@ const Item = (props: Props) => {
     const { proposal } = props;
 
     const onJoinClick = (proposal: Proposal) => {
-        const path = proposal.address !== walletAddress ? "../proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
+        const path = proposal.address !== walletAddress ? "../proposal/" + proposal.type + "/vote" : "../proposal/" + proposal.type + "/vote?proposer=1";
         navigate(path, {
             state: {
                 proposal,
