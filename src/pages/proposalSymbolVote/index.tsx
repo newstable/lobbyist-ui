@@ -118,7 +118,7 @@ const ProposalSymbolVote = (props: Props) => {
     setProposalInfo(proposalinfo.data.proposal);
     const req = {
       strategies: proposalinfo.data.proposal.strategies,
-      snapshot: proposalinfo.data.proposal.snapshot,
+      snapshot: Number(proposalinfo.data.proposal.snapshot),
       space: proposalinfo.data.proposal.space.id,
       address: walletAddress,
       network: proposalinfo.data.proposal.network,
