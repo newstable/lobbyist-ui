@@ -30,7 +30,6 @@ const HeaderLeft = (props: Props) => {
   > = () => <DashboardIcon viewBox="0 0 45 45" className={styles.iconGauge} />;
 
   if (symbol) {
-    console.log(symbol);
     title = EnumProtocolName[symbol as keyof typeof EnumProtocolName];
     switch (title) {
       case EnumProtocolName.aura:

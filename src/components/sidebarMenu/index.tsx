@@ -451,7 +451,7 @@ const SidebarMenu = (props: Props) => {
                     {
                       GetMenuState(link.chain) ? !link.childtype ?
                         <div className="protocol-modal">
-                          <Box className={`sidebarItem-MenuChain ${ChainMenuState}`}>
+                          <Box className="sidebarItem-MenuChain">
                             {
                               link.child?.map((children, Idx) => {
                                 return (
