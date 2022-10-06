@@ -10,7 +10,7 @@ const RPCS = {
     56: "https://rpc-bsc.bnb48.club",
     137: "https://matic-mainnet-full-rpc.bwarelabs.com",
     250: "https://rpc.ftm.tools",
-    42161: "https://arb1.arbitrum.io/rpc",
+    42161: "https://rpc.ankr.com/arbitrum",
     43114: "https://api.avax.network/ext/bc/C/rpc"
 };
 const providers: any = {

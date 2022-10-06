@@ -4,28 +4,40 @@ import { Box, Typography, SvgIcon, Divider, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useLocation } from "react-router-dom";
 import { MenuLink } from "../../@types";
 import { ReactComponent as GaugeIcon } from "../../assets/icons/gauge.svg";
 import { ReactComponent as WallIcon } from "../../assets/icons/wall.svg";
 import { ReactComponent as ChartIcon } from "../../assets/icons/chart.svg";
+import { ReactComponent as AuraIcon } from "../../assets/icons/aura.svg";
+import { ReactComponent as BeethovenxIcon } from "../../assets/icons/beethovenx.svg";
+import { ReactComponent as saddleIcon } from "../../assets/icons/saddle.svg";
 import { ReactComponent as ProAvaeIcon } from "../../assets/icons/pro-aave.svg";
 import { ReactComponent as CurveIcon } from "../../assets/icons/crv.svg";
-// import { ReactComponent as ConvexIcon } from "../../assets/icons/convex.svg";
 import { ReactComponent as BalancerIcon } from "../../assets/icons/bal.svg";
 import { ReactComponent as ProQiIcon } from "../../assets/icons/pro-qidao.svg";
-// import { ReactComponent as ProVesqIcon } from "../../assets/icons/vesq.svg";
 import { ReactComponent as ProFraxIcon } from "../../assets/icons/pro-frax.svg";
 import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
 import { ReactComponent as MirrorIcon } from "../../assets/icons/mirror.svg";
 import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
+import { ReactComponent as ETHIcon } from "../../assets/chains/eth.svg";
+import { ReactComponent as OPIcon } from "../../assets/chains/optimism.svg";
+import { ReactComponent as ARBIcon } from "../../assets/chains/arbitrum.svg";
+import { ReactComponent as POLIcon } from "../../assets/chains/polygon.svg";
+import { ReactComponent as FANTOMIcon } from "../../assets/chains/fantom.svg";
+import { ReactComponent as AVAXIcon } from "../../assets/chains/avax.svg";
+import { ReactComponent as BSCIcon } from "../../assets/chains/bsc.svg";
 import Logo from "../../assets/icons/logo.svg";
 import styles from "./styles.module.scss";
+import './sidebarItem-Menu.scss';
 import { colors } from "../../common";
 import switchNetwork from "../header/switchchain";
 import { useSelector } from "../../redux/store";
 import { RootState } from "../../redux/store";
+import { FlashOnRounded } from "@mui/icons-material";
 
 type Props = {};
 
@@ -56,6 +68,12 @@ const SidebarMenu = (props: Props) => {
         return ChartIcon;
       case "pro-aave":
         return ProAvaeIcon;
+      case "aura":
+        return AuraIcon;
+      case "beethovenx":
+        return BeethovenxIcon;
+      case "saddle":
+        return saddleIcon;
       case "pro-frax":
         return ProFraxIcon;
       case "curve":
@@ -76,7 +94,20 @@ const SidebarMenu = (props: Props) => {
         return MirrorIcon;
       case "docs":
         return DocsIcon;
-
+      case "eth":
+        return ETHIcon;
+      case "opm":
+        return OPIcon;
+      case "arb":
+        return ARBIcon;
+      case "pol":
+        return POLIcon;
+      case "fantom":
+        return FANTOMIcon;
+      case "avax":
+        return AVAXIcon;
+      case "bsc":
+        return BSCIcon;
       default:
         break;
     }
@@ -88,138 +119,192 @@ const SidebarMenu = (props: Props) => {
       icon: "gauge",
       text: "Dashboard",
       href: "/",
+      type: "in"
     },
     {
       icon: "wall",
       text: "Wall",
       href: "/wall",
+      separator: true,
+      type: "in"
     },
     {
-      icon: "",
+      icon: "eth",
       text: "Ethereum",
       href: "#",
-      disabled: true,
-    },
-    {
-      icon: "pro-qidao",
-      text: "QiDAO",
       chain: 1,
-      href: "/proposal/qidao",
+      type: "chain",
+      child: [
+        {
+          icon: "pro-qidao",
+          text: "QiDAO",
+          chain: 1,
+          href: "/proposal/qidao",
+        },
+        {
+          icon: "aura",
+          text: "Aura",
+          chain: 1,
+          href: "/proposal/aura",
+        },
+        {
+          icon: "saddle",
+          text: "Saddle",
+          chain: 1,
+          href: "/proposal/saddle",
+        },
+        {
+          icon: "pro-aave",
+          text: "Aave",
+          chain: 1,
+          href: "/proposal/aave",
+        },
+      ]
     },
     {
-      icon: "",
+      icon: "opm",
       text: "Optimism",
       href: "#",
-      disabled: true,
-    },
-    {
-      icon: "pro-qidao",
-      text: "QiDAO",
       chain: 10,
-      href: "/proposal/qidao",
+      type: "chain",
+      child: [
+        {
+          icon: "pro-qidao",
+          text: "QiDAO",
+          chain: 10,
+          href: "/proposal/qidao",
+        },
+        {
+          icon: "pro-aave",
+          text: "Aave",
+          chain: 10,
+          href: "/proposal/aave",
+        },
+      ]
     },
     {
-      icon: "",
+      icon: "arb",
       text: "Arbitrum",
       href: "#",
-      disabled: true,
-    },
-    {
-      icon: "pro-qidao",
-      text: "QiDAO",
       chain: 42161,
-      href: "/proposal/qidao",
+      type: "chain",
+      child: [
+        {
+          icon: "pro-qidao",
+          text: "QiDAO",
+          chain: 42161,
+          href: "/proposal/qidao",
+        },
+        {
+          icon: "pro-aave",
+          text: "Aave",
+          chain: 42161,
+          href: "/proposal/aave",
+        },
+      ]
     },
     {
-      icon: "",
+      icon: "pol",
       text: "Polygon",
       href: "#",
-      disabled: true,
-    },
-    {
-      icon: "pro-qidao",
-      text: "QiDAO",
       chain: 137,
-      href: "/proposal/qidao",
+      type: "chain",
+      child: [
+        {
+          icon: "pro-qidao",
+          text: "QiDAO",
+          chain: 137,
+          href: "/proposal/qidao",
+        },
+        {
+          icon: "pro-aave",
+          text: "Aave",
+          chain: 137,
+          href: "/proposal/aave",
+        },
+      ]
     },
     {
-      icon: "",
+      icon: "fantom",
       text: "Fantom",
       href: "#",
-      disabled: true,
-    },
-    {
-      icon: "pro-qidao",
       chain: 250,
-      text: "QiDAO",
-      href: "/proposal/qidao",
+      type: "chain",
+      child: [
+        {
+          icon: "pro-qidao",
+          text: "QiDAO",
+          chain: 250,
+          href: "/proposal/qidao",
+        },
+        {
+          icon: "beethovenx",
+          text: "Beethovenx",
+          chain: 250,
+          href: "/proposal/aave",
+        },
+        {
+          icon: "pro-aave",
+          text: "Aave",
+          chain: 250,
+          href: "/proposal/aave",
+        },
+      ]
     },
     {
-      icon: "",
+      icon: "avax",
       text: "Avalanche",
       href: "#",
-      disabled: true,
-    },
-    {
-      icon: "pro-qidao",
-      text: "QiDAO",
       chain: 43114,
-      href: "/proposal/qidao",
+      type: "chain",
+      child: [
+        {
+          icon: "pro-qidao",
+          text: "QiDAO",
+          chain: 43114,
+          href: "/proposal/qidao",
+        },
+        {
+          icon: "pro-aave",
+          text: "Aave",
+          chain: 43114,
+          href: "/proposal/aave",
+        },
+      ]
     },
     {
-      icon: "",
+      icon: "bsc",
       text: "Binance",
       href: "#",
-      disabled: true,
-    },
-    {
-      icon: "pro-qidao",
-      text: "QiDAO",
       chain: 56,
-      href: "/proposal/qidao",
+      type: "chain",
+      child: [],
+      childtype: true
     },
-    // {
-    //   icon: "pro-aave",
-    //   text: "Aave",
-    //   href: "/proposal/aave",
-    //   separator: true,
-    // // },
-    // {
-    //   icon: "",
-    //   text: "Mumbai",
-    //   href: "#",
-    //   disabled: true
-    // },
-    // {
-    //   icon: "pro-vesq",
-    //   text: "Vesq",
-    //   chain: 137,
-    //   href: "/proposal/vesq",
-    //   separator: true,
-    // },
     {
       icon: "twitter",
       text: "Twitter",
       href: "https://twitter.com/0xLobbyist",
-      out: true,
+      type: "out",
+      separator: true
     },
     {
       icon: "discord",
       text: "Discord",
       href: "https://discord.com/invite/kEfvQZSPUk",
-      out: true,
+      type: "out",
     },
     {
       icon: "mirror",
       text: "Mirror",
       href: "https://mirror.xyz/0xa0a8aE81215644cC7cB1d8d2a06ce8B0F2887E29",
-      out: true,
+      type: "out",
     },
     {
       icon: "docs",
       text: "Docs",
       href: "https://vlabs-1.gitbook.io/lobbyist/",
-      out: true,
+      type: "out",
     },
   ];
 
@@ -233,6 +318,41 @@ const SidebarMenu = (props: Props) => {
   let pathNameProtocol = "";
   if (isNew) {
     pathNameProtocol = ["", pathNameArr[1], pathNameArr[3]].join("/");
+  }
+
+  const [ChainMenuState, SetChainMenuState] = useState(
+    [
+      { id: 1, state: false },
+      { id: 10, state: false },
+      { id: 56, state: false },
+      { id: 137, state: false },
+      { id: 250, state: false },
+      { id: 42161, state: false },
+      { id: 43114, state: false }
+    ]
+  )
+  const OpenChainMenu = (item: MenuLink, index: Number) => {
+    let menustate = ChainMenuState.map((menuitem, index) => { return { id: menuitem.id, state: menuitem.id === item.chain ? !menuitem.state : false }; }, []);
+    SetChainMenuState(menustate);
+  }
+
+  const GetMenuState = (chain: any) => {
+    let stateItem = ChainMenuState.find((item) => { return item.id === chain ? true : false });
+    return stateItem?.state;
+  }
+
+  const setInitChild = () => {
+    SetChainMenuState(
+      [
+        { id: 1, state: false },
+        { id: 10, state: false },
+        { id: 56, state: false },
+        { id: 137, state: false },
+        { id: 250, state: false },
+        { id: 42161, state: false },
+        { id: 43114, state: false }
+      ]
+    )
   }
 
   return (
@@ -277,7 +397,7 @@ const SidebarMenu = (props: Props) => {
         </button>
         <Box
           className={classNames(
-            "flex flex-col-header pt-8",
+            "flex flex-col-header pt-8 w-full",
             styles.menu,
             isMobile && styles.menuMobile
           )}
@@ -289,93 +409,172 @@ const SidebarMenu = (props: Props) => {
                 0 === pathNameProtocol.indexOf(link.href)) ||
               (pathname.length === 1 && pathname === link.href);
             const linkColor = isSelected ? colors.tealLight : colors.white;
+
             return (
               <Box
                 key={`lnk_${idx}`}
-                className={link.disabled ? "relative" : ""}
+                className={`${link.type ? "relative" : ""}`}
               >
-                {link.disabled ? (
-                  <><Divider className="!my-4" />
-                    <div
-                      style={{ color: "gray" }}
-                      className="!p-0 mlg:!justify-start !py-4 text-xl"
+                {link.type == "chain" ? (
+                  <>
+                    <button
+                      key={`lnk_${idx}`}
+                      className={`${classNames("py-4 flex")}`}
+                      onClick={() => { OpenChainMenu(link, idx) }}
                     >
-                      {link.text}
-                    </div>
+                      <Box
+                        component="span"
+                        className={classNames("flex gap-2 items-center")}
+                      >
+                        <Box
+                          component="span"
+                          className={classNames(
+                            "w-8 h-8 hidden mlg:flex items-center justify-center",
+                            styles.menuIcon
+                          )}
+                        >
+                          <SvgIcon
+                            width="30"
+                            component={getIcon(link.icon)}
+                            viewBox="0 0 31 31"
+                          />
+                        </Box>
+                        <Typography
+                          className={classNames(
+                            "mlg:items-center",
+                            styles.menuText
+                          )}
+                          variant="subtitle2"
+                        >
+                          {link.text}
+                        </Typography>
+                      </Box>
+                    </button>
+                    {
+                      GetMenuState(link.chain) ? !link.childtype ?
+                        <Box className={`sidebarItem-MenuChain ${ChainMenuState}`}>
+                          {
+                            link.child?.map((children, Idx) => {
+                              return (
+                                <Link
+                                  onClick={() => { setInitChild(); switchNetwork(`${link.chain}`, library, chain) }}
+                                  key={`lnk_${Idx}`}
+                                  to={children.href}
+                                  color={linkColor}
+                                  className={classNames("py-4 flex")}
+                                >
+                                  <Box
+                                    component="span"
+                                    className={classNames("flex gap-2 items-center")}
+                                  >
+                                    <Box
+                                      component="span"
+                                      className={classNames(
+                                        "w-8 h-8 hidden mlg:flex items-center justify-center",
+                                        styles.menuIcon
+                                      )}
+                                    >
+                                      <SvgIcon
+                                        component={getIcon(children.icon)}
+                                        viewBox="0 0 31 31"
+                                      />
+                                    </Box>
+                                    <Typography
+                                      className={classNames(
+                                        "mlg:items-center",
+                                        styles.menuText
+                                      )}
+                                      variant="subtitle2"
+                                    >
+                                      {children.text}
+                                    </Typography>
+                                  </Box>
+                                </Link>
+                              )
+                            })
+                          }
+                        </Box>
+                        : '' : ""
+                    }
                   </>
-                ) : link.out ? (
-                  <a
-                    key={`lnk_${idx}`}
-                    href={link.href}
-                    color={linkColor}
-                    className={classNames("py-4 flex")}
-                    target="_blank"
-                    onClick={() => switchNetwork(`${link.chain}`, library, chain)}
-                  >
-                    <Box
-                      component="span"
-                      className={classNames("flex gap-2 items-center")}
+                ) : link.type == "out" ? (
+                  <>
+                    {link.separator ? <Divider className="!my-4" /> : ""}
+                    <a
+                      key={`lnk_${idx}`}
+                      href={link.href}
+                      color={linkColor}
+                      className={classNames("py-4 flex")}
+                      target="_blank"
+                      onClick={() => switchNetwork(`${link.chain}`, library, chain)}
                     >
                       <Box
                         component="span"
-                        className={classNames(
-                          "w-8 h-8 hidden mlg:flex items-center justify-center",
-                          styles.menuIcon
-                        )}
+                        className={classNames("flex gap-2 items-center")}
                       >
-                        <SvgIcon
-                          component={getIcon(link.icon)}
-                          viewBox="0 0 31 31"
-                        />
+                        <Box
+                          component="span"
+                          className={classNames(
+                            "w-8 h-8 hidden mlg:flex items-center justify-center",
+                            styles.menuIcon
+                          )}
+                        >
+                          <SvgIcon
+                            component={getIcon(link.icon)}
+                            viewBox="0 0 31 31"
+                          />
+                        </Box>
+                        <Typography
+                          className={classNames(
+                            "mlg:items-center",
+                            styles.menuText
+                          )}
+                          variant="subtitle2"
+                        >
+                          {link.text}
+                        </Typography>
                       </Box>
-                      <Typography
-                        className={classNames(
-                          "mlg:items-center",
-                          styles.menuText
-                        )}
-                        variant="subtitle2"
-                      >
-                        {link.text}
-                      </Typography>
-                    </Box>
-                  </a>
-                ) : (
-                  <Link
-                    key={`lnk_${idx}`}
-                    to={link.href}
-                    color={linkColor}
-                    className={classNames("py-4 flex")}
-                    onClick={(event: any) => { switchNetwork(`${link.chain}`, library, chain) }}
-                  >
-                    <Box
-                      component="span"
-                      className={classNames("flex gap-2 items-center")}
+                    </a>
+                  </>
+                ) : link.type == "in" ? (
+                  <>
+                    <Link
+                      key={`lnk_${idx}`}
+                      to={link.href}
+                      color={linkColor}
+                      className={classNames("py-4 flex")}
                     >
                       <Box
                         component="span"
-                        className={classNames(
-                          "w-8 h-8 hidden mlg:flex items-center justify-center",
-                          styles.menuIcon
-                        )}
+                        className={classNames("flex gap-2 items-center")}
                       >
-                        <SvgIcon
-                          component={getIcon(link.icon)}
-                          viewBox="0 0 31 31"
-                        />
+                        <Box
+                          component="span"
+                          className={classNames(
+                            "w-8 h-8 hidden mlg:flex items-center justify-center",
+                            styles.menuIcon
+                          )}
+                        >
+                          <SvgIcon
+                            component={getIcon(link.icon)}
+                            viewBox="0 0 31 31"
+                          />
+                        </Box>
+                        <Typography
+                          className={classNames(
+                            "mlg:items-center",
+                            styles.menuText
+                          )}
+                          variant="subtitle2"
+                        >
+                          {link.text}
+                        </Typography>
                       </Box>
-                      <Typography
-                        className={classNames(
-                          "mlg:items-center",
-                          styles.menuText
-                        )}
-                        variant="subtitle2"
-                      >
-                        {link.text}
-                      </Typography>
-                    </Box>
-                  </Link>
-                )}
-                {link.separator && <Divider className="!my-4" />}
+                    </Link>
+                    {link.separator ? <Divider className="!my-4" /> : ""}
+
+                  </>
+                ) : ""}
               </Box>
             );
           })}

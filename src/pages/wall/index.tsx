@@ -19,7 +19,8 @@ const Wall = () => {
         var search: Proposal[] = proposals?.filter(
             (proposal: any) => proposal.chain == sort || sort == ""
         );
-        var sortedProposal: Proposal[] = search.filter(
+        console.log(proposals);
+        var sortedProposal: Proposal[] = search?.filter(
             (proposal: any) => proposal.type == protocol || protocol == ""
         )
         setSortProposal(sortedProposal);
@@ -52,8 +53,11 @@ const Wall = () => {
                     <select className="wall-select" onChange={(e) => selectProtocol(e.target.value)}>
                         <option value={""}>All</option>
                         {/* <option value={"vesq"}>VESQ</option> */}
-                        <option value={"qidao"}>QIDAO</option>
-                        <option value={"aave"}>AAVE</option>
+                        <option value={"qidao"}>QiDAO</option>
+                        <option value={"aave"}>Aave</option>
+                        <option value={"aura"}>Aura</option>
+                        <option value={"beethovenx"}>Beethovenx</option>
+                        <option value={"saddle"}>Saddle</option>
                     </select>
                 </div>
             </div>

@@ -441,7 +441,7 @@ const Tokens: any =
         {
             "value": 0,
             "display": "WETH",
-            "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+            "address": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
             "token": "../../../../assets/tokens/eth.svg",
             "api": "ethereum"
         },

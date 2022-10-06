@@ -8,6 +8,9 @@ import { ReactComponent as ProQidaoIcon } from "../../assets/icons/pro-qidao.svg
 import { ReactComponent as ProAaveIcon } from "../../assets/icons/pro-aave.svg";
 import { ReactComponent as ProVesqIcon } from "../../assets/icons/vesq.svg";
 import { ReactComponent as ProWallIcon } from "../../assets/icons/wall.svg";
+import { ReactComponent as AuraIcon } from "../../assets/icons/aura.svg";
+import { ReactComponent as BeethovenxIcon } from "../../assets/icons/beethovenx.svg";
+import { ReactComponent as SaddleIcon } from "../../assets/icons/saddle.svg";
 // import { ReactComponent as ConvexIcon } from "../../assets/icons/convex.svg";
 import { EnumProtocolName } from "../../@types/protocol";
 import styles from "./styles.module.scss";
@@ -29,18 +32,21 @@ const HeaderLeft = (props: Props) => {
   if (symbol) {
     title = EnumProtocolName[symbol as keyof typeof EnumProtocolName];
     switch (title) {
-      // case EnumProtocolName.convex:
-      //   TitleIcon = ConvexIcon;
-      //   break;
+      case EnumProtocolName.aura:
+        TitleIcon = AuraIcon;
+        break;
       case EnumProtocolName.qidao:
         TitleIcon = ProQidaoIcon;
         break;
       case EnumProtocolName.aave:
         TitleIcon = ProAaveIcon;
         break;
-      // case EnumProtocolName.vesq:
-      //   TitleIcon = ProVesqIcon;
-      //   break;
+      case EnumProtocolName.beethovenx:
+        TitleIcon = BeethovenxIcon;
+        break;
+      case EnumProtocolName.saddle:
+        TitleIcon = SaddleIcon;
+        break;
       default:
         break;
     }
