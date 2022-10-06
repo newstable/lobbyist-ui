@@ -8,7 +8,7 @@ interface chainChild {
 }
 
 export interface MenuLink {
-  icon: string;
+  icon: any;
   text: string;
   href: string;
   chain?: number;

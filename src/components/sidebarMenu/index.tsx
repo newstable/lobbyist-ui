@@ -23,13 +23,13 @@ import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
 import { ReactComponent as MirrorIcon } from "../../assets/icons/mirror.svg";
 import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
-import { ReactComponent as ETHIcon } from "../../assets/chains/eth.svg";
-import { ReactComponent as OPIcon } from "../../assets/chains/optimism.svg";
-import { ReactComponent as ARBIcon } from "../../assets/chains/arbitrum.svg";
-import { ReactComponent as POLIcon } from "../../assets/chains/polygon.svg";
-import { ReactComponent as FANTOMIcon } from "../../assets/chains/fantom.svg";
-import { ReactComponent as AVAXIcon } from "../../assets/chains/avax.svg";
-import { ReactComponent as BSCIcon } from "../../assets/chains/bsc.svg";
+import ETHIcon from "../../assets/chains/eth.svg";
+import OPIcon from "../../assets/chains/optimism.png";
+import ARBIcon from "../../assets/chains/arbitrum.svg";
+import POLIcon from "../../assets/chains/polygon.svg";
+import FANTOMIcon from "../../assets/chains/fantom.png";
+import AVAXIcon from "../../assets/chains/avax.png";
+import BSCIcon from "../../assets/chains/bsc.png";
 import Logo from "../../assets/icons/logo.svg";
 import styles from "./styles.module.scss";
 import './sidebarItem-Menu.scss';
@@ -94,20 +94,20 @@ const SidebarMenu = (props: Props) => {
         return MirrorIcon;
       case "docs":
         return DocsIcon;
-      case "eth":
-        return ETHIcon;
-      case "opm":
-        return OPIcon;
-      case "arb":
-        return ARBIcon;
-      case "pol":
-        return POLIcon;
-      case "fantom":
-        return FANTOMIcon;
-      case "avax":
-        return AVAXIcon;
-      case "bsc":
-        return BSCIcon;
+      // case "eth":
+      //   return ETHIcon;
+      // case "opm":
+      //   return OPIcon;
+      // case "arb":
+      //   return ARBIcon;
+      // case "pol":
+      //   return POLIcon;
+      // case "fantom":
+      //   return FANTOMIcon;
+      // case "avax":
+      //   return AVAXIcon;
+      // case "bsc":
+      //   return BSCIcon;
       default:
         break;
     }
@@ -129,7 +129,7 @@ const SidebarMenu = (props: Props) => {
       type: "in"
     },
     {
-      icon: "eth",
+      icon: ETHIcon,
       text: "Ethereum",
       href: "#",
       chain: 1,
@@ -162,7 +162,7 @@ const SidebarMenu = (props: Props) => {
       ]
     },
     {
-      icon: "opm",
+      icon: OPIcon,
       text: "Optimism",
       href: "#",
       chain: 10,
@@ -183,7 +183,7 @@ const SidebarMenu = (props: Props) => {
       ]
     },
     {
-      icon: "arb",
+      icon: ARBIcon,
       text: "Arbitrum",
       href: "#",
       chain: 42161,
@@ -204,7 +204,7 @@ const SidebarMenu = (props: Props) => {
       ]
     },
     {
-      icon: "pol",
+      icon: POLIcon,
       text: "Polygon",
       href: "#",
       chain: 137,
@@ -225,7 +225,7 @@ const SidebarMenu = (props: Props) => {
       ]
     },
     {
-      icon: "fantom",
+      icon: FANTOMIcon,
       text: "Fantom",
       href: "#",
       chain: 250,
@@ -252,7 +252,7 @@ const SidebarMenu = (props: Props) => {
       ]
     },
     {
-      icon: "avax",
+      icon: AVAXIcon,
       text: "Avalanche",
       href: "#",
       chain: 43114,
@@ -273,7 +273,7 @@ const SidebarMenu = (props: Props) => {
       ]
     },
     {
-      icon: "bsc",
+      icon: BSCIcon,
       text: "Binance",
       href: "#",
       chain: 56,
@@ -433,10 +433,9 @@ const SidebarMenu = (props: Props) => {
                             styles.menuIcon
                           )}
                         >
-                          <SvgIcon
+                          <img
                             width="30"
-                            component={getIcon(link.icon)}
-                            viewBox="0 0 31 31"
+                            src={link.icon}
                           />
                         </Box>
                         <Typography
