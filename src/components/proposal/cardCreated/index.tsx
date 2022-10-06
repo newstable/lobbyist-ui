@@ -38,7 +38,7 @@ const Text_Head = styled(TextHead)(({ theme }) => ({
 const ProposalCardCreated = (props: Props) => {
   const { proposals, address } = props
   let { symbol } = useParams();
-  const colHeads = ["Title", "Voting For", "Vote Incentives", "Total Votes", "$/Vote", "Chain", ""];
+  const colHeads = ["Title", "Voting For", "Rewards", "Votes", "$/Vote", "Chain", ""];
   const navigate = useNavigate();
   const onJoinClick = (proposal: Proposal) => {
     const path = proposal.address !== address ? "proposal/" + proposal.type + "/vote" : "proposal/" + proposal.type + "/vote?proposer=1";
@@ -76,6 +76,14 @@ const ProposalCardCreated = (props: Props) => {
                       isAboveMd ? "grid-cols-7" : "grid-cols-2"
                     )}
                   >
+                    <Box
+                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                    >
+                      <Text_Head className={classNames(isAboveMd && "hidden")}>
+                        {colHeads[5]}
+                      </Text_Head>
+                      <img width="40" src={ChainImg[p.chain]}></img>
+                    </Box>
                     <Box
                       className={classNames("flex flex-col", !isAboveMd && "gap-1")}
                     >
@@ -120,14 +128,6 @@ const ProposalCardCreated = (props: Props) => {
                       <TextContent>${p.totalVoteWeight == 0 ? ("0") : (
                         NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6)
                       )}</TextContent>
-                    </Box>
-                    <Box
-                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
-                    >
-                      <Text_Head className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[5]}
-                      </Text_Head>
-                      <img width="40" src={ChainImg[p.chain]}></img>
                     </Box>
                     <Box
                       className={classNames("flex", isAboveMd && "justify-center")}

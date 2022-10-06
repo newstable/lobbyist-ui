@@ -36,22 +36,28 @@ import { Chainscan } from "../../chainscan";
 
 const itemsList = [
     {
-        name: "Polygon",
-        id: "137",
-        img: "../../../../assets/chains/polygon.svg",
-        color: "#472481"
-    },
-    {
         name: "Ethereum",
         id: "1",
         img: "../../../../assets/chains/eth.svg",
         color: "#8C8C8C"
     },
     {
-        name: "Binance",
-        id: "56",
-        img: "../../../../assets/chains/bsc.png",
-        color: "#A07B06"
+        name: "Optimism",
+        id: "10",
+        img: "../../../../assets/chains/optimism.png",
+        color: "#A20214"
+    },
+    {
+        name: "Arbitrum",
+        id: "42161",
+        img: "../../../../assets/chains/arbitrum.svg",
+        color: "#5F6779"
+    },
+    {
+        name: "Polygon",
+        id: "137",
+        img: "../../../../assets/chains/polygon.svg",
+        color: "#472481"
     },
     {
         name: "Fantom",
@@ -66,16 +72,10 @@ const itemsList = [
         color: "#9B2A2A"
     },
     {
-        name: "Optimism",
-        id: "10",
-        img: "../../../../assets/chains/optimism.png",
-        color: "#A20214"
-    },
-    {
-        name: "Arbitrum",
-        id: "42161",
-        img: "../../../../assets/chains/arbitrum.svg",
-        color: "#5F6779"
+        name: "Binance",
+        id: "56",
+        img: "../../../../assets/chains/bsc.png",
+        color: "#A07B06"
     },
 ];
 

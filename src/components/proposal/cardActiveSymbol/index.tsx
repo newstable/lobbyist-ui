@@ -100,7 +100,7 @@ const ProposalCardActiveSymbol = ({
                 </Box>
                 <Box
                     className={classNames(
-                        "grid grid-cols-6 gap-8 px-6 mb-8",
+                        "grid grid-cols-custom-6 gap-8 px-6 mb-8",
                         !isAboveMd && "hidden"
                     )}
                 >
@@ -120,7 +120,8 @@ const ProposalCardActiveSymbol = ({
                                             <Box
                                                 className={classNames(
                                                     "grid gap-8",
-                                                    isAboveMd ? "grid-cols-6 items-center" : "grid-cols-2"
+                                                    isAboveMd ? "grid-cols-custom-6 items-center" : "grid-cols-2",
+                                                    idx == 0 ? "" : ""
                                                 )}
                                             >
                                                 <Box
@@ -147,7 +148,9 @@ const ProposalCardActiveSymbol = ({
                                                     <TextHead className={classNames(isAboveMd && "hidden")}>
                                                         {colHeads[1]}
                                                     </TextHead>
-                                                    <TextContent>{p.protocol}</TextContent>
+                                                    <TextContent>{p.protocol.length > 20
+                                                        ? p.protocol.slice(0, 20) + "..."
+                                                        : p.protocol}</TextContent>
                                                 </Box>
                                                 <Box
                                                     className={classNames(

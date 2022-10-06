@@ -1,4 +1,4 @@
-import { Card, CardContent, Box } from "@mui/material";
+import { Card, CardContent, Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Proposal } from "../../../@types/proposal";
 import { TextContent, TextHead } from "../../text";
@@ -30,25 +30,25 @@ const ProposalCardVaultEmission = ({ proposal }: Props) => {
           ))}
         </Box>
         <Box className="grid grid-cols-2 gap-8">
-          <TextContent>
+          <Typography variant="subtitle1">
             ${NumberType(proposal.usdAmount.toFixed(2), 2)}
-          </TextContent>
-          <TextContent>
+          </Typography>
+          <Typography variant="subtitle1">
             {proposal.totalVoteWeight == 0
               ? 0
               : "$" +
-                NumberType(
-                  (proposal.usdAmount / proposal.totalVoteWeight).toFixed(6),
-                  6
-                )}
-          </TextContent>
+              NumberType(
+                (proposal.usdAmount / proposal.totalVoteWeight).toFixed(6),
+                6
+              )}
+          </Typography>
         </Box>
         <Box className="grid grid-cols-2 gap-8" style={{ color: "#3a78ff" }}>
-          <TextContent>
+          <Typography variant="subtitle1">
             {NumberType(proposal.reward.toFixed(2), 2) +
               " " +
               rewardCurrency[0].display}
-          </TextContent>
+          </Typography>
         </Box>
       </Content>
     </Card>

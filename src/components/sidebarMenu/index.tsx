@@ -7,6 +7,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useLocation } from "react-router-dom";
 import { MenuLink } from "../../@types";
 import { ReactComponent as GaugeIcon } from "../../assets/icons/gauge.svg";
+import { ReactComponent as WallIcon } from "../../assets/icons/wall.svg";
 import { ReactComponent as ChartIcon } from "../../assets/icons/chart.svg";
 import { ReactComponent as ProAvaeIcon } from "../../assets/icons/pro-aave.svg";
 import { ReactComponent as CurveIcon } from "../../assets/icons/crv.svg";
@@ -49,6 +50,8 @@ const SidebarMenu = (props: Props) => {
     switch (iconName) {
       case "gauge":
         return GaugeIcon;
+      case "wall":
+        return WallIcon;
       case "chart":
         return ChartIcon;
       case "pro-aave":
@@ -87,68 +90,20 @@ const SidebarMenu = (props: Props) => {
       href: "/",
     },
     {
-      icon: "gauge",
+      icon: "wall",
       text: "Wall",
       href: "/wall",
     },
     {
       icon: "",
-      text: "Polygon",
+      text: "Ethereum",
       href: "#",
       disabled: true,
     },
     {
       icon: "pro-qidao",
       text: "QiDAO",
-      chain: 137,
-      href: "/proposal/qidao",
-    },
-    {
-      icon: "",
-      text: "Avalanche",
-      href: "#",
-      disabled: true,
-    },
-    {
-      icon: "pro-qidao",
-      text: "QiDAO",
-      chain: 43114,
-      href: "/proposal/qidao",
-    },
-    {
-      icon: "",
-      text: "Fantom",
-      href: "#",
-      disabled: true,
-    },
-    {
-      icon: "pro-qidao",
-      chain: 250,
-      text: "QiDAO",
-      href: "/proposal/qidao",
-    },
-    {
-      icon: "",
-      text: "Binance",
-      href: "#",
-      disabled: true,
-    },
-    {
-      icon: "pro-qidao",
-      text: "QiDAO",
-      chain: 56,
-      href: "/proposal/qidao",
-    },
-    {
-      icon: "",
-      text: "Arbitrum",
-      href: "#",
-      disabled: true,
-    },
-    {
-      icon: "pro-qidao",
-      text: "QiDAO",
-      chain: 42161,
+      chain: 1,
       href: "/proposal/qidao",
     },
     {
@@ -165,14 +120,62 @@ const SidebarMenu = (props: Props) => {
     },
     {
       icon: "",
-      text: "Ethereum",
+      text: "Arbitrum",
       href: "#",
       disabled: true,
     },
     {
       icon: "pro-qidao",
       text: "QiDAO",
-      chain: 1,
+      chain: 42161,
+      href: "/proposal/qidao",
+    },
+    {
+      icon: "",
+      text: "Polygon",
+      href: "#",
+      disabled: true,
+    },
+    {
+      icon: "pro-qidao",
+      text: "QiDAO",
+      chain: 137,
+      href: "/proposal/qidao",
+    },
+    {
+      icon: "",
+      text: "Fantom",
+      href: "#",
+      disabled: true,
+    },
+    {
+      icon: "pro-qidao",
+      chain: 250,
+      text: "QiDAO",
+      href: "/proposal/qidao",
+    },
+    {
+      icon: "",
+      text: "Avalanche",
+      href: "#",
+      disabled: true,
+    },
+    {
+      icon: "pro-qidao",
+      text: "QiDAO",
+      chain: 43114,
+      href: "/proposal/qidao",
+    },
+    {
+      icon: "",
+      text: "Binance",
+      href: "#",
+      disabled: true,
+    },
+    {
+      icon: "pro-qidao",
+      text: "QiDAO",
+      chain: 56,
       href: "/proposal/qidao",
     },
     // {

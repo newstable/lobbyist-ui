@@ -30,8 +30,8 @@ const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }:
           ))}
         </Box>
         <Box className="grid grid-cols-2 gap-8">
-          <TextContent>${proposal.totalVoteWeight > 0 ? proposal.myvoteAmount ? NumberType((proposal.usdAmount / proposal.totalVoteWeight * proposal.myvoteAmount).toFixed(2), 2) : 0 : 0}</TextContent>
-          <TextContent>{voteType != "single-choice" ? "100% for " + proposal.protocol : proposal.protocol}</TextContent>
+          <Typography variant="subtitle1">${proposal.totalVoteWeight > 0 ? proposal.myvoteAmount ? NumberType((proposal.usdAmount / proposal.totalVoteWeight * proposal.myvoteAmount).toFixed(2), 2) : 0 : 0}</Typography>
+          <Typography variant="subtitle1">{voteType != "single-choice" ? "100% for " + proposal.protocol : proposal.protocol}</Typography>
         </Box>
       </Content>
     </Card>

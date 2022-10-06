@@ -283,6 +283,14 @@ body.show-menu .app>.main {
     grid-template-columns: auto auto;
 }
 
+.grid-cols-custom-6 {
+    grid-template-columns: 200px 200px 170px 150px 100px auto
+}
+
+.grid-cols-custom-7 {
+    grid-template-columns: 50px 180px 170px 170px 150px 100px auto
+}
+
 .gap-8 {
     gap: 2rem;
     display: grid;
@@ -437,5 +445,11 @@ body.show-menu .app>.main {
 @media (max-width:612px) {
     .dp\:hidden {
         display: none;
+    }
+}
+
+@media (max-width:1350px) {
+    .grid-cols-custom-6 {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
     }
 }

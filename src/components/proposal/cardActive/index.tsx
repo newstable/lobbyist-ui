@@ -78,14 +78,14 @@ const ProposalCardActive = (props: Props) => {
 	}
 	const theme = useTheme();
 	const isAboveMd = useMediaQuery(theme.breakpoints.up("smd"));
-	const colHeads = ["Title", "Voting For", "Vote Incentives", "Total Votes", "$/Vote", "Chain", ""];
+	const colHeads = ["Title", "Voting For", "Rewards", "Votes", "$/Vote", "Chain", ""];
 	return (
 		<Card className="" elevation={0}>
 			<ProposalCardHeader title="My active proposals"></ProposalCardHeader>
 			<Content className="!p-0">
 				<Box
 					className={classNames(
-						"grid grid-cols-7 gap-8 px-6 mb-8 dp:hidden"
+						"grid grid-cols-custom-7 gap-8 px-6 mb-8 dp:hidden"
 					)}
 				>
 					{colHeads.map((c, idx) => (
@@ -101,9 +101,17 @@ const ProposalCardActive = (props: Props) => {
 								<Box
 									className={classNames(
 										"grid gap-8",
-										isAboveMd ? "grid-cols-7" : "grid-cols-2"
+										isAboveMd ? "grid-cols-custom-7" : "grid-cols-2"
 									)}
 								>
+									<Box
+										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+									>
+										<Text_Head className={classNames(isAboveMd && "hidden")}>
+											{colHeads[5]}
+										</Text_Head>
+										<img width="40" src={ChainImg[p.chain]}></img>
+									</Box>
 									<Box
 										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
 									>
@@ -148,14 +156,6 @@ const ProposalCardActive = (props: Props) => {
 										<TextContent>${p.totalVoteWeight == 0 ? ("0") : (
 											NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6)
 										)}</TextContent>
-									</Box>
-									<Box
-										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
-									>
-										<Text_Head className={classNames(isAboveMd && "hidden")}>
-											{colHeads[5]}
-										</Text_Head>
-										<img width="40" src={ChainImg[p.chain]}></img>
 									</Box>
 									<Box
 										className={classNames("flex", isAboveMd && "justify-center")}

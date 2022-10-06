@@ -1,1 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g fill="none" fill-rule="evenodd"><circle cx="16" cy="16" r="16" fill="#627EEA"/><g fill="#FFF" fill-rule="nonzero"><path fill-opacity=".602" d="M16.498 4v8.87l7.497 3.35z"/><path d="M16.498 4L9 16.22l7.498-3.35z"/><path fill-opacity=".602" d="M16.498 21.968v6.027L24 17.616z"/><path d="M16.498 27.995v-6.028L9 17.616z"/><path fill-opacity=".2" d="M16.498 20.573l7.497-4.353-7.497-3.348z"/><path fill-opacity=".602" d="M9 16.22l7.498 4.353v-7.701z"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="eth" transform="translate(-144 -64)">
+    <circle id="Ellipse_7" data-name="Ellipse 7" cx="16" cy="16" r="16" transform="translate(144 64)" fill="#eaeaea"/>
+    <g id="Layer_x0020_1" transform="translate(152.145 67.208)">
+      <g id="_1421394342400">
+        <g id="Group_2" data-name="Group 2">
+          <path id="Path_12" data-name="Path 12" d="M383.672,0,383.5.583V17.5l.172.171,7.853-4.642Z" transform="translate(-375.819)" fill="#343434"/>
+          <path id="Path_13" data-name="Path 13" d="M7.853,0,0,13.03l7.853,4.642V0Z" fill="#8c8c8c"/>
+          <path id="Path_14" data-name="Path 14" d="M387.337,729.529l-.1.118v6.026l.1.282,7.857-11.066Z" transform="translate(-379.484 -710.371)" fill="#3c3c3b"/>
+          <path id="Path_15" data-name="Path 15" d="M7.853,735.956v-6.427L0,724.89Z" transform="translate(0 -710.371)" fill="#8c8c8c"/>
+          <path id="Path_16" data-name="Path 16" d="M392.07,480.541l7.853-4.642-7.853-3.569Z" transform="translate(-384.217 -462.87)" fill="#141414"/>
+          <path id="Path_17" data-name="Path 17" d="M0,475.9l7.853,4.642V472.33Z" transform="translate(0 -462.87)" fill="#393939"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
