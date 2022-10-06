@@ -66,22 +66,6 @@ const SidebarMenu = (props: Props) => {
         return WallIcon;
       case "chart":
         return ChartIcon;
-      // case "pro-aave":
-      //   return ProAvaeIcon;
-      // case "aura":
-      //   return AuraIcon;
-      // case "beethovenx":
-      //   return BeethovenxIcon;
-      // case "saddle":
-      //   return saddleIcon;
-      // case "pro-frax":
-      //   return ProFraxIcon;
-      // case "curve":
-      //   return CurveIcon;
-      // case "balancer":
-      //   return BalancerIcon;
-      // case "pro-qidao":
-      //   return ProQiIcon;
       case "twitter":
         return TwitterIcon;
       case "discord":
@@ -90,20 +74,6 @@ const SidebarMenu = (props: Props) => {
         return MirrorIcon;
       case "docs":
         return DocsIcon;
-      // case "eth":
-      //   return ETHIcon;
-      // case "opm":
-      //   return OPIcon;
-      // case "arb":
-      //   return ARBIcon;
-      // case "pol":
-      //   return POLIcon;
-      // case "fantom":
-      //   return FANTOMIcon;
-      // case "avax":
-      //   return AVAXIcon;
-      // case "bsc":
-      //   return BSCIcon;
       default:
         break;
     }
@@ -274,8 +244,14 @@ const SidebarMenu = (props: Props) => {
       href: "#",
       chain: 56,
       type: "chain",
-      child: [],
-      childtype: true
+      child: [
+        {
+          icon: ProQiIcon,
+          text: "QiDAO",
+          chain: 56,
+          href: "/proposal/qidao",
+        },
+      ],
     },
     {
       icon: "twitter",
