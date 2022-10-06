@@ -14,11 +14,6 @@ import classNames from "classnames";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Proposal } from "../../../@types/proposal";
-import {
-    EnumProtocolName,
-    EnumProtocolSymbolName,
-    Protocol,
-} from "../../../@types/protocol";
 import { TextContent, TextHead } from "../../text";
 import { ProposalCardHeader } from "../cardHeader";
 import NumberType from "../../../common/number";

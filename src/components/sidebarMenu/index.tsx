@@ -241,7 +241,7 @@ const SidebarMenu = (props: Props) => {
           icon: "beethovenx",
           text: "Beethovenx",
           chain: 250,
-          href: "/proposal/beethovenx",
+          href: "/proposal/beethovenx"
         },
         {
           icon: "pro-aave",
