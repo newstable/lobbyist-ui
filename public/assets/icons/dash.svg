@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
+  <g id="dash" transform="translate(-2079 -580)">
+    <circle id="Ellipse_2" data-name="Ellipse 2" cx="22.5" cy="22.5" r="22.5" transform="translate(2079 580)" fill="#3a78ff"/>
+    <g id="gauge" transform="translate(2087.709 588.709)">
+      <path id="Path_10" data-name="Path 10" d="M15.624,29.164A13.541,13.541,0,1,0,2.083,15.624,13.541,13.541,0,0,0,15.624,29.164Z" transform="translate(-2.083 -2.083)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_11" data-name="Path 11" d="M2.083,22.5H4.792" transform="translate(-2.083 -8.959)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_12" data-name="Path 12" d="M8.05,8.076l2.119,2.119" transform="translate(-4.093 -4.101)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_13" data-name="Path 13" d="M22.5,2.083V4.792" transform="translate(-8.959 -2.083)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_14" data-name="Path 14" d="M41.542,22.5H38.833" transform="translate(-14.46 -8.959)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_15" data-name="Path 15" d="M35.874,8.076l-2.119,2.119" transform="translate(-12.75 -4.101)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_16" data-name="Path 16" d="M22.5,18.417v8.124" transform="translate(-8.959 -7.584)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_17" data-name="Path 17" d="M27.783,33.507a13.542,13.542,0,0,1-21.465,0A21.693,21.693,0,0,1,27.783,33.507Z" transform="translate(-3.509 -11.71)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>
