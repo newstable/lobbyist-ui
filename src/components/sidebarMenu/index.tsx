@@ -351,7 +351,7 @@ const SidebarMenu = (props: Props) => {
               styles.menuLogo
             )}
           >
-            <img src={Logo} width="90" alt="" />
+            <img src={Logo} width="40" alt="" />
           </Link>
         </Box>
         <button
