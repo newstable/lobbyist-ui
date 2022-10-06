@@ -48,10 +48,10 @@ const ProposalCardActiveSymbol = ({
     );
     const chain: any = useSelector((state: RootState) => state.chain.id);
     const colHeads = [
-        "Name",
+        "Title",
         "Voting For",
-        "Vote Incentive",
-        "Total Votes",
+        "Rewards",
+        "Votes",
         "$/Vote",
         "",
     ];
@@ -134,8 +134,8 @@ const ProposalCardActiveSymbol = ({
                                                         {colHeads[0]}
                                                     </TextHead>
                                                     <TextContent>
-                                                        {p.name.length > 20
-                                                            ? p.name.slice(0, 20) + "..."
+                                                        {p.name.length > 30
+                                                            ? p.name.slice(0, 30) + "..."
                                                             : p.name}
                                                     </TextContent>
                                                 </Box>
@@ -148,8 +148,8 @@ const ProposalCardActiveSymbol = ({
                                                     <TextHead className={classNames(isAboveMd && "hidden")}>
                                                         {colHeads[1]}
                                                     </TextHead>
-                                                    <TextContent>{p.protocol.length > 20
-                                                        ? p.protocol.slice(0, 20) + "..."
+                                                    <TextContent>{p.protocol.length > 30
+                                                        ? p.protocol.slice(0, 30) + "..."
                                                         : p.protocol}</TextContent>
                                                 </Box>
                                                 <Box
