@@ -452,4 +452,8 @@ body.show-menu .app>.main {
     .grid-cols-custom-6 {
         grid-template-columns: repeat(6, minmax(0, 1fr));
     }
+
+    .grid-cols-custom-7 {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
 }

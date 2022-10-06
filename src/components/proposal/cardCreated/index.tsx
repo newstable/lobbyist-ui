@@ -56,7 +56,7 @@ const ProposalCardCreated = (props: Props) => {
       <Content className="!p-0">
         <Box
           className={classNames(
-            "grid grid-cols-7 gap-8 px-6 mb-8 dp:hidden"
+            "grid grid-cols-custom-7 gap-8 px-6 mb-8 dp:hidden"
           )}
         >
           {colHeads.map((c, idx) => (
@@ -73,7 +73,7 @@ const ProposalCardCreated = (props: Props) => {
                   <Box
                     className={classNames(
                       "grid gap-8",
-                      isAboveMd ? "grid-cols-7" : "grid-cols-2"
+                      isAboveMd ? "grid-cols-custom-7" : "grid-cols-2"
                     )}
                   >
                     <Box
