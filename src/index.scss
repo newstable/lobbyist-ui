@@ -291,6 +291,12 @@ body.show-menu .app>.main {
     grid-template-columns: 40px 190px 190px 100px 150px 100px auto
 }
 
+.card-item {
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
 .gap-8 {
     gap: 2rem;
     display: grid;
@@ -400,6 +406,14 @@ body.show-menu .app>.main {
 
     .header-1 {
         margin: 10px 0 0 auto;
+    }
+}
+
+@media (max-width:630px) {
+    .card-item {
+        margin: 0;
+        align-items: inherit;
+
     }
 }
 

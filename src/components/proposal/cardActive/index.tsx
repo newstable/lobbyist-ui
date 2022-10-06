@@ -105,8 +105,7 @@ const ProposalCardActive = (props: Props) => {
 									)}
 								>
 									<Box
-										className={classNames("flex flex-col items-center", !isAboveMd && "gap-1")}
-										style={{ margin: "auto" }}
+										className={classNames("flex flex-col card-item", !isAboveMd && "gap-1")}
 									>
 										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[0]}
