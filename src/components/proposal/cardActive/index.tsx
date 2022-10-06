@@ -111,7 +111,7 @@ const ProposalCardActive = (props: Props) => {
 										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[0]}
 										</Text_Head>
-										<img width="30" src={ChainImg[p.chain]}></img>
+										<img width="23" src={ChainImg[p.chain]}></img>
 									</Box>
 									<Box
 										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
