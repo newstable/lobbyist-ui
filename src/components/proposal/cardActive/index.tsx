@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { NotificationManager } from 'react-notifications';
 import { useSelector } from "../../../redux/store";
 import { RootState } from "../../../redux/store";
+import switchNetwork from "../../header/switchchain";
 
 type Props = {
 	address: string;
@@ -45,6 +46,9 @@ const ProposalCardActive = (props: Props) => {
 	const provider: any = useSelector((state: RootState) => state.provider.provider);
 	const { address, proposals } = props;
 	const [myProposals, setMyProposals] = useState<Proposal[]>([]);
+	const currentChain: any = useSelector(
+		(state: RootState) => state.chain.id
+	);
 
 	useEffect(() => {
 		var data = proposals?.filter(proposal => proposal.myclaim == false);
@@ -61,11 +65,15 @@ const ProposalCardActive = (props: Props) => {
 	};
 	const onClaim = async (e: number, currency: string, chain: string) => {
 		let signer: any = provider?.getSigner();
-		var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer, chain: chain });
-		if (result.status) {
-			NotificationManager.success(result.message, "Success");
+		if (currentChain == chain) {
+			var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer, chain: chain });
+			if (result.status) {
+				NotificationManager.success(result.message, "Success");
+			} else {
+				NotificationManager.error(result.message, "Error");
+			}
 		} else {
-			NotificationManager.error(result.message, "Error");
+			switchNetwork(chain, provider, currentChain);
 		}
 	}
 	const theme = useTheme();
