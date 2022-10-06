@@ -96,15 +96,15 @@ const ProposalSymbolVote = (props: Props) => {
   const navState = location.state as any;
   let { proposal: currentProposal } = navState;
 
-  useEffect(() => {
-    try {
-      if (chainId != currentProposal.chain) {
-        switchNetwork(currentProposal.chain, provider, chainId);
-      }
-    } catch (error: any) {
-      console.log(error.message);
-    }
-  }, [currentProposal, chainId])
+  // useEffect(() => {
+  //   try {
+  //     if (chainId != currentProposal.chain) {
+  //       switchNetwork(currentProposal.chain, provider, chainId);
+  //     }
+  //   } catch (error: any) {
+  //     console.log(error.message);
+  //   }
+  // }, [currentProposal, chainId])
 
   useEffect(() => {
     var rewardCurrency = Tokens[currentProposal.chain].filter(

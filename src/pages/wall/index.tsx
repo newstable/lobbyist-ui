@@ -19,7 +19,6 @@ const Wall = () => {
         var search: Proposal[] = proposals?.filter(
             (proposal: any) => proposal.chain == sort || sort == ""
         );
-        console.log(proposals);
         var sortedProposal: Proposal[] = search?.filter(
             (proposal: any) => proposal.type == protocol || protocol == ""
         )

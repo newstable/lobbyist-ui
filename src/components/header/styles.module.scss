@@ -6,6 +6,7 @@
 
 .icon {
   @extend %topIcon;
+  background-color: transparent !important;
 
   &Gauge {
     color: main.$var-clr-white;

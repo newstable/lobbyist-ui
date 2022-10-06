@@ -44,8 +44,8 @@ const Item = (props: Props) => {
     return (
         <div className="item item-gap">
             <div className="flex justify-between">
-                <img width="30" src={ChainImg[proposal.chain]}></img>
                 <img width="30" src={ProtocolImg[proposal.type]}></img>
+                <img width="30" src={ChainImg[proposal.chain]}></img>
             </div>
             <h2 className="item-font-2">{proposal.name.length > 20 ? (proposal.name.slice(0, 20) + "...") : proposal.name}</h2>
             <div>

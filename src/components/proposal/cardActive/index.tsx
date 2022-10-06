@@ -32,7 +32,7 @@ const ChainImg: any = {
 	56: "../../assets/chains/bsc.png",
 	137: "../../assets/chains/polygon.svg",
 	250: "../../assets/chains/fantom.png",
-	42161: "../../assets/chains/arbitrum.png",
+	42161: "../../assets/chains/arbitrum.svg",
 	43114: "../../assets/chains/avax.png"
 }
 

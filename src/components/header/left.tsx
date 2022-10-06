@@ -87,6 +87,7 @@ const HeaderLeft = (props: Props) => {
         <SvgIcon
           className={styles.icon}
           component={TitleIcon}
+          style={{ width: "5rem" }}
           viewBox="0 0 31 31"
         />
       </Box>
