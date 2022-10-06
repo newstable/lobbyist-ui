@@ -90,7 +90,7 @@ const ProposalCardCreated = (props: Props) => {
                       <Text_Head className={classNames(isAboveMd && "hidden")}>
                         {colHeads[0]}
                       </Text_Head>
-                      <TextContent>{p.name.length > 20 ? (p.name.slice(0, 20) + "...") : p.name}</TextContent>
+                      <TextContent>{p.name.length > 25 ? (p.name.slice(0, 25) + "...") : p.name}</TextContent>
                     </Box>
                     <Box
                       className={classNames("flex flex-col", !isAboveMd && "gap-1")}
@@ -98,7 +98,7 @@ const ProposalCardCreated = (props: Props) => {
                       <Text_Head className={classNames(isAboveMd && "hidden")}>
                         {colHeads[1]}
                       </Text_Head>
-                      <TextContent>{p.protocol.length > 7 ? (p.protocol.slice(0, 7) + "...") : p.protocol}</TextContent>
+                      <TextContent>{p.protocol.length > 25 ? (p.protocol.slice(0, 25) + "...") : p.protocol}</TextContent>
                     </Box>
                     <Box
                       className={classNames("flex flex-col", !isAboveMd && "gap-1")}
