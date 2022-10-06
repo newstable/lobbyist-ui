@@ -73,7 +73,7 @@ const ProposalCardActive = (props: Props) => {
 				NotificationManager.error(result.message, "Error");
 			}
 		} else {
-			switchNetwork(chain, provider, currentChain);
+			NotificationManager.error("Switch your chain to proposal Chain", "Error");
 		}
 	}
 	const theme = useTheme();

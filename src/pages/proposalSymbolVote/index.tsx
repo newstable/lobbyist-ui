@@ -36,6 +36,8 @@ import { Coins } from "../../blockchain";
 import NumberType from "../../common/number";
 import { History } from "../../@types/proposal";
 import { Chainscan } from "../../chainscan";
+import { ethers } from "ethers";
+import switchNetwork from "../../components/header/switchchain";
 
 var md = new Remarkable();
 var history: History[] = [];
@@ -125,7 +127,8 @@ const ProposalSymbolVote = (props: Props) => {
     };
     const result = await Action.GetVoteWeight(req);
     setVoteWeight(result.vp);
-  };
+
+  }
 
   const voteProposal = async () => {
     try {
@@ -173,24 +176,28 @@ const ProposalSymbolVote = (props: Props) => {
   };
 
   const AddReward = async () => {
-    let signer: any = provider?.getSigner();
-    const result: any = await addRewards({
-      id: currentProposal.poolId,
-      amount: addRewardAmount,
-      rewardtype: currentProposal.rewardCurrency,
-      walletAddress: walletAddress,
-      buttonType: addrewardButton,
-      signer: signer,
-      chain: currentProposal.chain,
-    });
-    if (!addrewardButton) {
-      handleClose();
-    }
-    if (!result.status) {
-      NotificationManager.error(result.message, "Error");
+    if (chianId == currentProposal.chain) {
+      let signer: any = provider?.getSigner();
+      const result: any = await addRewards({
+        id: currentProposal.poolId,
+        amount: addRewardAmount,
+        rewardtype: currentProposal.rewardCurrency,
+        walletAddress: walletAddress,
+        buttonType: addrewardButton,
+        signer: signer,
+        chain: currentProposal.chain,
+      });
+      if (!addrewardButton) {
+        handleClose();
+      }
+      if (!result.status) {
+        NotificationManager.error(result.message, "Error");
+      } else {
+        setButton(false);
+        NotificationManager.success(result.message, "Success");
+      }
     } else {
-      setButton(false);
-      NotificationManager.success(result.message, "Success");
+      NotificationManager.error("Switch your chain to proposal Chain", "Error");
     }
   };
 
