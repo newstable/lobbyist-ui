@@ -38,9 +38,9 @@ const HeaderLeft = (props: Props) => {
       case EnumProtocolName.aave:
         TitleIcon = ProAaveIcon;
         break;
-      case EnumProtocolName.vesq:
-        TitleIcon = ProVesqIcon;
-        break;
+      // case EnumProtocolName.vesq:
+      //   TitleIcon = ProVesqIcon;
+      //   break;
       default:
         break;
     }

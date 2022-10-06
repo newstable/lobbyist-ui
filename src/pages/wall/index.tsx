@@ -1,5 +1,4 @@
 import Item from "./item";
-import { Select, MenuItem } from "@mui/material";
 import { useSelector } from "../../redux/store";
 import "./index.scss";
 import { useEffect, useState } from "react";
@@ -52,7 +51,7 @@ const Wall = () => {
                     <div className="text-2xl">SORT BY Protocol : </div>
                     <select className="wall-select" onChange={(e) => selectProtocol(e.target.value)}>
                         <option value={""}>All</option>
-                        <option value={"vesq"}>VESQ</option>
+                        {/* <option value={"vesq"}>VESQ</option> */}
                         <option value={"qidao"}>QIDAO</option>
                         <option value={"aave"}>AAVE</option>
                     </select>

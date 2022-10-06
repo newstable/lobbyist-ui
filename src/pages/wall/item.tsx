@@ -18,7 +18,7 @@ const ChainImg: any = {
 const ProtocolImg: any = {
     qidao: "../../assets/icons/pro-qidao.svg",
     aave: "../../assets/icons/pro-aave.svg",
-    vesq: "../../assets/icons/vesq.svg"
+    // vesq: "../../assets/icons/vesq.svg"
 }
 type Props = {
     proposal: Proposal;
