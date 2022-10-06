@@ -7,6 +7,7 @@ import { ReactComponent as DashboardIcon } from "../../assets/icons/dash.svg";
 import { ReactComponent as ProQidaoIcon } from "../../assets/icons/pro-qidao.svg";
 import { ReactComponent as ProAaveIcon } from "../../assets/icons/pro-aave.svg";
 import { ReactComponent as ProVesqIcon } from "../../assets/icons/vesq.svg";
+import { ReactComponent as ProWallIcon } from "../../assets/icons/wall.svg";
 // import { ReactComponent as ConvexIcon } from "../../assets/icons/convex.svg";
 import { EnumProtocolName } from "../../@types/protocol";
 import styles from "./styles.module.scss";
@@ -45,7 +46,7 @@ const HeaderLeft = (props: Props) => {
     }
   } else if (id) {
     title = EnumProtocolName[id as keyof typeof EnumProtocolName];
-    TitleIcon = ProVesqIcon;
+    TitleIcon = ProWallIcon;
   }
   if (locationArr[0] === "proposal") {
     const isNew = locationArr[1] === "new";
