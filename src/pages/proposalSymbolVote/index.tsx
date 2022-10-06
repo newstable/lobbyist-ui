@@ -78,7 +78,7 @@ const ProposalSymbolVote = (props: Props) => {
   const provider: any = useSelector(
     (state: RootState) => state.provider.provider
   );
-  const chianId: any = useSelector((state: RootState) => state.chain.id);
+  const chainId: any = useSelector((state: RootState) => state.chain.id);
   const [getProposal] = useLazyQuery(GET_PROPOSAL);
   const [voteWeight, setVoteWeight] = useState(0);
   const [proposalInfo, setProposalInfo]: any = useState([]);
@@ -95,6 +95,16 @@ const ProposalSymbolVote = (props: Props) => {
   const [description, setDescription] = useState("");
   const navState = location.state as any;
   let { proposal: currentProposal } = navState;
+
+  useEffect(() => {
+    try {
+      if (chainId != currentProposal.chain) {
+        switchNetwork(currentProposal.chain, provider, chainId);
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }, [currentProposal, chainId])
 
   useEffect(() => {
     var rewardCurrency = Tokens[currentProposal.chain].filter(
@@ -176,7 +186,7 @@ const ProposalSymbolVote = (props: Props) => {
   };
 
   const AddReward = async () => {
-    if (chianId == currentProposal.chain) {
+    if (chainId == currentProposal.chain) {
       let signer: any = provider?.getSigner();
       const result: any = await addRewards({
         id: currentProposal.poolId,

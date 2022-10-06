@@ -12,12 +12,15 @@ const ChainImg: any = {
     56: "../../assets/chains/bsc.png",
     137: "../../assets/chains/polygon.svg",
     250: "../../assets/chains/fantom.png",
-    42161: "../../assets/chains/arbitrum.png",
+    42161: "../../assets/chains/arbitrum.svg",
     43114: "../../assets/chains/avax.png"
 }
 const ProtocolImg: any = {
     qidao: "../../assets/icons/pro-qidao.svg",
     aave: "../../assets/icons/pro-aave.svg",
+    saddle: "../../assets/icons/saddle.svg",
+    aura: "../../assets/icons/aura.svg",
+    beethovenx: "../../assets/icons/beethovenx.svg",
     // vesq: "../../assets/icons/vesq.svg"
 }
 type Props = {
