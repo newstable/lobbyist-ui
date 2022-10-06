@@ -5,7 +5,7 @@ const Abis = require("./contracts/abis.json");
 const Addresses = require("./contracts/addresses.json");
 
 const RPCS = {
-    1: "https://eth-mainnet.nodereal.io/v1/1659dfb40aa24bbb8153a677b98064d7",
+    1: "https://eth.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
     10: "https://mainnet.optimism.io",
     56: "https://rpc-bsc.bnb48.club",
     137: "https://matic-mainnet-full-rpc.bwarelabs.com",
