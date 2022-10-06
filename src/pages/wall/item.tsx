@@ -7,7 +7,7 @@ import { useSelector, RootState } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 
 const ChainImg: any = {
-    1: "../../assets/chains/ethereum.svg",
+    1: "../../assets/chains/eth.svg",
     10: "../../assets/chains/optimism.png",
     56: "../../assets/chains/bsc.png",
     137: "../../assets/chains/polygon.svg",
