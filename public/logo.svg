@@ -1,7 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="134" height="150.923" viewBox="0 0 134 150.923">
-  <g id="Group_2" data-name="Group 2" transform="translate(-893.5 -463.379)">
-    <path id="Path_1" data-name="Path 1" d="M66.293-38.626A336.049,336.049,0,0,0,58.264,1.3Q16.709,0-.868,0q-17.36,0-58.373,1.3-1.736,0-1.736-3.038,0-2.713,1.736-2.93,13.128-1.519,17.848-4.883T-36.673-23V-125.1q0-7.6-1.9-10.687t-6.673-4.882a63.174,63.174,0,0,0-14-2.875q-1.736,0-1.736-3.038t1.736-3.038q7.269,0,17.36.651,9.657.651,16.275.651t16.167-.651q9.982-.651,17.251-.651,1.736,0,1.736,3.038t-1.736,3.038A62.9,62.9,0,0,0-6.076-140.67q-4.774,1.79-6.618,4.828T-14.539-125.1V-19.747q0,12.8,12.586,12.8H19.53q13.345,0,22.568-7.107T60.326-40.579q.434-.868,2.061-.868a4.573,4.573,0,0,1,2.658.868A2.422,2.422,0,0,1,66.293-38.626Z" transform="translate(960 613)" fill="#3a78ff"/>
-    <line id="Line_1" data-name="Line 1" x2="134" transform="translate(893.5 540.5)" fill="none" stroke="#3a78ff" stroke-width="10"/>
-    <line id="Line_2" data-name="Line 2" x2="134" transform="translate(893.5 562.5)" fill="none" stroke="#3a78ff" stroke-width="10"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="458.54" height="414.512" viewBox="0 0 458.54 414.512">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#3a78ff"/>
+      <stop offset="1" stop-color="#002574"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_2" data-name="Group 2" transform="translate(-57.46 -457.488)">
+    <path id="Path_1" data-name="Path 1" d="M152.462,139.587c20.576-50.8,92.5-50.8,113.077,0L384.017,432.1c16.244,40.1-13.27,83.9-56.538,83.9H90.521c-43.268,0-72.782-43.8-56.538-83.9Z" transform="translate(28 356)" fill="url(#linear-gradient)"/>
+    <path id="Path_2" data-name="Path 2" d="M139.5,0A139.5,139.5,0,1,1,0,139.5,139.5,139.5,0,0,1,139.5,0Z" transform="translate(237 593)" fill="url(#linear-gradient)"/>
   </g>
 </svg>
