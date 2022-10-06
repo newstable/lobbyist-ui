@@ -41,6 +41,10 @@
     margin: 0 auto;
 }
 
+.will-justify {
+    justify-content: start;
+}
+
 .wall-grid-col {
     grid-template-columns: repeat(3, minmax(0, 1fr))
 }
@@ -54,5 +58,9 @@
 @media (max-width:664px) {
     .wall-grid-col {
         grid-template-columns: repeat(1, minmax(0, 1fr))
+    }
+
+    .will-justify {
+        justify-content: center;
     }
 }
