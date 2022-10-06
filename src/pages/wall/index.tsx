@@ -54,7 +54,7 @@ const Wall = () => {
                         <option value={""}>All</option>
                         <option value={"vesq"}>VESQ</option>
                         <option value={"qidao"}>QIDAO</option>
-                        <option value={"aave"}>AAE</option>
+                        <option value={"aave"}>AAVE</option>
                     </select>
                 </div>
             </div>
