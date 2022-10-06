@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
   <g id="wall" transform="translate(-344 -220)">
-    <circle id="Ellipse_9" data-name="Ellipse 9" cx="16" cy="16" r="16" transform="translate(344 220)" fill="#3a78ff"/>
+    <circle id="Ellipse_9" data-name="Ellipse 9" cx="15.5" cy="15.5" r="15.5" transform="translate(344 220)" fill="#3a78ff"/>
     <path id="Icon_material-dashboard" data-name="Icon material-dashboard" d="M4.5,12.719h6.575V4.5H4.5Zm0,6.575h6.575V14.363H4.5Zm8.219,0h6.575V11.075H12.719Zm0-14.794V9.431h6.575V4.5Z" transform="translate(348.103 224.103)" fill="#fff"/>
   </g>
 </svg>
