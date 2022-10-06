@@ -36,6 +36,10 @@ type Props = {
 
 const Content = styled(CardContent)(({ theme }) => ({}));
 
+const Text_Head = styled(TextHead)(({ theme }) => ({
+    fontSize: "100%"
+}))
+
 const ProposalCardActiveSymbol = ({
     protocol,
     proposals,
@@ -106,7 +110,7 @@ const ProposalCardActiveSymbol = ({
                 >
                     {colHeads.map((c, idx) => (
                         <Box key={`colHead_${idx}`}>
-                            <TextHead>{c}</TextHead>
+                            <Text_Head>{c}</Text_Head>
                         </Box>
                     ))}
                 </Box>
