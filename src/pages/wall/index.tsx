@@ -39,6 +39,17 @@ const Wall = () => {
                     <option value={42161}>Arbitrum</option>
                     <option value={43114}>Arvalanche</option>
                 </select>
+                <div className=" text-2xl">SORT BY Protocol : </div>
+                <select className="wall-select" onChange={(e) => selectChain(e.target.value)}>
+                    <option value={""}>All</option>
+                    <option value={1}>Ethereum</option>
+                    <option value={56}>Binance</option>
+                    <option value={137}>Polygon</option>
+                    <option value={250}>Fantom</option>
+                    <option value={10}>Optimism</option>
+                    <option value={42161}>Arbitrum</option>
+                    <option value={43114}>Arvalanche</option>
+                </select>
             </div>
             <div className="justify-center mt-12 wall-grid-col grid gap-8">
                 {sortProposal?.map((proposal, key) => {

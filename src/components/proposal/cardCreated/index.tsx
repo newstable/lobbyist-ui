@@ -16,7 +16,7 @@ import { useParams } from "react-router-dom";
 import NumberType from "../../../common/number";
 
 const ChainImg: any = {
-  1: "../../assets/chains/ethereum.svg",
+  1: "../../assets/chains/eth.svg",
   10: "../../assets/chains/optimism.png",
   56: "../../assets/chains/bsc.png",
   137: "../../assets/chains/polygon.svg",
