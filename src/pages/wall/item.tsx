@@ -15,6 +15,11 @@ const ChainImg: any = {
     42161: "../../assets/chains/arbitrum.png",
     43114: "../../assets/chains/avax.png"
 }
+const ProtocolImg: any = {
+    qidao: "../../assets/icons/pro-qidao.svg",
+    aave: "../../assets/icons/pro-aave.svg",
+    vesq: "../../assets/icons/vesq.svg"
+}
 type Props = {
     proposal: Proposal;
 }
@@ -37,7 +42,7 @@ const Item = (props: Props) => {
         <div className="item item-gap">
             <div className="flex justify-between">
                 <img width="30" src={ChainImg[proposal.chain]}></img>
-                <h2 style={{ textTransform: "uppercase" }}>{proposal.type}</h2>
+                <img width="30" src={ProtocolImg[proposal.type]}></img>
             </div>
             <h2 className="item-font-2">{proposal.name.length > 20 ? (proposal.name.slice(0, 20) + "...") : proposal.name}</h2>
             <div>
