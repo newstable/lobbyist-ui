@@ -534,65 +534,93 @@ const Tokens: any =
         {
             "value": 0,
             "display": "WETH",
-            "address": "0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB",
+            "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
             "token": "../../../../assets/tokens/eth.svg",
             "api": "ethereum"
         },
         {
             "value": 1,
             "display": "WBTC",
-            "address": "0x50b7545627a5162F82A992c33b87aDc75187B218",
+            "address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
             "token": "../../../../assets/tokens/wbtc.svg",
             "api": "bitcoin"
         },
         {
             "value": 2,
-            "display": "DAI.e",
-            "address": "0xd586E7F844cEa2F87f50152665BCbc2C279D8d70",
+            "display": "DAI",
+            "address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
             "token": "../../../../assets/tokens/dai.svg",
             "api": "dai"
         },
         {
             "value": 3,
             "display": "FRAX",
-            "address": "0xD24C2Ad096400B6FBcd2ad8B24E7acBc21A1da64",
+            "address": "0x853d955aCEf822Db058eb8505911ED77F175b99e",
             "token": "../../../../assets/tokens/frax.svg",
             "api": "frax"
         },
         {
             "value": 4,
             "display": "USDT",
-            "address": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
+            "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
             "token": "../../../../assets/tokens/usdt.svg",
             "api": "tether"
         },
         {
             "value": 5,
-            "display": "CRV.e",
-            "address": "0x249848BeCA43aC405b8102Ec90Dd5F22CA513c06",
+            "display": "stETH",
+            "address": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+            "token": "../../../../assets/tokens/steth.svg",
+            "api": "staked-ether"
+        },
+        {
+            "value": 6,
+            "display": "CVX",
+            "address": "0x4e3FBD56CD56c3e72c1403e103b45Db9da5B9D2B",
+            "token": "../../../../assets/tokens/cvx.svg",
+            "api": "convex-finance"
+        },
+        {
+            "value": 7,
+            "display": "CRV",
+            "address": "0xD533a949740bb3306d119CC777fa900bA034cd52",
             "token": "../../../../assets/tokens/crv.svg",
             "api": "curve-dao-token"
         },
         {
-            "value": 6,
-            "display": "BIFI",
-            "address": "0xd6070ae98b8069de6B494332d1A1a81B6179D960",
-            "token": "../../../../assets/tokens/bifi.svg",
-            "api": "beefy-finance"
-        },
-        {
-            "value": 7,
-            "display": "FXS",
-            "address": "0x214DB107654fF987AD859F34125307783fC8e387",
-            "token": "../../../../assets/tokens/fxs.svg",
-            "api": "frax-share"
-        },
-        {
             "value": 8,
+            "display": "UNI",
+            "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+            "token": "../../../../assets/tokens/uni.svg",
+            "api": "uniswap"
+        },
+        {
+            "value": 9,
+            "display": "LDO",
+            "address": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32",
+            "token": "../../../../assets/tokens/ldo.svg",
+            "api": "lido-dao"
+        },
+        {
+            "value": 10,
+            "display": "FXS",
+            "address": "0x3432B6A60D23Ca0dFCa7761B7ab56459D9C964D0",
+            "token": "../../../../assets/tokens/fxs.svg",
+            "api": "fxs"
+        },
+        {
+            "value": 11,
             "display": "LINK",
-            "address": "0x5947BB275c521040051D82396192181b413227A3",
+            "address": "0x514910771AF9Ca656af840dff83E8264EcF986CA",
             "token": "../../../../assets/tokens/link.svg",
-            "api": "chainlink"
+            "api": "link"
+        },
+        {
+            "value": 12,
+            "display": "APE",
+            "address": "0x4d224452801ACEd8B2F0aebE155379bb5D594381",
+            "token": "../../../../assets/tokens/ape.svg",
+            "api": "apecoin"
         },
     ]
 }
