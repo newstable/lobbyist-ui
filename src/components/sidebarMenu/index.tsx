@@ -241,7 +241,7 @@ const SidebarMenu = (props: Props) => {
           icon: "beethovenx",
           text: "Beethovenx",
           chain: 250,
-          href: "/proposal/aave",
+          href: "/proposal/beethovenx",
         },
         {
           icon: "pro-aave",
@@ -382,7 +382,6 @@ const SidebarMenu = (props: Props) => {
             <img src={Logo} alt="" />
           </Link>
         </Box>
-
         <button
           className={classNames(
             "hamburger mlg:hidden hamburger--squeeze",
@@ -451,48 +450,50 @@ const SidebarMenu = (props: Props) => {
                     </button>
                     {
                       GetMenuState(link.chain) ? !link.childtype ?
-                        <Box className={`sidebarItem-MenuChain ${ChainMenuState}`}>
-                          {
-                            link.child?.map((children, Idx) => {
-                              return (
-                                <Link
-                                  onClick={() => { setInitChild(); switchNetwork(`${link.chain}`, library, chain) }}
-                                  key={`lnk_${Idx}`}
-                                  to={children.href}
-                                  color={linkColor}
-                                  className={classNames("py-4 flex")}
-                                >
-                                  <Box
-                                    component="span"
-                                    className={classNames("flex gap-2 items-center")}
+                        <div className="protocol-modal">
+                          <Box className={`sidebarItem-MenuChain ${ChainMenuState}`}>
+                            {
+                              link.child?.map((children, Idx) => {
+                                return (
+                                  <Link
+                                    onClick={() => { setInitChild(); switchNetwork(`${link.chain}`, library, chain) }}
+                                    key={`lnk_${Idx}`}
+                                    to={children.href}
+                                    color={linkColor}
+                                    className={classNames("py-4 flex")}
                                   >
                                     <Box
                                       component="span"
-                                      className={classNames(
-                                        "w-8 h-8 hidden mlg:flex items-center justify-center",
-                                        styles.menuIcon
-                                      )}
+                                      className={classNames("flex gap-2 items-center")}
                                     >
-                                      <SvgIcon
-                                        component={getIcon(children.icon)}
-                                        viewBox="0 0 31 31"
-                                      />
+                                      <Box
+                                        component="span"
+                                        className={classNames(
+                                          "w-8 h-8 hidden mlg:flex items-center justify-center",
+                                          styles.menuIcon
+                                        )}
+                                      >
+                                        <SvgIcon
+                                          component={getIcon(children.icon)}
+                                          viewBox="0 0 31 31"
+                                        />
+                                      </Box>
+                                      <Typography
+                                        className={classNames(
+                                          "mlg:items-center",
+                                          styles.menuText
+                                        )}
+                                        variant="subtitle2"
+                                      >
+                                        {children.text}
+                                      </Typography>
                                     </Box>
-                                    <Typography
-                                      className={classNames(
-                                        "mlg:items-center",
-                                        styles.menuText
-                                      )}
-                                      variant="subtitle2"
-                                    >
-                                      {children.text}
-                                    </Typography>
-                                  </Box>
-                                </Link>
-                              )
-                            })
-                          }
-                        </Box>
+                                  </Link>
+                                )
+                              })
+                            }
+                          </Box>
+                        </div>
                         : '' : ""
                     }
                   </>

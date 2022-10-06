@@ -49,7 +49,7 @@ const Wall = () => {
                     </select>
                 </div>
                 <div className="sm:flex items-center ml-6">
-                    <div className="text-2xl">SORT BY Protocol : </div>
+                    <div className="text-2xl">SORT BY PROTOCOL : </div>
                     <select className="wall-select" onChange={(e) => selectProtocol(e.target.value)}>
                         <option value={""}>All</option>
                         {/* <option value={"vesq"}>VESQ</option> */}
