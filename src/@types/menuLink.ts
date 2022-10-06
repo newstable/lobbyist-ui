@@ -1,7 +1,7 @@
 import { type } from "os";
 
 interface chainChild {
-  icon: string,
+  icon: any,
   text: string,
   href: string,
   chain: number

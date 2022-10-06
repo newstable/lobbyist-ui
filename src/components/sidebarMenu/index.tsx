@@ -11,13 +11,13 @@ import { MenuLink } from "../../@types";
 import { ReactComponent as GaugeIcon } from "../../assets/icons/gauge.svg";
 import { ReactComponent as WallIcon } from "../../assets/icons/wall.svg";
 import { ReactComponent as ChartIcon } from "../../assets/icons/chart.svg";
-import { ReactComponent as AuraIcon } from "../../assets/icons/aura.svg";
-import { ReactComponent as BeethovenxIcon } from "../../assets/icons/beethovenx.svg";
-import { ReactComponent as saddleIcon } from "../../assets/icons/saddle.svg";
-import { ReactComponent as ProAvaeIcon } from "../../assets/icons/pro-aave.svg";
-import { ReactComponent as CurveIcon } from "../../assets/icons/crv.svg";
-import { ReactComponent as BalancerIcon } from "../../assets/icons/bal.svg";
-import { ReactComponent as ProQiIcon } from "../../assets/icons/pro-qidao.svg";
+import AuraIcon from "../../assets/icons/aura.svg";
+import BeethovenxIcon from "../../assets/icons/beethovenx.svg";
+import saddleIcon from "../../assets/icons/saddle.svg";
+import ProAvaeIcon from "../../assets/icons/pro-aave.svg";
+import CurveIcon from "../../assets/icons/crv.svg";
+import BalancerIcon from "../../assets/icons/bal.svg";
+import ProQiIcon from "../../assets/icons/pro-qidao.svg";
 import { ReactComponent as ProFraxIcon } from "../../assets/icons/pro-frax.svg";
 import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
@@ -66,26 +66,22 @@ const SidebarMenu = (props: Props) => {
         return WallIcon;
       case "chart":
         return ChartIcon;
-      case "pro-aave":
-        return ProAvaeIcon;
-      case "aura":
-        return AuraIcon;
-      case "beethovenx":
-        return BeethovenxIcon;
-      case "saddle":
-        return saddleIcon;
-      case "pro-frax":
-        return ProFraxIcon;
-      case "curve":
-        return CurveIcon;
-      // case "convex":
-      //   return ConvexIcon;
-      case "balancer":
-        return BalancerIcon;
-      case "pro-qidao":
-        return ProQiIcon;
-      // case "pro-vesq":
-      //   return ProVesqIcon;
+      // case "pro-aave":
+      //   return ProAvaeIcon;
+      // case "aura":
+      //   return AuraIcon;
+      // case "beethovenx":
+      //   return BeethovenxIcon;
+      // case "saddle":
+      //   return saddleIcon;
+      // case "pro-frax":
+      //   return ProFraxIcon;
+      // case "curve":
+      //   return CurveIcon;
+      // case "balancer":
+      //   return BalancerIcon;
+      // case "pro-qidao":
+      //   return ProQiIcon;
       case "twitter":
         return TwitterIcon;
       case "discord":
@@ -136,25 +132,25 @@ const SidebarMenu = (props: Props) => {
       type: "chain",
       child: [
         {
-          icon: "pro-qidao",
+          icon: ProQiIcon,
           text: "QiDAO",
           chain: 1,
           href: "/proposal/qidao",
         },
         {
-          icon: "aura",
+          icon: AuraIcon,
           text: "Aura",
           chain: 1,
           href: "/proposal/aura",
         },
         {
-          icon: "saddle",
+          icon: saddleIcon,
           text: "Saddle",
           chain: 1,
           href: "/proposal/saddle",
         },
         {
-          icon: "pro-aave",
+          icon: ProAvaeIcon,
           text: "Aave",
           chain: 1,
           href: "/proposal/aave",
@@ -169,13 +165,13 @@ const SidebarMenu = (props: Props) => {
       type: "chain",
       child: [
         {
-          icon: "pro-qidao",
+          icon: ProQiIcon,
           text: "QiDAO",
           chain: 10,
           href: "/proposal/qidao",
         },
         {
-          icon: "pro-aave",
+          icon: ProAvaeIcon,
           text: "Aave",
           chain: 10,
           href: "/proposal/aave",
@@ -190,13 +186,13 @@ const SidebarMenu = (props: Props) => {
       type: "chain",
       child: [
         {
-          icon: "pro-qidao",
+          icon: ProQiIcon,
           text: "QiDAO",
           chain: 42161,
           href: "/proposal/qidao",
         },
         {
-          icon: "pro-aave",
+          icon: ProAvaeIcon,
           text: "Aave",
           chain: 42161,
           href: "/proposal/aave",
@@ -211,13 +207,13 @@ const SidebarMenu = (props: Props) => {
       type: "chain",
       child: [
         {
-          icon: "pro-qidao",
+          icon: ProQiIcon,
           text: "QiDAO",
           chain: 137,
           href: "/proposal/qidao",
         },
         {
-          icon: "pro-aave",
+          icon: ProAvaeIcon,
           text: "Aave",
           chain: 137,
           href: "/proposal/aave",
@@ -232,19 +228,19 @@ const SidebarMenu = (props: Props) => {
       type: "chain",
       child: [
         {
-          icon: "pro-qidao",
+          icon: ProQiIcon,
           text: "QiDAO",
           chain: 250,
           href: "/proposal/qidao",
         },
         {
-          icon: "beethovenx",
+          icon: BeethovenxIcon,
           text: "Beethovenx",
           chain: 250,
           href: "/proposal/beethovenx"
         },
         {
-          icon: "pro-aave",
+          icon: ProAvaeIcon,
           text: "Aave",
           chain: 250,
           href: "/proposal/aave",
@@ -259,13 +255,13 @@ const SidebarMenu = (props: Props) => {
       type: "chain",
       child: [
         {
-          icon: "pro-qidao",
+          icon: ProQiIcon,
           text: "QiDAO",
           chain: 43114,
           href: "/proposal/qidao",
         },
         {
-          icon: "pro-aave",
+          icon: ProAvaeIcon,
           text: "Aave",
           chain: 43114,
           href: "/proposal/aave",
@@ -477,6 +473,7 @@ const SidebarMenu = (props: Props) => {
                                           component={getIcon(children.icon)}
                                           viewBox="0 0 31 31"
                                         />
+                                        <img src={children.icon} width="30"></img>
                                       </Box>
                                       <Typography
                                         className={classNames(
