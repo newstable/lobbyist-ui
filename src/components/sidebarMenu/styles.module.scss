@@ -1,21 +1,9 @@
 @use "../../styles/index.scss" as main;
 
 .main {
-    &Mobile {}
-
     &Inner {
         background: main.$var-clr-black;
         transition: all 0.3s ease-in-out;
-
-        &:hover {
-            .menu {
-                &Text {}
-            }
-        }
-    }
-
-    body[class~="show-menu"] & {
-        &Mobile {}
     }
 }
 
