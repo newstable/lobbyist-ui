@@ -153,9 +153,8 @@ const ProposalCardActive = (props: Props) => {
 										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[5]}
 										</Text_Head>
-										<TextContent>${p.totalVoteWeight == 0 ? ("0") : (
-											NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6)
-										)}</TextContent>
+										<TextContent>${p.totalVoteWeight == 0 ? ("$0") : p.totalVoteWeight < 1 ? "$" + p.usdAmount : (
+											"$" + NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6))}</TextContent>
 									</Box>
 									<Box
 										className={classNames("flex", isAboveMd && "justify-center")}
