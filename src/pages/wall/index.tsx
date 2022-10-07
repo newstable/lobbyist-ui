@@ -44,7 +44,7 @@ const Wall = () => {
                         <option value={250}>Fantom</option>
                         <option value={10}>Optimism</option>
                         <option value={42161}>Arbitrum</option>
-                        <option value={43114}>Arvalanche</option>
+                        <option value={43114}>Avalanche</option>
                     </select>
                 </div>
                 <div className="sm:flex items-center ml-6">
