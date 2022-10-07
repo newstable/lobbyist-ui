@@ -11,7 +11,7 @@ export enum EnumProtocolName {
   aura = "Aura",
   beethovenx = "Beethovenx",
   saddle = "Saddle",
-  wall = "All Proposals"
+  wall = "Proposals Wall"
 }
 
 export enum EnumProtocolSymbolName {
