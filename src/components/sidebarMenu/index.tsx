@@ -327,6 +327,12 @@ const SidebarMenu = (props: Props) => {
     )
   }
 
+  const changeExchange = (currentChain: any, text: string) => {
+    if (text != "qidao" && text != "aave") {
+      switchNetwork(currentChain, library, chain);
+    }
+  }
+
   return (
     <Box
       className={classNames(
@@ -428,7 +434,7 @@ const SidebarMenu = (props: Props) => {
                               link.child?.map((children, Idx) => {
                                 return (
                                   <Link
-                                    onClick={() => { setInitChild(); switchNetwork(`${link.chain}`, library, chain) }}
+                                    onClick={() => { setInitChild(); changeExchange(link.chain, children.text) }}
                                     key={`lnk_${Idx}`}
                                     to={children.href}
                                     color={linkColor}
