@@ -338,7 +338,7 @@ const SidebarMenu = (props: Props) => {
     >
       <Box
         className={classNames(
-          "flex h-24 w-80 items-center justify-between mlgx:w-full h-full mlg flex-col-header justify-start items-start group px-9 ",
+          "flex w-80 mlgx:w-full h-full mlg flex-col-header justify-start items-start group px-9 ",
           styles.mainInner
         )}
         component="section"
