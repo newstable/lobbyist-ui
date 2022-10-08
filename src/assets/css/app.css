@@ -1577,6 +1577,10 @@ input:checked+.toggle-bg {
     overflow: hidden
 }
 
+.overflow-auto {
+    overflow: auto
+}
+
 .overflow-x-auto {
     overflow-x: auto
 }
@@ -3225,6 +3229,10 @@ input:checked+.toggle-bg {
 
     .sm\:justify-end {
         justify-content: flex-end
+    }
+
+    .sm\:justify-start {
+        justify-content: start;
     }
 
     .sm\:justify-center {
