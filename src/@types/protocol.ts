@@ -13,7 +13,8 @@ export enum EnumProtocolName {
   saddle = "Saddle",
   onx = "OnX",
   ribbon = "Ribbon",
-  wall = "Protocols"
+  proposal = "Proposals",
+  protocols = "Protocols",
 }
 
 export enum EnumProtocolSymbolName {

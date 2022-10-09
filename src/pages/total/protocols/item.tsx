@@ -1,12 +1,12 @@
 import "./index.scss";
-import NumberType from "../../common/number";
+import NumberType from "../../../common/number";
 import { Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, RootState } from "../../redux/store";
-import { Protocols } from "../../@types";
+import { useSelector, RootState } from "../../../redux/store";
+import { Protocols } from "../../../@types";
 import { useEffect, useState } from "react";
 import { AnyMap } from "immer/dist/internal";
-import switchChain from "../../components/header/switchchain";
+import switchChain from "../../../components/header/switchchain";
 import { NotificationManager } from "react-notifications";
 type Props = {
     protocol: Protocols;

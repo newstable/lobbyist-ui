@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HomePage from "../pages/home";
-import Wall from "../pages/wall";
+import All from "../pages/total";
 import ProposalNewPage from "../pages/proposalNew";
 import ProposalSymbolPage from "../pages/proposalSymbol";
 import ProposalSymbolVotePage from "../pages/proposalSymbolVote";
@@ -16,7 +16,7 @@ const AppRoutes: FC = () => {
       <Routes>
         <Route element={<ReactApp />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/:id" element={<Wall />} />
+          <Route path="/:id" element={<All />} />
           <Route path="/proposal/new" element={<ProposalNewPage />} />
           <Route path="/proposal/new/:protocol" element={<ProposalNewPage />} />
           <Route path="/proposal/new/:protocol/:prsalType" element={<ProposalNewPage />} />

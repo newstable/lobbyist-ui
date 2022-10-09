@@ -13,6 +13,7 @@ import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
 import { ReactComponent as MirrorIcon } from "../../assets/icons/mirror.svg";
 import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
+import { ReactComponent as ProtocolIcon } from "../../assets/icons/protocol.svg";
 import Logo from "../../assets/icons/logo.svg";
 import styles from "./styles.module.scss";
 import './sidebarItem-Menu.scss';
@@ -56,6 +57,8 @@ const SidebarMenu = (props: Props) => {
         return MirrorIcon;
       case "docs":
         return DocsIcon;
+      case "protocol":
+        return ProtocolIcon;
       default:
         break;
     }
@@ -70,9 +73,15 @@ const SidebarMenu = (props: Props) => {
       type: "in"
     },
     {
+      icon: "protocol",
+      text: "Protocols",
+      href: "/protocols",
+      type: "in"
+    },
+    {
       icon: "wall",
       text: "Proposals",
-      href: "/wall",
+      href: "/proposal",
       separator: true,
       type: "in"
     },

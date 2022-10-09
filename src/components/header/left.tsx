@@ -8,6 +8,7 @@ import { ReactComponent as ProQidaoIcon } from "../../assets/icons/pro-qidao.svg
 import { ReactComponent as ProAaveIcon } from "../../assets/icons/pro-aave.svg";
 import { ReactComponent as ProVesqIcon } from "../../assets/icons/vesq.svg";
 import { ReactComponent as ProWallIcon } from "../../assets/icons/wall.svg";
+import { ReactComponent as ProtocolIcon } from "../../assets/icons/protocol.svg";
 import { ReactComponent as AuraIcon } from "../../assets/icons/aura.svg";
 import { ReactComponent as BeethovenxIcon } from "../../assets/icons/beethovenx.svg";
 import { ReactComponent as SaddleIcon } from "../../assets/icons/saddle.svg";
@@ -58,9 +59,12 @@ const HeaderLeft = (props: Props) => {
       default:
         break;
     }
-  } else if (id) {
+  } else if (id == "proposal") {
     title = EnumProtocolName[id as keyof typeof EnumProtocolName];
     TitleIcon = ProWallIcon;
+  } else if (id == "protocols") {
+    title = EnumProtocolName[id as keyof typeof EnumProtocolName];
+    TitleIcon = ProtocolIcon;
   }
   if (locationArr[0] === "proposal") {
     const isNew = locationArr[1] === "new";

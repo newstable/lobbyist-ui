@@ -1,0 +1,75 @@
+.wall {
+    margin-top: 20px;
+    width: 100%;
+
+    .wall-select {
+        background-color: #282931;
+        border: none;
+        padding: 15px 25px 15px 15px;
+        border-radius: 20px;
+        font-size: 15px;
+        margin-left: 10px;
+
+        &:focus {
+            --tw-ring-shadow: initial;
+        }
+    }
+}
+
+.item {
+    border: 1px solid #383944;
+    background-color: #282931;
+    border-radius: 30px;
+    padding: 23px;
+    margin: 5px;
+    width: 300px;
+
+    .item-font-1 {
+        font-size: 10px;
+        color: rgb(216, 216, 216);
+    }
+
+    .item-font-2 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+.item-gap {
+    display: grid;
+    gap: 1rem;
+    margin: 0 auto;
+}
+
+.chains {
+    position: relative;
+    width: 100px;
+
+    img {
+        position: absolute;
+    }
+}
+
+.will-justify {
+    justify-content: start;
+}
+
+.wall-grid-col {
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+}
+
+@media (max-width:1178px) {
+    .wall-grid-col {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+}
+
+@media (max-width:664px) {
+    .wall-grid-col {
+        grid-template-columns: repeat(1, minmax(0, 1fr))
+    }
+
+    .will-justify {
+        justify-content: center;
+    }
+}

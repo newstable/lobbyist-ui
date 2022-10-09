@@ -1,8 +1,8 @@
 import Item from "./item";
-import { useSelector } from "../../redux/store";
+import { useSelector } from "../../../redux/store";
 import "./index.scss";
 import { useEffect, useState } from "react";
-import { Proposal } from "../../@types/proposal";
+import { Proposal } from "../../../@types/proposal";
 import {
     Card,
     CardContent,
@@ -15,11 +15,11 @@ import {
 } from "@mui/material";
 import classNames from "classnames";
 import SearchIcon from "@mui/icons-material/Search";
-import styles from "../../components/form/styles.module.scss";
+import styles from "../../../components/form/styles.module.scss";
 import protocols from "./proposal.json";
-import { Protocols } from "../../@types";
+import { Protocols } from "../../../@types";
 
-const Wall = () => {
+const MyProtocols = () => {
     const [sortProtocols, setProtocol] = useState("");
     const [myprotocols, setMyProtocols] = useState<Protocols[]>([]);
 
@@ -65,4 +65,4 @@ const Wall = () => {
     )
 }
 
-export default Wall;
+export default MyProtocols;
