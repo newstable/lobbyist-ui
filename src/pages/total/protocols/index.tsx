@@ -29,7 +29,7 @@ const MyProtocols = () => {
 
     const setProposal = () => {
         var sortedProtocol: Protocols[] = protocols?.filter(
-            (proposal: any) => proposal.type == sortProtocols || sortProtocols == ""
+            (protocol: any) => protocol.protocol == sortProtocols || sortProtocols == ""
         )
         setMyProtocols(sortedProtocol);
     }
@@ -55,7 +55,7 @@ const MyProtocols = () => {
                 />
             </Box>
             <div className="justify-center mt-12 wall-grid-col grid gap-8">
-                {protocols?.map((protocol, key) => {
+                {myprotocols?.map((protocol, key) => {
                     return (
                         <Item protocol={protocol} key={key} />
                     )
