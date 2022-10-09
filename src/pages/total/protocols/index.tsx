@@ -29,7 +29,7 @@ const MyProtocols = () => {
 
     const setProposal = () => {
         var sortedProtocol: Protocols[] = protocols?.filter(
-            (protocol: any) => protocol.protocol == sortProtocols || sortProtocols == ""
+            (protocol: any) => protocol.protocol.search(new RegExp(sortProtocols, "i")) > -1
         )
         setMyProtocols(sortedProtocol);
     }
