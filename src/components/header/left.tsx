@@ -11,6 +11,8 @@ import { ReactComponent as ProWallIcon } from "../../assets/icons/wall.svg";
 import { ReactComponent as AuraIcon } from "../../assets/icons/aura.svg";
 import { ReactComponent as BeethovenxIcon } from "../../assets/icons/beethovenx.svg";
 import { ReactComponent as SaddleIcon } from "../../assets/icons/saddle.svg";
+import { ReactComponent as RibbonIcon } from "../../assets/icons/ribbon.svg";
+import { ReactComponent as OnxIcon } from "../../assets/icons/onx.svg";
 // import { ReactComponent as ConvexIcon } from "../../assets/icons/convex.svg";
 import { EnumProtocolName } from "../../@types/protocol";
 import styles from "./styles.module.scss";
@@ -46,6 +48,12 @@ const HeaderLeft = (props: Props) => {
         break;
       case EnumProtocolName.saddle:
         TitleIcon = SaddleIcon;
+        break;
+      case EnumProtocolName.ribbon:
+        TitleIcon = RibbonIcon;
+        break;
+      case EnumProtocolName.onx:
+        TitleIcon = OnxIcon;
         break;
       default:
         break;
