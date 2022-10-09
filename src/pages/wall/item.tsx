@@ -46,9 +46,10 @@ const Item = (props: Props) => {
     }, [proposals, walletAddress]);
 
     const checkChain = async () => {
-        const chainState = protocol.chains.filter((chain) => chain.id);
+        const chainState = protocol.chains.filter((chain) => chain.id == chainId);
+        console.log(chainState);
         if (chainState.length == 0) {
-            NotificationManager.error("Please change your network for protocol that you want");
+            NotificationManager.error("Please change your network for protocol that you want", "Error");
         } else {
             navigate(protocol.href);
         }
