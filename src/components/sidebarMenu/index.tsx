@@ -272,7 +272,7 @@ const SidebarMenu = (props: Props) => {
           icon: RibbonIcon,
           text: "Ribbon",
           chain: 43114,
-          href: "/proposal/birron",
+          href: "/proposal/ribbon",
         },
         {
           icon: OnxIcon,
