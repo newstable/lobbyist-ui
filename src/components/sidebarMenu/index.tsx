@@ -15,6 +15,8 @@ import AuraIcon from "../../assets/icons/aura.svg";
 import BeethovenxIcon from "../../assets/icons/beethovenx.svg";
 import saddleIcon from "../../assets/icons/saddle.svg";
 import ProAvaeIcon from "../../assets/icons/pro-aave.svg";
+import RibbonIcon from "../../assets/icons/ribbon.svg";
+import OnxIcon from "../../assets/icons/onx.svg";
 import CurveIcon from "../../assets/icons/crv.svg";
 import BalancerIcon from "../../assets/icons/bal.svg";
 import ProQiIcon from "../../assets/icons/pro-qidao.svg";
@@ -126,13 +128,13 @@ const SidebarMenu = (props: Props) => {
           href: "/proposal/aave",
         },
         {
-          icon: ProAvaeIcon,
+          icon: RibbonIcon,
           text: "Ribbon",
           chain: 1,
           href: "/proposal/ribbon",
         },
         {
-          icon: ProAvaeIcon,
+          icon: OnxIcon,
           text: "OnX",
           chain: 1,
           href: "/proposal/onx",
@@ -207,7 +209,7 @@ const SidebarMenu = (props: Props) => {
           href: "/proposal/aave",
         },
         {
-          icon: ProAvaeIcon,
+          icon: OnxIcon,
           text: "Onx",
           chain: 137,
           href: "/proposal/onx",
@@ -240,7 +242,7 @@ const SidebarMenu = (props: Props) => {
           href: "/proposal/aave",
         },
         {
-          icon: ProAvaeIcon,
+          icon: OnxIcon,
           text: "OnX",
           chain: 250,
           href: "/proposal/onx",
@@ -267,13 +269,13 @@ const SidebarMenu = (props: Props) => {
           href: "/proposal/aave",
         },
         {
-          icon: ProAvaeIcon,
+          icon: RibbonIcon,
           text: "Ribbon",
           chain: 43114,
           href: "/proposal/birron",
         },
         {
-          icon: ProAvaeIcon,
+          icon: OnxIcon,
           text: "OnX",
           chain: 43114,
           href: "/proposal/onx",
