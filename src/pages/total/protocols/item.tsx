@@ -58,7 +58,7 @@ const Item = (props: Props) => {
         <div className="item item-gap">
             <div className="flex justify-between items-center">
                 <img width="50" src={protocol.icon}></img>
-                <div className="chains">
+                <div className="chains flex items-center">
                     {protocol.chains.map((chain, key) => {
                         return (
                             <img width="30" src={chain.name} style={{ right: `${key * 13}px` }}></img>

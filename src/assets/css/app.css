@@ -4127,6 +4127,15 @@ input:checked+.toggle-bg {
     text-align: center;
 }
 
+.rounded-50 {
+    border-radius: 50px !important;
+
+}
+
+.rounded-50 div {
+    border-radius: 50px !important;
+}
+
 .modaladdpapermid {
     background-color: #282931;
 }

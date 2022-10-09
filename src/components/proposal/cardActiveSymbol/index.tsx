@@ -82,9 +82,9 @@ const ProposalCardActiveSymbol = ({
                     } Proposals for ${protocol}`}
             ></ProposalCardHeader>
             <Content className="!p-0">
-                <Box className="mb-16">
+                <Box className="mb-16 rounded-50">
                     <TextField
-                        className={classNames(styles.input, "bg-black")}
+                        className={classNames(styles.input, "bg-black rounded-50")}
                         placeholder="Search for proposals..."
                         fullWidth
                         onChange={(e) => setText(e.target.value)}
