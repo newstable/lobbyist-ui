@@ -3,29 +3,35 @@ import { useSelector } from "../../redux/store";
 import "./index.scss";
 import { useEffect, useState } from "react";
 import { Proposal } from "../../@types/proposal";
+import {
+    Card,
+    CardContent,
+    Box,
+    Button,
+    useTheme,
+    useMediaQuery,
+    InputAdornment,
+    TextField,
+} from "@mui/material";
+import classNames from "classnames";
+import SearchIcon from "@mui/icons-material/Search";
+import styles from "../../components/form/styles.module.scss";
+import protocols from "./proposal.json";
+import { Protocols } from "../../@types";
 
 const Wall = () => {
-    const [sort, setSort] = useState("");
-    const [protocol, setProtocol] = useState("");
-    const [sortProposal, setSortProposal] = useState<Proposal[]>([]);
-    const proposalState = useSelector((state) => state.proposal);
-    // @ts-ignore
-    const proposals = proposalState.currentProposal.data;
+    const [sortProtocols, setProtocol] = useState("");
+    const [myprotocols, setMyProtocols] = useState<Protocols[]>([]);
+
     useEffect(() => {
         setProposal();
-    }, [sort, proposalState, protocol]);
+    }, [sortProtocols]);
 
     const setProposal = () => {
-        var search: Proposal[] = proposals?.filter(
-            (proposal: any) => proposal.chain == sort || sort == ""
-        );
-        var sortedProposal: Proposal[] = search?.filter(
-            (proposal: any) => proposal.type == protocol || protocol == ""
+        var sortedProtocol: Protocols[] = protocols?.filter(
+            (proposal: any) => proposal.type == sortProtocols || sortProtocols == ""
         )
-        setSortProposal(sortedProposal);
-    }
-    const selectChain = (e: any) => {
-        setSort(e);
+        setMyProtocols(sortedProtocol);
     }
     const selectProtocol = (e: any) => {
         setProtocol(e);
@@ -33,41 +39,25 @@ const Wall = () => {
 
     return (
         <div className="wall">
-            <div className="flex items-center will-justify">
-                <div className="sm:flex items-center">
-                    <div className=" text-2xl">SORT BY CHAIN : </div>
-                    <select className="wall-select" onChange={(e) => selectChain(e.target.value)}>
-                        <option value={""}>All</option>
-                        <option value={1}>Ethereum</option>
-                        <option value={56}>Binance</option>
-                        <option value={137}>Polygon</option>
-                        <option value={250}>Fantom</option>
-                        <option value={10}>Optimism</option>
-                        <option value={42161}>Arbitrum</option>
-                        <option value={43114}>Avalanche</option>
-                    </select>
-                </div>
-                <div className="sm:flex items-center ml-6">
-                    <div className="text-2xl">SORT BY PROTOCOL : </div>
-                    <select className="wall-select" onChange={(e) => selectProtocol(e.target.value)}>
-                        <option value={""}>All</option>
-                        {/* <option value={"vesq"}>VESQ</option> */}
-                        <option value={"qidao"}>QiDAO</option>
-                        <option value={"aave"}>Aave</option>
-                        <option value={"aura"}>Aura</option>
-                        <option value={"beethovenx"}>Beethovenx</option>
-                        <option value={"saddle"}>Saddle</option>
-                        <option value={"ribbon"}>Ribbon</option>
-                        <option value={"onx"}>Onx</option>
-                    </select>
-                </div>
-            </div>
+            <Box className="mb-16">
+                <TextField
+                    className={classNames(styles.input, "bg-black")}
+                    placeholder="Search for proposals..."
+                    fullWidth
+                    onChange={(e) => selectProtocol(e.target.value)}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <SearchIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                />
+            </Box>
             <div className="justify-center mt-12 wall-grid-col grid gap-8">
-                {sortProposal?.map((proposal, key) => {
+                {protocols?.map((protocol, key) => {
                     return (
-                        !proposal.isClosed ? (
-                            <Item proposal={proposal} key={key} />
-                        ) : <></>
+                        <Item protocol={protocol} key={key} />
                     )
                 })}
             </div>

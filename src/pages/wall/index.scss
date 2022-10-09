@@ -41,6 +41,15 @@
     margin: 0 auto;
 }
 
+.chains {
+    position: relative;
+    width: 100px;
+
+    img {
+        position: absolute;
+    }
+}
+
 .will-justify {
     justify-content: start;
 }

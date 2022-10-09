@@ -1,0 +1,158 @@
+[
+    {
+        "protocol": "qidao",
+        "text": "QiDAO",
+        "href": "/proposal/qidao",
+        "chains": [
+            {
+                "name": "../../assets/chains/bsc.png",
+                "id": 56
+            },
+            {
+                "name": "../../assets/chains/avax.png",
+                "id": 43114
+            },
+            {
+                "name": "../../assets/chains/fantom.svg",
+                "id": 250
+            },
+            {
+                "name": "../../assets/chains/polygon.svg",
+                "id": 137
+            },
+            {
+                "name": "../../assets/chains/arbitrum.svg",
+                "id": 42161
+            },
+            {
+                "name": "../../assets/chains/optimism.png",
+                "id": 10
+            },
+            {
+                "name": "../../assets/chains/eth.svg",
+                "id": 1
+            }
+        ],
+        "icon": "../../assets/icons/pro-qidao.svg"
+    },
+    {
+        "protocol": "aura",
+        "text": "Aura",
+        "href": "/proposal/aura",
+        "chains": [
+            {
+                "name": "../../assets/chains/optimism.png",
+                "id": 10
+            },
+            {
+                "name": "../../assets/chains/eth.svg",
+                "id": 1
+            }
+        ],
+        "icon": "../../assets/icons/aura.svg"
+    },
+    {
+        "protocol": "saddle",
+        "text": "Saddle",
+        "href": "/proposal/saddle",
+        "chains": [
+            {
+                "name": "../../assets/chains/eth.svg",
+                "id": 1
+            }
+        ],
+        "icon": "../../assets/icons/saddle.svg"
+    },
+    {
+        "protocol": "aave",
+        "text": "Aave",
+        "href": "/proposal/aave",
+        "chains": [
+            {
+                "name": "../../assets/chains/bsc.png",
+                "id": 56
+            },
+            {
+                "name": "../../assets/chains/avax.png",
+                "id": 43114
+            },
+            {
+                "name": "../../assets/chains/fantom.svg",
+                "id": 250
+            },
+            {
+                "name": "../../assets/chains/polygon.svg",
+                "id": 137
+            },
+            {
+                "name": "../../assets/chains/arbitrum.svg",
+                "id": 42161
+            },
+            {
+                "name": "../../assets/chains/optimism.png",
+                "id": 10
+            },
+            {
+                "name": "../../assets/chains/eth.svg",
+                "id": 1
+            }
+        ],
+        "icon": "../../assets/icons/pro-aave.svg"
+    },
+    {
+        "protocol": "ribbon",
+        "text": "Ribbon",
+        "href": "/proposal/ribbon",
+        "chains": [
+            {
+                "name": "../../assets/chains/avax.png",
+                "id": 43114
+            },
+            {
+                "name": "../../assets/chains/eth.svg",
+                "id": 1
+            }
+        ],
+        "icon": "../../assets/icons/ribbon.svg"
+    },
+    {
+        "protocol": "beethovenx",
+        "text": "Beethovenx",
+        "href": "/proposal/beethovenx",
+        "chains": [
+            {
+                "name": "../../assets/chains/fantom.svg",
+                "id": 250
+            }
+        ],
+        "icon": "../../assets/icons/beethovenx.svg"
+    },
+    {
+        "protocol": "onx",
+        "text": "Onx",
+        "href": "/proposal/onx",
+        "chains": [
+            {
+                "name": "../../assets/chains/bsc.png",
+                "id": 56
+            },
+            {
+                "name": "../../assets/chains/avax.png",
+                "id": 43114
+            },
+            {
+                "name": "../../assets/chains/fantom.svg",
+                "id": 250
+            },
+            {
+                "name": "../../assets/chains/polygon.svg",
+                "id": 137
+            },
+            {
+                "name": "../../assets/chains/eth.svg",
+                "id": 1
+            }
+        ],
+        "icon": "../../assets/icons/onx.svg"
+    }
+]

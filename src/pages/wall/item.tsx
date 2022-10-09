@@ -1,73 +1,82 @@
-import { Proposal } from "../../@types/proposal";
 import "./index.scss";
 import NumberType from "../../common/number";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, RootState } from "../../redux/store";
-import { useNavigate } from "react-router-dom";
-
-const ChainImg: any = {
-    1: "../../assets/chains/eth.svg",
-    10: "../../assets/chains/optimism.png",
-    56: "../../assets/chains/bsc.png",
-    137: "../../assets/chains/polygon.svg",
-    250: "../../assets/chains/fantom.png",
-    42161: "../../assets/chains/arbitrum.svg",
-    43114: "../../assets/chains/avax.png"
-}
-const ProtocolImg: any = {
-    qidao: "../../assets/icons/pro-qidao.svg",
-    aave: "../../assets/icons/pro-aave.svg",
-    saddle: "../../assets/icons/saddle.svg",
-    aura: "../../assets/icons/aura.svg",
-    beethovenx: "../../assets/icons/beethovenx.svg",
-    ribbon: "../../assets/icons/beethovenx.svg",
-    onx: "../../assets/icons/beethovenx.svg",
-    // vesq: "../../assets/icons/vesq.svg"
-}
+import { Protocols } from "../../@types";
+import { useEffect, useState } from "react";
+import { AnyMap } from "immer/dist/internal";
+import switchChain from "../../components/header/switchchain";
+import { NotificationManager } from "react-notifications";
 type Props = {
-    proposal: Proposal;
+    protocol: Protocols;
 }
 const Item = (props: Props) => {
     const navigate = useNavigate();
+    const [count, setCount] = useState(0);
+    const [earn, setEarn] = useState(0);
     const walletAddress: any = useSelector(
         (state: RootState) => state.wallet.address
     );
-    const { proposal } = props;
+    const library: any = useSelector(
+        (state: RootState) => state.provider.provider
+    );
+    const proposalState = useSelector((state) => state.proposal);
+    const chainId = useSelector((state) => state.chain.id);
+    // @ts-ignore
+    const proposals = proposalState.currentProposal.data;
+    const { protocol } = props;
 
-    const onJoinClick = (proposal: Proposal) => {
-        const path = proposal.address !== walletAddress ? "../proposal/" + proposal.type + "/vote" : "../proposal/" + proposal.type + "/vote?proposer=1";
-        navigate(path, {
-            state: {
-                proposal,
-            },
+    useEffect(() => {
+        const getActiveArray = proposals?.filter(
+            (element: any) => element.type == protocol.protocol && !element.isClosed
+        );
+        const myProposals = proposals?.filter(
+            (element: any) => element.type == protocol.protocol
+        );
+        var totalEarned = 0;
+        setCount(getActiveArray?.length);
+        myProposals?.forEach(async (item: any) => {
+            if (item.myclaim) {
+                totalEarned +=
+                    item.usdAmount;
+            }
+            setEarn(totalEarned);
         });
-    };
+    }, [proposals, walletAddress]);
+
+    const checkChain = async () => {
+        const chainState = protocol.chains.filter((chain) => chain.id);
+        if (chainState.length == 0) {
+            NotificationManager.error("Please change your network for protocol that you want");
+        } else {
+            navigate(protocol.href);
+        }
+    }
     return (
         <div className="item item-gap">
-            <div className="flex justify-between">
-                <img width="30" src={ProtocolImg[proposal.type]}></img>
-                <img width="30" src={ChainImg[proposal.chain]}></img>
+            <div className="flex justify-between items-center">
+                <img width="50" src={protocol.icon}></img>
+                <div className="chains">
+                    {protocol.chains.map((chain, key) => {
+                        return (
+                            <img width="30" src={chain.name} style={{ right: `${key * 13}px` }}></img>
+                        )
+                    })}
+                </div>
             </div>
-            <h2 className="item-font-2">{proposal.name.length > 20 ? (proposal.name.slice(0, 20) + "...") : proposal.name}</h2>
+            <h2 className="item-font-2">{protocol.text}</h2>
             <div>
-                <p className="item-font-1">VOTING FOR</p>
-                <h4>{proposal.protocol}</h4>
-            </div>
-            <div>
-                <p className="item-font-1">VOTE INCENTIVE</p>
-                <h4>$ {NumberType((proposal.usdAmount).toString(), 2)}</h4>
-            </div>
-            <div>
-                <p className="item-font-1">TOTAL VOTES</p>
-                <h4>{NumberType((proposal.totalVoteWeight).toString(), 2)}</h4>
+                <p className="item-font-1">Active Proposals</p>
+                <h4>{count}</h4>
             </div>
             <div className="flex justify-between">
                 <div>
-                    <p className="item-font-1">$/VOTE</p>
-                    <h4>{proposal.totalVoteWeight > 0 ? NumberType((proposal.usdAmount / proposal.totalVoteWeight).toFixed(6), 6) : ""}</h4>
+                    <p className="item-font-1">Total Rewards</p>
+                    <h4>${earn}</h4>
                 </div>
-                <Button onClick={() => onJoinClick(proposal)}
+                <Button
+                    onClick={checkChain}
                     variant="contained" color="tealLight"
                 >
                     View

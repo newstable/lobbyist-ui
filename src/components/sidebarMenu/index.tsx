@@ -4,34 +4,15 @@ import { Box, Typography, SvgIcon, Divider, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useLocation } from "react-router-dom";
 import { MenuLink } from "../../@types";
 import { ReactComponent as GaugeIcon } from "../../assets/icons/gauge.svg";
 import { ReactComponent as WallIcon } from "../../assets/icons/wall.svg";
 import { ReactComponent as ChartIcon } from "../../assets/icons/chart.svg";
-import AuraIcon from "../../assets/icons/aura.svg";
-import BeethovenxIcon from "../../assets/icons/beethovenx.svg";
-import saddleIcon from "../../assets/icons/saddle.svg";
-import ProAvaeIcon from "../../assets/icons/pro-aave.svg";
-import RibbonIcon from "../../assets/icons/ribbon.svg";
-import OnxIcon from "../../assets/icons/onx.svg";
-import CurveIcon from "../../assets/icons/crv.svg";
-import BalancerIcon from "../../assets/icons/bal.svg";
-import ProQiIcon from "../../assets/icons/pro-qidao.svg";
-import { ReactComponent as ProFraxIcon } from "../../assets/icons/pro-frax.svg";
 import { ReactComponent as TwitterIcon } from "../../assets/icons/twitter.svg";
 import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
 import { ReactComponent as MirrorIcon } from "../../assets/icons/mirror.svg";
 import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
-import ETHIcon from "../../assets/chains/eth.svg";
-import OPIcon from "../../assets/chains/optimism.png";
-import ARBIcon from "../../assets/chains/arbitrum.svg";
-import POLIcon from "../../assets/chains/polygon.svg";
-import FANTOMIcon from "../../assets/chains/fantom.png";
-import AVAXIcon from "../../assets/chains/avax.png";
-import BSCIcon from "../../assets/chains/bsc.png";
 import Logo from "../../assets/icons/logo.svg";
 import styles from "./styles.module.scss";
 import './sidebarItem-Menu.scss';
@@ -39,7 +20,6 @@ import { colors } from "../../common";
 import switchNetwork from "../header/switchchain";
 import { useSelector } from "../../redux/store";
 import { RootState } from "../../redux/store";
-import { FlashOnRounded } from "@mui/icons-material";
 
 type Props = {};
 
@@ -91,218 +71,16 @@ const SidebarMenu = (props: Props) => {
     },
     {
       icon: "wall",
-      text: "Wall",
+      text: "Proposals",
       href: "/wall",
       separator: true,
       type: "in"
-    },
-    {
-      icon: ETHIcon,
-      text: "Ethereum",
-      href: "#",
-      chain: 1,
-      type: "chain",
-      child: [
-        {
-          icon: ProQiIcon,
-          text: "QiDAO",
-          chain: 1,
-          href: "/proposal/qidao",
-        },
-        {
-          icon: AuraIcon,
-          text: "Aura",
-          chain: 1,
-          href: "/proposal/aura",
-        },
-        {
-          icon: saddleIcon,
-          text: "Saddle",
-          chain: 1,
-          href: "/proposal/saddle",
-        },
-        {
-          icon: ProAvaeIcon,
-          text: "Aave",
-          chain: 1,
-          href: "/proposal/aave",
-        },
-        {
-          icon: RibbonIcon,
-          text: "Ribbon",
-          chain: 1,
-          href: "/proposal/ribbon",
-        },
-        {
-          icon: OnxIcon,
-          text: "OnX",
-          chain: 1,
-          href: "/proposal/onx",
-        },
-      ]
-    },
-    {
-      icon: OPIcon,
-      text: "Optimism",
-      href: "#",
-      chain: 10,
-      type: "chain",
-      child: [
-        {
-          icon: ProQiIcon,
-          text: "QiDAO",
-          chain: 10,
-          href: "/proposal/qidao",
-        },
-        {
-          icon: ProAvaeIcon,
-          text: "Aave",
-          chain: 10,
-          href: "/proposal/aave",
-        },
-        {
-          icon: AuraIcon,
-          text: "Aura",
-          chain: 10,
-          href: "/proposal/aura",
-        },
-      ]
-    },
-    {
-      icon: ARBIcon,
-      text: "Arbitrum",
-      href: "#",
-      chain: 42161,
-      type: "chain",
-      child: [
-        {
-          icon: ProQiIcon,
-          text: "QiDAO",
-          chain: 42161,
-          href: "/proposal/qidao",
-        },
-        {
-          icon: ProAvaeIcon,
-          text: "Aave",
-          chain: 42161,
-          href: "/proposal/aave",
-        },
-      ]
-    },
-    {
-      icon: POLIcon,
-      text: "Polygon",
-      href: "#",
-      chain: 137,
-      type: "chain",
-      child: [
-        {
-          icon: ProQiIcon,
-          text: "QiDAO",
-          chain: 137,
-          href: "/proposal/qidao",
-        },
-        {
-          icon: ProAvaeIcon,
-          text: "Aave",
-          chain: 137,
-          href: "/proposal/aave",
-        },
-        {
-          icon: OnxIcon,
-          text: "Onx",
-          chain: 137,
-          href: "/proposal/onx",
-        },
-      ]
-    },
-    {
-      icon: FANTOMIcon,
-      text: "Fantom",
-      href: "#",
-      chain: 250,
-      type: "chain",
-      child: [
-        {
-          icon: ProQiIcon,
-          text: "QiDAO",
-          chain: 250,
-          href: "/proposal/qidao",
-        },
-        {
-          icon: BeethovenxIcon,
-          text: "Beethovenx",
-          chain: 250,
-          href: "/proposal/beethovenx"
-        },
-        {
-          icon: ProAvaeIcon,
-          text: "Aave",
-          chain: 250,
-          href: "/proposal/aave",
-        },
-        {
-          icon: OnxIcon,
-          text: "OnX",
-          chain: 250,
-          href: "/proposal/onx",
-        },
-      ]
-    },
-    {
-      icon: AVAXIcon,
-      text: "Avalanche",
-      href: "#",
-      chain: 43114,
-      type: "chain",
-      child: [
-        {
-          icon: ProQiIcon,
-          text: "QiDAO",
-          chain: 43114,
-          href: "/proposal/qidao",
-        },
-        {
-          icon: ProAvaeIcon,
-          text: "Aave",
-          chain: 43114,
-          href: "/proposal/aave",
-        },
-        {
-          icon: RibbonIcon,
-          text: "Ribbon",
-          chain: 43114,
-          href: "/proposal/ribbon",
-        },
-        {
-          icon: OnxIcon,
-          text: "OnX",
-          chain: 43114,
-          href: "/proposal/onx",
-        },
-      ]
-    },
-    {
-      icon: BSCIcon,
-      text: "Binance",
-      href: "#",
-      chain: 56,
-      type: "chain",
-      child: [
-        {
-          icon: ProQiIcon,
-          text: "QiDAO",
-          chain: 56,
-          href: "/proposal/qidao",
-        },
-      ],
     },
     {
       icon: "twitter",
       text: "Twitter",
       href: "https://twitter.com/0xLobbyist",
       type: "out",
-      separator: true
     },
     {
       icon: "discord",
@@ -334,41 +112,6 @@ const SidebarMenu = (props: Props) => {
   let pathNameProtocol = "";
   if (isNew) {
     pathNameProtocol = ["", pathNameArr[1], pathNameArr[3]].join("/");
-  }
-
-  const [ChainMenuState, SetChainMenuState] = useState(
-    [
-      { id: 1, state: false },
-      { id: 10, state: false },
-      { id: 56, state: false },
-      { id: 137, state: false },
-      { id: 250, state: false },
-      { id: 42161, state: false },
-      { id: 43114, state: false }
-    ]
-  )
-  const OpenChainMenu = (item: MenuLink, index: Number) => {
-    let menustate = ChainMenuState.map((menuitem, index) => { return { id: menuitem.id, state: menuitem.id === item.chain ? !menuitem.state : false }; }, []);
-    SetChainMenuState(menustate);
-  }
-
-  const GetMenuState = (chain: any) => {
-    let stateItem = ChainMenuState.find((item) => { return item.id === chain ? true : false });
-    return stateItem?.state;
-  }
-
-  const setInitChild = () => {
-    SetChainMenuState(
-      [
-        { id: 1, state: false },
-        { id: 10, state: false },
-        { id: 56, state: false },
-        { id: 137, state: false },
-        { id: 250, state: false },
-        { id: 42161, state: false },
-        { id: 43114, state: false }
-      ]
-    )
   }
 
   const changeExchange = (currentChain: any, text: string) => {
@@ -436,93 +179,8 @@ const SidebarMenu = (props: Props) => {
                 key={`lnk_${idx}`}
                 className={`${link.type ? "relative" : ""}`}
               >
-                {link.type == "chain" ? (
+                {link.type == "out" ? (
                   <>
-                    <button
-                      key={`lnk_${idx}`}
-                      className={`${classNames("py-4 flex")}`}
-                      onClick={() => { OpenChainMenu(link, idx) }}
-                    >
-                      <Box
-                        component="span"
-                        className={classNames("flex gap-2 items-center")}
-                      >
-                        <Box
-                          component="span"
-                          className={classNames(
-                            "w-8 h-8 hidden mlg:flex items-center justify-center",
-                            styles.menuIcon
-                          )}
-                        >
-                          <img
-                            width="30"
-                            src={link.icon}
-                          />
-                        </Box>
-                        <Typography
-                          className={classNames(
-                            "mlg:items-center",
-                            styles.menuText
-                          )}
-                          variant="subtitle2"
-                        >
-                          {link.text}
-                        </Typography>
-                      </Box>
-                    </button>
-                    {
-                      GetMenuState(link.chain) ? !link.childtype ?
-                        <div className="protocol-modal">
-                          <Box className="sidebarItem-MenuChain">
-                            {
-                              link.child?.map((children, Idx) => {
-                                return (
-                                  <Link
-                                    onClick={() => { setInitChild(); changeExchange(link.chain, children.text) }}
-                                    key={`lnk_${Idx}`}
-                                    to={children.href}
-                                    color={linkColor}
-                                    className={classNames("py-4 flex")}
-                                  >
-                                    <Box
-                                      component="span"
-                                      className={classNames("flex gap-2 items-center")}
-                                    >
-                                      <Box
-                                        component="span"
-                                        className={classNames(
-                                          "w-8 h-8 hidden mlg:flex items-center justify-center",
-                                          styles.menuIcon
-                                        )}
-                                      >
-                                        <SvgIcon
-                                          component={getIcon(children.icon)}
-                                          viewBox="0 0 31 31"
-                                        />
-                                        <img src={children.icon} width="30"></img>
-                                      </Box>
-                                      <Typography
-                                        className={classNames(
-                                          "mlg:items-center",
-                                          styles.menuText
-                                        )}
-                                        variant="subtitle2"
-                                      >
-                                        {children.text}
-                                      </Typography>
-                                    </Box>
-                                  </Link>
-                                )
-                              })
-                            }
-                          </Box>
-                        </div>
-                        : '' : ""
-                    }
-                  </>
-                ) : link.type == "out" ? (
-                  <>
-                    {link.separator ? <Divider className="!my-4" /> : ""}
                     <a
                       key={`lnk_${idx}`}
                       href={link.href}
