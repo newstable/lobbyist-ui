@@ -1577,10 +1577,6 @@ input:checked+.toggle-bg {
     overflow: hidden
 }
 
-.overflow-auto {
-    overflow: auto
-}
-
 .overflow-x-auto {
     overflow-x: auto
 }
@@ -3837,6 +3833,10 @@ input:checked+.toggle-bg {
 @media(max-width:900px) {
     .svgMap-block-zoom-notice>div {
         font-size: 22px
+    }
+
+    .overflow-auto {
+        overflow: auto
     }
 }
 
