@@ -21,6 +21,8 @@ const ProtocolImg: any = {
     saddle: "../../assets/icons/saddle.svg",
     aura: "../../assets/icons/aura.svg",
     beethovenx: "../../assets/icons/beethovenx.svg",
+    ribbon: "../../assets/icons/beethovenx.svg",
+    onx: "../../assets/icons/beethovenx.svg",
     // vesq: "../../assets/icons/vesq.svg"
 }
 type Props = {
