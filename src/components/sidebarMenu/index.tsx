@@ -125,6 +125,18 @@ const SidebarMenu = (props: Props) => {
           chain: 1,
           href: "/proposal/aave",
         },
+        {
+          icon: ProAvaeIcon,
+          text: "Ribbon",
+          chain: 1,
+          href: "/proposal/ribbon",
+        },
+        {
+          icon: ProAvaeIcon,
+          text: "OnX",
+          chain: 1,
+          href: "/proposal/onx",
+        },
       ]
     },
     {
@@ -145,6 +157,12 @@ const SidebarMenu = (props: Props) => {
           text: "Aave",
           chain: 10,
           href: "/proposal/aave",
+        },
+        {
+          icon: AuraIcon,
+          text: "Aura",
+          chain: 10,
+          href: "/proposal/aura",
         },
       ]
     },
@@ -188,6 +206,12 @@ const SidebarMenu = (props: Props) => {
           chain: 137,
           href: "/proposal/aave",
         },
+        {
+          icon: ProAvaeIcon,
+          text: "Onx",
+          chain: 137,
+          href: "/proposal/onx",
+        },
       ]
     },
     {
@@ -215,6 +239,12 @@ const SidebarMenu = (props: Props) => {
           chain: 250,
           href: "/proposal/aave",
         },
+        {
+          icon: ProAvaeIcon,
+          text: "OnX",
+          chain: 250,
+          href: "/proposal/onx",
+        },
       ]
     },
     {
@@ -235,6 +265,18 @@ const SidebarMenu = (props: Props) => {
           text: "Aave",
           chain: 43114,
           href: "/proposal/aave",
+        },
+        {
+          icon: ProAvaeIcon,
+          text: "Ribbon",
+          chain: 43114,
+          href: "/proposal/birron",
+        },
+        {
+          icon: ProAvaeIcon,
+          text: "OnX",
+          chain: 43114,
+          href: "/proposal/onx",
         },
       ]
     },

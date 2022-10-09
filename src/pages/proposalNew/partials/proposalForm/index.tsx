@@ -76,6 +76,12 @@ const ProposalForm = (props: Props) => {
     } else if (props.name === "beethovenx") {
       setName("beets.eth");
       setValue("platformType", "beethovenx");
+    } else if (props.name === "onx") {
+      setName("onx-finance.eth");
+      setValue("platformType", "onx");
+    } else if (props.name === "ribbon") {
+      setName("gauge.rbn.eth");
+      setValue("platformType", "gauge");
     }
   }, [props.name]);
 
