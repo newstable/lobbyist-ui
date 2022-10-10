@@ -34,7 +34,6 @@ const Item = (props: Props) => {
         const myProposals = proposals?.filter(
             (element: any) => element.type == protocol.protocol
         );
-        console.log(myProposals);
         var totalEarned = 0;
         setCount(getActiveArray?.length);
         myProposals?.forEach(async (item: any) => {
