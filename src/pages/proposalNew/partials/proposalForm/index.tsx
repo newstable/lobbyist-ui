@@ -48,6 +48,7 @@ const ProposalForm = (props: Props) => {
   const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
   // const [proposalName, setProposalName] = useState("");
   // const [proposalDescription, setProposalDescription] = useState("");
+  const [minReward, setMinReward] = useState(0);
   const [maxReward, setMaxReward] = useState(0);
   const [minVotes, setMinVotes] = useState(0);
   const [targetVotes, setTargetVotes] = useState(0);
@@ -201,6 +202,7 @@ const ProposalForm = (props: Props) => {
       rangeNum: [{ value: [0, 10] }],
       payout: "0",
       userAddress: "",
+      minReward: "0",
       minvotes: "0",
       targetVotes: "0",
       proposalId: "",
@@ -357,7 +359,7 @@ const ProposalForm = (props: Props) => {
                     />
                     <FormTextField
                       label="Min Reward"
-                      name="payout"
+                      name="minReward"
                       control={control}
                       textType="number"
                       setrewardAmount={setMaxReward}
