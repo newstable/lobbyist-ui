@@ -28,7 +28,6 @@ const Proposals = () => {
                 return a.reward > b.reward ? 1 : -1
             }
         });
-        console.log(sortedByReward);
         setSortProposal(sortedByReward);
     }
     return (
