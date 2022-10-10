@@ -29,6 +29,16 @@ type Props = {
     isHistory: boolean;
 };
 
+const ChainImg: any = {
+    1: "../../assets/chains/eth.svg",
+    10: "../../assets/chains/optimism.png",
+    56: "../../assets/chains/bsc.png",
+    137: "../../assets/chains/polygon.svg",
+    250: "../../assets/chains/fantom.png",
+    42161: "../../assets/chains/arbitrum.svg",
+    43114: "../../assets/chains/avax.png"
+}
+
 const Content = styled(CardContent)(({ theme }) => ({}));
 
 const Text_Head = styled(TextHead)(({ theme }) => ({
@@ -47,6 +57,7 @@ const ProposalCardActiveSymbol = ({
     );
     const chain: any = useSelector((state: RootState) => state.chain.id);
     const colHeads = [
+        "Chain",
         "Title",
         "Voting For",
         "Rewards",
@@ -99,7 +110,7 @@ const ProposalCardActiveSymbol = ({
                 </Box>
                 <Box
                     className={classNames(
-                        "grid grid-cols-custom-6 gap-8 px-6 mb-8",
+                        "grid grid-cols-custom-7 gap-8 px-6 mb-8",
                         !isAboveMd && "hidden"
                     )}
                 >
@@ -119,24 +130,17 @@ const ProposalCardActiveSymbol = ({
                                             <Box
                                                 className={classNames(
                                                     "grid gap-8",
-                                                    isAboveMd ? "grid-cols-custom-6 items-center" : "grid-cols-2",
+                                                    isAboveMd ? "grid-cols-custom-7 items-center" : "grid-cols-2",
                                                     idx == 0 ? "" : ""
                                                 )}
                                             >
                                                 <Box
-                                                    className={classNames(
-                                                        "flex flex-col",
-                                                        !isAboveMd && "gap-1"
-                                                    )}
+                                                    className={classNames("flex flex-col card-item", !isAboveMd && "gap-1")}
                                                 >
-                                                    <TextHead className={classNames(isAboveMd && "hidden")}>
+                                                    <Text_Head className={classNames(isAboveMd && "hidden")}>
                                                         {colHeads[0]}
-                                                    </TextHead>
-                                                    <TextContent>
-                                                        {p.name.length > 30
-                                                            ? p.name.slice(0, 30) + "..."
-                                                            : p.name}
-                                                    </TextContent>
+                                                    </Text_Head>
+                                                    <img width="23" src={ChainImg[p.chain]}></img>
                                                 </Box>
                                                 <Box
                                                     className={classNames(
@@ -147,9 +151,11 @@ const ProposalCardActiveSymbol = ({
                                                     <TextHead className={classNames(isAboveMd && "hidden")}>
                                                         {colHeads[1]}
                                                     </TextHead>
-                                                    <TextContent>{p.protocol.length > 30
-                                                        ? p.protocol.slice(0, 30) + "..."
-                                                        : p.protocol}</TextContent>
+                                                    <TextContent>
+                                                        {p.name.length > 23
+                                                            ? p.name.slice(0, 23) + "..."
+                                                            : p.name}
+                                                    </TextContent>
                                                 </Box>
                                                 <Box
                                                     className={classNames(
@@ -159,6 +165,19 @@ const ProposalCardActiveSymbol = ({
                                                 >
                                                     <TextHead className={classNames(isAboveMd && "hidden")}>
                                                         {colHeads[2]}
+                                                    </TextHead>
+                                                    <TextContent>{p.protocol.length > 23
+                                                        ? p.protocol.slice(0, 23) + "..."
+                                                        : p.protocol}</TextContent>
+                                                </Box>
+                                                <Box
+                                                    className={classNames(
+                                                        "flex flex-col",
+                                                        !isAboveMd && "gap-1"
+                                                    )}
+                                                >
+                                                    <TextHead className={classNames(isAboveMd && "hidden")}>
+                                                        {colHeads[3]}
                                                     </TextHead>
                                                     <TextContent>{`$${NumberType(
                                                         p.usdAmount.toFixed(2),
@@ -172,7 +191,7 @@ const ProposalCardActiveSymbol = ({
                                                     )}
                                                 >
                                                     <TextHead className={classNames(isAboveMd && "hidden")}>
-                                                        {colHeads[3]}
+                                                        {colHeads[4]}
                                                     </TextHead>
                                                     <TextContent>
                                                         {NumberType(p.totalVoteWeight.toFixed(2), 2)}
@@ -185,7 +204,7 @@ const ProposalCardActiveSymbol = ({
                                                     )}
                                                 >
                                                     <TextHead className={classNames(isAboveMd && "hidden")}>
-                                                        {colHeads[4]}
+                                                        {colHeads[5]}
                                                     </TextHead>
                                                     <TextContent>
                                                         {p.totalVoteWeight == 0 ? ("$0") : p.totalVoteWeight < 1 ? "$" + NumberType(p.usdAmount.toFixed(2), 2) : (
