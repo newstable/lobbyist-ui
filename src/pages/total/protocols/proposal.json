@@ -75,16 +75,8 @@
         "href": "/proposal/aave",
         "chains": [
             {
-                "name": "../../assets/chains/bsc.png",
-                "id": 56
-            },
-            {
                 "name": "../../assets/chains/avax.png",
                 "id": 43114
-            },
-            {
-                "name": "../../assets/chains/fantom.svg",
-                "id": 250
             },
             {
                 "name": "../../assets/chains/polygon.svg",
@@ -105,7 +97,7 @@
         ],
         "icon": "../../assets/icons/pro-aave.svg",
         "multiChain": true,
-        "chainNames": "Ethereum/Optimism/Arbitrum/Polygon/Fantom/Avalanche/Binance"
+        "chainNames": "Ethereum/Optimism/Arbitrum/Polygon/Avalanche"
     },
     {
         "protocol": "ribbon",
