@@ -44,7 +44,7 @@ const Proposals = () => {
                             <option value={250}>Fantom</option>
                             <option value={10}>Optimism</option>
                             <option value={42161}>Arbitrum</option>
-                            <option value={43114}>Arvalanche</option>
+                            <option value={43114}>Avalanche</option>
                         </select>
                     </div>
                 </div>
@@ -64,8 +64,8 @@ const Proposals = () => {
                 <div className="sm:flex items-center ml-6">
                     <div className="text-2xl">SORT BY REWARD : </div>
                     <select className="wall-select" onChange={(e) => setReward(e.target.value)}>
-                        <option value={"max"}>Max</option>
-                        <option value={"min"}>Min</option>
+                        <option value={"max"}>High</option>
+                        <option value={"min"}>Low</option>
                     </select>
                 </div>
             </div>
