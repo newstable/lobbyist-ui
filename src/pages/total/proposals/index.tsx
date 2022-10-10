@@ -34,16 +34,18 @@ const Proposals = () => {
             <div className="flex items-center will-justify">
                 <div className="sm:flex items-center">
                     <div className=" text-2xl">SORT BY CHAIN : </div>
-                    <select className="wall-select" onChange={(e) => selectChain(e.target.value)}>
-                        <option value={""}>All</option>
-                        <option value={1}>Ethereum</option>
-                        <option value={56}>Binance</option>
-                        <option value={137}>Polygon</option>
-                        <option value={250}>Fantom</option>
-                        <option value={10}>Optimism</option>
-                        <option value={42161}>Arbitrum</option>
-                        <option value={43114}>Arvalanche</option>
-                    </select>
+                    <div>
+                        <select className="wall-select" onChange={(e) => selectChain(e.target.value)}>
+                            <option value={""}>All</option>
+                            <option value={1}>Ethereum</option>
+                            <option value={56}>Binance</option>
+                            <option value={137}>Polygon</option>
+                            <option value={250}>Fantom</option>
+                            <option value={10}>Optimism</option>
+                            <option value={42161}>Arbitrum</option>
+                            <option value={43114}>Arvalanche</option>
+                        </select>
+                    </div>
                 </div>
                 <div className="sm:flex items-center ml-6">
                     <div className="text-2xl">SORT BY Protocol : </div>

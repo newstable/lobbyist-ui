@@ -67,7 +67,7 @@
         ],
         "icon": "../../assets/icons/saddle.svg",
         "multiChain": false,
-        "chainNames": "Ethereum/Optimism"
+        "chainNames": "Ethereum"
     },
     {
         "protocol": "aave",
