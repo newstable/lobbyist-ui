@@ -21,7 +21,7 @@ const Proposals = () => {
         var sortedProposal: Proposal[] = search?.filter(
             (proposal: any) => proposal.type == protocol || protocol == ""
         )
-        var sortedByReward: Proposal[] = sortedProposal.sort((a, b) => {
+        var sortedByReward: Proposal[] = sortedProposal?.sort((a, b) => {
             if (reward == "max")
                 return a.reward < b.reward ? 1 : -1
             else {
