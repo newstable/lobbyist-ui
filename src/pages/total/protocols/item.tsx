@@ -52,7 +52,7 @@ const Item = (props: Props) => {
             if (!type) {
                 const chainState = protocol.chains.filter((chain) => chain.id == chainId);
                 if (chainState.length == 0) {
-                    NotificationManager.error("Please change your network for protocol that you want", "Error");
+                    NotificationManager.info("You have to change your network that you want.", "Network Warning");
                 } else {
                     navigate(protocol.href);
                 }
@@ -62,7 +62,7 @@ const Item = (props: Props) => {
                 if (state)
                     navigate(protocol.href);
                 else {
-                    NotificationManager.error("Please change your network for protocol that you want", "Error");
+                    NotificationManager.info("You have to change your network that you want", "Network Warning");
                 }
             }
         }
