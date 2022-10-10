@@ -33,7 +33,8 @@
                 "id": 1
             }
         ],
-        "icon": "../../assets/icons/pro-qidao.svg"
+        "icon": "../../assets/icons/pro-qidao.svg",
+        "multiChain": true
     },
     {
         "protocol": "aura",
@@ -49,7 +50,8 @@
                 "id": 1
             }
         ],
-        "icon": "../../assets/icons/aura.svg"
+        "icon": "../../assets/icons/aura.svg",
+        "multiChain": false
     },
     {
         "protocol": "saddle",
@@ -61,7 +63,8 @@
                 "id": 1
             }
         ],
-        "icon": "../../assets/icons/saddle.svg"
+        "icon": "../../assets/icons/saddle.svg",
+        "multiChain": false
     },
     {
         "protocol": "aave",
@@ -97,7 +100,8 @@
                 "id": 1
             }
         ],
-        "icon": "../../assets/icons/pro-aave.svg"
+        "icon": "../../assets/icons/pro-aave.svg",
+        "multiChain": true
     },
     {
         "protocol": "ribbon",
@@ -113,7 +117,8 @@
                 "id": 1
             }
         ],
-        "icon": "../../assets/icons/ribbon.svg"
+        "icon": "../../assets/icons/ribbon.svg",
+        "multiChain": false
     },
     {
         "protocol": "beethovenx",
@@ -125,7 +130,8 @@
                 "id": 250
             }
         ],
-        "icon": "../../assets/icons/beethovenx.svg"
+        "icon": "../../assets/icons/beethovenx.svg",
+        "multiChain": false
     },
     {
         "protocol": "onx",
@@ -153,6 +159,7 @@
                 "id": 1
             }
         ],
-        "icon": "../../assets/icons/onx.svg"
+        "icon": "../../assets/icons/onx.svg",
+        "multiChain": false
     }
 ]

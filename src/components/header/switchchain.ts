@@ -11,6 +11,7 @@ const switchNetwork = async (network: string, library: any, chain: string) => {
             method: "wallet_switchEthereumChain",
             params: [{ chainId: toHex(network) }],
         });
+        return true;
     } catch (switchError: any) {
         dispatch(setChainName(chain));
         if (switchError.code === 4902) {

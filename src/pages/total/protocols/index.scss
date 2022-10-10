@@ -43,10 +43,16 @@
 
 .chains {
     position: relative;
-    width: 100px;
 
-    img {
+    div {
+        width: 30px;
+        height: 100%;
         position: absolute;
+        cursor: pointer;
+
+        &:hover {
+            scale: calc(1.2);
+        }
     }
 }
 

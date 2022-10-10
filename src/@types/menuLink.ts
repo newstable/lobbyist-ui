@@ -29,4 +29,5 @@ export interface Protocols {
   href: string;
   chains: chains[];
   icon: string;
+  multiChain: boolean;
 }

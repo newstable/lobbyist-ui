@@ -45,13 +45,26 @@ const Item = (props: Props) => {
         });
     }, [proposals, walletAddress]);
 
-    const checkChain = async () => {
-        const chainState = protocol.chains.filter((chain) => chain.id == chainId);
-        console.log(chainState);
-        if (chainState.length == 0) {
-            NotificationManager.error("Please change your network for protocol that you want", "Error");
-        } else {
+    const checkChain = async (type: boolean, num: number) => {
+        if (protocol.multiChain) {
             navigate(protocol.href);
+        } else {
+            if (!type) {
+                const chainState = protocol.chains.filter((chain) => chain.id == chainId);
+                if (chainState.length == 0) {
+                    NotificationManager.error("Please change your network for protocol that you want", "Error");
+                } else {
+                    navigate(protocol.href);
+                }
+            } else {
+                const chain = protocol.chains[num].id;
+                const state = await switchChain(chain, library, chainId);
+                if (state)
+                    navigate(protocol.href);
+                else {
+                    NotificationManager.error("Please change your network for protocol that you want", "Error");
+                }
+            }
         }
     }
     return (
@@ -61,7 +74,9 @@ const Item = (props: Props) => {
                 <div className="chains flex items-center">
                     {protocol.chains.map((chain, key) => {
                         return (
-                            <img width="30" src={chain.name} style={{ right: `${key * 13}px` }}></img>
+                            <div onClick={() => checkChain(true, key)} className="flex items-center" style={{ right: `${key * 15}px` }}>
+                                <img width="30" src={chain.name} ></img>
+                            </div>
                         )
                     })}
                 </div>
@@ -77,7 +92,7 @@ const Item = (props: Props) => {
                     <h4>${earn}</h4>
                 </div>
                 <Button
-                    onClick={checkChain}
+                    onClick={() => checkChain(false, 0)}
                     variant="contained" color="tealLight"
                 >
                     View
