@@ -49,6 +49,8 @@ const ProposalForm = (props: Props) => {
   // const [proposalName, setProposalName] = useState("");
   // const [proposalDescription, setProposalDescription] = useState("");
   const [maxReward, setMaxReward] = useState(0);
+  const [minVotes, setMinVotes] = useState(0);
+  const [targetVotes, setTargetVotes] = useState(0);
   const [usd, setUsd] = useState(0);
   const walletAddress: any = useSelector(
     (state: RootState) => state.wallet.address
@@ -371,7 +373,7 @@ const ProposalForm = (props: Props) => {
                       name="minvotes"
                       control={control}
                       textType="number"
-                      setrewardAmount={setMaxReward}
+                      setrewardAmount={setMinVotes}
                       index={idx}
                       placeholder={
                         isGovernance
@@ -384,7 +386,7 @@ const ProposalForm = (props: Props) => {
                       name="targetVotes"
                       control={control}
                       textType="number"
-                      setrewardAmount={setMaxReward}
+                      setrewardAmount={setTargetVotes}
                       index={idx}
                       placeholder={
                         isGovernance
