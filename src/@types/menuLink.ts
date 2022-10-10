@@ -30,4 +30,5 @@ export interface Protocols {
   chains: chains[];
   icon: string;
   multiChain: boolean;
+  chainNames: string;
 }

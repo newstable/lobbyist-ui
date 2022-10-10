@@ -1,13 +1,12 @@
 import "./index.scss";
-import NumberType from "../../../common/number";
 import { Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, RootState } from "../../../redux/store";
 import { Protocols } from "../../../@types";
 import { useEffect, useState } from "react";
-import { AnyMap } from "immer/dist/internal";
 import switchChain from "../../../components/header/switchchain";
 import { NotificationManager } from "react-notifications";
+import Tooltip from '@mui/material/Tooltip';
 type Props = {
     protocol: Protocols;
 }
@@ -71,15 +70,17 @@ const Item = (props: Props) => {
         <div className="item item-gap">
             <div className="flex justify-between items-center">
                 <img width="50" src={protocol.icon}></img>
-                <div className="chains flex items-center">
-                    {protocol.chains.map((chain, key) => {
-                        return (
-                            <div onClick={() => checkChain(true, key)} className="flex items-center" style={{ right: `${key * 15}px` }}>
-                                <img width="30" src={chain.name} ></img>
-                            </div>
-                        )
-                    })}
-                </div>
+                <Tooltip title={protocol.chainNames} placement="bottom">
+                    <div className="chains flex items-center">
+                        {protocol.chains.map((chain, key) => {
+                            return (
+                                <div onClick={() => checkChain(true, key)} className="flex items-center" style={{ right: `${key * 15}px` }}>
+                                    <img width="30" src={chain.name} ></img>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </Tooltip>
             </div>
             <h2 className="item-font-2">{protocol.text}</h2>
             <div>

@@ -34,7 +34,8 @@
             }
         ],
         "icon": "../../assets/icons/pro-qidao.svg",
-        "multiChain": true
+        "multiChain": true,
+        "chainNames": "Ethereum/Optimism/Arbitrum/Polygon/Fantom/Avalanche/Binance"
     },
     {
         "protocol": "aura",
@@ -51,7 +52,8 @@
             }
         ],
         "icon": "../../assets/icons/aura.svg",
-        "multiChain": false
+        "multiChain": false,
+        "chainNames": "Ethereum/Optimism"
     },
     {
         "protocol": "saddle",
@@ -64,7 +66,8 @@
             }
         ],
         "icon": "../../assets/icons/saddle.svg",
-        "multiChain": false
+        "multiChain": false,
+        "chainNames": "Ethereum/Optimism"
     },
     {
         "protocol": "aave",
@@ -101,7 +104,8 @@
             }
         ],
         "icon": "../../assets/icons/pro-aave.svg",
-        "multiChain": true
+        "multiChain": true,
+        "chainNames": "Ethereum/Optimism/Arbitrum/Polygon/Fantom/Avalanche/Binance"
     },
     {
         "protocol": "ribbon",
@@ -118,7 +122,8 @@
             }
         ],
         "icon": "../../assets/icons/ribbon.svg",
-        "multiChain": false
+        "multiChain": false,
+        "chainNames": "Ethereum/Avalanche"
     },
     {
         "protocol": "beethovenx",
@@ -131,7 +136,8 @@
             }
         ],
         "icon": "../../assets/icons/beethovenx.svg",
-        "multiChain": false
+        "multiChain": false,
+        "chainNames": "Fantom"
     },
     {
         "protocol": "onx",
@@ -160,6 +166,7 @@
             }
         ],
         "icon": "../../assets/icons/onx.svg",
-        "multiChain": false
+        "multiChain": false,
+        "chainNames": "Ethereum/Polygon/Fantom/Avalanche/Binance"
     }
 ]
