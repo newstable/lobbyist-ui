@@ -58,7 +58,7 @@ const Item = (props: Props) => {
                 }
             } else {
                 const chain = protocol.chains[num].id;
-                const state = await switchChain(chain, library, chainId);
+                const state = await switchChain(chain.toString(), library, chainId.toString());
                 if (state)
                     navigate(protocol.href);
                 else {
