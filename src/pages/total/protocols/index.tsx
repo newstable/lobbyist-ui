@@ -42,7 +42,7 @@ const MyProtocols = () => {
             <Box className="mb-16 rounded-50">
                 <TextField
                     className={classNames(styles.input, "bg-black rounded-50")}
-                    placeholder="Search for proposals..."
+                    placeholder="Search for protocols..."
                     fullWidth
                     onChange={(e) => selectProtocol(e.target.value)}
                     InputProps={{
