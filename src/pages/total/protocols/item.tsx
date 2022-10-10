@@ -70,17 +70,19 @@ const Item = (props: Props) => {
         <div className="item item-gap">
             <div className="flex justify-between items-center">
                 <img width="50" src={protocol.icon}></img>
-                <Tooltip title={protocol.chainNames} placement="bottom">
-                    <div className="chains flex items-center">
-                        {protocol.chains.map((chain, key) => {
-                            return (
-                                <div onClick={() => checkChain(true, key)} className="flex items-center" style={{ right: `${key * 15}px` }}>
-                                    <img width="30" src={chain.name} ></img>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </Tooltip>
+                <div className="chains flex items-center h-full">
+                    <Tooltip title={protocol.chainNames} placement="bottom">
+                        <div className="w-full">
+                            {protocol.chains.map((chain, key) => {
+                                return (
+                                    <div onClick={() => checkChain(true, key)} className="flex items-center" style={{ right: `${key * 15}px` }}>
+                                        <img width="30" src={chain.name} ></img>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </Tooltip>
+                </div>
             </div>
             <h2 className="item-font-2">{protocol.text}</h2>
             <div>
