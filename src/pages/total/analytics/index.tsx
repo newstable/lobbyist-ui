@@ -55,16 +55,16 @@ const Analytics = () => {
             </div>
             <div className="justify-center mt-12 analytics-grid-col grid gap-8">
                 <div className="item text-center">
-                    <h1 className="analy-font-1">TVL</h1>
-                    <p>${NumberType(lockedValue.toFixed(2), 2)}</p>
+                    <h1 className="analy-font-1">${NumberType(lockedValue.toFixed(2), 2)}</h1>
+                    <p >TVL</p>
                 </div>
                 <div className="item text-center">
-                    <h1 className="analy-font-1">Total Proposals</h1>
-                    <p>{totalProposals}</p>
+                    <h1 className="analy-font-1">{totalProposals}</h1>
+                    <p >Total Proposals</p>
                 </div>
                 <div className="item text-center">
-                    <h1 className="analy-font-1">Total Paid</h1>
-                    <p>${NumberType(totalPaid.toFixed(2), 2)}</p>
+                    <h1 className="analy-font-1">${NumberType(totalPaid.toFixed(2), 2)}</h1>
+                    <p >Total Paid</p>
                 </div>
             </div>
         </div>
