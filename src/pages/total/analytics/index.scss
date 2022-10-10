@@ -25,7 +25,7 @@
         background-color: #282931;
         border-radius: 30px;
         padding: 15px;
-        margin: 5px;
+        margin: auto;
         width: 220px;
     }
 }
@@ -36,4 +36,22 @@
 
 .analy-font-1 {
     font-size: 20px;
+}
+
+@media (max-width:1160px) {
+    .analytics-grid-col {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+}
+
+@media (max-width:734px) {
+    .analytics-grid-col {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+}
+
+@media (max-width:530px) {
+    .analytics-grid-col {
+        grid-template-columns: repeat(1, minmax(0, 1fr))
+    }
 }
