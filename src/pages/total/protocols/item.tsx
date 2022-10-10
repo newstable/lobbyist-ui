@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import switchChain from "../../../components/header/switchchain";
 import { NotificationManager } from "react-notifications";
 import Tooltip from '@mui/material/Tooltip';
+import NumberType from "../../../common/number";
 type Props = {
     protocol: Protocols;
 }
@@ -35,7 +36,7 @@ const Item = (props: Props) => {
         );
         var totalEarned = 0;
         setCount(getActiveArray?.length);
-        myProposals?.forEach(async (item: any) => {
+        getActiveArray?.forEach(async (item: any) => {
             if (item.myclaim) {
                 totalEarned +=
                     item.usdAmount;
@@ -92,7 +93,7 @@ const Item = (props: Props) => {
             <div className="flex justify-between">
                 <div>
                     <p className="item-font-1">Total Rewards</p>
-                    <h4>${earn}</h4>
+                    <h4>${NumberType(earn.toFixed(2), 2)}</h4>
                 </div>
                 <Button
                     onClick={() => checkChain(false, 0)}
