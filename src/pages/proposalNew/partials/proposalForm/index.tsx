@@ -199,6 +199,8 @@ const ProposalForm = (props: Props) => {
       rangeNum: [{ value: [0, 10] }],
       payout: "0",
       userAddress: "",
+      minvotes: "0",
+      targetVotes: "0",
       proposalId: "",
     },
   });
@@ -334,59 +336,97 @@ const ProposalForm = (props: Props) => {
                 key={vp.id}
                 className={classNames(
                   "flex flex-col gap-8",
-                  isVariable && "bg-[#1f2028] rounded pt-6 pb-12"
                 )}
               >
-                {isVariable && (
-                  <Box className="flex justify-between px-6">
-                    <Typography
-                      variant="subtitle1"
-                      color={colors.textGray}
-                    >{`Section ${idx + 1}`}</Typography>
-                    {votePercentFields.length > 1 && (
-                      <IconButton
-                        aria-label="delte section"
-                        className="!bg-red-500 text-white"
-                        onClick={() => onDeleteGaugeVariable(idx)}
-                      >
-                        <DeleteForeverIcon />
-                      </IconButton>
+                {isVariable ? (
+                  <Box
+                    className={classNames(
+                      "flex flex-col gap-8"
                     )}
+                  >
+                    <FormSelect
+                      label="Reward Currency"
+                      placeholder="Choose your reward currency"
+                      items={Tokens[chainName]}
+                      setReward={setRewardType}
+                      setClickToken={clickToken}
+                      name="rewardCurrency"
+                      control={control}
+                    />
+                    <FormTextField
+                      label="Min Reward"
+                      name="payout"
+                      control={control}
+                      textType="number"
+                      setrewardAmount={setMaxReward}
+                      index={idx}
+                      placeholder={
+                        isGovernance
+                          ? "The maximum amount that will be paid out when the vote concludes"
+                          : "Enter payout in reward currency per vote percent"
+                      }
+                    />
+                    <FormTextField
+                      label="Min Votes"
+                      name="minvotes"
+                      control={control}
+                      textType="number"
+                      setrewardAmount={setMaxReward}
+                      index={idx}
+                      placeholder={
+                        isGovernance
+                          ? "The maximum amount that will be paid out when the vote concludes"
+                          : "Enter amount of Min votes"
+                      }
+                    />
+                    <FormTextField
+                      label="Target Votes"
+                      name="targetVotes"
+                      control={control}
+                      textType="number"
+                      setrewardAmount={setMaxReward}
+                      index={idx}
+                      placeholder={
+                        isGovernance
+                          ? "The maximum amount that will be paid out when the vote concludes"
+                          : "Enter amount of Target Votes"
+                      }
+                    />
+                  </Box>
+                ) : (
+                  <Box
+                    className={classNames(
+                      "flex flex-col gap-8"
+                    )}
+                  >
+
+                    <FormSelect
+                      label="Reward Currency"
+                      placeholder="Choose your reward currency"
+                      items={Tokens[chainName]}
+                      setReward={setRewardType}
+                      setClickToken={clickToken}
+                      name="rewardCurrency"
+                      control={control}
+                    />
+                    <FormTextField
+                      label="Max Reward"
+                      name="payout"
+                      control={control}
+                      textType="number"
+                      setrewardAmount={setMaxReward}
+                      index={idx}
+                      placeholder={
+                        isGovernance
+                          ? "The maximum amount that will be paid out when the vote concludes"
+                          : "Enter payout in reward currency per vote percent"
+                      }
+                    />
                   </Box>
                 )}
-                <Box
-                  className={classNames(
-                    "flex flex-col gap-8",
-                    isVariable && "px-12"
-                  )}
-                >
-
-                  <FormSelect
-                    label="Reward Currency"
-                    placeholder="Choose your reward currency"
-                    items={Tokens[chainName]}
-                    setReward={setRewardType}
-                    setClickToken={clickToken}
-                    name="rewardCurrency"
-                    control={control}
-                  />
-                  <FormTextField
-                    label="Max Reward"
-                    name="payout"
-                    control={control}
-                    textType="number"
-                    setrewardAmount={setMaxReward}
-                    index={idx}
-                    placeholder={
-                      isGovernance
-                        ? "The maximum amount that will be paid out when the vote concludes"
-                        : "Enter payout in reward currency per vote percent"
-                    }
-                  />
-                </Box>
               </Box>
             ))}
-            {!isGovernance && !isFixed && (
+            {/* {!isGovernance && !isFixed && (
               <Box className="flex justify-end">
                 <Button
                   variant="contained"
@@ -397,7 +437,7 @@ const ProposalForm = (props: Props) => {
                   Add
                 </Button>
               </Box>
-            )}
+            )} */}
           </BoxForm>
           <Box className="mb-10 md:mb-20 flex justify-end"></Box>
         </Box>
