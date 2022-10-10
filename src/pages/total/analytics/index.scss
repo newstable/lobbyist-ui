@@ -1,0 +1,39 @@
+.analytics {
+    margin-top: 20px;
+    width: 100%;
+
+    .wall-select {
+        background-color: #282931;
+        border: none;
+        padding: 15px 25px 15px 15px;
+        border-radius: 20px;
+        font-size: 15px;
+        margin-left: 10px;
+        cursor: pointer;
+
+        &:focus {
+            --tw-ring-shadow: initial;
+        }
+    }
+
+    .analytics-justify {
+        justify-content: start;
+    }
+
+    .item {
+        border: 1px solid #383944;
+        background-color: #282931;
+        border-radius: 30px;
+        padding: 15px;
+        margin: 5px;
+        width: 220px;
+    }
+}
+
+.analytics-grid-col {
+    grid-template-columns: repeat(4, minmax(0, 1fr))
+}
+
+.analy-font-1 {
+    font-size: 20px;
+}

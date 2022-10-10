@@ -1,5 +1,4 @@
 import ProposalItem from "./item";
-import { Select, MenuItem } from "@mui/material";
 import { useSelector } from "../../../redux/store";
 import "./index.scss";
 import { useEffect, useState } from "react";

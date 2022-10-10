@@ -14,6 +14,7 @@ import { ReactComponent as DiscordIcon } from "../../assets/icons/discord.svg";
 import { ReactComponent as MirrorIcon } from "../../assets/icons/mirror.svg";
 import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
 import { ReactComponent as ProtocolIcon } from "../../assets/icons/protocol.svg";
+import { ReactComponent as AnalyticsIcon } from "../../assets/icons/analytics.svg";
 import Logo from "../../assets/icons/logo.svg";
 import styles from "./styles.module.scss";
 import './sidebarItem-Menu.scss';
@@ -47,6 +48,8 @@ const SidebarMenu = (props: Props) => {
         return GaugeIcon;
       case "wall":
         return WallIcon;
+      case "analytics":
+        return AnalyticsIcon;
       case "chart":
         return ChartIcon;
       case "twitter":
@@ -82,6 +85,12 @@ const SidebarMenu = (props: Props) => {
       icon: "wall",
       text: "Proposals",
       href: "/proposal",
+      type: "in"
+    },
+    {
+      icon: "analytics",
+      text: "Analytics",
+      href: "/analytics",
       separator: true,
       type: "in"
     },

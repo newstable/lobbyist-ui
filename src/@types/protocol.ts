@@ -15,6 +15,7 @@ export enum EnumProtocolName {
   ribbon = "Ribbon",
   proposal = "Proposals",
   protocols = "Protocols",
+  analytics = "Analytics",
 }
 
 export enum EnumProtocolSymbolName {
