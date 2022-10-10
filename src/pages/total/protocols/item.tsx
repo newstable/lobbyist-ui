@@ -31,12 +31,9 @@ const Item = (props: Props) => {
         const getActiveArray = proposals?.filter(
             (element: any) => element.type == protocol.protocol && !element.isClosed
         );
-        const myProposals = proposals?.filter(
-            (element: any) => element.type == protocol.protocol
-        );
         var totalEarned = 0;
         setCount(getActiveArray?.length);
-        myProposals?.forEach(async (item: any) => {
+        getActiveArray?.forEach(async (item: any) => {
             totalEarned += item.usdAmount;
             setEarn(totalEarned);
         });
