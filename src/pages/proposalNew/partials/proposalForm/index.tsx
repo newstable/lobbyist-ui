@@ -267,7 +267,7 @@ const ProposalForm = (props: Props) => {
         NotificationManager.warning(result.message, "Warning");
       } else {
         NotificationManager.success(result.message, "Success");
-        if (submitType) navigate(`/proposal/${props.name}`);
+        // if (submitType) navigate(`/proposal/${props.name}`);
         setSubmitType(!submitType);
       }
       setMyLoading(false);
