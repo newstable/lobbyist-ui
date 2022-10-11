@@ -109,7 +109,7 @@ const createVariable = async (props: any) => {
         } else if (!submitType) {
             const ERCContract = Reward.connect(signer);
             // @ts-ignore
-            var tx = await ERCContract.approve(variableAddresses[chain], ethers.utils.parseUnits(totalRewardAmount));
+            var tx = await ERCContract.approve(variableAddresses[chain], ethers.utils.parseUnits(totalRewardAmount.toString()));
             await tx.wait();
             history.push({
                 type: "Approve",
