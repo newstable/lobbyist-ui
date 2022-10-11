@@ -339,15 +339,15 @@ const ProposalForm = (props: Props) => {
               time={time}
               readonly={true}
             />
-            {!isGovernance && isFixed && (
-              <FormSelect
-                label="Outcome Choice"
-                placeholder="Choose a Choice"
-                items={voteOption}
-                name="desiredVote"
-                control={control}
-              />
-            )}
+            {/* {!isGovernance && isFixed && ( */}
+            <FormSelect
+              label="Outcome Choice"
+              placeholder="Choose a Choice"
+              items={voteOption}
+              name="desiredVote"
+              control={control}
+            />
+            {/* )} */}
           </BoxForm>
           <BoxForm className="flex flex-col p-8 md:p-20 rounded-md gap-8">
             {votePercentFields.map((vp, idx) => (
