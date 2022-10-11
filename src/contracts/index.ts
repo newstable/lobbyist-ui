@@ -36,7 +36,7 @@ const POOLContract = (e: any) => {
 const VariableContract = (e: any) => {
     const contract = new ethers.Contract(
         variableAddresses[e.chain],
-        Abis.Pool,
+        Abis.Variable,
         e.signer
     );
     return contract;
