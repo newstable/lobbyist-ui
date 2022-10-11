@@ -57,6 +57,9 @@ const HeaderLeft = (props: Props) => {
       case EnumProtocolName.onx:
         TitleIcon = OnxIcon;
         break;
+      case EnumProtocolName.vesq:
+        TitleIcon = ProVesqIcon;
+        break;
       default:
         break;
     }

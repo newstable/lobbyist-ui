@@ -160,5 +160,19 @@
         "icon": "../../assets/icons/onx.svg",
         "multiChain": false,
         "chainNames": "Ethereum/Polygon/Fantom/Avalanche/Binance"
+    },
+    {
+        "protocol": "vesq",
+        "text": "VESQ",
+        "href": "/proposal/vesq",
+        "chains": [
+            {
+                "name": "../../assets/chains/polygon.svg",
+                "id": 137
+            }
+        ],
+        "icon": "../../assets/icons/vesq.svg",
+        "multiChain": false,
+        "chainNames": "Polygon"
     }
 ]

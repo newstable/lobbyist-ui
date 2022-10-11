@@ -53,6 +53,7 @@ const Analytics = () => {
                             <option value={"beethovenx"}>Beethovenx</option>
                             <option value={"ribbon"}>Ribbon</option>
                             <option value={"onx"}>Onx</option>
+                            <option value={"vesq"}>Vesq</option>
                         </select>
                     </div>
                 </div>

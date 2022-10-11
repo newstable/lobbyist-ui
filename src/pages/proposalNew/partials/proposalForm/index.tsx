@@ -84,6 +84,9 @@ const ProposalForm = (props: Props) => {
     } else if (props.name === "ribbon") {
       setName("gauge.rbn.eth");
       setValue("platformType", "ribbon");
+    } else if (props.name === "vesq") {
+      setName("vesqdao.eth");
+      setValue("platformType", "vesq");
     }
   }, [props.name]);
 

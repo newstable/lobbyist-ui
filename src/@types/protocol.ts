@@ -3,7 +3,7 @@ export type Protocol = {
   symbol: ProtocolSymbol;
 };
 
-export type ProtocolSymbol = "qidao" | "aave" | "aura" | "beethovenx" | "saddle" | "onx" | "ribbon";
+export type ProtocolSymbol = "qidao" | "aave" | "aura" | "beethovenx" | "saddle" | "onx" | "ribbon" | "vesq";
 
 export enum EnumProtocolName {
   qidao = "QiDAO",
@@ -16,6 +16,7 @@ export enum EnumProtocolName {
   proposal = "Proposals",
   protocols = "Protocols",
   analytics = "Analytics",
+  vesq = "VESQ",
 }
 
 export enum EnumProtocolSymbolName {
@@ -31,4 +32,5 @@ export const ProtocolsList: Protocol[] = [
   { name: EnumProtocolName.saddle, symbol: "saddle" },
   { name: EnumProtocolName.onx, symbol: "onx" },
   { name: EnumProtocolName.ribbon, symbol: "ribbon" },
+  { name: EnumProtocolName.vesq, symbol: "vesq" },
 ];
