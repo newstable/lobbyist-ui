@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, Slider } from "@mui/material";
 import { Link } from "react-router-dom";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -35,9 +35,7 @@ import { Tokens } from "../../token";
 import { Coins } from "../../blockchain";
 import NumberType from "../../common/number";
 import { History } from "../../@types/proposal";
-import { Chainscan } from "../../chainscan";
-import { ethers } from "ethers";
-import switchNetwork from "../../components/header/switchchain";
+import "./vote.scss";
 
 var md = new Remarkable();
 var history: History[] = [];
@@ -79,8 +77,10 @@ const ProposalSymbolVote = (props: Props) => {
     (state: RootState) => state.provider.provider
   );
   const chainId: any = useSelector((state: RootState) => state.chain.id);
+  const [voteState, setVoteState] = useState(false);
   const [getProposal] = useLazyQuery(GET_PROPOSAL);
   const [voteWeight, setVoteWeight] = useState(0);
+  const [myVoteWeight, setMyVoteWeight] = useState(0);
   const [proposalInfo, setProposalInfo]: any = useState([]);
   const [modal, setModal] = useState(false);
   const [addRewardAmount, setAddRewardAmount] = useState(0);
@@ -95,16 +95,6 @@ const ProposalSymbolVote = (props: Props) => {
   const [description, setDescription] = useState("");
   const navState = location.state as any;
   let { proposal: currentProposal } = navState;
-
-  // useEffect(() => {
-  //   try {
-  //     if (chainId != currentProposal.chain) {
-  //       switchNetwork(currentProposal.chain, provider, chainId);
-  //     }
-  //   } catch (error: any) {
-  //     console.log(error.message);
-  //   }
-  // }, [currentProposal, chainId])
 
   useEffect(() => {
     var rewardCurrency = Tokens[currentProposal.chain].filter(
@@ -215,6 +205,7 @@ const ProposalSymbolVote = (props: Props) => {
 
   const handleClose = () => {
     setModal(false);
+    setVoteState(false);
   };
 
   const onChangeAmount = async (amount: string) => {
@@ -222,6 +213,12 @@ const ProposalSymbolVote = (props: Props) => {
     var result = await Coins(currencyApi);
     setUsdAmount(result * Number(amount));
   };
+
+  const slideChange = (event: Event, newValue: number | number[]) => {
+    if (typeof newValue === 'number') {
+      setMyVoteWeight(newValue);
+    }
+  }
 
   return (
     <>
@@ -256,7 +253,7 @@ const ProposalSymbolVote = (props: Props) => {
                   </Button>
                 ) : (
                   <Button
-                    onClick={voteProposal}
+                    onClick={() => setVoteState(true)}
                     variant="contained"
                     color="tealLight"
                   >
@@ -422,6 +419,42 @@ const ProposalSymbolVote = (props: Props) => {
               Add Rewards
             </Button>
           )}
+        </DialogActions>
+      </Dialog>
+      <Dialog open={voteState} onClose={handleClose}>
+        <DialogTitle className="voteModal modaladdpaper-title">
+          Vote for this Proposal
+        </DialogTitle>
+        <DialogContent className="voteModal">
+          <Slider
+            className="slider"
+            value={myVoteWeight}
+            min={0}
+            step={0.01}
+            max={voteWeight}
+            onChange={slideChange}
+            valueLabelDisplay="auto"
+            aria-labelledby="non-linear-slider"
+          />
+        </DialogContent>
+        <DialogActions className="modaladdpaperbtm">
+          <Button
+            className="proposer-button"
+            variant="contained"
+            color="tealLight"
+            onClick={handleClose} >
+            Cancel
+          </Button>
+          <Button
+            className="proposer-button"
+            variant="contained"
+            color="tealLight"
+            onClick={() => {
+              voteProposal();
+            }}
+          >
+            Vote
+          </Button>
         </DialogActions>
       </Dialog>
     </>
