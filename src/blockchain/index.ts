@@ -120,9 +120,9 @@ const createVariable = async (props: any) => {
             localStorage.setItem("history", JSON.stringify(history));
             return ({ status: true, message: "Successfully approved!" });
         } else if (submitType) {
-            const variableContract = VariableContract({ chain, signer });
-            const Pool = variableContract.connect(signer);
-            const connectContract = await Pool.createPool(newProposal, { value: ethers.utils.parseEther((0.01 * value.targetVotes / value.minVotes).toString()) });
+            const variableContract = VariableContract({ chain });
+            const variable = variableContract.connect(signer);
+            const connectContract = await variable.createPool(newProposal, { value: ethers.utils.parseEther((0.01 * value.targetVotes / value.minVotes).toString()) });
             await connectContract.wait();
             history.push({
                 type: "createPool",

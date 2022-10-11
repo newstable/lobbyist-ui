@@ -37,7 +37,6 @@ const VariableContract = (e: any) => {
     const contract = new ethers.Contract(
         variableAddresses[e.chain],
         Abis.Variable,
-        e.signer
     );
     return contract;
 }
