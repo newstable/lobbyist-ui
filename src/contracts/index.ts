@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 
 const Abis = require("./contracts/abis.json");
 const Addresses = require("./contracts/addresses.json");
+const variableAddresses = require("./contracts/variableAddresses.json");
 
 const RPCS = {
     1: "https://eth.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
@@ -32,6 +33,15 @@ const POOLContract = (e: any) => {
     return contract;
 }
 
+const VariableContract = (e: any) => {
+    const contract = new ethers.Contract(
+        variableAddresses[e.chain],
+        Abis.Pool,
+        e.signer
+    );
+    return contract;
+}
+
 const ERCContract = (e: any) => {
     const result = new ethers.Contract(
         e.address, Abis.ERC20, providers[e.chain]
@@ -41,5 +51,6 @@ const ERCContract = (e: any) => {
 export {
     POOLContract,
     ERCContract,
+    VariableContract,
     providers
 };

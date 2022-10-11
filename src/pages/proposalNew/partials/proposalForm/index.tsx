@@ -19,7 +19,7 @@ import { RootState } from "../../../../redux/store";
 import { dispatch } from "../../../../redux/store";
 import { setClickAddress } from "../../../../redux/slices/clickToken";
 import loader from "../../../../assets/loader.gif";
-import { createProposal } from "../../../../blockchain";
+import { createProposal, createVariable } from "../../../../blockchain";
 import { Coins } from "../../../../blockchain";
 import NumberType from "../../../../common/number";
 
@@ -39,6 +39,7 @@ interface SnapShotData {
 // interface snapInterface extends
 
 const ProposalForm = (props: Props) => {
+  const { id, prsalType } = useParams();
   const [myloading, setMyLoading] = useState(false);
   const [submitType, setSubmitType] = useState(false);
   const [name, setName] = useState("");
@@ -46,11 +47,8 @@ const ProposalForm = (props: Props) => {
   const [address, setAddress] = useState("");
   const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
   const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
-  // const [proposalName, setProposalName] = useState("");
-  // const [proposalDescription, setProposalDescription] = useState("");
   const [minReward, setMinReward] = useState(0);
   const [maxReward, setMaxReward] = useState(0);
-  const [minVotes, setMinVotes] = useState(0);
   const [targetVotes, setTargetVotes] = useState(0);
   const [usd, setUsd] = useState(0);
   const walletAddress: any = useSelector(
@@ -173,7 +171,6 @@ const ProposalForm = (props: Props) => {
   }, [data]);
 
   const navigate = useNavigate();
-  const { prsalType } = useParams();
 
   const clickToken = (e: any) => {
     setAddress(e);
@@ -203,7 +200,7 @@ const ProposalForm = (props: Props) => {
       payout: "0",
       userAddress: "",
       minReward: "0",
-      minvotes: "0",
+      minVotes: "0",
       targetVotes: "0",
       proposalId: "",
     },
@@ -237,17 +234,31 @@ const ProposalForm = (props: Props) => {
       );
     } else if (value.desiredVote === "") {
       NotificationManager.warning("Please select a choice!", "Warning");
+    } else if (value.targetVotes < value.minVotes) {
+      NotificationManager.warning("TargetVotes must bigger than MinVotes!", "Warning");
     } else {
       setMyLoading(true);
       let signer: any = provider?.getSigner();
-      const result: any = await createProposal({
-        address: address,
-        walletAddress: walletAddress,
-        value: value,
-        submitType: submitType,
-        signer: signer,
-        chain: chainName,
-      });
+      let result: any;
+      if (prsalType == "variable") {
+        result = await createVariable({
+          address: address,
+          walletAddress: walletAddress,
+          value: value,
+          submitType: submitType,
+          signer: signer,
+          chain: chainName,
+        });
+      } else {
+        result = await createProposal({
+          address: address,
+          walletAddress: walletAddress,
+          value: value,
+          submitType: submitType,
+          signer: signer,
+          chain: chainName,
+        });
+      }
       if (!result.status) {
         NotificationManager.warning(result.message, "Warning");
       } else {
@@ -362,7 +373,7 @@ const ProposalForm = (props: Props) => {
                       name="minReward"
                       control={control}
                       textType="number"
-                      setrewardAmount={setMaxReward}
+                      setrewardAmount={setMinReward}
                       index={idx}
                       placeholder={
                         isGovernance
@@ -372,10 +383,9 @@ const ProposalForm = (props: Props) => {
                     />
                     <FormTextField
                       label="Min Votes"
-                      name="minvotes"
+                      name="minVotes"
                       control={control}
                       textType="number"
-                      setrewardAmount={setMinVotes}
                       index={idx}
                       placeholder={
                         isGovernance

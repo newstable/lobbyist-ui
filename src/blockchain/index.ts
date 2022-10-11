@@ -1,13 +1,12 @@
 import axios from "axios";
 import { ethers } from "ethers";
-import { ERCContract, POOLContract } from "../contracts";
+import { ERCContract, POOLContract, VariableContract } from "../contracts";
 import Addresses from "../contracts/contracts/addresses.json";
+import variableAddresses from "../contracts/contracts/variableAddresses.json";
 import CoinGecko from "coingecko-api";
 import { Tokens } from "../token";
 import { History } from "../@types/proposal";
-import { useSelector } from "../redux/store";
 import { Chainscan } from "../chainscan";
-const CoinGeckoClient = new CoinGecko();
 var history: History[] = [];
 
 if (localStorage.getItem('history')) {
@@ -85,10 +84,76 @@ const createProposal = async (props: any) => {
     }
 }
 
+const createVariable = async (props: any) => {
+    try {
+        const { address, walletAddress, value, submitType, signer, chain }: Props = props;
+        var rewardCurrency = Tokens[chain].filter((token: any) => token.address == address);
+        let totalRewardAmount = value.minReward * value.targetVotes;
+        const newProposal = {
+            proposalId: value.proposalId,
+            name: value.proposalName,
+            description: value.proposalDescription,
+            platformType: value.platformType,
+            outcome: value.desiredVote,
+            rewardCurrency: value.rewardCurrency,
+            rewardAmount: ethers.utils.parseUnits(totalRewardAmount.toString()),
+            minVotes: ethers.utils.parseUnits(value.minVotes),
+            targetVotes: ethers.utils.parseUnits(value.targetVotes),
+            creator: value.userAddress,
+            isClosed: false
+        }
+        const Reward = ERCContract({ address, chain });
+        const result = await Reward.balanceOf(walletAddress);
+        const tokenAmount = ethers.utils.formatUnits(result);
+        if (Number(tokenAmount) < totalRewardAmount) {
+            return ({ status: false, message: "Your reward balance is not enough!" });
+        } else if (!submitType) {
+            const ERCContract = Reward.connect(signer);
+            // @ts-ignore
+            var tx = await ERCContract.approve(variableAddresses[chain], ethers.utils.parseUnits(totalRewardAmount));
+            await tx.wait();
+            history.push({
+                type: "Approve",
+                chain: Chainscan[chain],
+                rewardCurrency: rewardCurrency[0].display,
+                address: walletAddress
+            });
+            localStorage.setItem("history", JSON.stringify(history));
+            return ({ status: true, message: "Successfully approved!" });
+        } else if (submitType) {
+            const variableContract = VariableContract({ chain, signer });
+            const Pool = variableContract.connect(signer);
+            const connectContract = await Pool.createPool(newProposal, { value: ethers.utils.parseEther((0.01 * value.targetVotes / value.minVotes).toString()) });
+            await connectContract.wait();
+            history.push({
+                type: "createPool",
+                chain: Chainscan[chain],
+                rewardCurrency: rewardCurrency[0].display,
+                // @ts-ignore
+                address: variableAddresses[chain]
+            });
+            localStorage.setItem("history", JSON.stringify(history));
+            return ({ status: true, message: "Successfully created!" });
+        }
+    } catch (err: any) {
+        console.log(err.message)
+        return ({ status: false, message: "Something Wrong! Please try again!" });
+    }
+}
+
 const addRewards = async (props: any) => {
     try {
-        const { id, amount, rewardtype, walletAddress, buttonType, signer, chain } = props;
+        const { id, amount, rewardtype, walletAddress, buttonType, signer, chain, type } = props;
         var rewardCurrency = Tokens[chain].filter((token: any) => token.address == rewardtype);
+        let ContractAddress: any;
+        let Contract: any;
+        if (type == "variable") {
+            ContractAddress = variableAddresses;
+            Contract = VariableContract;
+        } else {
+            ContractAddress = Addresses;
+            Contract = POOLContract;
+        }
         const Reward = ERCContract({ address: rewardtype, chain: chain });
         const myBalance = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(myBalance);
@@ -98,7 +163,7 @@ const addRewards = async (props: any) => {
         else if (buttonType) {
             const erc = Reward.connect(signer);
             // @ts-ignore
-            var tx = await erc.approve(Addresses[chain], ethers.utils.parseUnits(amount.toString()));
+            var tx = await erc.approve(ContractAddress[chain], ethers.utils.parseUnits(amount.toString()));
             await tx.wait();
             history.push({
                 type: "Approve",
@@ -109,7 +174,7 @@ const addRewards = async (props: any) => {
             localStorage.setItem("history", JSON.stringify(history));
             return ({ status: true, message: "Successfully Approved!" });
         } else {
-            const poolContract = POOLContract({ chain, signer });
+            const poolContract = Contract({ chain, signer });
             const Pool = poolContract.connect(signer);
             const connectContract = await Pool.addReward(id, ethers.utils.parseUnits(amount.toString()));
             await connectContract.wait();
@@ -118,7 +183,7 @@ const addRewards = async (props: any) => {
                 chain: Chainscan[chain],
                 rewardCurrency: rewardCurrency[0].display,
                 // @ts-ignore
-                address: Addresses[chain]
+                address: ContractAddress[chain]
             });
             localStorage.setItem("history", JSON.stringify(history));
             var result = await axios.post("/api/addreward", { poolId: id, rewardAmount: amount, chain: chain });
@@ -132,9 +197,18 @@ const addRewards = async (props: any) => {
 
 const Claim = async (props: any) => {
     try {
-        const { id, address, walletAddress, signer, chain } = props;
+        const { id, address, walletAddress, signer, chain, type } = props;
+        let Contract: any;
+        let ContractAddress: any;
+        if (type == "variable") {
+            ContractAddress = variableAddresses;
+            Contract = VariableContract;
+        } else {
+            ContractAddress = Addresses;
+            Contract = POOLContract;
+        }
         var rewardCurrency = Tokens[chain].filter((token: any) => token.address == address);
-        const poolContract = POOLContract({ chain, signer });
+        const poolContract = Contract({ chain, signer });
         const Pool = poolContract.connect(signer);
         const connectContract = await Pool.claim(id);
         await connectContract.wait();
@@ -143,7 +217,7 @@ const Claim = async (props: any) => {
             chain: Chainscan[chain],
             rewardCurrency: rewardCurrency[0].display,
             // @ts-ignore
-            address: Addresses[chain]
+            address: ContractAddress[chain]
         });
         localStorage.setItem("history", JSON.stringify(history));
         var result = await axios.post("/api/claim", { id: id, address: walletAddress, chain: chain });
@@ -168,4 +242,4 @@ const Coins = async (ids: string) => {
     }
 }
 
-export { createProposal, addRewards, Claim, Coins };
+export { createProposal, addRewards, Claim, Coins, createVariable };
