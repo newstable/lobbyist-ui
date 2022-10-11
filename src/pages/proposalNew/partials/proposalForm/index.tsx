@@ -47,6 +47,7 @@ const ProposalForm = (props: Props) => {
   const [address, setAddress] = useState("");
   const [snapshot, setSnapshot] = useState<SnapShotData[]>([]);
   const [voteOption, setVoteOption] = useState<SnapShotData[]>([]);
+  const [minVotes, setMinVotes] = useState(0);
   const [minReward, setMinReward] = useState(0);
   const [maxReward, setMaxReward] = useState(0);
   const [targetVotes, setTargetVotes] = useState(0);
@@ -384,6 +385,7 @@ const ProposalForm = (props: Props) => {
                     <FormTextField
                       label="Min Votes"
                       name="minVotes"
+                      setrewardAmount={setMinVotes}
                       control={control}
                       textType="number"
                       index={idx}
@@ -463,10 +465,26 @@ const ProposalForm = (props: Props) => {
                 <Typography className="feetitle col-span-2">
                   Max Reward
                 </Typography>
-                <Typography className="text-right">
-                  {maxReward + " " + rewardType}
-                  <br />${NumberType((maxReward * usd).toFixed(2), 2)}
-                </Typography>
+                {isVariable ? (
+                  <Typography className="text-right">
+                    {minVotes == 0 ? (
+                      <>
+                        0 < br />
+                        $0
+                      </>
+                    ) : (
+                      <>
+                        {NumberType((minReward * targetVotes / minVotes).toFixed(2), 2) + " " + rewardType}
+                        <br />${NumberType((minReward * targetVotes / minVotes * usd).toFixed(2), 2)}
+                      </>
+                    )}
+                  </Typography>
+                ) : (
+                  <Typography className="text-right">
+                    {maxReward + " " + rewardType}
+                    <br />${NumberType((maxReward * usd).toFixed(2), 2)}
+                  </Typography>
+                )}
                 <Typography className="col-span-2">Lobbyist Fee</Typography>
                 <Typography className="text-right">
                   2.5%

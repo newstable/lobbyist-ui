@@ -14,15 +14,18 @@ export type Proposal = {
   isClosed: boolean;
   reward: number;
   rewardCurrency: string;
-  voteIncentive?: boolean;
   address: string;
   proposalId: string;
   totalVoteWeight: number;
   poolId: number;
+  proposalType: string;
+  minVotes: number;
+  targetVotes: number;
   myvoteAmount: number;
   myclaim: boolean;
   usdAmount: number;
   chain: string;
+  claimedAmount: number;
 };
 
 export type NewProposal = {

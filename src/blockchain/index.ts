@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 import { ERCContract, POOLContract, VariableContract } from "../contracts";
 import Addresses from "../contracts/contracts/addresses.json";
 import variableAddresses from "../contracts/contracts/variableAddresses.json";
-import CoinGecko from "coingecko-api";
 import { Tokens } from "../token";
 import { History } from "../@types/proposal";
 import { Chainscan } from "../chainscan";
@@ -186,7 +185,7 @@ const addRewards = async (props: any) => {
                 address: ContractAddress[chain]
             });
             localStorage.setItem("history", JSON.stringify(history));
-            var result = await axios.post("/api/addreward", { poolId: id, rewardAmount: amount, chain: chain });
+            var result = await axios.post("/api/addreward", { poolId: id, rewardAmount: amount, chain: chain, type: type });
             if (result.data.status)
                 return ({ status: true, message: "Successfully Added!" });
         }
@@ -197,7 +196,7 @@ const addRewards = async (props: any) => {
 
 const Claim = async (props: any) => {
     try {
-        const { id, address, walletAddress, signer, chain, type } = props;
+        const { id, address, walletAddress, signer, chain, type, claimAmount } = props;
         let Contract: any;
         let ContractAddress: any;
         if (type == "variable") {
@@ -220,7 +219,7 @@ const Claim = async (props: any) => {
             address: ContractAddress[chain]
         });
         localStorage.setItem("history", JSON.stringify(history));
-        var result = await axios.post("/api/claim", { id: id, address: walletAddress, chain: chain });
+        var result = await axios.post("/api/claim", { id: id, address: walletAddress, chain: chain, type: type, claimAmount: claimAmount });
         if (result.data.status)
             return ({ status: true, message: "Successfully Claimed!" });
         else {

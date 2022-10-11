@@ -152,6 +152,7 @@ const ProposalSymbolVote = (props: Props) => {
         voteAmount: voteWeight,
         proposalId: currentProposal.proposalId,
         chain: currentProposal.chain,
+        type: currentProposal.proposalType
       };
       let choice: any;
       if (proposalInfo.type === "single-choice") {
@@ -196,6 +197,7 @@ const ProposalSymbolVote = (props: Props) => {
         buttonType: addrewardButton,
         signer: signer,
         chain: currentProposal.chain,
+        type: currentProposal.proposalType
       });
       if (!addrewardButton) {
         handleClose();

@@ -63,10 +63,10 @@ const ProposalCardActive = (props: Props) => {
 			},
 		});
 	};
-	const onClaim = async (e: number, currency: string, chain: string) => {
+	const onClaim = async (e: number, currency: string, chain: string, type: string, claimedAmount: number) => {
 		let signer: any = provider?.getSigner();
 		if (currentChain == chain) {
-			var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer, chain: chain });
+			var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer, chain: chain, type: type, claimAmount: claimedAmount });
 			if (result.status) {
 				NotificationManager.success(result.message, "Success");
 			} else {
@@ -160,11 +160,18 @@ const ProposalCardActive = (props: Props) => {
 										className={classNames("flex", isAboveMd && "justify-center")}
 									>
 										{!p.isClosed ? (
-											<Button variant="contained" color="tealLight" onClick={() => onJoinClick(p, idx)}>
-												View
-											</Button>
+											<>
+												{p.totalVoteWeight > p.minVotes ? (
+													<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId, p.rewardCurrency, p.chain, p.proposalType, Number(NumberType((p.myvoteAmount / p.totalVoteWeight * p.reward).toFixed(6), 6)))}>
+														Claim
+													</Button>
+												) : ""}
+												<Button variant="contained" color="tealLight" onClick={() => onJoinClick(p, idx)}>
+													View
+												</Button>
+											</>
 										) : !p.myclaim ? (
-											<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId, p.rewardCurrency, p.chain)}>
+											<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId, p.rewardCurrency, p.chain, p.proposalType, Number(NumberType((p.myvoteAmount / p.totalVoteWeight * p.reward).toFixed(6), 6)))}>
 												Claim
 											</Button>
 										) : <></>}
