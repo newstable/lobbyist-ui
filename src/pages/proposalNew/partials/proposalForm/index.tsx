@@ -99,7 +99,7 @@ const ProposalForm = (props: Props) => {
       setUsd(price);
     };
     tokenPrice();
-  }, [maxReward]);
+  }, [maxReward, minReward]);
 
   useEffect(() => {
     if (walletAddress !== "") {
