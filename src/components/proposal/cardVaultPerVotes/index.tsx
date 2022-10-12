@@ -12,7 +12,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 }));
 
 const ProposalCardPerVotes = ({ proposal }: Props) => {
-    const colHeads = ["Per Votes", "Min Rewards"];
+    const colHeads = ["Min Rewards", "Per Votes"];
     return (
         <Card className="" elevation={0}>
             <Content className="card-rnd">
@@ -24,8 +24,8 @@ const ProposalCardPerVotes = ({ proposal }: Props) => {
                     ))}
                 </Box>
                 <Box className="grid grid-cols-2 gap-8">
-                    <Typography variant="subtitle1">{proposal.minVotes}</Typography>
                     <Typography variant="subtitle1">{NumberType((proposal.reward / (proposal.targetVotes / proposal.minVotes)).toFixed(3), 3)}</Typography>
+                    <Typography variant="subtitle1">{proposal.minVotes}</Typography>
                 </Box>
             </Content>
         </Card>

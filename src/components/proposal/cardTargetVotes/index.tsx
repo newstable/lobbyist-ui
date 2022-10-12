@@ -12,7 +12,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 }));
 
 const ProposalCardTargetVotes = ({ proposal }: Props) => {
-    const colHeads = ["Target Votes", "Max Rewards"];
+    const colHeads = ["Max Rewards", "Target Votes"];
     return (
         <Card className="" elevation={0}>
             <Content className="card-rnd">
@@ -24,8 +24,8 @@ const ProposalCardTargetVotes = ({ proposal }: Props) => {
                     ))}
                 </Box>
                 <Box className="grid grid-cols-2 gap-8">
-                    <Typography variant="subtitle1">{proposal.targetVotes}</Typography>
                     <Typography variant="subtitle1">{proposal.reward}</Typography>
+                    <Typography variant="subtitle1">{proposal.targetVotes}</Typography>
                 </Box>
             </Content>
         </Card>
