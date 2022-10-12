@@ -21,6 +21,8 @@ import {
   ProposalCardVaultEmission,
   ProposalCardVaultIncentive,
   ProposalCardVaultReward,
+  ProposalCardPerVotes,
+  ProposalCardTargetVotes,
   TimeRemaining,
 } from "../../components";
 import { useSelector } from "../../redux/store";
@@ -97,6 +99,7 @@ const ProposalSymbolVote = (props: Props) => {
   let { proposal: currentProposal } = navState;
 
   useEffect(() => {
+    console.log(currentProposal);
     var rewardCurrency = Tokens[currentProposal.chain].filter(
       (token: any) => token.address === currentProposal.rewardCurrency
     );
@@ -325,6 +328,12 @@ const ProposalSymbolVote = (props: Props) => {
                   voteWeight={voteWeight}
                   voteType={proposalInfo.type}
                 />
+                {currentProposal.proposalType == "variable" && (
+                  <>
+                    <ProposalCardPerVotes proposal={currentProposal} />
+                    <ProposalCardTargetVotes proposal={currentProposal} />
+                  </>
+                )}
               </Box>
             </Box>
           </Grid>

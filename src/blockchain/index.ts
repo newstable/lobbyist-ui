@@ -87,7 +87,7 @@ const createVariable = async (props: any) => {
     try {
         const { address, walletAddress, value, submitType, signer, chain }: Props = props;
         var rewardCurrency = Tokens[chain].filter((token: any) => token.address == address);
-        let totalRewardAmount = value.minReward * value.targetVotes;
+        let totalRewardAmount = value.minReward * value.targetVotes / value.minVotes;
         const newProposal = {
             proposalId: value.proposalId,
             name: value.proposalName,

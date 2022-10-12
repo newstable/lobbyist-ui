@@ -5,4 +5,6 @@ export * from "./cardActiveSymbol";
 export * from "./cardVaultIncentive";
 export * from "./cardVaultEmission";
 export * from "./cardVaultReward";
+export * from "./cardVaultPerVotes";
 export * from "./cardWrappedMatic";
+export * from "./cardTargetVotes";

@@ -238,8 +238,6 @@ const ProposalForm = (props: Props) => {
       );
     } else if (value.desiredVote === "") {
       NotificationManager.warning("Please select a choice!", "Warning");
-    } else if (value.targetVotes < value.minVotes) {
-      NotificationManager.warning("TargetVotes must bigger than MinVotes!", "Warning");
     } else {
       setMyLoading(true);
       let signer: any = provider?.getSigner();
