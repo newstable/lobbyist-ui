@@ -121,8 +121,7 @@ const createVariable = async (props: any) => {
             return ({ status: true, message: "Successfully approved!" });
         } else if (submitType) {
             const variableContract = VariableContract({ chain, signer });
-            // const variable = variableContract.connect(signer);
-            const connectContract = await variableContract.createPool(newProposal, { value: ethers.utils.parseEther((0.01 * value.targetVotes / value.minVotes).toString()) });
+            const connectContract = await variableContract.createPool(newProposal, { value: ethers.utils.parseEther("0.01") });
             await connectContract.wait();
             history.push({
                 type: "createPool",
