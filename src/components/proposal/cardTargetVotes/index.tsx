@@ -3,6 +3,8 @@ import { styled } from "@mui/material/styles";
 import { Proposal } from "../../../@types/proposal";
 import { Tokens } from "../../../token";
 import { TextContent, TextHead } from "../../text";
+import NumberType from "../../../common/number";
+
 type Props = {
     proposal: Proposal;
 };
@@ -27,8 +29,17 @@ const ProposalCardTargetVotes = ({ proposal }: Props) => {
                     ))}
                 </Box>
                 <Box className="grid grid-cols-2 gap-8">
-                    <Typography variant="subtitle1">{proposal.reward + " " + rewardCurrency[0].display}</Typography>
+                    <Typography variant="subtitle1">
+                        ${NumberType(proposal.usdAmount.toFixed(2), 2)}
+                    </Typography>
                     <Typography variant="subtitle1">{proposal.targetVotes}</Typography>
+                </Box>
+                <Box className="grid grid-cols-2 gap-8" style={{ color: "#3a78ff" }}>
+                    <Typography variant="subtitle1">
+                        {NumberType(proposal.reward.toFixed(2), 2) +
+                            " " +
+                            rewardCurrency[0].display}
+                    </Typography>
                 </Box>
             </Content>
         </Card>

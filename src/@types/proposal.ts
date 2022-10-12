@@ -25,7 +25,6 @@ export type Proposal = {
   myclaim: boolean;
   usdAmount: number;
   chain: string;
-  claimedAmount: number;
 };
 
 export type NewProposal = {

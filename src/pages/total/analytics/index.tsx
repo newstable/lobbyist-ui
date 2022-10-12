@@ -27,12 +27,10 @@ const Analytics = () => {
         var paidReward = 0;
         search?.filter((proposal: any) => {
             if (proposal.isClosed) {
-                paidReward += proposal.reward + proposal.claimedAmount;
-                lockedReward -= proposal.claimedAmount;
+                paidReward += proposal.reward;
             }
             else {
-                lockedReward += proposal.reward - proposal.claimedAmount;
-                paidReward += proposal.claimedAmount;
+                lockedReward += proposal.reward;
             }
         })
         setLockedValue(lockedReward);

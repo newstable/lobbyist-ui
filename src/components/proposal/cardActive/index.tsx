@@ -63,10 +63,10 @@ const ProposalCardActive = (props: Props) => {
 			},
 		});
 	};
-	const onClaim = async (e: number, currency: string, chain: string, type: string, claimedAmount: number) => {
+	const onClaim = async (e: number, currency: string, chain: string, type: string) => {
 		let signer: any = provider?.getSigner();
 		if (currentChain == chain) {
-			var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer, chain: chain, type: type, claimAmount: claimedAmount });
+			var result = await Claim({ id: e, address: currency, walletAddress: address, signer: signer, chain: chain, type: type });
 			if (result.status) {
 				NotificationManager.success(result.message, "Success");
 			} else {
@@ -113,7 +113,7 @@ const ProposalCardActive = (props: Props) => {
 										<img width="23" src={ChainImg[p.chain]}></img>
 									</Box>
 									<Box
-										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+										className={classNames("flex flex-col justify-center", !isAboveMd && "gap-1")}
 									>
 										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[1]}
@@ -121,7 +121,7 @@ const ProposalCardActive = (props: Props) => {
 										<TextContent>{p.name.length > 23 ? (p.name.slice(0, 23) + "...") : p.name}</TextContent>
 									</Box>
 									<Box
-										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+										className={classNames("flex flex-col justify-center", !isAboveMd && "gap-1")}
 									>
 										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[2]}
@@ -129,7 +129,7 @@ const ProposalCardActive = (props: Props) => {
 										<TextContent>{p.protocol.length > 23 ? (p.protocol.slice(0, 23) + "...") : p.protocol}</TextContent>
 									</Box>
 									<Box
-										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+										className={classNames("flex flex-col justify-center", !isAboveMd && "gap-1")}
 									>
 										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[3]}
@@ -138,7 +138,7 @@ const ProposalCardActive = (props: Props) => {
 									</Box>
 									<Box
 										className={classNames(
-											"flex flex-col",
+											"flex flex-col justify-center",
 											!isAboveMd && "gap-1 col-span-3"
 										)}
 									>
@@ -148,7 +148,7 @@ const ProposalCardActive = (props: Props) => {
 										<TextContent>{NumberType(p.totalVoteWeight.toFixed(2), 2)}</TextContent>
 									</Box>
 									<Box
-										className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+										className={classNames("flex flex-col justify-center", !isAboveMd && "gap-1")}
 									>
 										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[5]}
@@ -160,18 +160,11 @@ const ProposalCardActive = (props: Props) => {
 										className={classNames("flex", isAboveMd && "justify-center")}
 									>
 										{!p.isClosed ? (
-											<>
-												{p.totalVoteWeight > p.minVotes ? (
-													<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId, p.rewardCurrency, p.chain, p.proposalType, Number(NumberType((p.myvoteAmount / p.totalVoteWeight * p.reward).toFixed(6), 6)))}>
-														Claim
-													</Button>
-												) : ""}
-												<Button variant="contained" color="tealLight" onClick={() => onJoinClick(p, idx)}>
-													View
-												</Button>
-											</>
+											<Button variant="contained" color="tealLight" onClick={() => onJoinClick(p, idx)}>
+												View
+											</Button>
 										) : !p.myclaim ? (
-											<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId, p.rewardCurrency, p.chain, p.proposalType, Number(NumberType((p.myvoteAmount / p.totalVoteWeight * p.reward).toFixed(6), 6)))}>
+											<Button variant="contained" color="tealLight" onClick={() => onClaim(p.poolId, p.rewardCurrency, p.chain, p.proposalType)}>
 												Claim
 											</Button>
 										) : <></>}

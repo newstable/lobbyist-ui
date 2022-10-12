@@ -23,7 +23,7 @@ import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import CallMadeSharpIcon from "@mui/icons-material/CallMadeSharp";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import { History } from "../../@types/proposal";
-
+import { SafeAppWeb3Modal } from '@gnosis.pm/safe-apps-web3modal';
 import { colors } from "../../common";
 import { HeaderLeft } from "./left";
 import styles from "./styles.module.scss";
@@ -33,6 +33,8 @@ import switchNetwork from "./switchchain";
 import { useSelector } from "../../redux/store";
 import { RootState } from "../../redux/store";
 import { Chainscan } from "../../chainscan";
+
+const modal = new SafeAppWeb3Modal();
 
 const itemsList = [
     {
@@ -146,7 +148,7 @@ const Header: FC = () => {
 
     const connectWallet = async () => {
         try {
-            const provider = await web3Modal.connect();
+            const provider = await modal.requestProvider();
             addListners(provider);
             const library = new ethers.providers.Web3Provider(provider);
             dispatch(setProvider(library));

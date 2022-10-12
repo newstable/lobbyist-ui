@@ -15,7 +15,12 @@ const Content = styled(CardContent)(({ theme }) => ({
 }));
 
 const ProposalCardVaultEmission = ({ proposal }: Props) => {
-  const colHeads = ["Total Reward", "$/Vote"];
+  let colHeads;
+  if (proposal.proposalType == "variable") {
+    colHeads = ["Current Reward", "$/Vote"];
+  } else {
+    colHeads = ["Total Reward", "$/Vote"];
+  }
   var rewardCurrency = Tokens[proposal.chain].filter(
     (token: any) => token.address == proposal.rewardCurrency
   );
@@ -29,27 +34,48 @@ const ProposalCardVaultEmission = ({ proposal }: Props) => {
             </Box>
           ))}
         </Box>
-        <Box className="grid grid-cols-2 gap-8">
-          <Typography variant="subtitle1">
-            ${NumberType(proposal.usdAmount.toFixed(2), 2)}
-          </Typography>
-          <Typography variant="subtitle1">
-            {proposal.totalVoteWeight == 0
-              ? 0
-              : "$" +
-              NumberType(
-                (proposal.usdAmount / proposal.totalVoteWeight).toFixed(6),
-                6
-              )}
-          </Typography>
-        </Box>
-        <Box className="grid grid-cols-2 gap-8" style={{ color: "#3a78ff" }}>
-          <Typography variant="subtitle1">
-            {NumberType(proposal.reward.toFixed(2), 2) +
-              " " +
-              rewardCurrency[0].display}
-          </Typography>
-        </Box>
+        {proposal.proposalType == "variable" ? (
+          <Box className="grid grid-cols-2 gap-8">
+            <Typography variant="subtitle1">
+              {NumberType((proposal.totalVoteWeight * proposal.reward / proposal.targetVotes).toFixed(4), 4) +
+                " " +
+                rewardCurrency[0].display}
+            </Typography>
+            <Typography variant="subtitle1">
+              {proposal.totalVoteWeight == 0
+                ? 0
+                : "$" +
+                NumberType(
+                  (proposal.usdAmount / proposal.totalVoteWeight).toFixed(6),
+                  6
+                )}
+            </Typography>
+          </Box>
+        ) : (
+          <>
+            <Box className="grid grid-cols-2 gap-8">
+              <Typography variant="subtitle1">
+                ${NumberType(proposal.usdAmount.toFixed(2), 2)}
+              </Typography>
+              <Typography variant="subtitle1">
+                {proposal.totalVoteWeight == 0
+                  ? 0
+                  : "$" +
+                  NumberType(
+                    (proposal.usdAmount / proposal.totalVoteWeight).toFixed(6),
+                    6
+                  )}
+              </Typography>
+            </Box>
+            <Box className="grid grid-cols-2 gap-8" style={{ color: "#3a78ff" }}>
+              <Typography variant="subtitle1">
+                {NumberType(proposal.reward.toFixed(2), 2) +
+                  " " +
+                  rewardCurrency[0].display}
+              </Typography>
+            </Box>
+          </>
+        )}
       </Content>
     </Card>
   );
