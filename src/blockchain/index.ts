@@ -87,7 +87,7 @@ const createVariable = async (props: any) => {
     try {
         const { address, walletAddress, value, submitType, signer, chain }: Props = props;
         var rewardCurrency = Tokens[chain].filter((token: any) => token.address == address);
-        let totalRewardAmount = value.minReward * value.targetVotes / value.minVotes;
+        let totalRewardAmount = value.minReward * value.targetVotes;
         const newProposal = {
             proposalId: value.proposalId,
             name: value.proposalName,
@@ -121,7 +121,8 @@ const createVariable = async (props: any) => {
             return ({ status: true, message: "Successfully approved!" });
         } else if (submitType) {
             const variableContract = VariableContract({ chain, signer });
-            const connectContract = await variableContract.createPool(newProposal, { value: ethers.utils.parseEther("0.01") });
+            const Pool = variableContract.connect(signer);
+            const connectContract = await Pool.createPool(newProposal, { value: ethers.utils.parseEther("0.01") });
             await connectContract.wait();
             history.push({
                 type: "createPool",
@@ -147,10 +148,10 @@ const addRewards = async (props: any) => {
         let Contract: any;
         if (type == "variable") {
             ContractAddress = variableAddresses;
-            Contract = VariableContract;
+            Contract = VariableContract({ chain, signer });
         } else {
             ContractAddress = Addresses;
-            Contract = POOLContract;
+            Contract = POOLContract({ chain, signer });
         }
         const Reward = ERCContract({ address: rewardtype, chain: chain });
         const myBalance = await Reward.balanceOf(walletAddress);
@@ -172,8 +173,7 @@ const addRewards = async (props: any) => {
             localStorage.setItem("history", JSON.stringify(history));
             return ({ status: true, message: "Successfully Approved!" });
         } else {
-            const poolContract = Contract({ chain, signer });
-            const Pool = poolContract.connect(signer);
+            const Pool = Contract.connect(signer);
             const connectContract = await Pool.addReward(id, ethers.utils.parseUnits(amount.toString()));
             await connectContract.wait();
             history.push({
