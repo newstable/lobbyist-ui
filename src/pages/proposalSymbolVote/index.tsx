@@ -99,7 +99,6 @@ const ProposalSymbolVote = (props: Props) => {
   let { proposal: currentProposal } = navState;
 
   useEffect(() => {
-    console.log(currentProposal);
     var rewardCurrency = Tokens[currentProposal.chain].filter(
       (token: any) => token.address === currentProposal.rewardCurrency
     );
@@ -170,7 +169,7 @@ const ProposalSymbolVote = (props: Props) => {
           NotificationManager.success("Voted Successfully", "Success");
           navigate(`/proposal/${symbol}`);
         } else {
-          NotificationManager.error("You already voted", "Error");
+          NotificationManager.error(result.message, "Error");
         }
       }
     } catch (error: any) {
@@ -256,7 +255,7 @@ const ProposalSymbolVote = (props: Props) => {
                   </Button>
                 ) : (
                   <Button
-                    onClick={() => setVoteState(true)}
+                    onClick={voteProposal}
                     variant="contained"
                     color="tealLight"
                   >
@@ -430,7 +429,7 @@ const ProposalSymbolVote = (props: Props) => {
           )}
         </DialogActions>
       </Dialog>
-      <Dialog open={voteState} onClose={handleClose}>
+      {/* <Dialog open={voteState} onClose={handleClose}>
         <DialogTitle className="voteModal modaladdpaper-title">
           Vote for this Proposal
         </DialogTitle>
@@ -465,7 +464,7 @@ const ProposalSymbolVote = (props: Props) => {
             Vote
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
     </>
   );
 };

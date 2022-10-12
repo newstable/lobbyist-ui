@@ -37,7 +37,7 @@ const ProposalCardVaultEmission = ({ proposal }: Props) => {
         {proposal.proposalType == "variable" ? (
           <Box className="grid grid-cols-2 gap-8">
             <Typography variant="subtitle1">
-              {NumberType((proposal.totalVoteWeight * proposal.reward / proposal.targetVotes).toFixed(4), 4) +
+              {NumberType((proposal.totalVoteWeight * proposal.reward / proposal.targetVotes * 0.975).toFixed(4), 4) +
                 " " +
                 rewardCurrency[0].display}
             </Typography>
