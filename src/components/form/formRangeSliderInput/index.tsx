@@ -55,7 +55,7 @@ const FormRangeSliderInput = ({
             />
           </Box>
           <Box className="basis-1/12"></Box>
-          <Box className="basis-3/12 flex gap-2">
+          {/* <Box className="basis-3/12 flex gap-2">
             <Controller
               name={inputName}
               control={control}
@@ -120,7 +120,7 @@ const FormRangeSliderInput = ({
                 );
               }}
             />
-          </Box>
+          </Box> */}
         </Box>
       </FormControl>
     </StyledEngineProvider>
