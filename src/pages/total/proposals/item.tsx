@@ -50,7 +50,7 @@ const ProposalItem = (props: Props) => {
             <h2 className="item-font-2">{proposal.name.length > 20 ? (proposal.name.slice(0, 20) + "...") : proposal.name}</h2>
             <div>
                 <p className="item-font-1">VOTING FOR</p>
-                <h4>{proposal.protocol}</h4>
+                <h4>{proposal.choice.length > 35 ? (proposal.choice.slice(0, 35) + "...") : proposal.choice}</h4>
             </div>
             <div>
                 <p className="item-font-1">VOTE INCENTIVE</p>
