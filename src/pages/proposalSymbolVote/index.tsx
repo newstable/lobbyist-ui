@@ -154,7 +154,7 @@ const ProposalSymbolVote = (props: Props) => {
       } else if (proposalInfo.type == "quadratic" || proposalInfo.type == "weighted") {
         let setChoiceData: any = {};
         choiceData.forEach((mydata: any) => {
-          setChoiceData[mydata.value] = mydata.amount;
+          setChoiceData[mydata.value] = Number(mydata.amount);
         });
         choice = setChoiceData;
       } else {
