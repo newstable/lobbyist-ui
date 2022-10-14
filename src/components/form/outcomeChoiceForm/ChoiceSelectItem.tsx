@@ -21,9 +21,13 @@ const ChoiceSelectItem = (props: any) => {
                 </Box>
 
                 <Box className="col-span-1 py-2 flex flex-col text-center items-center justify-center">
-                    {voption.value}
-                    {/* <input className="outcome-input rounded-lg" type='number' value={voption.value} onChange={() => { }} /> */}
-                    <input value={voption.value} name={`voteAmount${voption.key}`} className='hidden-input' onChange={() => { }} />
+                    {/* {voption.value} */}
+                    <input className="outcome-input rounded-lg" type='number'
+                        value={voption.value}
+                        name={`voteAmount${voption.key}`}
+                        onChange={(e) => { SetAmountEven(voption.key, e.target.value) }}
+                    />
+                    {/* <input value={voption.value} name={`voteAmount${voption.key}`} className='hidden-input' onChange={() => { }} /> */}
                 </Box>
 
                 <Box className="col-span-1 w-full py-2">

@@ -20,8 +20,11 @@ const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }:
   const [choice, setChoice] = useState<string[]>([]);
   useEffect(() => {
     console.log(proposal.choice);
-    var str = proposal?.choice?.split(" , ");
-    setChoice(str);
+    if (JSON.parse(proposal.protocol).type == "quadratic" || JSON.parse(proposal.protocol).type == "weighted") {
+      var str = proposal?.choice?.split(",");
+      setChoice(str);
+    } else {
+    }
   }, [proposal])
 
   const colHeads = isProposer
