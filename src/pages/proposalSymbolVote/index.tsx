@@ -363,6 +363,7 @@ const ProposalSymbolVote = (props: Props) => {
         </Grid>
         <Box className="mt-16 mb-32"></Box>
       </Box>
+
       <Dialog className="modaladd" open={modal} onClose={handleClose}>
         <DialogTitle className="modaladdpaper modaladdpaper-title">
           Add more rewards

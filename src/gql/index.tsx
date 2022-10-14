@@ -18,6 +18,7 @@ const GET_PROPOSALS = gql`
             snapshot
             state
             author
+            type
             space {
                 id
                 name

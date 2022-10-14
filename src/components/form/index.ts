@@ -6,3 +6,5 @@ export * from "./formSliderInput";
 export * from "./formRangeSlider";
 export * from "./formRangeSliderInput";
 export * from "./formDataPreview";
+
+export * from './outcomeChoiceForm';

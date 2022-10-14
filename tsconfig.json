@@ -31,4 +31,12 @@
   "files": [
     "src/declaration.d.ts"
   ],
+  "theme": {
+    "extend": {
+      "gridColumn": {
+        "span-3": "span 3 / span 3",
+        "span-4": "span 4 / span 4",
+      }
+    }
+  }
 }

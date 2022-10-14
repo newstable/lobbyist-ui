@@ -60,7 +60,7 @@ const FormSelectPercent = ({
             <FormControl className="flex flex-row items-center gap-4">
                 <FormLabel label={label} helpText={helpText} />
                 <Box className="basis-9/12 flex">
-                    <Box>
+                    <Box className="">
                         <Controller
                             name={name}
                             control={control}

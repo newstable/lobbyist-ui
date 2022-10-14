@@ -9,9 +9,10 @@ import { NotificationManager } from "react-notifications";
 import {
 	FormTextField,
 	FormSelect,
+	OutcomeChoiceForm
 } from "../../../../components/form";
 import { colors } from "../../../../common";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GET_PROPOSALS } from "../../../../gql";
 import { Tokens } from "../../../../token";
 import { useSelector } from "../../../../redux/store";
@@ -52,6 +53,7 @@ const ProposalForm = (props: Props) => {
 	const [maxReward, setMaxReward] = useState(0);
 	const [targetVotes, setTargetVotes] = useState(0);
 	const [usd, setUsd] = useState(0);
+	const [proposalType, setProposalType] = useState("single-choice");
 	const walletAddress: any = useSelector(
 		(state: RootState) => state.wallet.address
 	);
@@ -114,6 +116,7 @@ const ProposalForm = (props: Props) => {
 
 	const ClickSnap = (e: any) => {
 		const temp = [] as SnapShotData[];
+		setProposalType(data?.proposals[e].type);
 		for (var i = 0; i < data?.proposals[e].choices.length; i++) {
 			temp.push({
 				value: i,
@@ -191,7 +194,7 @@ const ProposalForm = (props: Props) => {
 			proposalName: "",
 			proposalDescription: "",
 			snapshotProposal: "",
-			desiredVote: "",
+			desiredVote: [],
 			endTime: "",
 			gaugeFixed: "",
 			rewardCurrency: "WMATIC",
@@ -228,7 +231,27 @@ const ProposalForm = (props: Props) => {
 		control,
 		name: "rangeNum",
 	});
+
+	const outcomeChoiceRef: any = useRef();
+	const [outcomeKeys, SetOutcomeKeys] = useState<number[]>([])
 	const OnFormSubmit = async (value: any) => {
+		let outcomeChoiceData: any = {
+			total: 0,
+			data: []
+		}
+
+		let formEL = outcomeChoiceRef.current;
+		outcomeKeys.forEach((key) => {
+			outcomeChoiceData.total = formEL.totalAmount.value;
+			let itemData: any = { amount: 0, value: 0 };
+			itemData.amount = formEL['voteAmount' + key].value;
+			itemData.value = formEL['voteoption' + key].value;
+			outcomeChoiceData.data.push(itemData);
+		})
+
+		console.log(outcomeChoiceData)
+
+		return;
 		if (walletAddress === "") {
 			NotificationManager.warning("Please connect wallet...!", "Warning");
 		} else if (value.snapshotProposal === "") {
@@ -337,15 +360,21 @@ const ProposalForm = (props: Props) => {
 							time={time}
 							readonly={true}
 						/>
-						{voteOption.length > 0 && (
-							<FormSelect
-								label="Outcome Choice"
-								placeholder="Choose a Choice"
-								items={voteOption}
-								name="desiredVote"
-								control={control}
-							/>
-						)}
+						{voteOption.length > 0 ? (
+							proposalType == "single-choice" || proposalType == "basic" ? (
+								<FormSelect
+									label="Outcome Choice"
+									placeholder="Choose a Choice"
+									items={voteOption}
+									name="desiredVote"
+									control={control}
+								/>
+							) : proposalType == "quadratic" || proposalType == "weighted" ? (
+								<BoxForm className="flex flex-col p-8 md:p-20 rounded-md  gap-8">
+									<OutcomeChoiceForm voteOption={voteOption} formRef={outcomeChoiceRef} SetKeysEvent={SetOutcomeKeys} />
+								</BoxForm>
+							) : ""
+						) : ""}
 					</BoxForm>
 					<BoxForm className="flex flex-col p-8 md:p-20 rounded-md gap-8">
 						{votePercentFields.map((vp, idx) => (
