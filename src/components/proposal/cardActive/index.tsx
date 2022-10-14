@@ -126,7 +126,7 @@ const ProposalCardActive = (props: Props) => {
 										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[2]}
 										</Text_Head>
-										<TextContent>{p.protocol.length > 23 ? (p.protocol.slice(0, 23) + "...") : p.protocol}</TextContent>
+										<TextContent>{p.choice.length > 23 ? (p.choice.slice(0, 23) + "...") : p.choice}</TextContent>
 									</Box>
 									<Box
 										className={classNames("flex flex-col justify-center", !isAboveMd && "gap-1")}

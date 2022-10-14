@@ -1,0 +1,12 @@
+.Multi-choice-item {
+    height: 50px;
+    border-color: #636369;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.active-item {
+    border-color: white;
+}

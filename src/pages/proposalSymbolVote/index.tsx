@@ -147,12 +147,19 @@ const ProposalSymbolVote = (props: Props) => {
         type: currentProposal.proposalType
       };
       let choice: any;
-      if (proposalInfo.type === "single-choice") {
-        choice = proposalInfo.choices.indexOf(currentProposal.protocol) + 1;
+      var outcome = JSON.parse(currentProposal.protocol);
+      let choiceData = JSON.parse(outcome.data);
+      if (proposalInfo.type == "single-choice" || proposalInfo.type == "basic") {
+        choice = proposalInfo.choices.indexOf(outcome) + 1;
+      } else if (proposalInfo.type == "quadratic" || proposalInfo.type == "weighted") {
+        let setChoiceData: any = {};
+        choiceData.forEach((mydata: any) => {
+          setChoiceData[mydata.value] = mydata.amount;
+        });
+        choice = setChoiceData;
       } else {
-        choice = {
-          [proposalInfo.choices.indexOf(currentProposal.protocol) + 1]: 1,
-        };
+        // console.log(setChoiceData);
+        choice = choiceData;
       }
       const receipt = await client.vote(provider, walletAddress, {
         space: proposalInfo.space.id,

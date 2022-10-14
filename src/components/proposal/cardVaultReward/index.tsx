@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import { Proposal } from "../../../@types/proposal";
 import { TextContent, TextHead } from "../../text";
 import NumberType from "../../../common/number";
+import { useEffect, useState } from "react";
 
 type Props = {
   proposal: Proposal;
@@ -16,6 +17,13 @@ const Content = styled(CardContent)(({ theme }) => ({
 }));
 
 const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }: Props) => {
+  const [choice, setChoice] = useState<string[]>([]);
+  useEffect(() => {
+    console.log(proposal.choice);
+    var str = proposal?.choice?.split(" , ");
+    setChoice(str);
+  }, [proposal])
+
   const colHeads = isProposer
     ? ["My Reward", "Voting For"]
     : ["My Reward Amount", "Voting For"];
@@ -31,7 +39,13 @@ const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }:
         </Box>
         <Box className="grid grid-cols-2 gap-8">
           <Typography variant="subtitle1">${proposal.totalVoteWeight > 0 ? proposal.myvoteAmount ? NumberType((proposal.usdAmount / proposal.totalVoteWeight * proposal.myvoteAmount).toFixed(2), 2) : 0 : 0}</Typography>
-          <Typography variant="subtitle1">{voteType != "single-choice" ? "100% for " + proposal.protocol : proposal.protocol}</Typography>
+          <Typography variant="subtitle1">{choice?.map((mychoice) => {
+            return (
+              <>
+                {mychoice}<br />
+              </>
+            )
+          })}</Typography>
         </Box>
       </Content>
     </Card>

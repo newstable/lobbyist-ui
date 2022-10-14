@@ -166,9 +166,10 @@ const ProposalCardActiveSymbol = ({
                                                     <TextHead className={classNames(isAboveMd && "hidden")}>
                                                         {colHeads[2]}
                                                     </TextHead>
-                                                    <TextContent>{p.protocol.length > 23
-                                                        ? p.protocol.slice(0, 23) + "..."
-                                                        : p.protocol}</TextContent>
+                                                    <TextContent>{p.choice.length > 23
+                                                        ? p.choice.slice(0, 23) + "..."
+                                                        : p.choice}
+                                                    </TextContent>
                                                 </Box>
                                                 <Box
                                                     className={classNames(

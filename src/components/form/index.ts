@@ -8,3 +8,4 @@ export * from "./formRangeSliderInput";
 export * from "./formDataPreview";
 
 export * from './outcomeChoiceForm';
+export * from './MultiChoiceForm';

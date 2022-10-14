@@ -9,7 +9,8 @@ import { NotificationManager } from "react-notifications";
 import {
 	FormTextField,
 	FormSelect,
-	OutcomeChoiceForm
+	OutcomeChoiceForm,
+	MultiChoiceForm
 } from "../../../../components/form";
 import { colors } from "../../../../common";
 import { useEffect, useRef, useState } from "react";
@@ -194,7 +195,7 @@ const ProposalForm = (props: Props) => {
 			proposalName: "",
 			proposalDescription: "",
 			snapshotProposal: "",
-			desiredVote: [],
+			desiredVote: "",
 			endTime: "",
 			gaugeFixed: "",
 			rewardCurrency: "WMATIC",
@@ -210,6 +211,8 @@ const ProposalForm = (props: Props) => {
 			minVotes: "0",
 			targetVotes: "0",
 			proposalId: "",
+			singleValue: ''
+
 		},
 	});
 
@@ -233,25 +236,39 @@ const ProposalForm = (props: Props) => {
 	});
 
 	const outcomeChoiceRef: any = useRef();
-	const [outcomeKeys, SetOutcomeKeys] = useState<number[]>([])
+	const [outcomeKeys, SetOutcomeKeys] = useState<number[]>([]);
 	const OnFormSubmit = async (value: any) => {
-		let outcomeChoiceData: any = {
-			total: 0,
-			data: []
+		let OutcomeData = {
+			type: proposalType,
+			data: ''
 		}
 
-		let formEL = outcomeChoiceRef.current;
-		outcomeKeys.forEach((key) => {
-			outcomeChoiceData.total = formEL.totalAmount.value;
-			let itemData: any = { amount: 0, value: 0 };
-			itemData.amount = formEL['voteAmount' + key].value;
-			itemData.value = formEL['voteoption' + key].value;
-			outcomeChoiceData.data.push(itemData);
-		})
-
-		console.log(outcomeChoiceData)
-
-		return;
+		if (proposalType === 'single-choice' || proposalType === 'basic') OutcomeData.data = value.singleValue;
+		else if (proposalType === 'quadratic' || proposalType === 'weighted') {
+			let outcomeAmount: any = [];
+			let formEL = outcomeChoiceRef.current;
+			outcomeKeys.forEach((key) => {
+				let itemData: any = { value: 0, amount: 0 };
+				itemData.value = key + 1;
+				itemData.amount = formEL['voteAmount' + key].value;
+				outcomeAmount.push(itemData);
+			})
+			OutcomeData.data = JSON.stringify(outcomeAmount);
+		} else {
+			let ranked: number[] = [];
+			outcomeKeys.forEach((key: number) => { ranked.push(key + 1); })
+			OutcomeData.data = JSON.stringify(ranked);
+		}
+		value.desiredVote = JSON.stringify(OutcomeData);
+		if (proposalType == "ranked-choice") {
+			if (outcomeKeys.length != voteOption.length) {
+				NotificationManager.warning(
+					"You must select all options for vote to this proposal!",
+					"Warning"
+				);
+				return;
+			}
+		}
 		if (walletAddress === "") {
 			NotificationManager.warning("Please connect wallet...!", "Warning");
 		} else if (value.snapshotProposal === "") {
@@ -360,22 +377,30 @@ const ProposalForm = (props: Props) => {
 							time={time}
 							readonly={true}
 						/>
-						{voteOption.length > 0 ? (
-							proposalType == "single-choice" || proposalType == "basic" ? (
-								<FormSelect
-									label="Outcome Choice"
-									placeholder="Choose a Choice"
-									items={voteOption}
-									name="desiredVote"
-									control={control}
-								/>
-							) : proposalType == "quadratic" || proposalType == "weighted" ? (
-								<BoxForm className="flex flex-col p-8 md:p-20 rounded-md  gap-8">
-									<OutcomeChoiceForm voteOption={voteOption} formRef={outcomeChoiceRef} SetKeysEvent={SetOutcomeKeys} />
-								</BoxForm>
-							) : ""
-						) : ""}
 					</BoxForm>
+					{
+						voteOption.length > 0 && (
+
+							<BoxForm className="flex flex-col p-8 md:p-20 rounded-md  gap-8">
+								{
+									proposalType == "single-choice" || proposalType == "basic" ? (
+										<FormSelect
+											label="Outcome Choice"
+											placeholder="Choose a Choice"
+											items={voteOption}
+											name="singleValue"
+											control={control}
+										/>
+									) : proposalType == "quadratic" || proposalType == "weighted" ? (
+										<OutcomeChoiceForm voteOption={voteOption} formRef={outcomeChoiceRef} SetKeysEvent={SetOutcomeKeys} />
+									) : (
+										<MultiChoiceForm voteOption={voteOption} formRef={outcomeChoiceRef} SetKeysEvent={SetOutcomeKeys} />
+									)
+								}
+							</BoxForm>
+						)
+					}
+
 					<BoxForm className="flex flex-col p-8 md:p-20 rounded-md gap-8">
 						{votePercentFields.map((vp, idx) => (
 							<Box
