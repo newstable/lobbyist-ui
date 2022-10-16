@@ -6,7 +6,7 @@ const Addresses = require("./contracts/addresses.json");
 const variableAddresses = require("./contracts/variableAddresses.json");
 
 const RPCS = {
-    1: "https://eth.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
+    1: "https://rpc.ankr.com/eth",
     10: "https://mainnet.optimism.io",
     56: "https://rpc-bsc.bnb48.club",
     137: "https://matic.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",

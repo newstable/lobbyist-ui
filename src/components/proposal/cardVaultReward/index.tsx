@@ -19,10 +19,9 @@ const Content = styled(CardContent)(({ theme }) => ({
 const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }: Props) => {
   const [choice, setChoice] = useState<string[]>([]);
   useEffect(() => {
-    if (JSON.parse(proposal.protocol).type == "quadratic" || JSON.parse(proposal.protocol).type == "weighted") {
-      var str = proposal?.choice?.split(",");
+    if (JSON.parse(proposal.protocol).type != "single-choice" || JSON.parse(proposal.protocol).type != "basic") {
+      var str = proposal?.choice?.split("&");
       setChoice(str);
-    } else {
     }
   }, [proposal])
 
