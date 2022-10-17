@@ -13,7 +13,7 @@ const Analytics = () => {
     const proposals = proposalState.currentProposal.data;
     useEffect(() => {
         selectedProposals();
-    }, [sort])
+    }, [sort, proposals])
     const selectProtocol = (e: string) => {
         setSort(e);
     }
@@ -22,7 +22,7 @@ const Analytics = () => {
         var search: any = proposals?.filter(
             (proposal: any) => proposal.type == sort || sort == ""
         );
-        setTotalProposals(search?.length);
+        setTotalProposals(search ? search.length : 0);
         var lockedReward = 0;
         var paidReward = 0;
         search?.filter((proposal: any) => {
