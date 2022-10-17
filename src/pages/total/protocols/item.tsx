@@ -82,7 +82,7 @@ const Item = (props: Props) => {
             <h2 className="item-font-2">{protocol.text}</h2>
             <div>
                 <p className="item-font-1">Active Proposals</p>
-                <h4>{count}</h4>
+                <h4>{count ? count : 0}</h4>
             </div>
             <div className="flex justify-between">
                 <div>
