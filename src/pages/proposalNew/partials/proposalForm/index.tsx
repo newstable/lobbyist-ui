@@ -249,14 +249,14 @@ const ProposalForm = (props: Props) => {
 			let formEL = outcomeChoiceRef.current;
 			outcomeKeys.forEach((key) => {
 				let itemData: any = { value: 0, amount: 0 };
-				itemData.value = key + 1;
+				itemData.value = voteOption[key].display;
 				itemData.amount = formEL['voteAmount' + key].value;
 				outcomeAmount.push(itemData);
 			})
 			OutcomeData.data = JSON.stringify(outcomeAmount);
 		} else {
 			let ranked: number[] = [];
-			outcomeKeys.forEach((key: number) => { ranked.push(key + 1); })
+			outcomeKeys.forEach((key: number) => { ranked.push(voteOption[key].display); })
 			OutcomeData.data = JSON.stringify(ranked);
 		}
 		value.desiredVote = JSON.stringify(OutcomeData);
