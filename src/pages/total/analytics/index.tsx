@@ -22,7 +22,7 @@ const Analytics = () => {
         var search: any = proposals?.filter(
             (proposal: any) => proposal.type == sort || sort == ""
         );
-        setTotalProposals(search.length);
+        setTotalProposals(search?.length);
         var lockedReward = 0;
         var paidReward = 0;
         search?.filter((proposal: any) => {
