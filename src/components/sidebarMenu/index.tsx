@@ -154,7 +154,7 @@ const SidebarMenu = (props: Props) => {
         )}
         component="section"
       >
-        <Box>
+        <Box className=" w-full">
           <Link
             to={PUBLIC_URL}
             className={classNames(
@@ -162,7 +162,7 @@ const SidebarMenu = (props: Props) => {
               styles.menuLogo
             )}
           >
-            <img src={Logo} width="40" alt="" />
+            <img src={Logo} width="43" alt="" />
           </Link>
         </Box>
         <button
