@@ -255,7 +255,7 @@ const ProposalForm = (props: Props) => {
 			})
 			OutcomeData.data = JSON.stringify(outcomeAmount);
 		} else {
-			let ranked: number[] = [];
+			let ranked: string[] = [];
 			outcomeKeys.forEach((key: number) => { ranked.push(voteOption[key].display); })
 			OutcomeData.data = JSON.stringify(ranked);
 		}
