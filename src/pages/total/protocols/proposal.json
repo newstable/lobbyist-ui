@@ -96,7 +96,7 @@
             }
         ],
         "icon": "../../assets/icons/pro-aave.svg",
-        "multiChain": true,
+        "multiChain": false,
         "chainNames": "Ethereum/Optimism/Arbitrum/Polygon/Avalanche"
     },
     {
