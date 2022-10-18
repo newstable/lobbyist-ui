@@ -44,8 +44,7 @@ const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }:
           <Typography variant="subtitle1">{choice?.map((mychoice, Index: number) => {
             return (
               <>
-
-                {`(${Index + 1}${Index >= 0 && Index < 4 ? NA[Index] : 'th'}) ${mychoice}`}<br />
+                {proposal.proposalType == "ranked-choice" ? `(${Index + 1}${Index >= 0 && Index < 4 ? NA[Index] : 'th'})` : "" + mychoice}<br />
               </>
             )
           })}</Typography>
