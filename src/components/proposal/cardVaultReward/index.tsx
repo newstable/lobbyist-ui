@@ -24,6 +24,7 @@ const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }:
       var str = proposal?.choice?.split("&");
       setChoice(str);
     }
+    console.log(JSON.parse(proposal.protocol).type);
   }, [proposal])
 
   const colHeads = isProposer
@@ -44,7 +45,7 @@ const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }:
           <Typography variant="subtitle1">{choice?.map((mychoice, Index: number) => {
             return (
               <>
-                {proposal.proposalType == "ranked-choice" ? `(${Index + 1}${Index >= 0 && Index < 4 ? NA[Index] : 'th'})` : "" + mychoice}<br />
+                {JSON.parse(proposal.protocol).type == "ranked-choice" ? `(${Index + 1}${Index >= 0 && Index < 4 ? NA[Index] : 'th'}) ` + mychoice : "" + mychoice}<br />
               </>
             )
           })}</Typography>
