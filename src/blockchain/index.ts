@@ -88,7 +88,7 @@ const createVariable = async (props: any) => {
     try {
         const { address, walletAddress, value, submitType, signer, chain }: Props = props;
         var rewardCurrency = Tokens[chain].filter((token: any) => token.address == address);
-        let totalRewardAmount = value.minReward * value.targetVotes;
+        let totalRewardAmount = value.minReward * value.targetVotes / value.minVotes;
         const newProposal = {
             proposalId: value.proposalId,
             name: value.proposalName,
@@ -105,6 +105,7 @@ const createVariable = async (props: any) => {
         const Reward = ERCContract({ address, chain });
         const result = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(result);
+        console.log(tokenAmount, totalRewardAmount);
         if (Number(tokenAmount) < totalRewardAmount) {
             return ({ status: false, message: "Your reward balance is not enough!" });
         } else if (!submitType) {
