@@ -259,7 +259,7 @@ const ProposalSymbolVote = (props: Props) => {
                 >
                   Add Rewards
                 </Button>
-                {currentProposal.proposalType == "variable" ? voteWeight === 0 ? (
+                {currentProposal.proposalType == "fixed" ? voteWeight === 0 ? (
                   <Button disabled variant="contained" color="secondary">
                     Vote
                   </Button>
