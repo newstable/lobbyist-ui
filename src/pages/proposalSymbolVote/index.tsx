@@ -154,12 +154,15 @@ const ProposalSymbolVote = (props: Props) => {
       } else if (proposalInfo.type == "quadratic" || proposalInfo.type == "weighted") {
         let setChoiceData: any = {};
         choiceData.forEach((mydata: any) => {
-          setChoiceData[mydata.value] = Number(mydata.amount);
+          setChoiceData[proposalInfo.choices.indexOf(mydata.value) + 1] = Number(mydata.amount);
         });
         choice = setChoiceData;
       } else {
-        // console.log(setChoiceData);
-        choice = choiceData;
+        var newChoiceData: any = [];
+        for (var i = 0; i < choiceData.length; i++) {
+          newChoiceData.push(proposalInfo.choices.indexOf(choiceData[i]) + 1);
+        }
+        choice = newChoiceData;
       }
       const receipt = await client.vote(provider, walletAddress, {
         space: proposalInfo.space.id,
