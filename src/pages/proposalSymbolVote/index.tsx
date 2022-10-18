@@ -259,7 +259,19 @@ const ProposalSymbolVote = (props: Props) => {
                 >
                   Add Rewards
                 </Button>
-                {voteWeight === 0 ? (
+                {currentProposal.proposalType == "variable" ? voteWeight === 0 ? (
+                  <Button disabled variant="contained" color="secondary">
+                    Vote
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={voteProposal}
+                    variant="contained"
+                    color="tealLight"
+                  >
+                    Vote
+                  </Button>
+                ) : voteWeight === 0 || currentProposal.totalVoteWeight >= currentProposal.targetVotes ? (
                   <Button disabled variant="contained" color="secondary">
                     Vote
                   </Button>
