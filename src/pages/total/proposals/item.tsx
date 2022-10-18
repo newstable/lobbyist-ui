@@ -63,7 +63,7 @@ const ProposalItem = (props: Props) => {
             <div className="flex justify-between">
                 <div>
                     <p className="item-font-1">$/VOTE</p>
-                    <h4>{proposal.totalVoteWeight > 0 ? NumberType((proposal.usdAmount / proposal.totalVoteWeight).toFixed(6), 6) : ""}</h4>
+                    <h4>{proposal.totalVoteWeight > 0 ? NumberType((proposal.usdAmount / proposal.totalVoteWeight).toFixed(6), 6) : 0}</h4>
                 </div>
                 <Button onClick={() => onJoinClick(proposal)}
                     variant="contained" color="tealLight"
