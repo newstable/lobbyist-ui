@@ -238,10 +238,10 @@ const ProposalForm = (props: Props) => {
 	const outcomeChoiceRef: any = useRef();
 	const [outcomeKeys, SetOutcomeKeys] = useState<number[]>([]);
 	const OnFormSubmit = async (value: any) => {
-		// let OutcomeData = {
-		// 	type: proposalType,
-		// 	data: ''
-		// }
+		let OutcomeData = {
+			type: proposalType,
+			data: ''
+		}
 
 		if (proposalType === 'single-choice' || proposalType === 'basic') OutcomeData.data = value.singleValue;
 		else if (proposalType === 'quadratic' || proposalType === 'weighted') {

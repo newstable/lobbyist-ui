@@ -6,13 +6,13 @@ const Addresses = require("./contracts/addresses.json");
 const variableAddresses = require("./contracts/variableAddresses.json");
 
 const RPCS = {
-    1: "https://rpc.ankr.com/eth",
+    1: "https://mainnet.infura.io/v3/9f8f5ec266c54f85aa9e66fbe230b077",
     10: "https://mainnet.optimism.io",
     56: "https://rpc-bsc.bnb48.club",
-    137: "https://matic.getblock.io/mainnet/?api_key=8dbb37b0-802c-4ed0-9296-e9823ca0d8b5",
+    137: "https://polygon-mainnet.infura.io/v3/9f8f5ec266c54f85aa9e66fbe230b077",
     250: "https://rpc.ftm.tools",
-    42161: "https://rpc.ankr.com/arbitrum",
-    43114: "https://api.avax.network/ext/bc/C/rpc"
+    42161: "https://arbitrum-mainnet.infura.io/v3/9f8f5ec266c54f85aa9e66fbe230b077",
+    43114: "https://avalanche-mainnet.infura.io/v3/9f8f5ec266c54f85aa9e66fbe230b077"
 };
 const providers: any = {
     1: new ethers.providers.JsonRpcProvider(RPCS[1]),
