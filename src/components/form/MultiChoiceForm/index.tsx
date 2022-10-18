@@ -15,8 +15,9 @@ type voteOptionCount = {
 }
 
 const MultiChoiceForm = (props: any) => {
-    const { voteOption, formRef, SetKeysEvent } = props;
+    const { voteOption, formRef, VoteType, SetKeysEvent } = props;
     const [SelectedKeys, SetSelectedKeys] = useState<number[]>([]);
+    const [voteOptions, SetVoteOptions] = useState<voteoptionItem[]>([]);
 
     const ItemClickFunc = (itemKey: number) => {
         const status = SelectedKeys.find((key: number, index: number) => { return key === itemKey ? true : false });
@@ -30,6 +31,18 @@ const MultiChoiceForm = (props: any) => {
         }
     }
 
+    useEffect(() => {
+        if (VoteType !== 'ranked-choice') return;
+        const TempOptions = Object.assign([], voteOption);
+        TempOptions.sort((a: voteoptionItem, b: voteoptionItem) => {
+            let SelectA = SelectedKeys.findIndex((i) => i === a.value) + 1;
+            let SelectB = SelectedKeys.findIndex((i) => i === b.value) + 1;
+            return SelectA === 0 || SelectB === 0 ? SelectB - SelectA : SelectA - SelectB;
+        })
+
+        SetVoteOptions(TempOptions);
+    }, [SelectedKeys]);
+
     useEffect(() => { SetKeysEvent([...SelectedKeys]); }, [SelectedKeys]);
     return (
         <form ref={formRef}>
@@ -38,15 +51,16 @@ const MultiChoiceForm = (props: any) => {
 
                 <Box className="w-full flex-1 flex flex-col items-start gap-4">
                     {
-                        voteOption.map((item: voteoptionItem, index: number) => {
+                        voteOptions.map((item: voteoptionItem, index: number) => {
                             return (
                                 <MultiChoiceItem key={index}
                                     voteOption={item}
+                                    Index={index}
+                                    VoteType={VoteType}
                                     actived={SelectedKeys.find((key: number) => { return key === item.value; }) === item.value ? true : false}
                                     ClickEvent={ItemClickFunc} />)
                         })
                     }
-                    {/* <ChoiceSelectItem voption={item} RemoveEvent={RemoveFunc} changeEvent={ChangeFunc} SetAmountEven={SetAmount} keys={keys} /> */}
                 </Box>
             </Box>
         </form >

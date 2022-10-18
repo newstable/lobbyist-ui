@@ -12,6 +12,7 @@ type Props = {
   voteType: string;
 };
 
+const NA = ['st', 'nd', 'rd', 'th'];
 const Content = styled(CardContent)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
 }));
@@ -40,10 +41,11 @@ const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }:
         </Box>
         <Box className="grid grid-cols-2 gap-8">
           <Typography variant="subtitle1">${proposal.totalVoteWeight > 0 ? proposal.myvoteAmount ? NumberType((proposal.usdAmount / proposal.totalVoteWeight * proposal.myvoteAmount).toFixed(2), 2) : 0 : 0}</Typography>
-          <Typography variant="subtitle1">{choice?.map((mychoice) => {
+          <Typography variant="subtitle1">{choice?.map((mychoice, Index: number) => {
             return (
               <>
-                {mychoice}<br />
+
+                {`(${Index + 1}${Index >= 0 && Index < 4 ? NA[Index] : 'th'}) ${mychoice}`}<br />
               </>
             )
           })}</Typography>

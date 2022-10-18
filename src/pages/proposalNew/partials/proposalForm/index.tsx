@@ -394,7 +394,7 @@ const ProposalForm = (props: Props) => {
 									) : proposalType == "quadratic" || proposalType == "weighted" ? (
 										<OutcomeChoiceForm voteOption={voteOption} formRef={outcomeChoiceRef} SetKeysEvent={SetOutcomeKeys} />
 									) : (
-										<MultiChoiceForm voteOption={voteOption} formRef={outcomeChoiceRef} SetKeysEvent={SetOutcomeKeys} />
+										<MultiChoiceForm voteOption={voteOption} formRef={outcomeChoiceRef} VoteType={proposalType} SetKeysEvent={SetOutcomeKeys} />
 									)
 								}
 							</BoxForm>
