@@ -45,7 +45,7 @@ const CardRewards = (props: Props) => {
     );
     var pendingreward = 0;
     var totalEarned = 0;
-    setCount(getActiveArray ? getActiveArray.length : "");
+    setCount(getActiveArray ? getActiveArray.length : 0);
     myProposals?.forEach(async (item) => {
       if (!item.myclaim) {
         pendingreward +=
