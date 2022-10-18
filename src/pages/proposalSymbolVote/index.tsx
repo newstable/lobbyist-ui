@@ -256,7 +256,7 @@ const ProposalSymbolVote = (props: Props) => {
                 >
                   Add Rewards
                 </Button>
-                {voteWeight === 0 || currentProposal.targetVotes == currentProposal.totalVoteWeight ? (
+                {voteWeight === 0 ? (
                   <Button disabled variant="contained" color="secondary">
                     Vote
                   </Button>
