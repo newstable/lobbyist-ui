@@ -250,13 +250,6 @@ const ProposalSymbolVote = (props: Props) => {
                 >
                   Add Rewards
                 </Button>
-                <Button
-                  onClick={voteProposal}
-                  variant="contained"
-                  color="tealLight"
-                >
-                  Vote
-                </Button>
               </Box>
             ) : (
               <Box className="grid gap-custom">
