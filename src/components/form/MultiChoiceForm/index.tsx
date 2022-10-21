@@ -30,18 +30,19 @@ const MultiChoiceForm = (props: any) => {
             SetSelectedKeys(newKeys);
         }
     }
-
     useEffect(() => {
-        if (VoteType !== 'ranked-choice') return;
-        const TempOptions = Object.assign([], voteOption);
-        TempOptions.sort((a: voteoptionItem, b: voteoptionItem) => {
-            let SelectA = SelectedKeys.findIndex((i) => i === a.value) + 1;
-            let SelectB = SelectedKeys.findIndex((i) => i === b.value) + 1;
-            return SelectA === 0 || SelectB === 0 ? SelectB - SelectA : SelectA - SelectB;
-        })
-
+        let TempOptions = Object.assign([], voteOption);
+        if (VoteType === 'ranked-choice') {
+            TempOptions.sort((a: voteoptionItem, b: voteoptionItem) => {
+                let SelectA = SelectedKeys.findIndex((i) => i === a.value) + 1;
+                let SelectB = SelectedKeys.findIndex((i) => i === b.value) + 1;
+                return SelectA === 0 || SelectB === 0 ? SelectB - SelectA : SelectA - SelectB;
+            });
+        }
         SetVoteOptions(TempOptions);
-    }, [SelectedKeys]);
+    }, [SelectedKeys, VoteType]);
+
+    useEffect(() => { SetSelectedKeys([]); }, [VoteType])
 
     useEffect(() => { SetKeysEvent([...SelectedKeys]); }, [SelectedKeys]);
     return (

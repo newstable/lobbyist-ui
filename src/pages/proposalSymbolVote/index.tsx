@@ -160,6 +160,7 @@ const ProposalSymbolVote = (props: Props) => {
         choice = setChoiceData;
       } else {
         var newChoiceData: any = [];
+        choiceData = JSON.parse(outcome.data);
         for (var i = 0; i < choiceData.length; i++) {
           newChoiceData.push(proposalInfo.choices.indexOf(choiceData[i]) + 1);
         }
@@ -248,6 +249,13 @@ const ProposalSymbolVote = (props: Props) => {
                   color="tealLight"
                 >
                   Add Rewards
+                </Button>
+                <Button
+                  onClick={voteProposal}
+                  variant="contained"
+                  color="tealLight"
+                >
+                  Vote
                 </Button>
               </Box>
             ) : (

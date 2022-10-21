@@ -72,7 +72,7 @@ const FormSelect = ({
                         return (
                             <Select
                                 className={classNames(
-                                    "basis-9/12",
+                                    "basis-9/12 ",
                                     styles.input
                                 )}
                                 placeholder={placeholder}

@@ -2,6 +2,7 @@ import "./index.scss";
 import { useSelector } from "../../../redux/store";
 import { useEffect, useState } from "react";
 import NumberType from "../../../common/number";
+import { Coins } from "../../../blockchain";
 
 const Analytics = () => {
     const [sort, setSort] = useState("");
@@ -27,10 +28,10 @@ const Analytics = () => {
         var paidReward = 0;
         search?.filter((proposal: any) => {
             if (proposal.isClosed) {
-                paidReward += proposal.reward;
+                paidReward += proposal.usdAmount;
             }
             else {
-                lockedReward += proposal.reward;
+                lockedReward += proposal.usdAmount;
             }
         })
         setLockedValue(lockedReward);
