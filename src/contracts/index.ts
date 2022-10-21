@@ -9,7 +9,7 @@ const RPCS = {
     1: "https://mainnet.infura.io/v3/9f8f5ec266c54f85aa9e66fbe230b077",
     10: "https://mainnet.optimism.io",
     56: "https://rpc-bsc.bnb48.club",
-    137: "https://polygon-rpc.com",
+    137: "https://polygon-mainnet.infura.io/v3/9f8f5ec266c54f85aa9e66fbe230b077",
     250: "https://rpc.ftm.tools",
     42161: "https://arbitrum-mainnet.infura.io/v3/9f8f5ec266c54f85aa9e66fbe230b077",
     43114: "https://avalanche-mainnet.infura.io/v3/9f8f5ec266c54f85aa9e66fbe230b077"
