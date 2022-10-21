@@ -64,7 +64,7 @@ const ProposalForm = (props: Props) => {
 	const provider: any = useSelector(
 		(state: RootState) => state.provider.provider
 	);
-
+	// Get protocol type and symbol
 	useEffect(() => {
 		if (props.name === "qidao") {
 			setName("qidao.eth");
@@ -93,6 +93,7 @@ const ProposalForm = (props: Props) => {
 		}
 	}, [props.name]);
 
+	// Get token price that you select
 	useEffect(() => {
 		const tokenPrice = async () => {
 			var currencyType = Tokens[chainName].filter(
@@ -103,7 +104,7 @@ const ProposalForm = (props: Props) => {
 		};
 		tokenPrice();
 	}, [maxReward, minReward]);
-
+	// Set your wallet Address
 	useEffect(() => {
 		if (walletAddress !== "") {
 			setValue("userAddress", walletAddress);
@@ -114,7 +115,7 @@ const ProposalForm = (props: Props) => {
 		variables: { name: name },
 		pollInterval: 0,
 	});
-
+	// Set Vote options
 	const ClickSnap = (e: any) => {
 		const temp = [] as SnapShotData[];
 		setProposalType(data?.proposals[e].type);
@@ -149,7 +150,7 @@ const ProposalForm = (props: Props) => {
 		"Nov",
 		"Dec",
 	];
-
+	// Set time of proposal
 	const timeStyle = (date: Date) => {
 		const month = date.getMonth();
 		const hour = myHour(date);
@@ -166,7 +167,7 @@ const ProposalForm = (props: Props) => {
 			return date.getHours() - 12 + " PM";
 		}
 	};
-
+	// Set Proposals
 	useEffect(() => {
 		const temp = [] as SnapShotData[];
 		data?.proposals?.map((i: any, key: number) => {
@@ -237,6 +238,8 @@ const ProposalForm = (props: Props) => {
 
 	const outcomeChoiceRef: any = useRef();
 	const [outcomeKeys, SetOutcomeKeys] = useState<number[]>([]);
+
+	// Form submit of proposal properties
 	const OnFormSubmit = async (value: any) => {
 		let OutcomeData = {
 			type: proposalType,

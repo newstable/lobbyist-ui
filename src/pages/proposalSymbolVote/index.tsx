@@ -114,7 +114,7 @@ const ProposalSymbolVote = (props: Props) => {
   useEffect(() => {
     setUsdAmount(0);
   }, [modal]);
-
+  // Get vote weight of you 
   const GetInfo = async () => {
     const proposalinfo = await getProposal({
       variables: { id: currentProposal.proposalId },
@@ -132,6 +132,7 @@ const ProposalSymbolVote = (props: Props) => {
 
   }
 
+  // Vote on proposal that you select
   const voteProposal = async () => {
     try {
       if (!walletAddress) {
@@ -189,7 +190,7 @@ const ProposalSymbolVote = (props: Props) => {
       console.log(error.error_description);
     }
   };
-
+  // Add reward of proposal that you want.
   const AddReward = async () => {
     if (chainId == currentProposal.chain) {
       let signer: any = provider?.getSigner();
