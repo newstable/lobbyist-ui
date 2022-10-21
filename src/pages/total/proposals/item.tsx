@@ -65,7 +65,7 @@ const ProposalItem = (props: Props) => {
                     <p className="item-font-1">$/VOTE</p>
                     <h4>{proposal.totalVoteWeight > 0 ? NumberType((proposal.usdAmount / proposal.totalVoteWeight).toFixed(6), 6) : "$0"}</h4>
                 </div>
-                <Button onClick={() => onJoinClick(proposal)}
+                <Button className="pro-btn" onClick={() => onJoinClick(proposal)}
                     variant="contained" color="tealLight"
                 >
                     View

@@ -89,7 +89,7 @@ const Item = (props: Props) => {
                     <p className="item-font-1">Total Rewards</p>
                     <h4>${NumberType(earn.toFixed(2), 2)}</h4>
                 </div>
-                <Button
+                <Button className="pro-btn"
                     onClick={() => checkChain(false, 0)}
                     variant="contained" color="tealLight"
                 >

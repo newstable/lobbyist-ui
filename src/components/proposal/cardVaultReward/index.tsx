@@ -24,7 +24,6 @@ const ProposalCardVaultReward = ({ proposal, isProposer, voteWeight, voteType }:
       var str = proposal?.choice?.split("&");
       setChoice(str);
     }
-    console.log(JSON.parse(proposal.protocol).type);
   }, [proposal])
 
   const colHeads = isProposer

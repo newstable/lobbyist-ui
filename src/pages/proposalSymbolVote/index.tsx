@@ -149,9 +149,8 @@ const ProposalSymbolVote = (props: Props) => {
       let choice: any;
       let choiceData: any;
       var outcome = JSON.parse(currentProposal.protocol);
-      console.log("dfafasd")
       if (proposalInfo.type == "single-choice" || proposalInfo.type == "basic") {
-        choice = proposalInfo.choices.indexOf(outcome) + 1;
+        choice = proposalInfo.choices.indexOf(outcome.data) + 1;
       } else if (proposalInfo.type == "quadratic" || proposalInfo.type == "weighted") {
         choiceData = JSON.parse(outcome.data);
         let setChoiceData: any = {};

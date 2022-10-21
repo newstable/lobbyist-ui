@@ -105,7 +105,6 @@ const createVariable = async (props: any) => {
         const Reward = ERCContract({ address, chain });
         const result = await Reward.balanceOf(walletAddress);
         const tokenAmount = ethers.utils.formatUnits(result);
-        console.log(tokenAmount, totalRewardAmount);
         if (Number(tokenAmount) < totalRewardAmount) {
             return ({ status: false, message: "Your reward balance is not enough!" });
         } else if (!submitType) {
