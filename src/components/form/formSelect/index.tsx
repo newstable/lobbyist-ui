@@ -84,6 +84,7 @@ const FormSelect = ({
                                 {items?.map((item, idx) => (
                                     <MenuItem
                                         onClick={() => { choose(item) }}
+                                        sx={{ backgroundColor: "rgb(84, 90, 95)" }}
                                         key={`mi_${idx}`}
                                         className={styles.menuItem}
                                         value={
