@@ -91,6 +91,7 @@ const ProposalSymbolVote = (props: Props) => {
   const [currency, setRewardCurrency] = useState("");
   const [currencyApi, setRewardCurrencyApi] = useState("");
   const [usdAmount, setUsdAmount] = useState(0);
+  const [href, setHref] = useState("");
 
   const isProposer = searchParams.get("proposer") && true;
   const [showMore, setShowMore] = useState(true);
@@ -112,6 +113,11 @@ const ProposalSymbolVote = (props: Props) => {
   }, [walletAddress]);
 
   useEffect(() => {
+    var link = symbol ? symbol == "vesq" ? "vesqdao" : "" : "";
+    setHref(link);
+  }, [symbol])
+
+  useEffect(() => {
     setUsdAmount(0);
   }, [modal]);
   // Get vote weight of you 
@@ -129,7 +135,6 @@ const ProposalSymbolVote = (props: Props) => {
     };
     const result = await Action.GetVoteWeight(req);
     setVoteWeight(result.vp);
-
   }
 
   // Vote on proposal that you select
@@ -368,7 +373,7 @@ const ProposalSymbolVote = (props: Props) => {
                 <a
                   href={
                     "https://snapshot.org/#/" +
-                    symbol +
+                    href +
                     ".eth" +
                     "/proposal/" +
                     proposalInfo.id
