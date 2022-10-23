@@ -38,7 +38,7 @@
         "chainNames": "Ethereum/Optimism/Arbitrum/Polygon/Fantom/Avalanche/Binance"
     },
     {
-        "protocol": "aura",
+        "protocol": "aurafinance",
         "text": "Aura",
         "href": "/proposal/aura",
         "chains": [
@@ -56,7 +56,7 @@
         "chainNames": "Ethereum/Optimism"
     },
     {
-        "protocol": "saddle",
+        "protocol": "saddlefinance",
         "text": "Saddle",
         "href": "/proposal/saddle",
         "chains": [
@@ -100,7 +100,7 @@
         "chainNames": "Ethereum/Optimism/Arbitrum/Polygon/Avalanche"
     },
     {
-        "protocol": "ribbon",
+        "protocol": "gauge.rbn",
         "text": "Ribbon",
         "href": "/proposal/ribbon",
         "chains": [
@@ -118,7 +118,7 @@
         "chainNames": "Ethereum/Avalanche"
     },
     {
-        "protocol": "beethovenx",
+        "protocol": "beets",
         "text": "Beethovenx",
         "href": "/proposal/beethovenx",
         "chains": [
@@ -132,7 +132,7 @@
         "chainNames": "Fantom"
     },
     {
-        "protocol": "onx",
+        "protocol": "onx-finance",
         "text": "Onx",
         "href": "/proposal/onx",
         "chains": [
@@ -162,7 +162,7 @@
         "chainNames": "Ethereum/Polygon/Fantom/Avalanche/Binance"
     },
     {
-        "protocol": "vesq",
+        "protocol": "vesqdao",
         "text": "VESQ",
         "href": "/proposal/vesq",
         "chains": [
