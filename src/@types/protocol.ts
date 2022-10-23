@@ -16,7 +16,7 @@ export enum EnumProtocolName {
   proposal = "Proposals",
   protocols = "Protocols",
   analytics = "Analytics",
-  vesq = "VESQ",
+  vesqdao = "VESQ",
 }
 
 export enum EnumProtocolSymbolName {
@@ -32,5 +32,5 @@ export const ProtocolsList: Protocol[] = [
   { name: EnumProtocolName.saddlefinance, symbol: "saddlefinance" },
   { name: EnumProtocolName.onx, symbol: "onx-finance" },
   { name: EnumProtocolName.ribbon, symbol: "gauge.rbn" },
-  { name: EnumProtocolName.vesq, symbol: "vesqdao" },
+  { name: EnumProtocolName.vesqdao, symbol: "vesqdao" },
 ];

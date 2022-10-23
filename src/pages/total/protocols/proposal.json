@@ -40,7 +40,7 @@
     {
         "protocol": "aurafinance",
         "text": "Aura",
-        "href": "/proposal/aura",
+        "href": "/proposal/aurafinance",
         "chains": [
             {
                 "name": "../../assets/chains/optimism.png",
@@ -58,7 +58,7 @@
     {
         "protocol": "saddlefinance",
         "text": "Saddle",
-        "href": "/proposal/saddle",
+        "href": "/proposal/saddlefinance",
         "chains": [
             {
                 "name": "../../assets/chains/eth.svg",
@@ -120,7 +120,7 @@
     {
         "protocol": "beets",
         "text": "Beethovenx",
-        "href": "/proposal/beethovenx",
+        "href": "/proposal/beets",
         "chains": [
             {
                 "name": "../../assets/chains/fantom.svg",
@@ -164,7 +164,7 @@
     {
         "protocol": "vesqdao",
         "text": "VESQ",
-        "href": "/proposal/vesq",
+        "href": "/proposal/vesqdao",
         "chains": [
             {
                 "name": "../../assets/chains/polygon.svg",
