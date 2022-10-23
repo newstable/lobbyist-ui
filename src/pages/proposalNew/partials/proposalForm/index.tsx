@@ -74,22 +74,22 @@ const ProposalForm = (props: Props) => {
 			setValue("platformType", "aave");
 		} else if (props.name === "saddle") {
 			setName("saddlefinance.eth");
-			setValue("platformType", "saddle");
+			setValue("platformType", "saddlefinance");
 		} else if (props.name === "aura") {
 			setName("aurafinance.eth");
-			setValue("platformType", "aura");
+			setValue("platformType", "aurafinance");
 		} else if (props.name === "beethovenx") {
 			setName("beets.eth");
-			setValue("platformType", "beethovenx");
+			setValue("platformType", "beets");
 		} else if (props.name === "onx") {
 			setName("onx-finance.eth");
-			setValue("platformType", "onx");
+			setValue("platformType", "onx-finance");
 		} else if (props.name === "ribbon") {
 			setName("gauge.rbn.eth");
-			setValue("platformType", "ribbon");
+			setValue("platformType", "gauge.rbn");
 		} else if (props.name === "vesq") {
 			setName("vesqdao.eth");
-			setValue("platformType", "vesq");
+			setValue("platformType", "vesqdao");
 		}
 	}, [props.name]);
 
