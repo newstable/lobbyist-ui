@@ -36,7 +36,7 @@ const HeaderLeft = (props: Props) => {
   if (symbol) {
     title = EnumProtocolName[symbol as keyof typeof EnumProtocolName];
     switch (title) {
-      case EnumProtocolName.aura:
+      case EnumProtocolName.aurafinance:
         TitleIcon = AuraIcon;
         break;
       case EnumProtocolName.qidao:
@@ -45,10 +45,10 @@ const HeaderLeft = (props: Props) => {
       case EnumProtocolName.aave:
         TitleIcon = ProAaveIcon;
         break;
-      case EnumProtocolName.beethovenx:
+      case EnumProtocolName.beets:
         TitleIcon = BeethovenxIcon;
         break;
-      case EnumProtocolName.saddle:
+      case EnumProtocolName.saddlefinance:
         TitleIcon = SaddleIcon;
         break;
       case EnumProtocolName.ribbon:

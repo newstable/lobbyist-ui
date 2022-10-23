@@ -65,33 +65,33 @@ const ProposalForm = (props: Props) => {
 		(state: RootState) => state.provider.provider
 	);
 	// Get protocol type and symbol
-	useEffect(() => {
-		if (props.name === "qidao") {
-			setName("qidao.eth");
-			setValue("platformType", "qidao");
-		} else if (props.name === "aave") {
-			setName("aave.eth");
-			setValue("platformType", "aave");
-		} else if (props.name === "saddle") {
-			setName("saddlefinance.eth");
-			setValue("platformType", "saddlefinance");
-		} else if (props.name === "aura") {
-			setName("aurafinance.eth");
-			setValue("platformType", "aurafinance");
-		} else if (props.name === "beethovenx") {
-			setName("beets.eth");
-			setValue("platformType", "beets");
-		} else if (props.name === "onx") {
-			setName("onx-finance.eth");
-			setValue("platformType", "onx-finance");
-		} else if (props.name === "ribbon") {
-			setName("gauge.rbn.eth");
-			setValue("platformType", "gauge.rbn");
-		} else if (props.name === "vesq") {
-			setName("vesqdao.eth");
-			setValue("platformType", "vesqdao");
-		}
-	}, [props.name]);
+	// useEffect(() => {
+	// 	if (props.name === "qidao") {
+	// 		setName("qidao.eth");
+	// 		setValue("platformType", "qidao");
+	// 	} else if (props.name === "aave") {
+	// 		setName("aave.eth");
+	// 		setValue("platformType", "aave");
+	// 	} else if (props.name === "saddle") {
+	// 		setName("saddlefinance.eth");
+	// 		setValue("platformType", "saddlefinance");
+	// 	} else if (props.name === "aura") {
+	// 		setName("aurafinance.eth");
+	// 		setValue("platformType", "aurafinance");
+	// 	} else if (props.name === "beethovenx") {
+	// 		setName("beets.eth");
+	// 		setValue("platformType", "beets");
+	// 	} else if (props.name === "onx") {
+	// 		setName("onx-finance.eth");
+	// 		setValue("platformType", "onx-finance");
+	// 	} else if (props.name === "ribbon") {
+	// 		setName("gauge.rbn.eth");
+	// 		setValue("platformType", "gauge.rbn");
+	// 	} else if (props.name === "vesq") {
+	// 		setName("vesqdao.eth");
+	// 		setValue("platformType", "vesqdao");
+	// 	}
+	// }, [props.name]);
 
 	// Get token price that you select
 	useEffect(() => {
