@@ -91,7 +91,6 @@ const ProposalSymbolVote = (props: Props) => {
   const [currency, setRewardCurrency] = useState("");
   const [currencyApi, setRewardCurrencyApi] = useState("");
   const [usdAmount, setUsdAmount] = useState(0);
-  const [href, setHref] = useState("");
 
   const isProposer = searchParams.get("proposer") && true;
   const [showMore, setShowMore] = useState(true);
@@ -111,11 +110,6 @@ const ProposalSymbolVote = (props: Props) => {
   useEffect(() => {
     GetInfo();
   }, [walletAddress]);
-
-  useEffect(() => {
-    var link = symbol ? symbol == "vesq" ? "vesqdao" : "" : "";
-    setHref(link);
-  }, [symbol])
 
   useEffect(() => {
     setUsdAmount(0);
@@ -373,7 +367,7 @@ const ProposalSymbolVote = (props: Props) => {
                 <a
                   href={
                     "https://snapshot.org/#/" +
-                    href +
+                    symbol +
                     ".eth" +
                     "/proposal/" +
                     proposalInfo.id
