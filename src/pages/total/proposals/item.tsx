@@ -21,8 +21,8 @@ const ProtocolImg: any = {
     aurafinance: "../../assets/icons/aura.svg",
     beets: "../../assets/icons/beethovenx.svg",
     ribbon: "../../assets/icons/ribbon.svg",
-    "onx-finance": "../../assets/icons/onx.svg",
-    "vesqdao": "../../assets/icons/vesq.svg"
+    onx: "../../assets/icons/onx.svg",
+    vesqdao: "../../assets/icons/vesq.svg"
 }
 type Props = {
     proposal: Proposal;
