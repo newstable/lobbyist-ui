@@ -47,9 +47,9 @@ const Analytics = () => {
                             <option value={""}>All</option>
                             <option value={"qidao"}>QIDAO</option>
                             <option value={"aave"}>AAVE</option>
-                            <option value={"saddle"}>Saddle</option>
-                            <option value={"aura"}>Aura</option>
-                            <option value={"beethovenx"}>Beethovenx</option>
+                            <option value={"saddlefinance"}>Saddle</option>
+                            <option value={"aurafinance"}>Aura</option>
+                            <option value={"beets"}>Beethovenx</option>
                             <option value={"ribbon"}>Ribbon</option>
                             <option value={"onx"}>Onx</option>
                             <option value={"vesq"}>Vesq</option>
