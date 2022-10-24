@@ -137,7 +137,9 @@ const ProposalCardCreated = (props: Props) => {
                       </Button>
                     </Box>
                   </Box>
-                </Box> : <></> : <></>
+                </Box> : <div key={`prop_${idx}`}></div>
+              : <div key={`prop_${idx}`}></div>
+
           ))}
         </Box>
       </Content>
