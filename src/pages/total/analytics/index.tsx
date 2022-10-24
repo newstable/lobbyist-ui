@@ -48,11 +48,11 @@ const Analytics = () => {
                             <option value={"qidao"}>QIDAO</option>
                             <option value={"aave"}>AAVE</option>
                             <option value={"saddlefinance"}>Saddle</option>
-                            {/* <option value={"aurafinance"}>Aura</option>
+                            <option value={"aurafinance"}>Aura</option>
                             <option value={"beets"}>Beethovenx</option>
                             <option value={"ribbon"}>Ribbon</option>
                             <option value={"onx"}>Onx</option>
-                            <option value={"vesq"}>Vesq</option> */}
+                            <option value={"vesq"}>Vesq</option>
                         </select>
                     </div>
                 </div>
