@@ -20,7 +20,7 @@ const ProtocolImg: any = {
     saddlefinance: "../../assets/icons/saddle.svg",
     aurafinance: "../../assets/icons/aura.svg",
     beets: "../../assets/icons/beethovenx.svg",
-    "gauge.rbn": "../../assets/icons/ribbon.svg",
+    ribbon: "../../assets/icons/ribbon.svg",
     "onx-finance": "../../assets/icons/onx.svg",
     "vesqdao": "../../assets/icons/vesq.svg"
 }
