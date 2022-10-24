@@ -86,7 +86,7 @@ const ProposalForm = (props: Props) => {
 			setValue("platformType", "onx-finance");
 		} else if (props.name === "ribbon") {
 			setName("gauge.rbn.eth");
-			setValue("platformType", "gauge.rbn");
+			setValue("platformType", "ribbon");
 		} else if (props.name === "vesqdao") {
 			setName("vesqdao.eth");
 			setValue("platformType", "vesqdao");
