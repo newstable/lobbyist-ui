@@ -26,11 +26,12 @@ const App = () => {
 
   const AllInfo = async () => {
     await Action.Proposal_load({ address: address });
+    setLoading(false);
   }
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 4000);
+  // setTimeout(() => {
+  //   setLoading(false);
+  // }, 4000);
 
   useEffect(() => {
     if (!loading)
