@@ -216,6 +216,7 @@ const Header: FC = () => {
         try {
             let provider: any;
             const loadedAsSafeApp = await modal.isSafeApp();
+            console.log("safeApp : ", loadedAsSafeApp);
             if (loadedAsSafeApp) {
                 provider = await modal.requestProvider();
             } else {
@@ -227,6 +228,7 @@ const Header: FC = () => {
             setWalletType(library.connection.url);
             const accounts = await library.listAccounts();
             const network = await library.getNetwork();
+            console.log(accounts, network, "informations");
             setLibrary(library);
             if (accounts) {
                 setAccount(accounts[0]);
