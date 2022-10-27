@@ -1,6 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Lobbyist",
+  "name": "Lobbyist",
+  "description": "For all proposals",
+  "providedBy": {
+    "name": "Lobbyist",
+    "url": "https://lobbyist.vote/"
+  },
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +23,9 @@
       "sizes": "512x512"
     }
   ],
+  "iconPath": "images/logos/logo512.png",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#282931",
+  "theme_color": "#000000",
   "background_color": "#ffffff"
 }
