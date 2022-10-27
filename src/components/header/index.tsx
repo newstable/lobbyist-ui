@@ -346,7 +346,7 @@ const Header: FC = () => {
         if (isSafe) {
             console.log(modal);
             await modal.clearCachedProvider();
-            connectWallet();
+            // connectWallet();
         } else {
             await web3Modal.clearCachedProvider();
             onHandleModalClose();
