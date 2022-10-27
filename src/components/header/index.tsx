@@ -343,7 +343,6 @@ const Header: FC = () => {
     };
 
     const changeAddress = async () => {
-        console.log(web3Modal, modal);
         if (isSafe) {
             await modal.clearCachedProvider();
             onHandleModalClose();
