@@ -23,7 +23,7 @@
       "sizes": "512x512"
     }
   ],
-  "iconPath": "images/logos/logo512.png",
+  "iconPath": "images/logos/logo192.svg",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
