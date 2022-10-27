@@ -84,7 +84,6 @@ const ProposalCardActiveSymbol = ({
             (proposal) => proposal.name.search(new RegExp(text, "i")) > -1
         );
         setRealProposals(search);
-        console.log(search, isHistory, chain);
     }, [text, proposals]);
 
     return (
