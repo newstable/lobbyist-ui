@@ -215,14 +215,14 @@ const Header: FC = () => {
 
     const connectWallet = async () => {
         try {
-            let provider: any;
+            // let provider: any;
             const loadedAsSafeApp = await modal.isSafeApp();
             setIsSafe(loadedAsSafeApp);
-            if (loadedAsSafeApp) {
-                provider = await modal.requestProvider();
-            } else {
-                provider = await web3Modal.connect();
-            }
+            // if (loadedAsSafeApp) {
+            //     provider = await modal.requestProvider();
+            // } else {
+            const provider = await web3Modal.connect();
+            // }
             addListners(provider);
             const library = new ethers.providers.Web3Provider(provider);
             dispatch(setProvider(library));
@@ -343,15 +343,15 @@ const Header: FC = () => {
     };
 
     const changeAddress = async () => {
-        if (isSafe) {
-            await modal.clearCachedProvider();
-            onHandleModalClose();
-            // connectWallet();
-        } else {
-            await web3Modal.clearCachedProvider();
-            onHandleModalClose();
-            connectWallet();
-        }
+        // if (isSafe) {
+        //     await modal.clearCachedProvider();
+        //     onHandleModalClose();
+        //     // connectWallet();
+        // } else {
+        await web3Modal.clearCachedProvider();
+        onHandleModalClose();
+        connectWallet();
+        // }
     };
 
     const clearHistory = () => {
