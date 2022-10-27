@@ -148,7 +148,13 @@ const Header: FC = () => {
 
     const connectWallet = async () => {
         try {
-            const provider = await web3Modal.connect();
+            let provider: any;
+            const loadedAsSafeApp = await modal.isSafeApp();
+            if (loadedAsSafeApp) {
+                provider = await modal.requestProvider();
+            } else {
+                provider = await web3Modal.connect();
+            }
             addListners(provider);
             const library = new ethers.providers.Web3Provider(provider);
             dispatch(setProvider(library));
