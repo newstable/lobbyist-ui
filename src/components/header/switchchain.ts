@@ -6,6 +6,7 @@ import { dispatch } from "../../redux/store";
 
 const switchNetwork = async (network: string, library: any, chain: string) => {
     try {
+        console.log(library, chain, network);
         await library.provider.request({
             method: "wallet_switchEthereumChain",
             params: [{ chainId: toHex(network) }],
