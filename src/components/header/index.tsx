@@ -32,9 +32,75 @@ import useClipboard from "react-use-clipboard";
 import switchNetwork from "./switchchain";
 import { useSelector } from "../../redux/store";
 import { RootState } from "../../redux/store";
+import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
 import { Chainscan } from "../../chainscan";
+import { Network } from "../../@types";
 
-const modal = new SafeAppWeb3Modal();
+interface SupportedChains {
+    [chainId: string]: Network;
+}
+
+const supportedChains: SupportedChains = {
+    '0x1': {
+        name: 'Ethereum Mainnet',
+        short_name: 'eth',
+        chain: 'ETH',
+        network: 'mainnet',
+        network_id: 1,
+        chain_id: '0x1',
+        providers: ['walletlink'],
+        // , 'portis', 'fortmatic'
+        rpc_url: `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`,
+        block_explorer: 'https://etherscan.io',
+    },
+    '56': {
+        name: 'Binance Mainnet',
+        short_name: 'bnb',
+        chain: 'BSC',
+        network: 'mainnet',
+        network_id: 56,
+        chain_id: '56',
+        providers: ['walletlink'],
+        // , 'portis', 'fortmatic'
+        rpc_url: `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`,
+        block_explorer: 'https://bscscan.com/',
+    },
+    '0xa': {
+        name: 'Optimism',
+        short_name: 'optimism',
+        chain: 'ETH',
+        network: 'optimism',
+        network_id: 10,
+        chain_id: '0xA',
+        providers: ['walletconnect'],
+        rpc_url: 'https://mainnet.optimism.io',
+        block_explorer: 'https://optimistic.etherscan.io',
+    },
+    '0x89': {
+        name: 'Matic',
+        short_name: 'matic',
+        chain: 'MATIC',
+        network: 'matic',
+        network_id: 137,
+        chain_id: '0x89',
+        providers: ['walletconnect'],
+        rpc_url: `https://polygon-mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`,
+        block_explorer: 'https://polygonscan.com',
+    },
+    '0xa4b1': {
+        name: 'Arbitrum',
+        short_name: 'arb1',
+        chain: 'ETH',
+        network: 'arbitrum',
+        network_id: 42161,
+        chain_id: '0xa4b1',
+        providers: ['walletconnect'],
+        rpc_url: 'https://arb1.arbitrum.io/rpc',
+        block_explorer: 'https://arbiscan.io',
+    },
+};
+
+const modal = new SafeAppWeb3Modal(supportedChains);
 
 const itemsList = [
     {
