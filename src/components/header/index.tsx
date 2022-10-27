@@ -343,9 +343,10 @@ const Header: FC = () => {
     };
 
     const changeAddress = async () => {
+        console.log(web3Modal, modal);
         if (isSafe) {
-            console.log(modal);
             await modal.clearCachedProvider();
+            onHandleModalClose();
             // connectWallet();
         } else {
             await web3Modal.clearCachedProvider();
