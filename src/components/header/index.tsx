@@ -344,6 +344,7 @@ const Header: FC = () => {
 
     const changeAddress = async () => {
         if (isSafe) {
+            console.log(modal);
             await modal.clearCachedProvider();
             connectWallet();
         } else {
