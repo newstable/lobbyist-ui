@@ -183,6 +183,7 @@ const Header: FC = () => {
     const [copyClipboard, setCopyClipboard] = useState(false);
     const [walletType, setWalletType] = useState("");
     const [history, setHistory] = useState<History[]>([]);
+    const [isSafe, setIsSafe] = useState(false);
 
     const chain: any = useSelector(
         (state: RootState) => state.chain.id
@@ -216,7 +217,7 @@ const Header: FC = () => {
         try {
             let provider: any;
             const loadedAsSafeApp = await modal.isSafeApp();
-            console.log("safeApp : ", loadedAsSafeApp);
+            setIsSafe(loadedAsSafeApp);
             if (loadedAsSafeApp) {
                 provider = await modal.requestProvider();
             } else {
@@ -228,7 +229,6 @@ const Header: FC = () => {
             setWalletType(library.connection.url);
             const accounts = await library.listAccounts();
             const network = await library.getNetwork();
-            console.log(accounts, network, "informations");
             setLibrary(library);
             if (accounts) {
                 setAccount(accounts[0]);
@@ -343,9 +343,14 @@ const Header: FC = () => {
     };
 
     const changeAddress = async () => {
-        await web3Modal.clearCachedProvider();
-        onHandleModalClose();
-        connectWallet();
+        if (isSafe) {
+            await modal.clearCachedProvider();
+            connectWallet();
+        } else {
+            await web3Modal.clearCachedProvider();
+            onHandleModalClose();
+            connectWallet();
+        }
     };
 
     const clearHistory = () => {
