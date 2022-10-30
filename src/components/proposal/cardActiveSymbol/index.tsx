@@ -39,6 +39,7 @@ const Text_Head = styled(TextHead)(({ theme }) => ({ fontSize: "100%" }))
 const firstItems = 9;
 const ProposalCardActiveSymbol = ({ protocol, proposals, isHistory, }: Props) => {
     const [text, setText] = useState("");
+    const [pageLoading, setPageLoading] = useState(true);
     const walletAddress: any = useSelector((state: RootState) => state.wallet.address);
     const chain: any = useSelector((state: RootState) => state.chain.id);
     const colHeads = ["Chain", "Title", "Voting For", "Rewards", "Votes", "$/Vote", ""];
