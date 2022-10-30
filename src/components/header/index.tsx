@@ -32,7 +32,6 @@ import useClipboard from "react-use-clipboard";
 import switchNetwork from "./switchchain";
 import { useSelector } from "../../redux/store";
 import { RootState } from "../../redux/store";
-import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
 import { Chainscan } from "../../chainscan";
 import { Network } from "../../@types";
 

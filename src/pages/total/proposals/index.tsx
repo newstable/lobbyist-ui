@@ -1,12 +1,22 @@
-import ProposalItem from "./item";
-import { useSelector } from "../../../redux/store";
+import ReactLoading from 'react-loading';
+import { useContext, useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import "./index.scss";
-import { useEffect, useState } from "react";
+import ProposalItem from "./item";
+
+import { AppContext } from "../../../App";
+import { useSelector } from "../../../redux/store";
 import { Proposal } from "../../../@types/proposal";
+
+const firstItems = 9;
+
 const Proposals = () => {
     const [sort, setSort] = useState("");
     const [protocol, setProtocol] = useState("");
     const [reward, setReward] = useState("");
+    const [allSortProposal, setAllSortProposal] = useState<Proposal[]>([]);
     const [sortProposal, setSortProposal] = useState<Proposal[]>([]);
     const proposalState = useSelector((state) => state.proposal);
     // @ts-ignore
@@ -15,21 +25,64 @@ const Proposals = () => {
         setProposal();
     }, [sort, proposalState, protocol, reward]);
     const setProposal = () => {
-        var search: Proposal[] = proposals?.filter(
+        let search: Proposal[] = proposals?.filter(
             (proposal: any) => proposal.chain == sort || sort == ""
         );
-        var sortedProposal: Proposal[] = search?.filter(
+        let sortedProposal: Proposal[] = search?.filter(
             (proposal: any) => proposal.type == protocol || protocol == ""
         )
-        var sortedByReward: Proposal[] = sortedProposal?.sort((a, b) => {
+        let sortedByReward: Proposal[] = sortedProposal?.sort((a, b) => {
             if (reward == "max")
                 return a.reward < b.reward ? 1 : -1
             else {
                 return a.reward > b.reward ? 1 : -1
             }
         });
-        setSortProposal(sortedByReward);
+
+        if (!sortedByReward) return;
+        sortedByReward = sortedByReward?.reduce((items: Proposal[], item: Proposal) => {
+            return !item.isClosed ? [...items, item] : [...items];
+        }, []);
+        setAllSortProposal(sortedByReward);
     }
+
+    const [loadMoreStatus, setLoadMoreStatus] = useState(false);
+    const [loadMoreCount, setLoadMoreCount] = useState(0);
+    const loadMoreClick = () => { setLoadMoreStatus(true); setLoadMoreCount(1) };
+
+    useEffect(() => {
+        let proposals: Proposal[] = [];
+        if (!allSortProposal.length) { setSortProposal(proposals); return; }
+
+        proposals = allSortProposal.slice(0, firstItems * (loadMoreCount + 1));
+        setSortProposal(proposals);
+    }, [allSortProposal, loadMoreCount, loadMoreCount]);
+
+    const [appData] = useContext<any>(AppContext);
+    const [beforeScroll, setBeforeScroll] = useState(0);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        if (!appData.scrollState || !loadMoreCount) return;
+        const EL = appData.containRef;
+
+        const Height = EL.offsetHeight;
+        const scrollTop = EL.scrollTop;
+        const totalHeight = EL.scrollHeight;
+
+        if (totalHeight * 0.9 < (scrollTop + Height)) {
+            if (scrollTop < beforeScroll + 200) return;
+            setBeforeScroll(scrollTop);
+
+            if (allSortProposal.length > firstItems * (loadMoreCount + 1))
+                setLoading(true);
+
+            setTimeout(() => {
+                setLoadMoreCount(loadMoreCount + 1);
+                setLoading(false);
+            }, 2000);
+        }
+    }, [appData.scrollState]);
+
     return (
         <div className="wall">
             <div className="flex items-center will-justify">
@@ -70,15 +123,29 @@ const Proposals = () => {
                     </select>
                 </div>
             </div>
+
             <div className="justify-center mt-12 wall-grid-col grid gap-8">
-                {sortProposal?.map((proposal, key) => {
-                    return (
-                        !proposal.isClosed ? (
-                            <ProposalItem proposal={proposal} key={key} />
-                        ) : <></>
-                    )
-                })}
+                {sortProposal?.map((proposal, key) => <ProposalItem proposal={proposal} key={key} />)}
             </div>
+
+
+            {
+                allSortProposal.length > firstItems &&
+                <Box component='span' className="flex items-center justify-center load-more-btn">
+                    {
+                        !loadMoreStatus && <Typography component="h6"
+                            className="flex items-center justify-center text-center"
+                            onClick={loadMoreClick}
+                        >
+                            load more <ExpandMoreIcon />
+                        </Typography>
+                    }
+                </Box>
+            }
+
+            {loading && <Box component={'span'} className='flex items-center justify-center'>
+                <ReactLoading type='cylon' color={'white'} height={'30px'} width={'80px'} />
+            </Box>}
         </div>
     )
 }
