@@ -53,7 +53,7 @@ const ProposalCardActiveSymbol = ({ protocol, proposals, isHistory, }: Props) =>
     };
 
     const [allRealProposals, setAllRealProposals] = useState<Proposal[]>([]);
-    const [realProposals, setRealProposals] = useState<Proposal[]>(proposals);
+    const [realProposals, setRealProposals] = useState<Proposal[]>([]);
     useEffect(() => {
         let tempProposals: Proposal[] = [];
         if (!proposals || !proposals.length) { setRealProposals(tempProposals); return; };
@@ -64,12 +64,16 @@ const ProposalCardActiveSymbol = ({ protocol, proposals, isHistory, }: Props) =>
         setAllRealProposals(tempProposals);
     }, [text, proposals, isHistory]);
 
+    const [dataLoading, setDataLoading] = useState(false);
+    useEffect(() => { setDataLoading(true); }, [isHistory])
+
     const [loadMoreStatus, setLoadMoreStatus] = useState(false);
     const [loadMoreCount, setLoadMoreCount] = useState(0);
     const loadMoreClick = () => { setLoadMoreStatus(true); setLoadMoreCount(1) };
 
     useEffect(() => {
         let proposals: Proposal[] = [];
+        if (dataLoading) setTimeout(() => { setDataLoading(false); }, 1000);
         if (!allRealProposals.length) { setRealProposals(proposals); return; }
 
         proposals = allRealProposals.slice(0, firstItems * (loadMoreCount + 1));
@@ -102,7 +106,7 @@ const ProposalCardActiveSymbol = ({ protocol, proposals, isHistory, }: Props) =>
     }, [appData.scrollState]);
 
     return (
-        <Card className="" elevation={0}>
+        <Card className="asdfasdfdf" elevation={0}>
             <ProposalCardHeader
                 title={`${isHistory ? "Historical" : "Active"
                     } Proposals for ${protocol}`}
@@ -139,7 +143,7 @@ const ProposalCardActiveSymbol = ({ protocol, proposals, isHistory, }: Props) =>
                 </Box>
 
                 <Box className="flex flex-col gap-4">
-                    {realProposals?.map((p, idx) =>
+                    {!dataLoading && realProposals?.map((p, idx) =>
                         <Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
                             <Box
                                 className={classNames(
@@ -254,11 +258,12 @@ const ProposalCardActiveSymbol = ({ protocol, proposals, isHistory, }: Props) =>
                         load more <ExpandMoreIcon />
                     </Typography>}
                 </Box>}
-
-                {loading && <Box component={'div'} className='flex items-center justify-center'>
-                    <ReactLoading type='cylon' color={'white'} height={'50px'} width={'80px'} />
-                </Box>}
             </Content>
+
+
+            {loading || dataLoading && <Box component={'div'} className='flex items-center justify-center'>
+                <ReactLoading type='cylon' color={'white'} height={'50px'} width={'80px'} />
+            </Box>}
         </Card>
     );
 };
