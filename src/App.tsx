@@ -24,8 +24,11 @@ const App = () => {
 
   const AllInfo = async () => {
     await Action.Proposal_load({ address: address });
-    setLoading(false);
   }
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
 
   useEffect(() => {
     if (!loading)
@@ -54,7 +57,6 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <LoadingScreen loading={loading} bgColor="#282931" spinnerColor="#3a78ff">
           <CssBaseline />
-
           <div className='app-wrapper' ref={appWrapperRef} onScroll={onScroll}>
             <AppRoutes />
           </div>
