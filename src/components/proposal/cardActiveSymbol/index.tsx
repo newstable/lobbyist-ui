@@ -36,10 +36,9 @@ const ChainImg: any = {
 const Content = styled(CardContent)(({ theme }) => ({}));
 const Text_Head = styled(TextHead)(({ theme }) => ({ fontSize: "100%" }))
 
-const firstItems = 9;
+const firstItems = 10;
 const ProposalCardActiveSymbol = ({ protocol, proposals, isHistory, }: Props) => {
     const [text, setText] = useState("");
-    const [pageLoading, setPageLoading] = useState(true);
     const walletAddress: any = useSelector((state: RootState) => state.wallet.address);
     const chain: any = useSelector((state: RootState) => state.chain.id);
     const colHeads = ["Chain", "Title", "Voting For", "Rewards", "Votes", "$/Vote", ""];
@@ -259,7 +258,6 @@ const ProposalCardActiveSymbol = ({ protocol, proposals, isHistory, }: Props) =>
                     </Typography>}
                 </Box>}
             </Content>
-
 
             {loading || dataLoading && <Box component={'div'} className='flex items-center justify-center'>
                 <ReactLoading type='cylon' color={'white'} height={'50px'} width={'80px'} />
