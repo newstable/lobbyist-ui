@@ -123,15 +123,29 @@ const Proposals = () => {
                     </select>
                 </div>
             </div>
+
             <div className="justify-center mt-12 wall-grid-col grid gap-8">
-                {sortProposal?.map((proposal, key) => {
-                    return (
-                        !proposal.isClosed ? (
-                            <ProposalItem proposal={proposal} key={key} />
-                        ) : <></>
-                    )
-                })}
+                {sortProposal?.map((proposal, key) => <ProposalItem proposal={proposal} key={key} />)}
             </div>
+
+
+            {
+                allSortProposal.length > firstItems &&
+                <Box component='span' className="flex items-center justify-center load-more-btn">
+                    {
+                        !loadMoreStatus && <Typography component="h6"
+                            className="flex items-center justify-center text-center"
+                            onClick={loadMoreClick}
+                        >
+                            load more <ExpandMoreIcon />
+                        </Typography>
+                    }
+                </Box>
+            }
+
+            {loading && <Box component={'span'} className='flex items-center justify-center'>
+                <ReactLoading type='cylon' color={'white'} height={'30px'} width={'80px'} />
+            </Box>}
         </div>
     )
 }
