@@ -86,7 +86,7 @@ const Proposals = () => {
     return (
         <div className="wall">
             <div className="flex items-center will-justify">
-                <div className="sm:flex items-center">
+                {/* <div className="sm:flex items-center">
                     <div className=" text-2xl">SORT BY CHAIN : </div>
                     <div>
                         <select className="wall-select" onChange={(e) => setSort(e.target.value)}>
@@ -96,11 +96,11 @@ const Proposals = () => {
                             <option value={137}>Polygon</option>
                             <option value={250}>Fantom</option>
                             <option value={10}>Optimism</option>
-                            <option value={42161}>Arbitrum</option>
+                            <option valssue={42161}>Arbitrum</option>
                             <option value={43114}>Avalanche</option>
                         </select>
                     </div>
-                </div>
+                </div> */}
                 <div className="sm:flex items-center ml-6">
                     <div className="text-2xl">SORT BY Protocol : </div>
                     <select className="wall-select" onChange={(e) => setProtocol(e.target.value)}>
