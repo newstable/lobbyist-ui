@@ -123,6 +123,15 @@ const Proposals = () => {
                     </select>
                 </div>
             </div>
+            {/* <div className="justify-center mt-12 wall-grid-col grid gap-8">
+                {sortProposal?.map((proposal, key) => {
+                    return (
+                        !proposal.isClosed ? (
+                            <ProposalItem proposal={proposal} key={key} />
+                        ) : <></>
+                    )
+                })}
+            </div> */}
 
             <div className="justify-center mt-12 wall-grid-col grid gap-8">
                 {sortProposal?.map((proposal, key) => <ProposalItem proposal={proposal} key={key} />)}
