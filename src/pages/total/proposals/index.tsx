@@ -101,7 +101,7 @@ const Proposals = () => {
                         </select>
                     </div>
                 </div>
-                {/* <div className="sm:flex items-center ml-6">
+                <div className="sm:flex items-center ml-6">
                     <div className="text-2xl">SORT BY Protocol : </div>
                     <select className="wall-select" onChange={(e) => setProtocol(e.target.value)}>
                         <option value={""}>All</option>
@@ -114,7 +114,7 @@ const Proposals = () => {
                         <option value={"onx"}>Onx</option>
                         <option value={"vesqdao"}>Vesq</option>
                     </select>
-                </div> */}
+                </div>
                 <div className="sm:flex items-center ml-6">
                     <div className="text-2xl">SORT BY REWARD : </div>
                     <select className="wall-select" onChange={(e) => setReward(e.target.value)}>
