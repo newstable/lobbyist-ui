@@ -100,7 +100,7 @@
         "chainNames": "Ethereum/Optimism/Arbitrum/Polygon/Avalanche"
     },
     {
-        "protocol": "gauge.rbn",
+        "protocol": "ribbon",
         "text": "Ribbon",
         "href": "/proposal/ribbon",
         "chains": [

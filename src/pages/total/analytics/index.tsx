@@ -52,7 +52,7 @@ const Analytics = () => {
                             <option value={"beets"}>Beethovenx</option>
                             <option value={"ribbon"}>Ribbon</option>
                             <option value={"onx"}>Onx</option>
-                            <option value={"vesq"}>Vesq</option>
+                            <option value={"vesqdao"}>Vesq</option>
                         </select>
                     </div>
                 </div>

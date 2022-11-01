@@ -105,12 +105,12 @@ const ProposalCardActive = (props: Props) => {
 									)}
 								>
 									<Box
-										className={classNames("flex flex-col card-item", !isAboveMd && "gap-1")}
+										className={classNames("flex flex-col", isAboveMd && "card-item", !isAboveMd && "gap-1")}
 									>
 										<Text_Head className={classNames(isAboveMd && "hidden")}>
 											{colHeads[0]}
 										</Text_Head>
-										<img width="23" src={ChainImg[p.chain]}></img>
+										<img width="23" src={ChainImg[p.chain]} style={{ marginTop: "1rem" }}></img>
 									</Box>
 									<Box
 										className={classNames("flex flex-col justify-center", !isAboveMd && "gap-1")}

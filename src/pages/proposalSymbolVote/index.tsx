@@ -38,6 +38,7 @@ import { Coins } from "../../blockchain";
 import NumberType from "../../common/number";
 import { History } from "../../@types/proposal";
 import "./vote.scss";
+import { links } from "./snapshotlink";
 
 var md = new Remarkable();
 var history: History[] = [];
@@ -367,7 +368,7 @@ const ProposalSymbolVote = (props: Props) => {
                 <a
                   href={
                     "https://snapshot.org/#/" +
-                    symbol +
+                    links[`${symbol}`] +
                     ".eth" +
                     "/proposal/" +
                     proposalInfo.id

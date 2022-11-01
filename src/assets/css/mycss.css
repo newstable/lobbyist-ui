@@ -462,7 +462,7 @@ video {
 }
 
 .hidden {
-    display: none
+    display: none !important;
 }
 
 .h-\[30px\] {
