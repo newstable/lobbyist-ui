@@ -70,7 +70,7 @@ const Proposals = () => {
                     </select>
                 </div>
             </div>
-            {/* <div className="justify-center mt-12 wall-grid-col grid gap-8">
+            <div className="justify-center mt-12 wall-grid-col grid gap-8">
                 {sortProposal?.map((proposal, key) => {
                     return (
                         !proposal.isClosed ? (
@@ -78,7 +78,7 @@ const Proposals = () => {
                         ) : <></>
                     )
                 })}
-            </div> */}
+            </div>
         </div>
     )
 }
