@@ -62,13 +62,13 @@ const Proposals = () => {
                         <option value={"vesqdao"}>Vesq</option>
                     </select>
                 </div>
-                <div className="sm:flex items-center ml-6">
+                {/* <div className="sm:flex items-center ml-6">
                     <div className="text-2xl">SORT BY REWARD : </div>
                     <select className="wall-select" onChange={(e) => setReward(e.target.value)}>
                         <option value={"max"}>High</option>
                         <option value={"min"}>Low</option>
                     </select>
-                </div>
+                </div> */}
             </div>
             <div className="justify-center mt-12 wall-grid-col grid gap-8">
                 {sortProposal?.map((proposal, key) => {
