@@ -67,77 +67,76 @@ const ProposalCardCreated = (props: Props) => {
         </Box>
         <Box className="flex flex-col gap-4">
           {proposals?.map((p, idx) => (
-            p.address === address ?
-              !p.isClosed ?
-                <Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
-                  <Box
-                    className={classNames(
-                      "grid gap-8",
-                      isAboveMd ? "grid-cols-custom-7" : "grid-cols-2"
-                    )}
-                  >
-                    <Box
-                      className={classNames("flex flex-col card-item", !isAboveMd && "gap-1")}
-                    >
-                      <Text_Head className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[0]}
-                      </Text_Head>
-                      <img width="23" src={ChainImg[p.chain]}></img>
-                    </Box>
-                    <Box
-                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
-                    >
-                      <Text_Head className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[1]}
-                      </Text_Head>
-                      <TextContent>{p.name.length > 23 ? (p.name.slice(0, 23) + "...") : p.name}</TextContent>
-                    </Box>
-                    <Box
-                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
-                    >
-                      <Text_Head className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[2]}
-                      </Text_Head>
-                      <TextContent>{p.choice.length > 23 ? (p.choice.slice(0, 23) + "...") : p.choice}</TextContent>
-                    </Box>
-                    <Box
-                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
-                    >
-                      <Text_Head className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[3]}
-                      </Text_Head>
-                      <TextContent>${NumberType(p.usdAmount.toFixed(2), 2)}</TextContent>
-                    </Box>
-                    <Box
-                      className={classNames(
-                        "flex flex-col",
-                        !isAboveMd && "gap-1 col-span-3"
-                      )}
-                    >
-                      <Text_Head className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[4]}
-                      </Text_Head>
-                      <TextContent>{NumberType(p.totalVoteWeight.toFixed(2), 2)}</TextContent>
-                    </Box>
-                    <Box
-                      className={classNames("flex flex-col", !isAboveMd && "gap-1")}
-                    >
-                      <Text_Head className={classNames(isAboveMd && "hidden")}>
-                        {colHeads[5]}
-                      </Text_Head>
-                      <TextContent>${p.totalVoteWeight == 0 ? ("0") : p.totalVoteWeight < 1 ? NumberType(p.usdAmount.toFixed(2), 2) : (
-                        NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6)
-                      )}</TextContent>
-                    </Box>
-                    <Box
-                      className={classNames("flex", isAboveMd && "justify-center")}
-                    >
-                      <Button variant="contained" color="tealLight" onClick={() => onJoinClick(p)}>
-                        View
-                      </Button>
-                    </Box>
-                  </Box>
-                </Box> : <></> : <></>
+            p.address === address && !p.isClosed &&
+            <Box key={`prop_${idx}`} className="p-6 bg-black rounded-md">
+              <Box
+                className={classNames(
+                  "grid gap-8",
+                  isAboveMd ? "grid-cols-custom-7" : "grid-cols-2"
+                )}
+              >
+                <Box
+                  className={classNames("flex flex-col", isAboveMd && "card-item", !isAboveMd && "gap-1")}
+                >
+                  <Text_Head className={classNames(isAboveMd && "hidden")}>
+                    {colHeads[0]}
+                  </Text_Head>
+                  <img width="23" src={ChainImg[p.chain]} style={{ marginTop: "1rem" }}></img>
+                </Box>
+                <Box
+                  className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                >
+                  <Text_Head className={classNames(isAboveMd && "hidden")}>
+                    {colHeads[1]}
+                  </Text_Head>
+                  <TextContent>{p.name.length > 23 ? (p.name.slice(0, 23) + "...") : p.name}</TextContent>
+                </Box>
+                <Box
+                  className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                >
+                  <Text_Head className={classNames(isAboveMd && "hidden")}>
+                    {colHeads[2]}
+                  </Text_Head>
+                  <TextContent>{p.choice.length > 23 ? (p.choice.slice(0, 23) + "...") : p.choice}</TextContent>
+                </Box>
+                <Box
+                  className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                >
+                  <Text_Head className={classNames(isAboveMd && "hidden")}>
+                    {colHeads[3]}
+                  </Text_Head>
+                  <TextContent>${NumberType(p.usdAmount.toFixed(2), 2)}</TextContent>
+                </Box>
+                <Box
+                  className={classNames(
+                    "flex flex-col",
+                    !isAboveMd && "gap-1 col-span-3"
+                  )}
+                >
+                  <Text_Head className={classNames(isAboveMd && "hidden")}>
+                    {colHeads[4]}
+                  </Text_Head>
+                  <TextContent>{NumberType(p.totalVoteWeight.toFixed(2), 2)}</TextContent>
+                </Box>
+                <Box
+                  className={classNames("flex flex-col", !isAboveMd && "gap-1")}
+                >
+                  <Text_Head className={classNames(isAboveMd && "hidden")}>
+                    {colHeads[5]}
+                  </Text_Head>
+                  <TextContent>${p.totalVoteWeight == 0 ? ("0") : p.totalVoteWeight < 1 ? NumberType(p.usdAmount.toFixed(2), 2) : (
+                    NumberType((p.usdAmount / p.totalVoteWeight).toFixed(6), 6)
+                  )}</TextContent>
+                </Box>
+                <Box
+                  className={classNames("flex", isAboveMd && "justify-center")}
+                >
+                  <Button variant="contained" color="tealLight" onClick={() => onJoinClick(p)}>
+                    View
+                  </Button>
+                </Box>
+              </Box>
+            </Box>
           ))}
         </Box>
       </Content>
