@@ -39,7 +39,7 @@ const Analytics = () => {
     }
     return (
         <div className="analytics">
-            <div className="flex items-center analytics-justify">
+            {/* <div className="flex items-center analytics-justify">
                 <div className="sm:flex items-center">
                     <div className=" text-2xl">SORT BY PROTOCOLS : </div>
                     <div>
@@ -56,7 +56,7 @@ const Analytics = () => {
                         </select>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div className="justify-center mt-12 analytics-grid-col grid gap-8">
                 <div className="item text-center">
                     <h1 className="analy-font-1">${NumberType(lockedValue.toFixed(2), 2)}</h1>
